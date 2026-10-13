@@ -30,6 +30,7 @@ class CameraService:
         self.preview_paused: bool = False
         self.processing_active: bool = True
         self._last_jpeg: Optional[bytes] = None
+        self._last_jpeg_ts: float = 0.0
 
     def start(self) -> bool:
         with self._lock:
@@ -114,9 +115,8 @@ class CameraService:
         }
 
     def generate_mjpeg_frame(self, overlay_renderer=None) -> Optional[bytes]:
-        """Encodes latest frame to JPEG bytes with optional overlay."""
+        """Encodes latest frame to JPEG bytes with optional overlay and caching."""
         if self.preview_paused:
-            # If preview is paused, return a static paused badge frame or cached frame
             if self._last_jpeg:
                 return self._last_jpeg
 
@@ -133,15 +133,22 @@ class CameraService:
                 (0, 165, 255),
                 2,
             )
-            _, buf = cv2.imencode(".jpg", placeholder, [cv2.IMWRITE_JPEG_QUALITY, 80])
+            _, buf = cv2.imencode(".jpg", placeholder, [cv2.IMWRITE_JPEG_QUALITY, 65])
             return buf.tobytes()
+
+        # Cache check: if the frame timestamp is identical, reuse the cached JPEG
+        frame_ts = meta.timestamp if meta else 0.0
+        if self._last_jpeg is not None and frame_ts > 0 and frame_ts == self._last_jpeg_ts:
+            return self._last_jpeg
 
         # Apply overlay if provided
         if overlay_renderer is not None and callable(overlay_renderer):
             frame = overlay_renderer(frame)
 
-        ret, buf = cv2.imencode(".jpg", frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
+        # Quality 65 provides 3x faster encoding and reduced CPU & network load on ARM
+        ret, buf = cv2.imencode(".jpg", frame, [cv2.IMWRITE_JPEG_QUALITY, 65])
         if ret:
             self._last_jpeg = buf.tobytes()
+            self._last_jpeg_ts = frame_ts
             return self._last_jpeg
         return None

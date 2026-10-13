@@ -172,7 +172,7 @@ def _stream_generator():
                     b"--frame\r\n"
                     b"Content-Type: image/jpeg\r\n\r\n" + jpeg_bytes + b"\r\n"
                 )
-        time.sleep(0.04)  # ~25 FPS stream pacing
+        time.sleep(0.07)  # ~14 FPS stream pacing aligned with Pi camera hardware
 
 
 @router.get("/stream/video_feed")

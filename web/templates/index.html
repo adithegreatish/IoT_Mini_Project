@@ -70,10 +70,10 @@
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px;">
         <div class="video-panel">
           <div class="video-container">
-            <img class="video-element" src="/api/stream/video_feed" alt="Live Feed Preview">
+            <img class="video-element" id="overview-video-feed" src="/api/stream/video_feed" alt="Live Feed Preview">
           </div>
           <div class="stream-toolbar">
             <span style="font-size: 13px; font-weight: 600;">Live Feed Preview</span>
@@ -93,13 +93,106 @@
           </div>
         </div>
       </div>
+
+      <!-- OVERVIEW PARKING ALLOTMENT CONTROLS -->
+      <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px;">
+        
+        <!-- Quick Allotment Card -->
+        <div class="stat-card" style="border: 1px solid var(--border-accent);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div class="stat-title" style="color: var(--accent-cyan); font-weight: 700;">⚡ Quick Parking Allotment</div>
+            <span class="badge badge-live">ACID Lock</span>
+          </div>
+          
+          <form id="form-quick-allot" style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+              <label style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Select Parking Bay</label>
+              <select class="select-input" id="quick-alloc-slot" style="width: 100%; margin-top: 4px;">
+                <option value="">⚡ Auto-Assign Best Available Bay</option>
+              </select>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Driver / User ID</label>
+                <input type="text" class="text-input" id="quick-alloc-user" value="driver_01" required style="width: 100%; margin-top: 4px;">
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Vehicle Plate (HSRP)</label>
+                <input type="text" class="text-input" id="quick-alloc-plate" placeholder="e.g. MH12AB1234" style="width: 100%; margin-top: 4px;">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Bay Type</label>
+                <select class="select-input" id="quick-alloc-type" style="width: 100%; margin-top: 4px;">
+                  <option value="car">Car (Regular)</option>
+                  <option value="ev">EV Charging</option>
+                  <option value="accessible">Accessible</option>
+                  <option value="motorcycle">Motorcycle</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Duration</label>
+                <select class="select-input" id="quick-alloc-duration" style="width: 100%; margin-top: 4px;">
+                  <option value="15">15 Minutes</option>
+                  <option value="30" selected>30 Minutes</option>
+                  <option value="60">1 Hour</option>
+                  <option value="120">2 Hours</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-accent" id="btn-quick-allot" style="margin-top: 6px; font-weight: 700; justify-content: center; padding: 10px 16px;">
+              ⚡ Allot Parking Bay Now
+            </button>
+          </form>
+
+          <!-- Confirmation Receipt Banner -->
+          <div id="quick-alloc-receipt" style="display: none; margin-top: 14px; padding: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid var(--status-free); border-radius: 8px;">
+            <div style="font-weight: 700; color: var(--status-free); font-size: 13px;" id="quick-receipt-title">Bay Allotted Successfully!</div>
+            <div style="font-size: 12px; margin-top: 4px; line-height: 1.5;" id="quick-receipt-body"></div>
+          </div>
+        </div>
+
+        <!-- Live Active Allotments & Quick Release Table -->
+        <div class="stat-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div>
+              <div class="stat-title">Active Allotments &amp; Bay Controls</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Real-time slot reservations with 1-click release controls</div>
+            </div>
+            <button class="btn btn-sm" onclick="fetchAvailability(true)">Refresh</button>
+          </div>
+
+          <div style="overflow-x: auto; max-height: 320px;">
+            <table class="event-table" id="table-overview-allotments">
+              <thead>
+                <tr>
+                  <th>Bay ID</th>
+                  <th>Type</th>
+                  <th>Physical State</th>
+                  <th>Virtual Status</th>
+                  <th>Vehicle / User</th>
+                  <th>Reservation Code</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-overview-allotments">
+                <tr><td colspan="7" style="text-align: center; color: var(--text-muted);">Loading bays...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 2. LIVE MONITOR PANE -->
     <section class="tab-pane" id="pane-monitor">
       <div class="video-panel">
         <div class="video-container">
-          <img class="video-element" id="monitor-video-feed" src="/api/stream/video_feed" alt="Live Camera Feed">
+          <img class="video-element" id="monitor-video-feed" src="" alt="Live Camera Feed">
         </div>
         <div class="stream-toolbar">
           <div class="toolbar-group">

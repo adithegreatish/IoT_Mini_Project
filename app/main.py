@@ -158,6 +158,7 @@ def main():
         port=cfg.app.port,
         reload=False,
         log_level=cfg.logging.level.lower(),
+        access_log=False,
     )
 
 

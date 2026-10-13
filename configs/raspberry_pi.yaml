@@ -38,7 +38,7 @@ detection:
   input_width: 480  # Optimized resolution for Pi CPU throughput
   input_height: 480
   classes: ["car", "motorcycle", "bus", "truck"]
-  inference_interval_ms: 120  # ~8-10 FPS to preserve Pi 5 CPU & thermals
+  inference_interval_ms: 250  # ~4 FPS: keeps Pi 5 CPU cool and GUI buttery smooth
 
 plates:
   enabled: true

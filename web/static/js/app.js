@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalibrationCanvas();
   initDiagnostics();
   initAllocationForm();
+  initQuickAllotmentForm();
 });
 
 // --- Navigation ---
@@ -43,9 +44,29 @@ function switchTab(targetTabId) {
     p.classList.toggle('active', p.id === `pane-${targetTabId}`);
   });
 
+  // Hardware stream optimization: Only activate MJPEG stream on the visible video element
+  const overviewFeed = document.getElementById('overview-video-feed');
+  const monitorFeed = document.getElementById('monitor-video-feed');
+
+  if (targetTabId === 'overview') {
+    if (overviewFeed && (!overviewFeed.src || !overviewFeed.src.includes('/api/stream/video_feed'))) {
+      overviewFeed.src = '/api/stream/video_feed';
+    }
+    if (monitorFeed) monitorFeed.src = '';
+  } else if (targetTabId === 'monitor') {
+    if (monitorFeed && (!monitorFeed.src || !monitorFeed.src.includes('/api/stream/video_feed'))) {
+      monitorFeed.src = '/api/stream/video_feed';
+    }
+    if (overviewFeed) overviewFeed.src = '';
+  } else {
+    // Non-video tabs: stop stream completely to release 100% video decoding CPU on Raspberry Pi
+    if (overviewFeed) overviewFeed.src = '';
+    if (monitorFeed) monitorFeed.src = '';
+  }
+
   if (targetTabId === 'calibration') {
     renderCalibrationCanvas();
-  } else if (targetTabId === 'allocation') {
+  } else if (targetTabId === 'allocation' || targetTabId === 'overview') {
     fetchAvailability(true);
   } else if (targetTabId === 'events') {
     fetchEvents();
@@ -60,10 +81,18 @@ function switchTab(targetTabId) {
 function initPolling() {
   fetchHealth();
   fetchSlots();
-  setInterval(fetchHealth, 1500);
-  setInterval(fetchSlots, 2500);
+  fetchAvailability(false);
+
+  // Throttled 3.0s polling to prevent CPU spikes and keep browser snappy
   setInterval(() => {
-    if (state.activeTab === 'allocation') {
+    if (!document.hidden) {
+      fetchHealth();
+    }
+  }, 3000);
+
+  setInterval(() => {
+    if (!document.hidden) {
+      fetchSlots();
       fetchAvailability(false);
     }
   }, 3000);
@@ -613,7 +642,7 @@ async function fetchAvailability(refreshAudit = false) {
       chipsContainer.innerHTML = chipsHtml;
     }
 
-    // Render Slot Registry Table
+    // Render Slot Registry Table (Virtual Allocation Tab)
     const tbody = document.getElementById('tbody-allocation-slots');
     if (tbody && data.slots) {
       tbody.innerHTML = '';
@@ -625,6 +654,8 @@ async function fetchAvailability(refreshAudit = false) {
         let actionCell = '<span style="color: var(--text-muted); font-size: 11px;">--</span>';
         if (s.active_reservation_code) {
           actionCell = `<button class="btn btn-sm btn-danger" onclick="releaseReservation('${s.active_reservation_code}')">Release</button>`;
+        } else if (s.reservation_status === 'AVAILABLE' && s.physical_state === 'FREE') {
+          actionCell = `<button class="btn btn-sm btn-accent" onclick="prefillAllocationForm('${s.slot_id}', '${s.slot_type}')">Allot Slot</button>`;
         }
 
         row.innerHTML = `
@@ -638,6 +669,54 @@ async function fetchAvailability(refreshAudit = false) {
         `;
         tbody.appendChild(row);
       });
+    }
+
+    // Render Overview Active Allotments Table & Quick Release
+    const overviewTbody = document.getElementById('tbody-overview-allotments');
+    if (overviewTbody && data.slots) {
+      overviewTbody.innerHTML = '';
+      if (data.slots.length === 0) {
+        overviewTbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">No calibrated bays available.</td></tr>';
+      } else {
+        data.slots.forEach(s => {
+          const row = document.createElement('tr');
+          const pBadge = s.physical_state === 'FREE' ? 'badge-live' : (s.physical_state === 'OCCUPIED' ? 'badge-danger' : 'badge-stale');
+          const rBadge = s.reservation_status === 'AVAILABLE' ? 'badge-live' : (s.reservation_status === 'RESERVED' ? 'badge-mock' : 'badge-danger');
+          const userInfo = s.active_plate ? `${s.active_plate} (${s.active_user_id || 'Driver'})` : (s.active_user_id || '--');
+
+          let actionBtn = '<span style="color: var(--text-muted); font-size: 11px;">--</span>';
+          if (s.active_reservation_code) {
+            actionBtn = `<button class="btn btn-sm btn-danger" onclick="releaseReservation('${s.active_reservation_code}')">Release</button>`;
+          } else if (s.reservation_status === 'AVAILABLE' && s.physical_state === 'FREE') {
+            actionBtn = `<button class="btn btn-sm btn-accent" onclick="prefillQuickAllot('${s.slot_id}', '${s.slot_type}')">Allot Bay</button>`;
+          }
+
+          row.innerHTML = `
+            <td><strong>${s.slot_id}</strong></td>
+            <td><code>${s.slot_type}</code></td>
+            <td><span class="badge ${pBadge}">${s.physical_state}</span></td>
+            <td><span class="badge ${rBadge}">${s.reservation_status}</span></td>
+            <td>${userInfo}</td>
+            <td><code>${s.active_reservation_code || '--'}</code></td>
+            <td>${actionBtn}</td>
+          `;
+          overviewTbody.appendChild(row);
+        });
+      }
+    }
+
+    // Populate Overview Quick-Allot Dropdown with free bays
+    const quickSlotSelect = document.getElementById('quick-alloc-slot');
+    if (quickSlotSelect && data.slots) {
+      const currentVal = quickSlotSelect.value;
+      let optionsHtml = '<option value="">⚡ Auto-Assign Best Available Bay</option>';
+      data.slots.forEach(s => {
+        if (s.reservation_status === 'AVAILABLE' && s.physical_state === 'FREE') {
+          const isSelected = s.slot_id === currentVal ? 'selected' : '';
+          optionsHtml += `<option value="${s.slot_id}" ${isSelected}>Bay ${s.slot_id} (${s.zone} · ${s.slot_type.toUpperCase()})</option>`;
+        }
+      });
+      quickSlotSelect.innerHTML = optionsHtml;
     }
 
     if (refreshAudit) {
@@ -657,8 +736,9 @@ async function releaseReservation(code) {
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.detail || 'Release failed');
-    showToast(`Reservation ${code} Released!`);
+    showToast(`Reservation ${code} Released! Bay is now free.`);
     fetchAvailability(true);
+    fetchSlots();
   } catch (err) {
     showToast(`Release Error: ${err.message}`);
   }
@@ -688,5 +768,84 @@ async function fetchAllocationAudit() {
   } catch (err) {
     console.debug('Failed to fetch audit:', err);
   }
+}
+
+// --- Overview Quick Allotment Form Controller ---
+function initQuickAllotmentForm() {
+  const form = document.getElementById('form-quick-allot');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btn-quick-allot');
+    btn.disabled = true;
+    btn.textContent = 'Allocating (Securing ACID Lock)...';
+
+    const slotVal = document.getElementById('quick-alloc-slot').value;
+    const payload = {
+      user_id: document.getElementById('quick-alloc-user').value.trim() || 'driver_01',
+      vehicle_plate: document.getElementById('quick-alloc-plate').value.trim() || null,
+      slot_id: slotVal || null,
+      slot_type: document.getElementById('quick-alloc-type').value,
+      duration_minutes: parseInt(document.getElementById('quick-alloc-duration').value, 10),
+    };
+
+    try {
+      const res = await fetch('/api/parking/allocate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.detail || 'Allocation failed');
+      }
+
+      showToast(`Bay ${data.slot_id} Allotted! Code: ${data.reservation_code}`);
+
+      const receipt = document.getElementById('quick-alloc-receipt');
+      const body = document.getElementById('quick-receipt-body');
+      if (receipt && body) {
+        receipt.style.display = 'block';
+        body.innerHTML = `
+          <strong>Assigned Bay:</strong> <span style="color: var(--accent-cyan); font-weight: 700;">${data.slot_id}</span> (${data.slot_label})<br>
+          <strong>Reservation Code:</strong> <code>${data.reservation_code}</code><br>
+          <strong>Driver:</strong> ${data.user_id} ${data.vehicle_plate ? `· Plate: <strong>${data.vehicle_plate}</strong>` : ''}<br>
+          <strong>Expires At:</strong> ${new Date(data.expires_at).toLocaleTimeString()}<br>
+          <button class="btn btn-sm btn-danger" style="margin-top: 8px;" onclick="releaseReservation('${data.reservation_code}')">Release This Bay Now</button>
+        `;
+      }
+
+      // Reset plate
+      document.getElementById('quick-alloc-plate').value = '';
+
+      fetchAvailability(true);
+      fetchSlots();
+    } catch (err) {
+      showToast(`Allocation Error: ${err.message}`);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '⚡ Allot Parking Bay Now';
+    }
+  });
+}
+
+function prefillQuickAllot(slotId, slotType) {
+  const slotSelect = document.getElementById('quick-alloc-slot');
+  if (slotSelect) slotSelect.value = slotId;
+  const typeSelect = document.getElementById('quick-alloc-type');
+  if (typeSelect && slotType) typeSelect.value = slotType;
+  const form = document.getElementById('form-quick-allot');
+  if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  showToast(`Selected Bay ${slotId} for allotment`);
+}
+
+function prefillAllocationForm(slotId, slotType) {
+  const typeSelect = document.getElementById('alloc-input-type');
+  if (typeSelect && slotType) typeSelect.value = slotType;
+  const form = document.getElementById('form-allocate-slot');
+  if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  showToast(`Ready to allocate Bay ${slotId}`);
 }
 
