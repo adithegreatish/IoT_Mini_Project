@@ -47,11 +47,25 @@ verify_model() {
         echo -e "\033[32m[PASS]\033[0m ${model_name} verified (${size_mb}, SHA-256: ${actual_hash:0:16}...)"
     else
         echo -e "\033[31m[FAIL]\033[0m Checksum MISMATCH for ${model_name}!"
+        if head -n 1 "${file_path}" 2>/dev/null | grep -q "^version https://git-lfs"; then
+            echo "       >>> File is a Git LFS pointer text file! Real binary weights were not downloaded."
+            echo "       >>> Fix by running: 'sudo apt install -y git-lfs && git lfs pull'"
+        fi
         echo "       Expected: ${expected_hash}"
         echo "       Actual:   ${actual_hash}"
         FAILED=$((FAILED + 1))
     fi
 }
+
+# Auto-pull Git LFS if pointer files are detected
+if [ -f "${MODELS_DIR}/occupancy_classifier.onnx" ] && head -n 1 "${MODELS_DIR}/occupancy_classifier.onnx" 2>/dev/null | grep -q "^version https://git-lfs"; then
+    echo -e "\033[33m[INFO] Git LFS pointer files detected in models/. Attempting 'git lfs pull'...\033[0m"
+    if command -v git-lfs &> /dev/null; then
+        (cd "${REPO_ROOT}" && git lfs install && git lfs pull) || true
+    else
+        echo -e "\033[33m[WARN] git-lfs is not installed yet. Real model binaries are missing.\033[0m"
+    fi
+fi
 
 echo ""
 echo "Verifying ONNX Deployment Models..."

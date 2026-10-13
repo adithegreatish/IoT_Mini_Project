@@ -75,9 +75,9 @@ echo -e "${GREEN}[OK] Sufficient storage available.${NC}"
 
 # 4. System Package Dependencies
 echo ""
-echo -e "${BLUE}[4/10] Checking System Shared Libraries (OpenCV, V4L2)...${NC}"
+echo -e "${BLUE}[4/10] Checking System Shared Libraries (OpenCV, V4L2, Git LFS)...${NC}"
 MISSING_PKGS=()
-for pkg in libgl1 libglib2.0-0 v4l-utils; do
+for pkg in libgl1 libglib2.0-0 v4l-utils git-lfs; do
     if ! dpkg -s "${pkg}" &> /dev/null; then
         MISSING_PKGS+=("${pkg}")
     fi
@@ -89,6 +89,11 @@ if [ ${#MISSING_PKGS[@]} -gt 0 ]; then
     sudo apt update && sudo apt install -y "${MISSING_PKGS[@]}"
 else
     echo -e "${GREEN}[OK] Required system libraries are installed.${NC}"
+fi
+
+# Ensure Git LFS hooks are active and pull models if needed
+if command -v git-lfs &> /dev/null; then
+    git lfs install --skip-repo &> /dev/null || true
 fi
 
 # 5. Linux Virtual Environment Setup
