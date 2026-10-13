@@ -9,9 +9,9 @@ app:
 camera:
   device_index: 0
   backend: "V4L2"
-  requested_width: 1280
-  requested_height: 720
-  requested_fps: 15  # Balanced for Pi thermal envelope
+  requested_width: 640
+  requested_height: 480
+  requested_fps: 30  # High-throughput 30+ FPS capture
   buffer_size: 1
   reconnect_interval_sec: 2.0
   reconnect_max_attempts: 15

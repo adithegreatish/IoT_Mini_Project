@@ -37,7 +37,11 @@ class PatchOccupancyClassifier:
 
         if resolved_path.exists():
             opts = ort.SessionOptions()
+            opts.intra_op_num_threads = 2
+            opts.inter_op_num_threads = 1
+            opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
             opts.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+            opts.enable_mem_pattern = True
             self.session = ort.InferenceSession(str(resolved_path), sess_options=opts, providers=providers)
             self.input_name = self.session.get_inputs()[0].name
             logger.info(f"Loaded Occupancy Classifier from {resolved_path.name} on {providers[0]}")

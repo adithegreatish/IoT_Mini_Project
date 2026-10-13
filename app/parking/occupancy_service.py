@@ -236,41 +236,49 @@ class OccupancyService:
             return self._latest_snapshot
 
     def render_overlay(self, frame: np.ndarray) -> np.ndarray:
-        """Renders parking slot polygons, states, and detection bounding boxes onto frame."""
+        """Renders parking slot polygons, states, and detection bounding boxes onto frame efficiently."""
         with self._lock:
+            slots = self._latest_snapshot.get("slots", [])
+            detections = self._last_detections
+
+            if not slots and not detections:
+                return frame
+
             out = frame.copy()
             h, w = out.shape[:2]
 
-            # 1. Draw Calibrated Slots with Color-Coded State
-            for slot in self._latest_snapshot.get("slots", []):
-                pts = slot.get("points", [])
-                if len(pts) < 3:
-                    continue
-                pixel_pts = np.array(denormalize_points(pts, w, h), dtype=np.int32)
-
-                state = slot.get("state", "UNKNOWN")
-                if state == "FREE":
-                    color = (0, 200, 100)  # Green
-                elif state == "OCCUPIED":
-                    color = (40, 40, 230)  # Red
-                else:
-                    color = (0, 165, 255)  # Amber
-
-                # Transparent polygon fill
+            # 1. Single-pass transparent polygon fill for all bays combined
+            if slots:
                 overlay = out.copy()
-                cv2.fillPoly(overlay, [pixel_pts], color)
-                cv2.addWeighted(overlay, 0.25, out, 0.75, 0, out)
+                has_polys = False
+                for slot in slots:
+                    pts = slot.get("points", [])
+                    if len(pts) < 3:
+                        continue
+                    has_polys = True
+                    pixel_pts = np.array(denormalize_points(pts, w, h), dtype=np.int32)
+                    state = slot.get("state", "UNKNOWN")
+                    color = (0, 200, 100) if state == "FREE" else ((40, 40, 230) if state == "OCCUPIED" else (0, 165, 255))
+                    cv2.fillPoly(overlay, [pixel_pts], color)
 
-                # Polygon boundary line
-                cv2.polylines(out, [pixel_pts], isClosed=True, color=color, thickness=2)
+                if has_polys:
+                    cv2.addWeighted(overlay, 0.25, out, 0.75, 0, out)
 
-                # Text label
-                tx, ty = pixel_pts[0]
-                label_text = f"{slot['id']}: {state}"
-                cv2.putText(out, label_text, (tx + 5, ty + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2)
+                # Draw outlines and labels directly on out without copying
+                for slot in slots:
+                    pts = slot.get("points", [])
+                    if len(pts) < 3:
+                        continue
+                    pixel_pts = np.array(denormalize_points(pts, w, h), dtype=np.int32)
+                    state = slot.get("state", "UNKNOWN")
+                    color = (0, 200, 100) if state == "FREE" else ((40, 40, 230) if state == "OCCUPIED" else (0, 165, 255))
+                    cv2.polylines(out, [pixel_pts], isClosed=True, color=color, thickness=2)
+
+                    tx, ty = pixel_pts[0]
+                    cv2.putText(out, f"{slot['id']}: {state}", (tx + 5, ty + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2)
 
             # 2. Draw Detected Vehicle Bounding Boxes
-            for det in self._last_detections:
+            for det in detections:
                 bx1, by1, bx2, by2 = det.pixel_box
                 cv2.rectangle(out, (bx1, by1), (bx2, by2), (255, 200, 0), 2)
                 cv2.putText(

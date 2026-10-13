@@ -76,7 +76,7 @@ class OpenCVCamera(FrameProvider):
             meta = self._metadata
             if meta and is_stale:
                 meta.is_stale = True
-            return self._current_frame.copy(), meta
+            return self._current_frame, meta
 
     def is_healthy(self) -> bool:
         if self._is_using_mock and self._fallback_mock:
@@ -106,11 +106,17 @@ class OpenCVCamera(FrameProvider):
                 cap.release()
                 return False
 
-            # Request resolution & fps
+            # 1. Request MJPG FourCC for high-speed hardware streaming (30+ FPS on USB webcams)
+            try:
+                fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+                cap.set(cv2.CAP_PROP_FOURCC, fourcc)
+            except Exception:
+                pass
+
+            # 2. Request resolution, fps & minimize buffer lag
             cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.requested_width)
             cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.requested_height)
             cap.set(cv2.CAP_PROP_FPS, self.requested_fps)
-            # Try to minimize buffer to prevent stale lag
             cap.set(cv2.CAP_PROP_BUFFERSIZE, self.config.buffer_size)
 
             ret, test_frame = cap.read()
