@@ -89,7 +89,7 @@ async def lifespan(app: FastAPI):
     routes.occupancy_service = occ_service
 
     # 5. Camera Capture Worker
-    cam_service = CameraService(cfg.camera)
+    cam_service = CameraService(cfg.camera, max_buffer_mb=cfg.performance.max_memory_limit_mb)
     cam_service.start()
     routes.camera_service = cam_service
 

@@ -30,9 +30,9 @@ class DatabaseManager:
         conn.execute("PRAGMA journal_mode = WAL;")
         conn.execute("PRAGMA synchronous = NORMAL;")
         conn.execute("PRAGMA busy_timeout = 5000;")
-        # High-performance RAM cache and memory-mapped I/O (up to 7GB buffer headroom)
-        conn.execute("PRAGMA cache_size = -524288;")  # 512 MB memory cache
-        conn.execute("PRAGMA mmap_size = 1073741824;") # 1 GB memory-mapped I/O
+        # High-performance RAM cache and memory-mapped I/O (scaling up to 7GB buffer headroom)
+        conn.execute("PRAGMA cache_size = -1048576;")  # 1024 MB memory cache
+        conn.execute("PRAGMA mmap_size = 2147483648;") # 2 GB memory-mapped I/O
         conn.execute("PRAGMA temp_store = MEMORY;")
         return conn
 

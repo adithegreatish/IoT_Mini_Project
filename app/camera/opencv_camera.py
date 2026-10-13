@@ -106,18 +106,20 @@ class OpenCVCamera(FrameProvider):
                 cap.release()
                 return False
 
-            # 1. Request MJPG FourCC for high-speed hardware streaming (30+ FPS on USB webcams)
+            # 1. Set requested resolution
+            cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.requested_width)
+            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.requested_height)
+
+            # 2. Enforce MJPG FourCC AFTER setting resolution so V4L2 driver does not fallback to uncompressed YUYV
             try:
                 fourcc = cv2.VideoWriter_fourcc(*'MJPG')
                 cap.set(cv2.CAP_PROP_FOURCC, fourcc)
             except Exception:
                 pass
 
-            # 2. Request resolution, fps & minimize buffer lag
-            cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.requested_width)
-            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.requested_height)
+            # 3. Request high FPS and minimal buffer queue
             cap.set(cv2.CAP_PROP_FPS, self.requested_fps)
-            cap.set(cv2.CAP_PROP_BUFFERSIZE, self.config.buffer_size)
+            cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
             ret, test_frame = cap.read()
             if not ret or test_frame is None:
@@ -128,7 +130,7 @@ class OpenCVCamera(FrameProvider):
             self.actual_width = w
             self.actual_height = h
             self._cap = cap
-            logger.info(f"Camera opened successfully. Negotiated: {w}x{h} (requested: {self.requested_width}x{self.requested_height})")
+            logger.info(f"Camera opened successfully. Negotiated: {w}x{h} @ {self.requested_fps} FPS (backend: {self.config.backend})")
             return True
         except Exception as e:
             logger.warning(f"Error opening camera {self.device_index}: {e}")
@@ -172,7 +174,7 @@ class OpenCVCamera(FrameProvider):
                         self._fallback_mock = None
                         self._is_using_mock = False
 
-            # 2. Read frame
+            # 2. Read frame (blocks for next hardware frame interrupt in V4L2)
             ret, frame = self._cap.read()
             now = time.time()
 
@@ -205,6 +207,3 @@ class OpenCVCamera(FrameProvider):
                     is_mock=False,
                     is_stale=False,
                 )
-
-            # Modest sleep to prevent 100% spin if driver doesn't throttle
-            time.sleep(0.005)

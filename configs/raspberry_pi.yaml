@@ -12,7 +12,7 @@ camera:
   requested_width: 640
   requested_height: 480
   requested_fps: 30  # High-throughput 30+ FPS capture
-  buffer_size: 4
+  buffer_size: 1
   reconnect_interval_sec: 2.0
   reconnect_max_attempts: 15
   stale_threshold_sec: 2.0  # Conservative 2.0s fail-safe threshold
@@ -81,5 +81,5 @@ logging:
 performance:
   max_memory_limit_mb: 7168  # 7 GB max buffer ceiling for Raspberry Pi 5 (8 GB RAM)
   ring_buffer_enabled: true
-  ring_buffer_max_frames: 500  # High-throughput frame ring buffer
-  sqlite_cache_size_mb: 512    # 512 MB in-memory SQLite cache for instant ACID ops
+  ring_buffer_max_frames: 5000  # High-throughput frame ring buffer scaling up to 5GB+ RAM
+  sqlite_cache_size_mb: 1024   # 1024 MB in-memory SQLite cache for instant ACID ops

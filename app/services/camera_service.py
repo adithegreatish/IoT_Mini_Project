@@ -36,7 +36,7 @@ class CameraService:
         self.processing_active: bool = True
         self._last_jpeg: Optional[bytes] = None
         self._last_jpeg_ts: float = 0.0
-        self._ring_buffer = collections.deque(maxlen=500)
+        self._ring_buffer = collections.deque(maxlen=5000)
 
     def start(self) -> bool:
         with self._lock:
@@ -151,22 +151,25 @@ class CameraService:
             _, buf = cv2.imencode(".jpg", placeholder, [cv2.IMWRITE_JPEG_QUALITY, 55])
             return buf.tobytes()
 
-        # Dynamic high-throughput buffering
-        self._ring_buffer.append(frame)
+        frame_ts = meta.timestamp if meta else 0.0
+
+        # Dynamic high-throughput buffering (append unique incoming frames)
+        if frame_ts > 0 and frame_ts != self._last_jpeg_ts:
+            self._ring_buffer.append(frame)
 
         # 7GB Buffer Ceiling Safety Guard
-        if len(self._ring_buffer) % 100 == 0:
+        if len(self._ring_buffer) % 50 == 0:
             try:
                 mem_mb = psutil.Process().memory_info().rss / (1024 * 1024)
                 if mem_mb >= (self.max_buffer_mb - 200):
-                    logger.warning(f"Process RAM reached {mem_mb:.1f} MB. Flusing buffer to maintain 7GB limit...")
-                    self._ring_buffer.clear()
+                    logger.warning(f"Process RAM reached {mem_mb:.1f} MB. Trimming buffer to maintain 7GB limit...")
+                    while len(self._ring_buffer) > 1000 and (psutil.Process().memory_info().rss / (1024 * 1024)) >= (self.max_buffer_mb - 300):
+                        self._ring_buffer.popleft()
                     gc.collect()
             except Exception:
                 pass
 
         # Cache check: if the frame timestamp is identical, reuse the cached JPEG
-        frame_ts = meta.timestamp if meta else 0.0
         if self._last_jpeg is not None and frame_ts > 0 and frame_ts == self._last_jpeg_ts:
             return self._last_jpeg
 

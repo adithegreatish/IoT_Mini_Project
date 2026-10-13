@@ -162,17 +162,23 @@ def test_camera_frame():
 
 
 def _stream_generator():
-    """Yields multipart JPEG frames with real-time slot and detection overlays."""
+    """Yields multipart JPEG frames with real-time slot and detection overlays without duplicate transmission."""
+    last_sent_ts = 0.0
     while True:
         if camera_service is not None:
-            overlay_fn = occupancy_service.render_overlay if occupancy_service else None
-            jpeg_bytes = camera_service.generate_mjpeg_frame(overlay_renderer=overlay_fn)
-            if jpeg_bytes:
-                yield (
-                    b"--frame\r\n"
-                    b"Content-Type: image/jpeg\r\n\r\n" + jpeg_bytes + b"\r\n"
-                )
-        time.sleep(0.03)  # ~30-33 FPS stream pacing
+            frame, meta = camera_service.get_latest_frame()
+            if frame is not None and meta is not None:
+                # Only encode and transmit when a fresh frame has arrived or preview is paused
+                if meta.timestamp > last_sent_ts or camera_service.preview_paused:
+                    overlay_fn = occupancy_service.render_overlay if occupancy_service else None
+                    jpeg_bytes = camera_service.generate_mjpeg_frame(overlay_renderer=overlay_fn)
+                    if jpeg_bytes:
+                        last_sent_ts = meta.timestamp
+                        yield (
+                            b"--frame\r\n"
+                            b"Content-Type: image/jpeg\r\n\r\n" + jpeg_bytes + b"\r\n"
+                        )
+        time.sleep(0.015)  # Responsive check without busy-waiting or frame duplication
 
 
 @router.get("/stream/video_feed")
