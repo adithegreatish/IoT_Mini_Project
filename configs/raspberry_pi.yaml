@@ -79,7 +79,8 @@ logging:
   backup_count: 3
 
 performance:
-  max_memory_limit_mb: 7168  # 7 GB max buffer ceiling for Raspberry Pi 5 (8 GB RAM)
+  max_memory_limit_mb: 1024  # 1.0 GB process memory budget for Raspberry Pi 5 (8 GB RAM)
   ring_buffer_enabled: true
-  ring_buffer_max_frames: 5000  # High-throughput frame ring buffer scaling up to 5GB+ RAM
-  sqlite_cache_size_mb: 1024   # 1024 MB in-memory SQLite cache for instant ACID ops
+  ring_buffer_max_frames: 4  # Bounded 4-frame queue for real-time inference (no stale accumulation)
+  sqlite_cache_size_mb: 8    # 8 MB SQLite page cache (PRAGMA cache_size = -8192)
+  sqlite_mmap_size_mb: 16    # 16 MB SQLite mmap limit

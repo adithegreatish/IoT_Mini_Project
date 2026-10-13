@@ -95,10 +95,11 @@ class LoggingConfig(BaseModel):
 
 
 class PerformanceConfig(BaseModel):
-    max_memory_limit_mb: int = Field(default=7168, ge=512, le=32768)  # 7 GB buffer ceiling for Pi 5 (8GB RAM)
+    max_memory_limit_mb: int = Field(default=1024, ge=256, le=32768)  # Bounded process RAM budget (e.g. 1024 MB)
     ring_buffer_enabled: bool = True
-    ring_buffer_max_frames: int = Field(default=5000, ge=10, le=50000)
-    sqlite_cache_size_mb: int = Field(default=1024, ge=16, le=4096)
+    ring_buffer_max_frames: int = Field(default=4, ge=1, le=1000)      # Bounded latest-frame queue
+    sqlite_cache_size_mb: int = Field(default=8, ge=2, le=512)         # Conservative 8 MB page cache
+    sqlite_mmap_size_mb: int = Field(default=16, ge=0, le=512)         # Conservative 16 MB mmap limit
 
 
 class RootConfig(BaseModel):

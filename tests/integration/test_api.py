@@ -94,3 +94,15 @@ async def test_api_endpoints():
             assert resp.status_code == 200
             assert "audit_trail" in resp.json()
 
+            # 11. Test telemetry endpoints
+            resp = await client.get("/api/diagnostics/telemetry")
+            assert resp.status_code == 200
+            t_data = resp.json()
+            assert "core_metrics" in t_data
+            assert "1_camera_capture_fps" in t_data["core_metrics"]
+            assert "6_e2e_latency_ms" in t_data["core_metrics"]
+
+            resp = await client.post("/api/diagnostics/telemetry/export")
+            assert resp.status_code == 200
+            assert resp.json()["success"] is True
+

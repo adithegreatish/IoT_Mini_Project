@@ -14,12 +14,19 @@ SCHEMA_VERSION = 2
 class DatabaseManager:
     """Manages thread-safe SQLite connection lifecycle and migrations."""
 
-    def __init__(self, db_path: str = "data/parking_events.sqlite"):
+    def __init__(
+        self,
+        db_path: str = "data/parking_events.sqlite",
+        cache_size_mb: int = 8,
+        mmap_size_mb: int = 16,
+    ):
         self.db_path = paths.resolve(db_path)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        self.cache_size_mb = max(2, cache_size_mb)
+        self.mmap_size_mb = max(0, mmap_size_mb)
 
     def get_connection(self) -> sqlite3.Connection:
-        """Creates and configures a new SQLite connection with WAL journal mode."""
+        """Creates and configures a new SQLite connection with WAL journal mode and bounded memory."""
         conn = sqlite3.connect(
             str(self.db_path),
             timeout=10.0,
@@ -30,9 +37,11 @@ class DatabaseManager:
         conn.execute("PRAGMA journal_mode = WAL;")
         conn.execute("PRAGMA synchronous = NORMAL;")
         conn.execute("PRAGMA busy_timeout = 5000;")
-        # High-performance RAM cache and memory-mapped I/O (scaling up to 7GB buffer headroom)
-        conn.execute("PRAGMA cache_size = -1048576;")  # 1024 MB memory cache
-        conn.execute("PRAGMA mmap_size = 2147483648;") # 2 GB memory-mapped I/O
+        # Negative cache_size in SQLite requests approximate cache in KiB (-8192 = 8 MiB)
+        cache_kib = self.cache_size_mb * 1024
+        conn.execute(f"PRAGMA cache_size = -{cache_kib};")
+        mmap_bytes = self.mmap_size_mb * 1024 * 1024
+        conn.execute(f"PRAGMA mmap_size = {mmap_bytes};")
         conn.execute("PRAGMA temp_store = MEMORY;")
         return conn
 

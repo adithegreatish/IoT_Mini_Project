@@ -1,0 +1,98 @@
+{
+  "uptime_seconds": 1.6,
+  "core_metrics": {
+    "1_camera_capture_fps": 0.0,
+    "2_live_video_delivery_fps": 0.0,
+    "3_detector_inference_fps": 0.0,
+    "4_classifier_update_rate": 0.0,
+    "5_effective_occupancy_update_rate": 0.0,
+    "6_e2e_latency_ms": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "7_dropped_frames_count": 0,
+    "7_stale_frames_count": 21
+  },
+  "stage_latencies_ms": {
+    "camera_capture": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "frame_conversion": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "resize_normalization": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "onnx_inference": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "postprocessing": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "geometry_association": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "patch_classification": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "temporal_smoothing": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "jpeg_encoding": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "streaming_delivery": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "db_writes": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    },
+    "e2e_pipeline": {
+      "count": 0,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0
+    }
+  },
+  "system_footprint": {
+    "process_rss_mb": 492.4,
+    "process_cpu_pct": 0.0,
+    "active_threads": 39,
+    "total_frames_captured": 0
+  }
+}

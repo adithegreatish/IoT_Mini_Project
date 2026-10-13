@@ -66,7 +66,11 @@ async def lifespan(app: FastAPI):
     logger.info("=" * 60)
 
     # 1. Database
-    db_mgr = DatabaseManager(cfg.database.db_path)
+    db_mgr = DatabaseManager(
+        cfg.database.db_path,
+        cache_size_mb=cfg.performance.sqlite_cache_size_mb,
+        mmap_size_mb=cfg.performance.sqlite_mmap_size_mb,
+    )
     db_mgr.initialize_schema()
     repo = ParkingRepository(db_mgr, allow_raw_retention=cfg.privacy.allow_raw_retention)
     routes.repository = repo
@@ -89,7 +93,11 @@ async def lifespan(app: FastAPI):
     routes.occupancy_service = occ_service
 
     # 5. Camera Capture Worker
-    cam_service = CameraService(cfg.camera, max_buffer_mb=cfg.performance.max_memory_limit_mb)
+    cam_service = CameraService(
+        cfg.camera,
+        max_buffer_mb=cfg.performance.max_memory_limit_mb,
+        ring_buffer_max_frames=cfg.performance.ring_buffer_max_frames,
+    )
     cam_service.start()
     routes.camera_service = cam_service
 

@@ -177,14 +177,42 @@ tests/unit/test_path_relocation.py .......                               [ 71%]
 tests/unit/test_plates_ocr.py ...........                                [ 84%]
 tests/unit/test_raspberry_pi_readiness.py .............                  [100%]
 
-============================= 84 passed in 12.45s =============================
+============================= 93 passed in 11.55s =============================
 ```
 
-**Result: 84 / 84 Tests Passed (100% Pass Rate). Zero Failures, Zero Deprecations.**
+**Result: 93 / 93 Tests Passed (100% Pass Rate). Zero Failures, Zero Deprecations.**
 
 ---
 
-## 7. Known Limitations & Safe Operating Bounds
+## 7. Bug Fixes & Performance Optimizations (October 2026 Update)
+
+### 7.1 Excel-Style Parking Calibration Fix
+1. **Background Polling Protection:** Guarded `fetchSlots()` with `state.calibrationDirty` to prevent 3-second background polling from wiping user inputs.
+2. **Unique ID Scanner:** Replaced `slots.length + 1` with an existing ID scanning algorithm, eliminating duplicate ID collisions on row addition and cloning.
+3. **Boundary Clamping:** Clamped $X \in [0, 99.0]$ and $W \in [0.5, 100 - X]$ to strictly prevent polygon coordinates exceeding 100% and triggering backend 400 validation failures. Added epsilon tolerance to Shapely validator.
+4. **Disabled Bay State Retention:** Corrected `OccupancyService` to retain disabled bays as `state: "DISABLED"` in snapshots rather than dropping them.
+5. **Dynamic Concurrency Sync:** Connected `save_parking_slots()` to `allocation_service.sync_slots_from_calibration()`, ensuring atomic reservation tables update dynamically without restarting the server.
+6. **RFC-4180 CSV Parser:** Implemented quote-aware tokenizer for CSV import/export.
+
+### 7.2 Memory Strategy & Bounded Queue
+1. **Latest-Frame Architecture:** Reduced uncompressed camera queue from 5,000 frames to bounded 4 frames (`maxlen=4`, ~11 MB RAM).
+2. **SQLite Memory Budget:** Reduced SQLite cache size from 1,024 MB to 8 MiB (`PRAGMA cache_size = -8192`) and mmap to 16 MiB.
+3. **1,024 MB Process Limit:** Established a conservative 1,024 MB RAM process ceiling with automatic queue trimming.
+
+### 7.3 Decoupled Telemetry Instrumentation
+1. Implemented `app/infrastructure/telemetry.py` measuring the 7 distinct rates:
+   - Camera capture FPS
+   - Live video delivery FPS
+   - Vehicle detector inference FPS
+   - Occupancy classifier update rate
+   - Effective occupancy state rate
+   - End-to-end frame processing latency (mean, p50, p95)
+   - Dropped / stale frame count
+2. Exposing `GET /api/diagnostics/telemetry` and `POST /api/diagnostics/telemetry/export`.
+
+---
+
+## 8. Known Limitations & Safe Operating Bounds
 
 1. **Physical Lighting / Direct Sunlight Glare:** Extreme direct sunlight into the Zebronics CMOS sensor can cause washed-out white saturation. The software incorporates contrast quality checking, but physical camera hooding or shade mounting is strongly advised.
 2. **Pitch-Black Night Operation:** Without active parking lot floodlights, the Zebronics webcam cannot produce discernible vehicle contours. In pitch-black conditions, the system transitions bays to `UNKNOWN` to prevent false allocations.
@@ -193,7 +221,7 @@ tests/unit/test_raspberry_pi_readiness.py .............                  [100%]
 
 ---
 
-## 8. Master Status Checklist
+## 9. Master Status Checklist
 
 | Verification Category | Requirement | Execution Verdict |
 | :--- | :--- | :--- |
@@ -204,9 +232,16 @@ tests/unit/test_raspberry_pi_readiness.py .............                  [100%]
 | **Runtime & Performance** | Pure CPU ONNX Runtime with zero CUDA dependency | **PASS** |
 | | Windows benchmarks labeled strictly as Windows measurements | **PASS** |
 | | Pipeline design meets ~5 FPS target for 24 bays | **PASS** |
+| | Bounded 4-frame buffer prevents memory bloat | **PASS** |
+| | SQLite cache bounded at 8 MiB / WAL mode active | **PASS** |
+| | 7 decoupled telemetry rates instrumented and verified | **PASS** |
+| **Excel Calibration** | Add/edit/delete/clone bay operations verified | **PASS** |
+| | Normalized coordinate bounds clamped ($X+W \le 100\%$) | **PASS** |
+| | Unique bay ID generation collision-free | **PASS** |
+| | RFC-4180 CSV import/export verified | **PASS** |
+| | Dynamic sync of occupancy and allocation engines without restart | **PASS** |
 | **Fail-Safe Robustness** | Disconnected/stale camera stream sets slots to `UNKNOWN` (Never `FREE`) | **PASS** |
 | | Stale camera threshold standardized to 2.0 seconds | **PASS** |
-| | Bounded camera buffer (`buffer_size: 1`) prevents queue backlog | **PASS** |
 | | Virtual allocation service strictly rejects `OCCUPIED` and `UNKNOWN` | **PASS** |
 | | Transactional SQLite concurrency protects against double-allocations | **PASS** |
 | **Packaging & Tooling** | Automated Linux installer (`install.sh`) with fresh `.venv-pi` | **PASS** |
@@ -215,7 +250,7 @@ tests/unit/test_raspberry_pi_readiness.py .............                  [100%]
 | | Rollback script to baseline (`rollback.sh`) | **PASS** |
 | | Sandboxed systemd service file (`smart-parking.service`) | **PASS** |
 | | Fullscreen Chromium kiosk script (`kiosk.sh`) | **PASS** |
-| | Complete test suite passing (84/84 tests) | **PASS** |
+| | Complete test suite passing (93/93 tests) | **PASS** |
 | **Physical Hardware** | Raspberry Pi 5 64-bit OS Boot & Power Cycle | **NOT RUN — RASPBERRY PI HARDWARE REQUIRED** |
 | | Zebronics USB Webcam V4L2 Device Detection (`/dev/video0`) | **NOT RUN — RASPBERRY PI HARDWARE REQUIRED** |
 | | Physical USB Disconnect / Reconnect Recovery | **NOT RUN — RASPBERRY PI HARDWARE REQUIRED** |
@@ -224,14 +259,23 @@ tests/unit/test_raspberry_pi_readiness.py .............                  [100%]
 
 ---
 
-## 9. Next Steps on Physical Hardware
+## 10. Update Commands for Raspberry Pi 5
 
-To complete final commissioning on physical hardware:
-1. Follow the exact instructions in `docs/raspberry_pi/ACCEPTANCE_CHECKLIST.md`.
-2. Connect the Raspberry Pi 5, Zebronics Webcam, and HDMI display.
-3. Transfer the project folder to `/home/pi/smart-parking`.
-4. Run `./deployment/raspberry_pi/install.sh`.
-5. Run `python scripts/preflight_raspberry_pi.py --config configs/raspberry_pi.yaml --camera`.
-6. Run `python scripts/benchmark_inference.py --config configs/raspberry_pi.yaml`.
-7. Launch the app with `./deployment/raspberry_pi/start.sh` and calibrate parking bays.
-8. Perform the physical USB camera unplug test to observe fail-safe `UNKNOWN` transitions.
+To apply these verified fixes on the physical Raspberry Pi 5:
+
+```bash
+# 1. Navigate to project root on the Pi
+cd /home/pi/IoT
+
+# 2. Pull verified changes from GitHub
+git pull origin main
+
+# 3. Verify all tests pass on the Pi environment
+.venv-pi/bin/pytest
+
+# 4. Restart the systemd production service
+sudo systemctl restart smart-parking.service
+
+# 5. Check live status and telemetry
+curl -s http://localhost:8000/api/diagnostics/telemetry | jq .
+```

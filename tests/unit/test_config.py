@@ -30,8 +30,8 @@ def test_raspberry_pi_yaml_load():
     assert config.camera.requested_fps == 30
     assert config.detection.input_width == 480
     assert config.database.retention_days == 14
-    assert config.performance.max_memory_limit_mb == 7168
-    assert config.performance.sqlite_cache_size_mb == 1024
+    assert config.performance.max_memory_limit_mb == 1024
+    assert config.performance.sqlite_cache_size_mb == 8
 
 
 def test_config_invalid_threshold_raises():

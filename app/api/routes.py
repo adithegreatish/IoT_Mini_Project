@@ -170,10 +170,17 @@ def _stream_generator():
             if frame is not None and meta is not None:
                 # Only encode and transmit when a fresh frame has arrived or preview is paused
                 if meta.timestamp > last_sent_ts or camera_service.preview_paused:
+                    t_deliv_0 = time.perf_counter()
                     overlay_fn = occupancy_service.render_overlay if occupancy_service else None
                     jpeg_bytes = camera_service.generate_mjpeg_frame(overlay_renderer=overlay_fn)
                     if jpeg_bytes:
                         last_sent_ts = meta.timestamp
+                        t_deliv_1 = time.perf_counter()
+                        try:
+                            from app.infrastructure.telemetry import telemetry
+                            telemetry.record_video_delivery((t_deliv_1 - t_deliv_0) * 1000.0)
+                        except Exception:
+                            pass
                         yield (
                             b"--frame\r\n"
                             b"Content-Type: image/jpeg\r\n\r\n" + jpeg_bytes + b"\r\n"
@@ -192,31 +199,62 @@ def get_video_stream():
 
 @router.get("/slots")
 def get_parking_slots():
-    """Returns currently calibrated parking bays and live occupancy states."""
-    if occupancy_service is not None:
-        snap = occupancy_service.get_latest_snapshot()
-        if snap and "slots" in snap:
-            calib = calibration_service.load_calibration() if calibration_service else {}
-            return {
-                "version": calib.get("version", 1),
-                "reference_width": calib.get("reference_width", 1280),
-                "reference_height": calib.get("reference_height", 720),
-                "summary": snap.get("summary", {}),
-                "slots": snap.get("slots", []),
-            }
+    """Returns authoritative calibrated parking bays merged with live occupancy states."""
+    calib = calibration_service.load_calibration() if calibration_service else {}
+    if not calib:
+        calib_path = paths.resolve("data/calibration.json")
+        if calib_path.exists():
+            try:
+                calib = json.loads(calib_path.read_text(encoding="utf-8"))
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"Failed to read calibration: {e}")
+        else:
+            calib = {"slots": [], "reference_width": 1280, "reference_height": 720, "version": 1}
 
-    calib_path = paths.resolve("data/calibration.json")
-    if not calib_path.exists():
-        return {"slots": [], "reference_width": 1280, "reference_height": 720, "summary": {}}
-    try:
-        return json.loads(calib_path.read_text(encoding="utf-8"))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to read calibration: {e}")
+    calib_slots = calib.get("slots", [])
+    ref_w = calib.get("reference_width", 1280)
+    ref_h = calib.get("reference_height", 720)
+    version = calib.get("version", 1)
+
+    snap = occupancy_service.get_latest_snapshot() if occupancy_service else None
+    summary = snap.get("summary", {}) if snap else {}
+    snap_slots = snap.get("slots", []) if snap else []
+    snap_map = {s["slot_id"]: s for s in snap_slots if "slot_id" in s}
+
+    merged_slots = []
+    for s in calib_slots:
+        slot_data = dict(s)
+        sid = s.get("id")
+        live_info = snap_map.get(sid)
+        is_enabled = s.get("enabled", True)
+
+        if not is_enabled:
+            slot_data["state"] = "DISABLED"
+            slot_data["confidence"] = 1.0
+            slot_data["occupied"] = False
+        elif live_info:
+            slot_data["state"] = live_info.get("state", "FREE")
+            slot_data["confidence"] = live_info.get("confidence", 1.0)
+            slot_data["occupied"] = live_info.get("occupied", False)
+        else:
+            slot_data["state"] = "FREE"
+            slot_data["confidence"] = 1.0
+            slot_data["occupied"] = False
+
+        merged_slots.append(slot_data)
+
+    return {
+        "version": version,
+        "reference_width": ref_w,
+        "reference_height": ref_h,
+        "summary": summary,
+        "slots": merged_slots,
+    }
 
 
 @router.post("/slots")
 def save_parking_slots(req: SlotsUpdateRequest):
-    """Saves updated parking bay calibration and reloads occupancy engine."""
+    """Saves updated parking bay calibration and reloads occupancy and allocation engines."""
     if calibration_service is not None:
         try:
             _, warnings, payload = calibration_service.save_calibration(
@@ -226,6 +264,8 @@ def save_parking_slots(req: SlotsUpdateRequest):
             )
             if occupancy_service is not None:
                 occupancy_service.reload_slots()
+            if allocation_service is not None:
+                allocation_service.sync_slots_from_calibration(req.slots)
             return {"success": True, "slots_count": len(req.slots), "warnings": warnings}
         except ValueError as ve:
             raise HTTPException(status_code=400, detail=str(ve))
@@ -240,6 +280,10 @@ def save_parking_slots(req: SlotsUpdateRequest):
         "slots": req.slots,
     }
     calib_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    if occupancy_service is not None:
+        occupancy_service.reload_slots()
+    if allocation_service is not None:
+        allocation_service.sync_slots_from_calibration(req.slots)
     return {"success": True, "slots_count": len(req.slots), "warnings": []}
 
 
@@ -290,6 +334,21 @@ def list_diagnostic_reports():
         except Exception:
             pass
     return {"reports": reports}
+
+
+@router.get("/diagnostics/telemetry")
+def get_system_telemetry():
+    """Returns real-time telemetry metrics covering all 7 measurement rates and stage latencies."""
+    from app.infrastructure.telemetry import telemetry
+    return telemetry.get_metrics()
+
+
+@router.post("/diagnostics/telemetry/export")
+def export_telemetry_benchmark():
+    """Exports machine-readable benchmark report to data/test_reports/telemetry_benchmark.json."""
+    from app.infrastructure.telemetry import telemetry
+    out_path = telemetry.export_benchmark_report()
+    return {"success": True, "report_path": out_path, "metrics": telemetry.get_metrics()}
 
 
 @router.get("/models")

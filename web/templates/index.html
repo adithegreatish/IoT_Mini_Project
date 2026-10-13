@@ -445,8 +445,11 @@
       <div class="stat-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
           <div>
-            <div class="stat-title" style="font-size: 14px; color: #fff;">📊 Dynamic Parking Bay Spreadsheet (Excel Mode)</div>
-            <div style="font-size: 12px; color: var(--text-muted);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="stat-title" style="font-size: 14px; color: #fff;">📊 Dynamic Parking Bay Spreadsheet (Excel Mode)</div>
+              <span id="badge-calibration-dirty" class="badge" style="display: none; background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); font-size: 11px;">⚠️ Unsaved Edits</span>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
               Add, remove, resize, or reposition parking bays dynamically. Coordinates are normalized (% of camera view) with live two-way preview.
             </div>
           </div>

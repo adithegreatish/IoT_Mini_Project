@@ -15,28 +15,35 @@ from app.config.schema import CameraConfig
 
 logger = logging.getLogger("smart_parking.camera_service")
 
-# 7.0 GB maximum buffer ceiling on Raspberry Pi 5 8GB
-MAX_RAM_BUFFER_MB = 7168
+# Conservative 1024 MB process memory budget on Raspberry Pi 5
+DEFAULT_MAX_RAM_BUFFER_MB = 1024
 
 
 class CameraService:
     """
     Single authoritative owner of the video capture device.
-    Distributes frames to computer vision pipelines and MJPEG streaming endpoints.
+    Distributes frames to computer vision pipelines and MJPEG streaming endpoints
+    using a latest-frame architecture and bounded buffer.
     """
 
-    def __init__(self, config: CameraConfig, max_buffer_mb: int = MAX_RAM_BUFFER_MB):
+    def __init__(
+        self,
+        config: CameraConfig,
+        max_buffer_mb: int = DEFAULT_MAX_RAM_BUFFER_MB,
+        ring_buffer_max_frames: int = 4,
+    ):
         self.config = config
         self.max_buffer_mb = max_buffer_mb
+        self.ring_buffer_max_frames = max(1, min(64, ring_buffer_max_frames))
         self._provider: Optional[FrameProvider] = None
         self._lock = threading.Lock()
 
-        # Operational states & dynamic ring buffering
+        # Operational states & bounded ring buffering (latest-frame architecture)
         self.preview_paused: bool = False
         self.processing_active: bool = True
         self._last_jpeg: Optional[bytes] = None
         self._last_jpeg_ts: float = 0.0
-        self._ring_buffer = collections.deque(maxlen=5000)
+        self._ring_buffer = collections.deque(maxlen=self.ring_buffer_max_frames)
 
     def start(self) -> bool:
         with self._lock:
@@ -157,17 +164,16 @@ class CameraService:
         if frame_ts > 0 and frame_ts != self._last_jpeg_ts:
             self._ring_buffer.append(frame)
 
-        # 7GB Buffer Ceiling Safety Guard
-        if len(self._ring_buffer) % 50 == 0:
-            try:
-                mem_mb = psutil.Process().memory_info().rss / (1024 * 1024)
-                if mem_mb >= (self.max_buffer_mb - 200):
-                    logger.warning(f"Process RAM reached {mem_mb:.1f} MB. Trimming buffer to maintain 7GB limit...")
-                    while len(self._ring_buffer) > 1000 and (psutil.Process().memory_info().rss / (1024 * 1024)) >= (self.max_buffer_mb - 300):
-                        self._ring_buffer.popleft()
-                    gc.collect()
-            except Exception:
-                pass
+        # Memory Safety Guard: shed optional frames first if memory exceeds budget
+        try:
+            mem_mb = psutil.Process().memory_info().rss / (1024 * 1024)
+            if mem_mb >= (self.max_buffer_mb - 150):
+                logger.warning(f"Process RAM reached {mem_mb:.1f} MB (budget: {self.max_buffer_mb} MB). Trimming buffer to newest frame...")
+                while len(self._ring_buffer) > 1:
+                    self._ring_buffer.popleft()
+                gc.collect()
+        except Exception:
+            pass
 
         # Cache check: if the frame timestamp is identical, reuse the cached JPEG
         if self._last_jpeg is not None and frame_ts > 0 and frame_ts == self._last_jpeg_ts:

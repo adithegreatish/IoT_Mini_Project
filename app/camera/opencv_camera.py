@@ -187,6 +187,13 @@ class OpenCVCamera(FrameProvider):
             self._frame_count += 1
             self._last_frame_time = now
 
+            # Record telemetry for Camera Capture Rate (Metric 1)
+            try:
+                from app.infrastructure.telemetry import telemetry
+                telemetry.record_camera_capture()
+            except Exception:
+                pass
+
             # Calculate FPS moving average
             fps_history.append(now)
             if len(fps_history) > 30:

@@ -21,25 +21,31 @@ def denormalize_points(points: List[List[float]], width: int, height: int) -> Li
     ]
 
 
-def validate_slot_polygon(points: List[List[float]], min_area: float = 0.005) -> Tuple[bool, Optional[str]]:
+def validate_slot_polygon(points: List[List[float]], min_area: float = 0.0005) -> Tuple[bool, Optional[str]]:
     """
     Validates a slot polygon for:
     - Minimum vertex count (>= 3)
-    - Normalized coordinate boundaries [0, 1]
+    - Normalized coordinate boundaries [0, 1] with floating point epsilon tolerance
     - Self-intersection / bow-ties
     - Minimum polygon area
     """
     if len(points) < 3:
         return False, "Polygon must contain at least 3 vertices."
 
+    eps = 1e-4
     for idx, p in enumerate(points):
         if len(p) != 2:
             return False, f"Vertex {idx} does not have exactly (x, y) coordinates."
-        if not (0.0 <= p[0] <= 1.0 and 0.0 <= p[1] <= 1.0):
+        if not (-eps <= p[0] <= (1.0 + eps) and -eps <= p[1] <= (1.0 + eps)):
             return False, f"Vertex {idx} coordinates ({p[0]}, {p[1]}) are outside normalized [0.0, 1.0] range."
 
     try:
-        poly = Polygon(points)
+        # Clamp vertices slightly outside [0, 1] due to precision
+        clamped_points = [
+            [max(0.0, min(1.0, float(pt[0]))), max(0.0, min(1.0, float(pt[1])))]
+            for pt in points
+        ]
+        poly = Polygon(clamped_points)
         if not poly.is_valid:
             return False, "Polygon is self-intersecting or invalid."
         if poly.area < min_area:

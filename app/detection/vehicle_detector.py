@@ -114,16 +114,23 @@ class VehicleDetector:
             return []
 
     def _run_onnx_inference(self, frame: np.ndarray, w: int, h: int) -> List[DetectionResult]:
-        """Runs genuine ONNX model inference with OpenCV Non-Maximum Suppression (NMS)."""
-        # Preprocessing: resize to input dimensions
+        """Runs genuine ONNX model inference with OpenCV Non-Maximum Suppression (NMS) and telemetry."""
+        import time
+        from app.infrastructure.telemetry import telemetry
+
+        # 1. Preprocessing stage
+        t0 = time.perf_counter()
         resized = cv2.resize(frame, (self.input_width, self.input_height))
         rgb = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
         input_tensor = (rgb.astype(np.float32) / 255.0).transpose(2, 0, 1)[np.newaxis, ...]
+        t1 = time.perf_counter()
 
+        # 2. ONNX Model Inference stage
         input_name = self._session.get_inputs()[0].name
         outputs = self._session.run(None, {input_name: input_tensor})
+        t2 = time.perf_counter()
 
-        # Process YOLO-style outputs: [1, num_classes + 4, 8400]
+        # 3. Postprocessing & NMS stage
         output = outputs[0]
         if len(output.shape) == 3 and output.shape[1] < output.shape[2]:
             output = output.transpose(0, 2, 1)
@@ -147,7 +154,6 @@ class VehicleDetector:
                     cname = self.COCO_CLASSES[class_id] if class_id < len(self.COCO_CLASSES) else "car"
 
                 if cname in self.TARGET_VEHICLE_CLASSES:
-                    # Convert center x, y, width, height to pixel coords [x, y, w, h] for OpenCV NMS
                     px_cx = (cx / self.input_width) * w
                     px_cy = (cy / self.input_height) * h
                     px_w = (bw / self.input_width) * w
@@ -161,6 +167,12 @@ class VehicleDetector:
                     class_ids.append(cname)
 
         if not candidate_boxes:
+            t3 = time.perf_counter()
+            telemetry.record_detector_inference(
+                onnx_ms=(t2 - t1) * 1000.0,
+                preprocess_ms=(t1 - t0) * 1000.0,
+                postprocess_ms=(t3 - t2) * 1000.0,
+            )
             return []
 
         # Apply Non-Maximum Suppression
@@ -191,6 +203,12 @@ class VehicleDetector:
                     is_simulated=False,
                 ))
 
+        t3 = time.perf_counter()
+        telemetry.record_detector_inference(
+            onnx_ms=(t2 - t1) * 1000.0,
+            preprocess_ms=(t1 - t0) * 1000.0,
+            postprocess_ms=(t3 - t2) * 1000.0,
+        )
         return results
 
     def _run_heuristic_mock_detection(self, frame: np.ndarray, w: int, h: int) -> List[DetectionResult]:

@@ -11,7 +11,26 @@ const state = {
   activeSlotId: null,
   currentPolygonPoints: [],
   referenceSize: { width: 1280, height: 720 },
+  calibrationDirty: false,
 };
+
+function setCalibrationDirty(dirty) {
+  state.calibrationDirty = dirty;
+  const saveBtn = document.getElementById('btn-save-excel-slots');
+  const dirtyBadge = document.getElementById('badge-calibration-dirty');
+  if (saveBtn) {
+    if (dirty) {
+      saveBtn.classList.add('btn-accent');
+      saveBtn.classList.remove('btn-primary');
+    } else {
+      saveBtn.classList.remove('btn-accent');
+      saveBtn.classList.add('btn-primary');
+    }
+  }
+  if (dirtyBadge) {
+    dirtyBadge.style.display = dirty ? 'inline-flex' : 'none';
+  }
+}
 
 // --- Helper: HTML Escaping ---
 function escapeHtml(str) {
@@ -175,10 +194,16 @@ async function fetchHealth() {
   }
 }
 
-async function fetchSlots() {
+async function fetchSlots(force = false) {
   try {
     const res = await fetch('/api/slots');
     const data = await res.json();
+
+    // Guard: Do not wipe in-progress spreadsheet edits on the calibration tab
+    if (state.activeTab === 'calibration' && state.calibrationDirty && !force) {
+      return;
+    }
+
     state.slots = data.slots || [];
     state.referenceSize = {
       width: data.reference_width || 1280,
@@ -577,10 +602,10 @@ function renderExcelSpreadsheet() {
           </select>
         </td>
         <td>
-          <input type="number" step="0.1" min="0" max="100" class="excel-input input-slot-x" value="${box.x}" data-field="x" data-index="${idx}">
+          <input type="number" step="0.1" min="0" max="99.5" class="excel-input input-slot-x" value="${box.x}" data-field="x" data-index="${idx}">
         </td>
         <td>
-          <input type="number" step="0.1" min="0" max="100" class="excel-input input-slot-y" value="${box.y}" data-field="y" data-index="${idx}">
+          <input type="number" step="0.1" min="0" max="99.5" class="excel-input input-slot-y" value="${box.y}" data-field="y" data-index="${idx}">
         </td>
         <td>
           <input type="number" step="0.1" min="0.5" max="100" class="excel-input input-slot-w" value="${box.w}" data-field="w" data-index="${idx}">
@@ -601,7 +626,7 @@ function renderExcelSpreadsheet() {
 
   tbody.innerHTML = html;
 
-  // Real-time two-way reactive binding on inputs
+  // Real-time reactive two-way binding on inputs
   tbody.querySelectorAll('.excel-input, .excel-select, .excel-checkbox').forEach(input => {
     const handleInput = () => {
       const idx = parseInt(input.dataset.index, 10);
@@ -612,26 +637,42 @@ function renderExcelSpreadsheet() {
       if (field === 'id') {
         slot.id = input.value.trim();
         state.activeSlotId = slot.id;
+        setCalibrationDirty(true);
       } else if (field === 'label') {
         slot.label = input.value.trim();
+        setCalibrationDirty(true);
       } else if (field === 'zone') {
         slot.zone = input.value.trim();
+        setCalibrationDirty(true);
       } else if (field === 'slot_type') {
         slot.slot_type = input.value;
+        setCalibrationDirty(true);
       } else if (field === 'enabled') {
         slot.enabled = input.checked;
+        setCalibrationDirty(true);
       } else if (field === 'x' || field === 'y' || field === 'w' || field === 'h') {
         const row = input.closest('tr');
         if (row) {
-          const x = parseFloat(row.querySelector('.input-slot-x').value) || 0;
-          const y = parseFloat(row.querySelector('.input-slot-y').value) || 0;
-          const w = parseFloat(row.querySelector('.input-slot-w').value) || 10;
-          const h = parseFloat(row.querySelector('.input-slot-h').value) || 20;
+          let x = parseFloat(row.querySelector('.input-slot-x').value);
+          let y = parseFloat(row.querySelector('.input-slot-y').value);
+          let w = parseFloat(row.querySelector('.input-slot-w').value);
+          let h = parseFloat(row.querySelector('.input-slot-h').value);
 
-          const nx = Math.max(0, Math.min(100, x)) / 100;
-          const ny = Math.max(0, Math.min(100, y)) / 100;
-          const nw = Math.max(0.5, Math.min(100, w)) / 100;
-          const nh = Math.max(0.5, Math.min(100, h)) / 100;
+          if (isNaN(x)) x = 0;
+          if (isNaN(y)) y = 0;
+          if (isNaN(w)) w = 5;
+          if (isNaN(h)) h = 5;
+
+          // Coordinate bounds clamping so bounding box is guaranteed <= 100%
+          x = Math.max(0, Math.min(99.0, x));
+          y = Math.max(0, Math.min(99.0, y));
+          w = Math.max(0.5, Math.min(100.0 - x, w));
+          h = Math.max(0.5, Math.min(100.0 - y, h));
+
+          const nx = x / 100;
+          const ny = y / 100;
+          const nw = w / 100;
+          const nh = h / 100;
 
           slot.points = [
             [parseFloat(nx.toFixed(4)), parseFloat(ny.toFixed(4))],
@@ -639,6 +680,7 @@ function renderExcelSpreadsheet() {
             [parseFloat((nx + nw).toFixed(4)), parseFloat((ny + nh).toFixed(4))],
             [parseFloat(nx.toFixed(4)), parseFloat((ny + nh).toFixed(4))]
           ];
+          setCalibrationDirty(true);
         }
       }
 
@@ -663,8 +705,22 @@ function renderExcelSpreadsheet() {
 }
 
 function addExcelRow() {
-  const nextNum = state.slots.length + 1;
-  const id = `S0${nextNum}`;
+  let maxNum = 0;
+  const existingIds = new Set(state.slots.map(s => (s.id || '').trim()));
+  state.slots.forEach(s => {
+    const m = (s.id || '').match(/(\d+)$/);
+    if (m) {
+      const val = parseInt(m[1], 10);
+      if (!isNaN(val) && val > maxNum) maxNum = val;
+    }
+  });
+  let nextNum = Math.max(maxNum + 1, state.slots.length + 1);
+  let id = `S${String(nextNum).padStart(2, '0')}`;
+  while (existingIds.has(id)) {
+    nextNum++;
+    id = `S${String(nextNum).padStart(2, '0')}`;
+  }
+
   const label = `Bay ${id}`;
   const zone = 'Zone-A';
   const type = 'car';
@@ -674,9 +730,13 @@ function addExcelRow() {
   if (state.slots.length > 0) {
     const last = state.slots[state.slots.length - 1];
     const box = getSlotBoundingBox(last);
-    lastX = (box.x + box.w + 2) % 85;
+    lastX = box.x + box.w + 2;
     lastY = box.y;
-    if (lastX < 10) lastY = (lastY + box.h + 5) % 75;
+    if (lastX + 15 > 98) {
+      lastX = 10;
+      lastY = lastY + box.h + 5;
+      if (lastY + 25 > 95) lastY = 15;
+    }
   }
 
   const w = 15;
@@ -702,6 +762,7 @@ function addExcelRow() {
 
   state.slots.push(newSlot);
   state.activeSlotId = id;
+  setCalibrationDirty(true);
   renderExcelSpreadsheet();
   renderCalibrationCanvas();
 
@@ -711,22 +772,29 @@ function addExcelRow() {
     const idInput = lastRow.querySelector('.input-slot-id');
     if (idInput) idInput.focus();
   }
-  showToast(`Added Bay ${id}. Adjust cells or click 'Save & Apply Live'.`);
+  showToast(`Added Bay ${id}. Click 'Save & Apply Live' to persist.`);
 }
 
 window.cloneSlot = (idx) => {
   const orig = state.slots[idx];
   if (!orig) return;
   const box = getSlotBoundingBox(orig);
-  const newId = `${orig.id}_copy`;
-  const newX = Math.min(85, box.x + box.w + 2);
+  const existingIds = new Set(state.slots.map(s => (s.id || '').trim()));
+  let candidateId = `${orig.id}_copy`;
+  let copyCount = 1;
+  while (existingIds.has(candidateId)) {
+    copyCount++;
+    candidateId = `${orig.id}_copy${copyCount}`;
+  }
+
+  const newX = Math.min(100 - box.w, box.x + box.w + 2);
   const nx = newX / 100;
   const ny = box.y / 100;
   const nw = box.w / 100;
   const nh = box.h / 100;
 
   const cloned = {
-    id: newId,
+    id: candidateId,
     label: `${orig.label || orig.id} (Copy)`,
     zone: orig.zone || 'Zone-A',
     slot_type: orig.slot_type || 'car',
@@ -740,10 +808,11 @@ window.cloneSlot = (idx) => {
   };
 
   state.slots.splice(idx + 1, 0, cloned);
-  state.activeSlotId = newId;
+  state.activeSlotId = candidateId;
+  setCalibrationDirty(true);
   renderExcelSpreadsheet();
   renderCalibrationCanvas();
-  showToast(`Cloned Bay ${orig.id} -> ${newId}`);
+  showToast(`Cloned Bay ${orig.id} -> ${candidateId}`);
 };
 
 window.deleteSlot = (idx) => {
@@ -753,25 +822,28 @@ window.deleteSlot = (idx) => {
   if (state.activeSlotId === id) {
     state.activeSlotId = state.slots[0] ? state.slots[0].id : null;
   }
+  setCalibrationDirty(true);
   renderExcelSpreadsheet();
   renderCalibrationCanvas();
-  showToast(`Bay ${id} removed.`);
+  showToast(`Bay ${id} removed. Click 'Save & Apply Live' to persist.`);
 };
 
 function generateSmartGrid() {
-  const cols = parseInt(document.getElementById('grid-cols').value, 10) || 4;
-  const rows = parseInt(document.getElementById('grid-rows').value, 10) || 1;
-  const prefix = document.getElementById('grid-prefix').value.trim() || 'T';
-  const zone = document.getElementById('grid-zone').value.trim() || 'Zone-A';
+  let cols = parseInt(document.getElementById('grid-cols').value, 10);
+  let rows = parseInt(document.getElementById('grid-rows').value, 10);
+  cols = Math.max(1, Math.min(20, isNaN(cols) ? 4 : cols));
+  rows = Math.max(1, Math.min(10, isNaN(rows) ? 1 : rows));
+  const prefix = (document.getElementById('grid-prefix').value || 'T').trim() || 'T';
+  const zone = (document.getElementById('grid-zone').value || 'Zone-A').trim() || 'Zone-A';
 
-  const marginX = 6.0;
-  const marginY = 15.0;
-  const gapX = cols > 1 ? 2.5 : 0.0;
-  const gapY = rows > 1 ? 5.0 : 0.0;
+  const marginX = 5.0;
+  const marginY = 12.0;
+  const gapX = cols > 1 ? 2.0 : 0.0;
+  const gapY = rows > 1 ? 4.0 : 0.0;
   const availableW = 100.0 - (2 * marginX) - (gapX * (cols - 1));
-  const availableH = 70.0 - (gapY * (rows - 1));
-  const bayW = Math.max(5.0, Math.round((availableW / cols) * 10) / 10);
-  const bayH = Math.max(10.0, Math.round((availableH / rows) * 10) / 10);
+  const availableH = 75.0 - (gapY * (rows - 1));
+  const bayW = Math.max(2.0, Math.round((availableW / cols) * 10) / 10);
+  const bayH = Math.max(5.0, Math.round((availableH / rows) * 10) / 10);
 
   const newSlots = [];
   let count = 1;
@@ -805,6 +877,7 @@ function generateSmartGrid() {
 
   state.slots = newSlots;
   state.activeSlotId = newSlots[0] ? newSlots[0].id : null;
+  setCalibrationDirty(true);
   renderExcelSpreadsheet();
   renderCalibrationCanvas();
   showToast(`⚡ Generated ${newSlots.length} auto-aligned bays in ${zone}! Click 'Save & Apply Live' to persist.`);
@@ -847,35 +920,85 @@ function exportCSV() {
   showToast(`📤 Exported ${state.slots.length} bays to CSV.`);
 }
 
+function parseCSVRow(text) {
+  const result = [];
+  let cur = '';
+  let inQuote = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '"') {
+      if (inQuote && text[i + 1] === '"') {
+        cur += '"';
+        i++;
+      } else {
+        inQuote = !inQuote;
+      }
+    } else if (c === ',' && !inQuote) {
+      result.push(cur.trim());
+      cur = '';
+    } else {
+      cur += c;
+    }
+  }
+  result.push(cur.trim());
+  return result;
+}
+
 function importCSV(file) {
   const reader = new FileReader();
   reader.onload = (e) => {
     try {
       const text = e.target.result;
-      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
-      if (lines.length < 2) {
+      const rawLines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+      if (rawLines.length < 2) {
         showToast('CSV file is empty or missing data rows.');
         return;
       }
 
-      const header = lines[0].toLowerCase().split(',').map(h => h.replace(/"/g, '').trim());
+      const header = parseCSVRow(rawLines[0]).map(h => h.toLowerCase().replace(/["']/g, ''));
       const hasHeader = header.includes('id') || header.includes('slot_id');
       const startIdx = hasHeader ? 1 : 0;
 
       const importedSlots = [];
-      for (let i = startIdx; i < lines.length; i++) {
-        const parts = lines[i].split(',').map(p => p.replace(/^"|"$/g, '').trim());
-        if (parts.length < 4) continue;
+      const seenIds = new Set();
+      const notices = [];
 
-        const id = parts[0] || `S${String(importedSlots.length + 1).padStart(2, '0')}`;
-        const label = parts[1] || `Bay ${id}`;
-        const zone = parts[2] || 'Zone-A';
-        const type = parts[3] || 'car';
-        const x = parseFloat(parts[4]) || (10 + (importedSlots.length * 15) % 75);
-        const y = parseFloat(parts[5]) || 20;
-        const w = parseFloat(parts[6]) || 15;
-        const h = parseFloat(parts[7]) || 25;
-        const enabled = parts[8] ? parts[8].toLowerCase() !== 'false' : true;
+      for (let i = startIdx; i < rawLines.length; i++) {
+        const parts = parseCSVRow(rawLines[i]);
+        if (parts.length < 4) {
+          notices.push(`Row ${i + 1}: Skipped (insufficient columns)`);
+          continue;
+        }
+
+        let id = parts[0] ? parts[0].replace(/^["']|["']$/g, '').trim() : `S${String(importedSlots.length + 1).padStart(2, '0')}`;
+        if (!id) id = `S${String(importedSlots.length + 1).padStart(2, '0')}`;
+        if (seenIds.has(id)) {
+          notices.push(`Row ${i + 1}: Duplicate ID '${id}' (auto-renamed)`);
+          id = `${id}_${i}`;
+        }
+        seenIds.add(id);
+
+        const label = parts[1] ? parts[1].replace(/^["']|["']$/g, '').trim() : `Bay ${id}`;
+        const zone = parts[2] ? parts[2].replace(/^["']|["']$/g, '').trim() : 'Zone-A';
+        const type = parts[3] ? parts[3].replace(/^["']|["']$/g, '').trim().toLowerCase() : 'car';
+        
+        let x = parseFloat(parts[4]);
+        let y = parseFloat(parts[5]);
+        let w = parseFloat(parts[6]);
+        let h = parseFloat(parts[7]);
+
+        if (isNaN(x)) x = 10;
+        if (isNaN(y)) y = 20;
+        if (isNaN(w)) w = 15;
+        if (isNaN(h)) h = 25;
+
+        // Coordinate bounds clamping
+        x = Math.max(0, Math.min(99.0, x));
+        y = Math.max(0, Math.min(99.0, y));
+        w = Math.max(0.5, Math.min(100.0 - x, w));
+        h = Math.max(0.5, Math.min(100.0 - y, h));
+
+        const enabled = parts[8] !== undefined ? parts[8].toLowerCase() !== 'false' : true;
 
         const nx = x / 100;
         const ny = y / 100;
@@ -886,7 +1009,7 @@ function importCSV(file) {
           id: id,
           label: label,
           zone: zone,
-          slot_type: type,
+          slot_type: ['car', 'ev', 'accessible', 'motorcycle'].includes(type) ? type : 'car',
           enabled: enabled,
           points: [
             [parseFloat(nx.toFixed(4)), parseFloat(ny.toFixed(4))],
@@ -898,15 +1021,21 @@ function importCSV(file) {
       }
 
       if (importedSlots.length === 0) {
-        showToast('No valid bay entries found in CSV.');
+        showToast('No valid bay entries could be imported.');
         return;
       }
 
       state.slots = importedSlots;
       state.activeSlotId = importedSlots[0] ? importedSlots[0].id : null;
+      setCalibrationDirty(true);
       renderExcelSpreadsheet();
       renderCalibrationCanvas();
-      showToast(`📥 Successfully imported ${importedSlots.length} bays! Click 'Save & Apply Live' to persist.`);
+
+      if (notices.length > 0) {
+        showToast(`Imported ${importedSlots.length} bays (${notices.length} notice(s): ${notices[0]})`);
+      } else {
+        showToast(`📥 Successfully imported ${importedSlots.length} bays! Click 'Save & Apply Live' to persist.`);
+      }
     } catch (err) {
       showToast(`Failed to parse CSV: ${err.message}`);
     }
@@ -922,13 +1051,28 @@ async function saveSlotsToBackend() {
       saveBtn.textContent = 'Saving...';
     }
 
+    // Pre-flight client-side validation
+    const seenIds = new Set();
+    for (let i = 0; i < state.slots.length; i++) {
+      const s = state.slots[i];
+      if (!s.id || !s.id.trim()) {
+        showToast(`Row ${i + 1}: Slot ID cannot be empty.`);
+        return;
+      }
+      if (seenIds.has(s.id.trim())) {
+        showToast(`Duplicate Slot ID '${s.id.trim()}' declared. All Bay IDs must be unique.`);
+        return;
+      }
+      seenIds.add(s.id.trim());
+    }
+
     const payload = {
       reference_width: state.referenceSize.width || 1280,
       reference_height: state.referenceSize.height || 720,
       slots: state.slots.map(s => ({
-        id: s.id,
-        label: s.label || s.id,
-        zone: s.zone || 'Zone-A',
+        id: s.id.trim(),
+        label: (s.label || s.id).trim(),
+        zone: (s.zone || 'Zone-A').trim(),
         slot_type: s.slot_type || 'car',
         enabled: s.enabled !== false,
         points: s.points,
@@ -942,8 +1086,14 @@ async function saveSlotsToBackend() {
     });
 
     if (res.ok) {
-      showToast('✓ Parking bays saved & applied live to vision engine!');
-      fetchSlots();
+      const resData = await res.json();
+      setCalibrationDirty(false);
+      if (resData.warnings && resData.warnings.length > 0) {
+        showToast(`✓ Bays saved! Notice: ${resData.warnings.join('; ')}`);
+      } else {
+        showToast('✓ Parking bays saved & applied live to vision engine!');
+      }
+      await fetchSlots(true);
     } else {
       const err = await res.json();
       showToast(`Save failed: ${err.detail || 'Server error'}`);

@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime
 import logging
 import threading
+import time
 from typing import Any, Dict, List, Optional, Tuple
 import cv2
 import numpy as np
@@ -68,7 +69,7 @@ class OccupancyService:
         self.reload_slots()
 
     def reload_slots(self) -> None:
-        """Reloads calibrated slot definitions and initializes state machines."""
+        """Reloads calibrated slot definitions, initializes state machines, and seeds initial snapshot."""
         with self._lock:
             calib = self.calib_service.load_calibration()
             self._slots_def = calib.get("slots", [])
@@ -84,6 +85,34 @@ class OccupancyService:
             }
             logger.info(f"Loaded {len(self._state_machines)} active parking slots into occupancy engine.")
 
+            # Seed initial snapshot immediately so GET /api/slots reflects new calibration without waiting
+            now_iso = datetime.now().isoformat()
+            seeded_views = []
+            for s in self._slots_def:
+                is_enabled = s.get("enabled", True)
+                seeded_views.append({
+                    "id": s["id"],
+                    "label": s.get("label", s["id"]),
+                    "zone": s.get("zone", "Zone-A"),
+                    "slot_type": s.get("slot_type", "car"),
+                    "enabled": is_enabled,
+                    "state": SlotState.UNKNOWN.value if is_enabled else "DISABLED",
+                    "confidence": 0.0,
+                    "reason": "Initialized from calibration" if is_enabled else "Slot disabled in calibration",
+                    "points": s.get("points", []),
+                })
+            self._latest_snapshot = {
+                "timestamp": now_iso,
+                "summary": {
+                    "total": len(seeded_views),
+                    "free": 0,
+                    "occupied": 0,
+                    "unknown": len([v for v in seeded_views if v["state"] == SlotState.UNKNOWN.value]),
+                },
+                "slots": seeded_views,
+                "is_camera_stale": False,
+            }
+
     def process_frame(
         self,
         frame: Optional[np.ndarray],
@@ -95,13 +124,34 @@ class OccupancyService:
         Guarantees that stale or absent camera frames mark bays UNKNOWN, NEVER FREE.
         """
         with self._lock:
+            t_frame_start = time.perf_counter()
             now_iso = datetime.now().isoformat()
 
             # 1. Camera Disconnect / Stale Protection
             if not is_camera_healthy or is_camera_stale or frame is None:
+                try:
+                    from app.infrastructure.telemetry import telemetry
+                    telemetry.record_stale_frame()
+                except Exception:
+                    pass
                 slot_views = []
                 for s in self._slots_def:
                     sid = s["id"]
+                    is_enabled = s.get("enabled", True)
+                    if not is_enabled:
+                        slot_views.append({
+                            "id": sid,
+                            "label": s.get("label", sid),
+                            "zone": s.get("zone", "Zone-A"),
+                            "slot_type": s.get("slot_type", "car"),
+                            "enabled": False,
+                            "state": "DISABLED",
+                            "confidence": 0.0,
+                            "reason": "Slot disabled in calibration",
+                            "points": s.get("points", []),
+                        })
+                        continue
+
                     sm = self._state_machines.get(sid)
                     if sm:
                         _, changed = sm.mark_camera_stale_or_lost("Camera stream offline or stale")
@@ -112,19 +162,26 @@ class OccupancyService:
                                 new_state=SlotState.UNKNOWN.value,
                                 confidence=0.0,
                             )
-                        slot_views.append({
-                            "id": sid,
-                            "label": s.get("label", sid),
-                            "slot_type": s.get("slot_type", "car"),
-                            "state": SlotState.UNKNOWN.value,
-                            "confidence": 0.0,
-                            "reason": sm.reason,
-                            "points": s.get("points", []),
-                        })
+                    slot_views.append({
+                        "id": sid,
+                        "label": s.get("label", sid),
+                        "zone": s.get("zone", "Zone-A"),
+                        "slot_type": s.get("slot_type", "car"),
+                        "enabled": is_enabled,
+                        "state": SlotState.UNKNOWN.value,
+                        "confidence": 0.0,
+                        "reason": sm.reason if sm else "Camera stream offline",
+                        "points": s.get("points", []),
+                    })
 
                 self._latest_snapshot = {
                     "timestamp": now_iso,
-                    "summary": {"total": len(slot_views), "free": 0, "occupied": 0, "unknown": len(slot_views)},
+                    "summary": {
+                        "total": len(slot_views),
+                        "free": 0,
+                        "occupied": 0,
+                        "unknown": len([v for v in slot_views if v["state"] == SlotState.UNKNOWN.value]),
+                    },
                     "slots": slot_views,
                     "is_camera_stale": True,
                 }
@@ -146,6 +203,7 @@ class OccupancyService:
             # Batch extract patches if in classifier or hybrid mode
             patch_results = {}
             if mode in ("classifier", "hybrid") and self.classifier and frame is not None:
+                t_clf_0 = time.perf_counter()
                 if np.mean(frame) > 5.0:
                     for s in self._slots_def:
                         pts = s.get("points", [])
@@ -153,10 +211,35 @@ class OccupancyService:
                         if patch is not None and patch.size > 0:
                             p_occ, p_conf = self.classifier.predict_patch(patch)
                             patch_results[s["id"]] = (p_occ, p_conf)
+                t_clf_1 = time.perf_counter()
+                try:
+                    from app.infrastructure.telemetry import telemetry
+                    telemetry.record_patch_classification((t_clf_1 - t_clf_0) * 1000.0)
+                except Exception:
+                    pass
 
+            t_assoc_0 = time.perf_counter()
+            total_db_ms = 0.0
             # 3. Spatial Slot-to-Vehicle Association & Occupancy Classification
             for s in self._slots_def:
                 sid = s["id"]
+                is_enabled = s.get("enabled", True)
+                if not is_enabled:
+                    slot_views.append({
+                        "id": sid,
+                        "label": s.get("label", sid),
+                        "zone": s.get("zone", "Zone-A"),
+                        "slot_type": s.get("slot_type", "car"),
+                        "enabled": False,
+                        "state": "DISABLED",
+                        "confidence": 0.0,
+                        "reason": "Slot disabled in calibration",
+                        "overlap_ratio": 0.0,
+                        "associated_vehicle": None,
+                        "points": s.get("points", []),
+                    })
+                    continue
+
                 sm = self._state_machines.get(sid)
                 if not sm:
                     continue
@@ -208,7 +291,9 @@ class OccupancyService:
                 slot_views.append({
                     "id": sid,
                     "label": s.get("label", sid),
+                    "zone": s.get("zone", "Zone-A"),
                     "slot_type": s.get("slot_type", "car"),
+                    "enabled": True,
                     "state": curr_state.value,
                     "confidence": sm.confidence,
                     "reason": sm.reason,
@@ -228,6 +313,19 @@ class OccupancyService:
                 "slots": slot_views,
                 "is_camera_stale": False,
             }
+
+            t_frame_end = time.perf_counter()
+            try:
+                from app.infrastructure.telemetry import telemetry
+                telemetry.record_occupancy_update(
+                    e2e_ms=(t_frame_end - t_frame_start) * 1000.0,
+                    assoc_ms=(t_frame_end - t_assoc_0) * 1000.0,
+                    smooth_ms=0.0,
+                    db_ms=total_db_ms,
+                )
+            except Exception:
+                pass
+
             return self._latest_snapshot
 
     def get_latest_snapshot(self) -> Dict[str, Any]:

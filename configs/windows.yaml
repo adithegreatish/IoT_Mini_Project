@@ -77,3 +77,10 @@ logging:
   file_path: "logs/app.log"
   max_bytes: 10485760  # 10 MB
   backup_count: 5
+
+performance:
+  max_memory_limit_mb: 1024
+  ring_buffer_enabled: true
+  ring_buffer_max_frames: 4
+  sqlite_cache_size_mb: 8
+  sqlite_mmap_size_mb: 16
