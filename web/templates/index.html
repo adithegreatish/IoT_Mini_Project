@@ -354,48 +354,136 @@
       </div>
     </section>
 
-    <!-- 3. PARKING CALIBRATION PANE -->
+    <!-- 3. PARKING CALIBRATION PANE (EXCEL-STYLE SPREADSHEET & REAL-TIME PREVIEW) -->
     <section class="tab-pane" id="pane-calibration">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <!-- Top Section: Real-Time Preview Canvas & Smart Grid Generator -->
+      <div style="display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 24px; margin-bottom: 24px;">
+        
+        <!-- Live Visual Preview Canvas -->
         <div class="video-panel">
           <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #080c14;">
             <canvas id="calibration-canvas" width="1280" height="720" style="width: 100%; height: 100%; cursor: crosshair;"></canvas>
           </div>
           <div class="stream-toolbar">
-            <span style="font-size: 12px; color: var(--text-muted);">
-              Click on the canvas to place polygon vertices. Connect at least 3 points to define a parking slot.
-            </span>
-            <button class="btn btn-danger" id="btn-clear-drawing">Clear Current Points</button>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="badge badge-live">REAL-TIME PREVIEW</span>
+              <span style="font-size: 12px; color: var(--text-muted);">
+                Edits in the Excel table below instantly reflect on this canvas. Click to place polygon vertices or edit values.
+              </span>
+            </div>
+            <button class="btn btn-danger btn-sm" id="btn-clear-drawing">Clear Manual Points</button>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-title">Configure Parking Bay</div>
-          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px;">
-            <div>
-              <label style="font-size: 12px; color: var(--text-muted);">Slot ID</label>
-              <input type="text" class="text-input" id="input-slot-id" placeholder="e.g. S01" style="width: 100%; margin-top: 4px;">
+        <!-- Smart Grid Generator & 7GB Buffer Monitor -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <!-- Smart Auto-Grid Generator Card -->
+          <div class="stat-card" style="border: 1px solid var(--border-accent);">
+            <div class="stat-title" style="color: var(--accent-cyan); font-weight: 700;">⚡ Smart Grid Generator (Auto-Align)</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+              Instantly generates evenly spaced, non-overlapping parking bays like an Excel fill-series.
             </div>
-            <div>
-              <label style="font-size: 12px; color: var(--text-muted);">Display Label</label>
-              <input type="text" class="text-input" id="input-slot-label" placeholder="e.g. Bay 1 (Reserved)" style="width: 100%; margin-top: 4px;">
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted);">Total Columns</label>
+                <input type="number" class="text-input" id="grid-cols" value="4" min="1" max="20" style="width: 100%; margin-top: 4px;">
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted);">Total Rows</label>
+                <input type="number" class="text-input" id="grid-rows" value="1" min="1" max="10" style="width: 100%; margin-top: 4px;">
+              </div>
             </div>
-            <div>
-              <label style="font-size: 12px; color: var(--text-muted);">Slot Vehicle Type</label>
-              <select class="select-input" id="select-slot-type" style="width: 100%; margin-top: 4px;">
-                <option value="car">Car (Standard)</option>
-                <option value="motorcycle">Motorcycle / Two-Wheeler</option>
-                <option value="bus">Bus / Commercial</option>
-                <option value="truck">Truck / Large Vehicle</option>
-              </select>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted);">ID Prefix</label>
+                <input type="text" class="text-input" id="grid-prefix" value="T" style="width: 100%; margin-top: 4px;">
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-muted);">Default Zone</label>
+                <input type="text" class="text-input" id="grid-zone" value="Zone-A" style="width: 100%; margin-top: 4px;">
+              </div>
             </div>
-            <button class="btn btn-accent" id="btn-add-slot" style="margin-top: 8px;">Save Bay Polygon</button>
+
+            <button class="btn btn-accent" id="btn-generate-grid" style="margin-top: 12px; width: 100%; justify-content: center; font-weight: 700;">
+              ⚡ Auto-Generate Evenly Spaced Bays
+            </button>
           </div>
 
-          <div style="margin-top: 24px;">
-            <div class="stat-title">Configured Bays</div>
-            <div id="calibration-slots-list" style="margin-top: 10px; max-height: 250px; overflow-y: auto;"></div>
+          <!-- 7GB Maximum Buffer & RAM Health Card -->
+          <div class="stat-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="stat-title">Buffer &amp; RAM Ceiling Monitor</div>
+              <span class="badge badge-mock">7.0 GB MAX</span>
+            </div>
+
+            <div style="margin-top: 8px; font-size: 13px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="color: var(--text-muted);">Active Buffer &amp; Heap:</span>
+                <strong id="metric-buffer-mem" style="color: var(--accent-cyan); font-family: var(--font-mono);">-- MB</strong>
+              </div>
+              <div class="progress-container" style="margin: 8px 0;">
+                <div class="progress-bar" id="bar-buffer-mem" style="width: 5%;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-dim);">
+                <span>0 GB</span>
+                <span>Safety Guard Ceiling: 7.0 GB</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 10px; font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+              ✓ High-throughput 500-frame rolling ring buffer active.<br>
+              ✓ 512 MB in-memory SQLite cache for memory-speed ACID operations.
+            </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Dynamic Excel-Style Spreadsheet Table -->
+      <div class="stat-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div class="stat-title" style="font-size: 14px; color: #fff;">📊 Dynamic Parking Bay Spreadsheet (Excel Mode)</div>
+            <div style="font-size: 12px; color: var(--text-muted);">
+              Add, remove, resize, or reposition parking bays dynamically. Coordinates are normalized (% of camera view) with live two-way preview.
+            </div>
+          </div>
+
+          <!-- Excel Action Toolbar -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn btn-accent btn-sm" id="btn-add-excel-row">➕ Add Row</button>
+            <button class="btn btn-sm" id="btn-export-csv">📤 Export CSV</button>
+            <button class="btn btn-sm" id="btn-import-csv-trigger">📥 Import CSV</button>
+            <input type="file" id="input-csv-file" accept=".csv,.txt" style="display: none;">
+            <button class="btn btn-primary btn-sm" id="btn-save-excel-slots">💾 Save &amp; Apply Live</button>
+            <button class="btn btn-danger btn-sm" id="btn-clear-all-slots">🗑 Clear All</button>
+          </div>
+        </div>
+
+        <!-- Excel Table Wrapper -->
+        <div style="overflow-x: auto; max-height: 480px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);">
+          <table class="event-table" id="table-excel-slots" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background: rgba(0, 0, 0, 0.4);">
+                <th style="width: 40px; text-align: center;">#</th>
+                <th style="width: 100px;">Slot ID</th>
+                <th style="width: 140px;">Display Label</th>
+                <th style="width: 100px;">Zone</th>
+                <th style="width: 110px;">Type</th>
+                <th style="width: 100px;">X Pos (%)</th>
+                <th style="width: 100px;">Y Pos (%)</th>
+                <th style="width: 100px;">Width (%)</th>
+                <th style="width: 100px;">Height (%)</th>
+                <th style="width: 70px; text-align: center;">Active</th>
+                <th style="width: 120px; text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-excel-slots">
+              <tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 24px;">Loading slots spreadsheet...</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

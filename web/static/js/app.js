@@ -13,12 +13,24 @@ const state = {
   referenceSize: { width: 1280, height: 720 },
 };
 
+// --- Helper: HTML Escaping ---
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initPolling();
   initStreamControls();
   initCalibrationCanvas();
+  initExcelSpreadsheet();
   initDiagnostics();
   initAllocationForm();
   initQuickAllotmentForm();
@@ -65,6 +77,7 @@ function switchTab(targetTabId) {
   }
 
   if (targetTabId === 'calibration') {
+    renderExcelSpreadsheet();
     renderCalibrationCanvas();
   } else if (targetTabId === 'allocation' || targetTabId === 'overview') {
     fetchAvailability(true);
@@ -127,6 +140,25 @@ async function fetchHealth() {
       uptimeElem.textContent = `${m}m ${s}s`;
     }
 
+    // Update 7.0 GB Buffer & Memory Ceiling Monitor
+    const bufMem = document.getElementById('metric-buffer-mem');
+    const bufBar = document.getElementById('bar-buffer-mem');
+    if (bufMem && state.camera.buffer_memory_mb !== undefined) {
+      bufMem.textContent = `${state.camera.buffer_memory_mb} MB / ${state.camera.max_buffer_mb || 7168} MB`;
+    }
+    if (bufBar && state.camera.buffer_memory_mb !== undefined) {
+      const maxMb = state.camera.max_buffer_mb || 7168;
+      const pct = Math.min(100, Math.max(2, (state.camera.buffer_memory_mb / maxMb) * 100));
+      bufBar.style.width = `${pct.toFixed(1)}%`;
+      if (pct > 85) {
+        bufBar.style.background = 'var(--status-occupied)';
+      } else if (pct > 60) {
+        bufBar.style.background = 'var(--accent-amber)';
+      } else {
+        bufBar.style.background = 'var(--accent-cyan)';
+      }
+    }
+
     // Update Pause Preview Button state
     const pauseBtn = document.getElementById('btn-pause-preview');
     if (pauseBtn) {
@@ -154,7 +186,7 @@ async function fetchSlots() {
     };
     updateOverviewCounters();
     if (state.activeTab === 'calibration') {
-      renderCalibrationList();
+      renderExcelSpreadsheet();
       renderCalibrationCanvas();
     }
   } catch (err) {
@@ -217,8 +249,38 @@ function initStreamControls() {
   }
 }
 
-// --- Calibration Canvas ---
+// --- Dynamic Parking Bay Spreadsheet & Real-Time Preview Controller ---
 let canvas, ctx;
+
+function getSlotBoundingBox(slot) {
+  if (!slot.points || slot.points.length === 0) {
+    return { x: 10, y: 10, w: 15, h: 25 };
+  }
+  const xs = slot.points.map(p => p[0]);
+  const ys = slot.points.map(p => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  return {
+    x: Math.round(minX * 1000) / 10,
+    y: Math.round(minY * 1000) / 10,
+    w: Math.max(0.5, Math.round((maxX - minX) * 1000) / 10),
+    h: Math.max(0.5, Math.round((maxY - minY) * 1000) / 10),
+  };
+}
+
+function pointInPolygon(point, vs) {
+  const x = point[0], y = point[1];
+  let inside = false;
+  for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+    const xi = vs[i][0], yi = vs[i][1];
+    const xj = vs[j][0], yj = vs[j][1];
+    const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
 
 function initCalibrationCanvas() {
   canvas = document.getElementById('calibration-canvas');
@@ -227,39 +289,27 @@ function initCalibrationCanvas() {
 
   canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / canvas.width;
-    const y = (e.clientY - rect.top) / canvas.height;
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
 
-    state.currentPolygonPoints.push([parseFloat(x.toFixed(3)), parseFloat(y.toFixed(3))]);
-    renderCalibrationCanvas();
-  });
-
-  const btnAdd = document.getElementById('btn-add-slot');
-  if (btnAdd) {
-    btnAdd.addEventListener('click', () => {
-      const id = document.getElementById('input-slot-id').value.trim() || `S0${state.slots.length + 1}`;
-      const label = document.getElementById('input-slot-label').value.trim() || `Bay ${id}`;
-      const type = document.getElementById('select-slot-type').value;
-
-      if (state.currentPolygonPoints.length < 3) {
-        showToast('Please click at least 3 points on the canvas to form a bay polygon.');
-        return;
+    // Check if user clicked on an existing parking bay
+    let clickedSlot = null;
+    for (let i = state.slots.length - 1; i >= 0; i--) {
+      const slot = state.slots[i];
+      if (slot.points && slot.points.length >= 3 && pointInPolygon([x, y], slot.points)) {
+        clickedSlot = slot;
+        break;
       }
+    }
 
-      state.slots.push({
-        id: id,
-        label: label,
-        slot_type: type,
-        enabled: true,
-        points: [...state.currentPolygonPoints],
-      });
-
-      state.currentPolygonPoints = [];
-      saveSlotsToBackend();
-      renderCalibrationList();
+    if (clickedSlot) {
+      selectSlot(clickedSlot.id);
+    } else {
+      // Manual vertex placement mode
+      state.currentPolygonPoints.push([parseFloat(x.toFixed(3)), parseFloat(y.toFixed(3))]);
       renderCalibrationCanvas();
-    });
-  }
+    }
+  });
 
   const btnClearCurrent = document.getElementById('btn-clear-drawing');
   if (btnClearCurrent) {
@@ -270,109 +320,642 @@ function initCalibrationCanvas() {
   }
 }
 
+function selectSlot(slotId) {
+  state.activeSlotId = slotId;
+  renderCalibrationCanvas();
+
+  // Scroll to and highlight corresponding row in Excel table
+  document.querySelectorAll('#tbody-excel-slots tr').forEach(r => {
+    const isTarget = r.dataset.slotId === slotId;
+    r.classList.toggle('active-row', isTarget);
+    if (isTarget) {
+      r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      const firstInput = r.querySelector('.excel-input');
+      if (firstInput) firstInput.focus();
+    }
+  });
+}
+
 function renderCalibrationCanvas() {
   if (!canvas || !ctx) return;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const cw = canvas.width;
+  const ch = canvas.height;
 
-  // Draw configured slots
-  state.slots.forEach((slot, index) => {
-    if (!slot.points || slot.points.length < 3) return;
+  // 1. Draw High-Tech Blueprint CAD Grid Background
+  ctx.fillStyle = '#080c14';
+  ctx.fillRect(0, 0, cw, ch);
 
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+  ctx.lineWidth = 1;
+  const step = 40;
+  for (let x = 0; x < cw; x += step) {
     ctx.beginPath();
-    const pts = slot.points;
-    ctx.moveTo(pts[0][0] * canvas.width, pts[0][1] * canvas.height);
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, ch);
+    ctx.stroke();
+  }
+  for (let y = 0; y < ch; y += step) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(cw, y);
+    ctx.stroke();
+  }
+
+  // Draw Camera Boundary
+  ctx.strokeStyle = 'rgba(0, 240, 255, 0.25)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(1, 1, cw - 2, ch - 2);
+
+  // 2. Draw Parking Bays
+  state.slots.forEach((slot) => {
+    let pts = slot.points;
+    if (!pts || pts.length < 3) {
+      const b = getSlotBoundingBox(slot);
+      const nx = b.x / 100, ny = b.y / 100, nw = b.w / 100, nh = b.h / 100;
+      pts = [[nx, ny], [nx + nw, ny], [nx + nw, ny + nh], [nx, ny + nh]];
+    }
+
+    const isActive = slot.id === state.activeSlotId;
+    const isEnabled = slot.enabled !== false;
+
+    // Palette per slot type
+    let strokeColor = '#00f0ff'; // car default
+    let fillColor = 'rgba(0, 240, 255, 0.12)';
+    if (!isEnabled) {
+      strokeColor = '#64748b';
+      fillColor = 'rgba(100, 116, 139, 0.08)';
+    } else if (slot.slot_type === 'ev') {
+      strokeColor = '#10b981';
+      fillColor = 'rgba(16, 185, 129, 0.12)';
+    } else if (slot.slot_type === 'accessible') {
+      strokeColor = '#3b82f6';
+      fillColor = 'rgba(59, 130, 246, 0.12)';
+    } else if (slot.slot_type === 'motorcycle') {
+      strokeColor = '#f59e0b';
+      fillColor = 'rgba(245, 158, 11, 0.12)';
+    }
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0] * cw, pts[0][1] * ch);
     for (let i = 1; i < pts.length; i++) {
-      ctx.lineTo(pts[i][0] * canvas.width, pts[i][1] * canvas.height);
+      ctx.lineTo(pts[i][0] * cw, pts[i][1] * ch);
     }
     ctx.closePath();
 
-    ctx.fillStyle = 'rgba(0, 240, 255, 0.15)';
-    ctx.fill();
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = '#00f0ff';
-    ctx.stroke();
-
-    // Label
-    const cx = pts[0][0] * canvas.width + 10;
-    const cy = pts[0][1] * canvas.height + 25;
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 13px sans-serif';
-    ctx.fillText(`${slot.id} (${slot.slot_type})`, cx, cy);
-  });
-
-  // Draw current active drawing points
-  if (state.currentPolygonPoints.length > 0) {
-    ctx.beginPath();
-    const pts = state.currentPolygonPoints;
-    ctx.moveTo(pts[0][0] * canvas.width, pts[0][1] * canvas.height);
-    for (let i = 1; i < pts.length; i++) {
-      ctx.lineTo(pts[i][0] * canvas.width, pts[i][1] * canvas.height);
+    if (isActive) {
+      ctx.shadowColor = '#00f0ff';
+      ctx.shadowBlur = 14;
+      ctx.strokeStyle = '#00f0ff';
+      ctx.lineWidth = 3.5;
+      ctx.fillStyle = 'rgba(0, 240, 255, 0.28)';
+    } else {
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = 2;
+      ctx.fillStyle = fillColor;
     }
 
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+
+    // Draw vertex handles if active
+    if (isActive) {
+      pts.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p[0] * cw, p[1] * ch, 5.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#00f0ff';
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+      });
+    }
+
+    // Draw Sleek Bay Badge / Label
+    const minX = Math.min(...pts.map(p => p[0])) * cw;
+    const minY = Math.min(...pts.map(p => p[1])) * ch;
+
+    const labelText = `${slot.id} ${slot.label ? '· ' + slot.label : ''} [${(slot.slot_type || 'car').toUpperCase()}]`;
+    ctx.font = isActive ? 'bold 13px Inter, sans-serif' : '12px Inter, sans-serif';
+    const textWidth = ctx.measureText(labelText).width;
+
+    // Badge pill background
+    ctx.fillStyle = isActive ? 'rgba(0, 240, 255, 0.92)' : 'rgba(11, 16, 26, 0.88)';
+    ctx.beginPath();
+    if (ctx.roundRect) {
+      ctx.roundRect(minX + 6, minY + 6, textWidth + 14, 20, 4);
+    } else {
+      ctx.rect(minX + 6, minY + 6, textWidth + 14, 20);
+    }
+    ctx.fill();
+    if (!isActive) {
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Badge text
+    ctx.fillStyle = isActive ? '#0b101a' : '#ffffff';
+    ctx.fillText(labelText, minX + 13, minY + 20);
+  });
+
+  // 3. Draw Manual Point Handles if in polygon drawing mode
+  if (state.currentPolygonPoints.length > 0) {
+    const pts = state.currentPolygonPoints;
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0] * cw, pts[0][1] * ch);
+    for (let i = 1; i < pts.length; i++) {
+      ctx.lineTo(pts[i][0] * cw, pts[i][1] * ch);
+    }
     ctx.lineWidth = 2;
-    ctx.setLineDash([4, 4]);
+    ctx.setLineDash([5, 5]);
     ctx.strokeStyle = '#f59e0b';
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Draw vertex handles
     pts.forEach(p => {
       ctx.beginPath();
-      ctx.arc(p[0] * canvas.width, p[1] * canvas.height, 5, 0, Math.PI * 2);
+      ctx.arc(p[0] * cw, p[1] * ch, 6, 0, Math.PI * 2);
       ctx.fillStyle = '#f59e0b';
       ctx.fill();
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#ffffff';
       ctx.stroke();
     });
   }
 }
 
-function renderCalibrationList() {
-  const container = document.getElementById('calibration-slots-list');
-  if (!container) return;
-  container.innerHTML = '';
+// --- Excel Spreadsheet Manager ---
+function initExcelSpreadsheet() {
+  const btnAdd = document.getElementById('btn-add-excel-row');
+  if (btnAdd) {
+    btnAdd.addEventListener('click', () => addExcelRow());
+  }
 
-  state.slots.forEach((slot, idx) => {
-    const item = document.createElement('div');
-    item.style.padding = '10px';
-    item.style.borderBottom = '1px solid rgba(255, 255, 255, 0.06)';
-    item.style.display = 'flex';
-    item.style.justifyContent = 'space-between';
-    item.style.alignItems = 'center';
+  const btnGrid = document.getElementById('btn-generate-grid');
+  if (btnGrid) {
+    btnGrid.addEventListener('click', () => generateSmartGrid());
+  }
 
-    item.innerHTML = `
-      <div>
-        <strong style="color: var(--accent-cyan);">${slot.id}</strong>: ${slot.label} 
-        <span style="font-size: 11px; color: var(--text-muted);">[${slot.slot_type}]</span>
-      </div>
-      <button class="btn btn-danger" style="padding: 4px 8px; font-size: 11px;" onclick="deleteSlot(${idx})">Delete</button>
+  const btnSave = document.getElementById('btn-save-excel-slots');
+  if (btnSave) {
+    btnSave.addEventListener('click', () => saveSlotsToBackend());
+  }
+
+  const btnClearAll = document.getElementById('btn-clear-all-slots');
+  if (btnClearAll) {
+    btnClearAll.addEventListener('click', () => {
+      if (confirm('Are you sure you want to clear all parking bays from the spreadsheet?')) {
+        state.slots = [];
+        state.activeSlotId = null;
+        renderExcelSpreadsheet();
+        renderCalibrationCanvas();
+        showToast('All bays cleared. Click "Save & Apply Live" to persist.');
+      }
+    });
+  }
+
+  const btnExport = document.getElementById('btn-export-csv');
+  if (btnExport) {
+    btnExport.addEventListener('click', () => exportCSV());
+  }
+
+  const btnImportTrigger = document.getElementById('btn-import-csv-trigger');
+  const inputCsv = document.getElementById('input-csv-file');
+  if (btnImportTrigger && inputCsv) {
+    btnImportTrigger.addEventListener('click', () => inputCsv.click());
+    inputCsv.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        importCSV(e.target.files[0]);
+        inputCsv.value = '';
+      }
+    });
+  }
+}
+
+function renderExcelSpreadsheet() {
+  const tbody = document.getElementById('tbody-excel-slots');
+  if (!tbody) return;
+
+  if (state.slots.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="11" style="text-align: center; color: var(--text-muted); padding: 32px;">
+          No parking bays configured. Click <strong>➕ Add Row</strong> or <strong>⚡ Smart Grid Generator</strong> above to create bays!
+        </td>
+      </tr>
     `;
-    container.appendChild(item);
+    return;
+  }
+
+  let html = '';
+  state.slots.forEach((slot, idx) => {
+    const box = getSlotBoundingBox(slot);
+    const isSelected = slot.id === state.activeSlotId;
+    const isEnabled = slot.enabled !== false;
+
+    html += `
+      <tr data-slot-id="${escapeHtml(slot.id)}" data-slot-index="${idx}" class="excel-row ${isSelected ? 'active-row' : ''}">
+        <td style="text-align: center; color: var(--text-dim); font-size: 11px;">${idx + 1}</td>
+        <td>
+          <input type="text" class="excel-input input-slot-id" value="${escapeHtml(slot.id)}" data-field="id" data-index="${idx}" spellcheck="false">
+        </td>
+        <td>
+          <input type="text" class="excel-input input-slot-label" value="${escapeHtml(slot.label || slot.id)}" data-field="label" data-index="${idx}">
+        </td>
+        <td>
+          <input type="text" class="excel-input input-slot-zone" value="${escapeHtml(slot.zone || 'Zone-A')}" data-field="zone" data-index="${idx}">
+        </td>
+        <td>
+          <select class="excel-select select-slot-type" data-field="slot_type" data-index="${idx}">
+            <option value="car" ${slot.slot_type === 'car' ? 'selected' : ''}>🚗 Car</option>
+            <option value="ev" ${slot.slot_type === 'ev' ? 'selected' : ''}>⚡ EV</option>
+            <option value="accessible" ${slot.slot_type === 'accessible' ? 'selected' : ''}>♿ Accessible</option>
+            <option value="motorcycle" ${slot.slot_type === 'motorcycle' ? 'selected' : ''}>🏍 Motorcycle</option>
+          </select>
+        </td>
+        <td>
+          <input type="number" step="0.1" min="0" max="100" class="excel-input input-slot-x" value="${box.x}" data-field="x" data-index="${idx}">
+        </td>
+        <td>
+          <input type="number" step="0.1" min="0" max="100" class="excel-input input-slot-y" value="${box.y}" data-field="y" data-index="${idx}">
+        </td>
+        <td>
+          <input type="number" step="0.1" min="0.5" max="100" class="excel-input input-slot-w" value="${box.w}" data-field="w" data-index="${idx}">
+        </td>
+        <td>
+          <input type="number" step="0.1" min="0.5" max="100" class="excel-input input-slot-h" value="${box.h}" data-field="h" data-index="${idx}">
+        </td>
+        <td style="text-align: center;">
+          <input type="checkbox" class="excel-checkbox input-slot-enabled" ${isEnabled ? 'checked' : ''} data-field="enabled" data-index="${idx}">
+        </td>
+        <td style="text-align: center; white-space: nowrap;">
+          <button class="btn btn-sm" style="padding: 2px 7px; font-size: 11px; margin-right: 4px;" title="Clone Bay" onclick="cloneSlot(${idx})">📋</button>
+          <button class="btn btn-sm btn-danger" style="padding: 2px 7px; font-size: 11px;" title="Delete Bay" onclick="deleteSlot(${idx})">🗑</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  tbody.innerHTML = html;
+
+  // Real-time two-way reactive binding on inputs
+  tbody.querySelectorAll('.excel-input, .excel-select, .excel-checkbox').forEach(input => {
+    const handleInput = () => {
+      const idx = parseInt(input.dataset.index, 10);
+      const field = input.dataset.field;
+      const slot = state.slots[idx];
+      if (!slot) return;
+
+      if (field === 'id') {
+        slot.id = input.value.trim();
+        state.activeSlotId = slot.id;
+      } else if (field === 'label') {
+        slot.label = input.value.trim();
+      } else if (field === 'zone') {
+        slot.zone = input.value.trim();
+      } else if (field === 'slot_type') {
+        slot.slot_type = input.value;
+      } else if (field === 'enabled') {
+        slot.enabled = input.checked;
+      } else if (field === 'x' || field === 'y' || field === 'w' || field === 'h') {
+        const row = input.closest('tr');
+        if (row) {
+          const x = parseFloat(row.querySelector('.input-slot-x').value) || 0;
+          const y = parseFloat(row.querySelector('.input-slot-y').value) || 0;
+          const w = parseFloat(row.querySelector('.input-slot-w').value) || 10;
+          const h = parseFloat(row.querySelector('.input-slot-h').value) || 20;
+
+          const nx = Math.max(0, Math.min(100, x)) / 100;
+          const ny = Math.max(0, Math.min(100, y)) / 100;
+          const nw = Math.max(0.5, Math.min(100, w)) / 100;
+          const nh = Math.max(0.5, Math.min(100, h)) / 100;
+
+          slot.points = [
+            [parseFloat(nx.toFixed(4)), parseFloat(ny.toFixed(4))],
+            [parseFloat((nx + nw).toFixed(4)), parseFloat(ny.toFixed(4))],
+            [parseFloat((nx + nw).toFixed(4)), parseFloat((ny + nh).toFixed(4))],
+            [parseFloat(nx.toFixed(4)), parseFloat((ny + nh).toFixed(4))]
+          ];
+        }
+      }
+
+      // Instantaneous visual preview update on canvas
+      renderCalibrationCanvas();
+    };
+
+    input.addEventListener('input', handleInput);
+    input.addEventListener('change', handleInput);
+
+    input.addEventListener('focus', () => {
+      const idx = parseInt(input.dataset.index, 10);
+      if (state.slots[idx]) {
+        state.activeSlotId = state.slots[idx].id;
+        tbody.querySelectorAll('tr').forEach(r => {
+          r.classList.toggle('active-row', parseInt(r.dataset.slotIndex, 10) === idx);
+        });
+        renderCalibrationCanvas();
+      }
+    });
   });
 }
 
-window.deleteSlot = (idx) => {
-  state.slots.splice(idx, 1);
-  saveSlotsToBackend();
-  renderCalibrationList();
+function addExcelRow() {
+  const nextNum = state.slots.length + 1;
+  const id = `S0${nextNum}`;
+  const label = `Bay ${id}`;
+  const zone = 'Zone-A';
+  const type = 'car';
+
+  let lastX = 10;
+  let lastY = 20;
+  if (state.slots.length > 0) {
+    const last = state.slots[state.slots.length - 1];
+    const box = getSlotBoundingBox(last);
+    lastX = (box.x + box.w + 2) % 85;
+    lastY = box.y;
+    if (lastX < 10) lastY = (lastY + box.h + 5) % 75;
+  }
+
+  const w = 15;
+  const h = 25;
+  const nx = lastX / 100;
+  const ny = lastY / 100;
+  const nw = w / 100;
+  const nh = h / 100;
+
+  const newSlot = {
+    id: id,
+    label: label,
+    zone: zone,
+    slot_type: type,
+    enabled: true,
+    points: [
+      [parseFloat(nx.toFixed(4)), parseFloat(ny.toFixed(4))],
+      [parseFloat((nx + nw).toFixed(4)), parseFloat(ny.toFixed(4))],
+      [parseFloat((nx + nw).toFixed(4)), parseFloat((ny + nh).toFixed(4))],
+      [parseFloat(nx.toFixed(4)), parseFloat((ny + nh).toFixed(4))]
+    ]
+  };
+
+  state.slots.push(newSlot);
+  state.activeSlotId = id;
+  renderExcelSpreadsheet();
   renderCalibrationCanvas();
+
+  const lastRow = document.querySelector(`tr[data-slot-id="${id}"]`);
+  if (lastRow) {
+    lastRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const idInput = lastRow.querySelector('.input-slot-id');
+    if (idInput) idInput.focus();
+  }
+  showToast(`Added Bay ${id}. Adjust cells or click 'Save & Apply Live'.`);
+}
+
+window.cloneSlot = (idx) => {
+  const orig = state.slots[idx];
+  if (!orig) return;
+  const box = getSlotBoundingBox(orig);
+  const newId = `${orig.id}_copy`;
+  const newX = Math.min(85, box.x + box.w + 2);
+  const nx = newX / 100;
+  const ny = box.y / 100;
+  const nw = box.w / 100;
+  const nh = box.h / 100;
+
+  const cloned = {
+    id: newId,
+    label: `${orig.label || orig.id} (Copy)`,
+    zone: orig.zone || 'Zone-A',
+    slot_type: orig.slot_type || 'car',
+    enabled: true,
+    points: [
+      [parseFloat(nx.toFixed(4)), parseFloat(ny.toFixed(4))],
+      [parseFloat((nx + nw).toFixed(4)), parseFloat(ny.toFixed(4))],
+      [parseFloat((nx + nw).toFixed(4)), parseFloat((ny + nh).toFixed(4))],
+      [parseFloat(nx.toFixed(4)), parseFloat((ny + nh).toFixed(4))]
+    ]
+  };
+
+  state.slots.splice(idx + 1, 0, cloned);
+  state.activeSlotId = newId;
+  renderExcelSpreadsheet();
+  renderCalibrationCanvas();
+  showToast(`Cloned Bay ${orig.id} -> ${newId}`);
 };
+
+window.deleteSlot = (idx) => {
+  if (idx < 0 || idx >= state.slots.length) return;
+  const id = state.slots[idx].id;
+  state.slots.splice(idx, 1);
+  if (state.activeSlotId === id) {
+    state.activeSlotId = state.slots[0] ? state.slots[0].id : null;
+  }
+  renderExcelSpreadsheet();
+  renderCalibrationCanvas();
+  showToast(`Bay ${id} removed.`);
+};
+
+function generateSmartGrid() {
+  const cols = parseInt(document.getElementById('grid-cols').value, 10) || 4;
+  const rows = parseInt(document.getElementById('grid-rows').value, 10) || 1;
+  const prefix = document.getElementById('grid-prefix').value.trim() || 'T';
+  const zone = document.getElementById('grid-zone').value.trim() || 'Zone-A';
+
+  const marginX = 6.0;
+  const marginY = 15.0;
+  const gapX = cols > 1 ? 2.5 : 0.0;
+  const gapY = rows > 1 ? 5.0 : 0.0;
+  const availableW = 100.0 - (2 * marginX) - (gapX * (cols - 1));
+  const availableH = 70.0 - (gapY * (rows - 1));
+  const bayW = Math.max(5.0, Math.round((availableW / cols) * 10) / 10);
+  const bayH = Math.max(10.0, Math.round((availableH / rows) * 10) / 10);
+
+  const newSlots = [];
+  let count = 1;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = Math.round((marginX + c * (bayW + gapX)) * 10) / 10;
+      const y = Math.round((marginY + r * (bayH + gapY)) * 10) / 10;
+      const id = `${prefix}${String(count).padStart(2, '0')}`;
+      const label = `Bay ${id}`;
+      const nx = x / 100;
+      const ny = y / 100;
+      const nw = bayW / 100;
+      const nh = bayH / 100;
+
+      newSlots.push({
+        id: id,
+        label: label,
+        zone: zone,
+        slot_type: 'car',
+        enabled: true,
+        points: [
+          [parseFloat(nx.toFixed(4)), parseFloat(ny.toFixed(4))],
+          [parseFloat((nx + nw).toFixed(4)), parseFloat(ny.toFixed(4))],
+          [parseFloat((nx + nw).toFixed(4)), parseFloat((ny + nh).toFixed(4))],
+          [parseFloat(nx.toFixed(4)), parseFloat((ny + nh).toFixed(4))]
+        ]
+      });
+      count++;
+    }
+  }
+
+  state.slots = newSlots;
+  state.activeSlotId = newSlots[0] ? newSlots[0].id : null;
+  renderExcelSpreadsheet();
+  renderCalibrationCanvas();
+  showToast(`⚡ Generated ${newSlots.length} auto-aligned bays in ${zone}! Click 'Save & Apply Live' to persist.`);
+}
+
+function exportCSV() {
+  if (state.slots.length === 0) {
+    showToast('No parking bays to export.');
+    return;
+  }
+
+  const header = ['id', 'label', 'zone', 'slot_type', 'x_pct', 'y_pct', 'width_pct', 'height_pct', 'enabled'];
+  const lines = [header.join(',')];
+
+  state.slots.forEach(s => {
+    const box = getSlotBoundingBox(s);
+    const row = [
+      `"${(s.id || '').replace(/"/g, '""')}"`,
+      `"${(s.label || s.id || '').replace(/"/g, '""')}"`,
+      `"${(s.zone || 'Zone-A').replace(/"/g, '""')}"`,
+      `"${(s.slot_type || 'car').replace(/"/g, '""')}"`,
+      box.x,
+      box.y,
+      box.w,
+      box.h,
+      s.enabled !== false ? 'true' : 'false'
+    ];
+    lines.push(row.join(','));
+  });
+
+  const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `parking_spaces_${new Date().toISOString().slice(0, 10)}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  showToast(`📤 Exported ${state.slots.length} bays to CSV.`);
+}
+
+function importCSV(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const text = e.target.result;
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+      if (lines.length < 2) {
+        showToast('CSV file is empty or missing data rows.');
+        return;
+      }
+
+      const header = lines[0].toLowerCase().split(',').map(h => h.replace(/"/g, '').trim());
+      const hasHeader = header.includes('id') || header.includes('slot_id');
+      const startIdx = hasHeader ? 1 : 0;
+
+      const importedSlots = [];
+      for (let i = startIdx; i < lines.length; i++) {
+        const parts = lines[i].split(',').map(p => p.replace(/^"|"$/g, '').trim());
+        if (parts.length < 4) continue;
+
+        const id = parts[0] || `S${String(importedSlots.length + 1).padStart(2, '0')}`;
+        const label = parts[1] || `Bay ${id}`;
+        const zone = parts[2] || 'Zone-A';
+        const type = parts[3] || 'car';
+        const x = parseFloat(parts[4]) || (10 + (importedSlots.length * 15) % 75);
+        const y = parseFloat(parts[5]) || 20;
+        const w = parseFloat(parts[6]) || 15;
+        const h = parseFloat(parts[7]) || 25;
+        const enabled = parts[8] ? parts[8].toLowerCase() !== 'false' : true;
+
+        const nx = x / 100;
+        const ny = y / 100;
+        const nw = w / 100;
+        const nh = h / 100;
+
+        importedSlots.push({
+          id: id,
+          label: label,
+          zone: zone,
+          slot_type: type,
+          enabled: enabled,
+          points: [
+            [parseFloat(nx.toFixed(4)), parseFloat(ny.toFixed(4))],
+            [parseFloat((nx + nw).toFixed(4)), parseFloat(ny.toFixed(4))],
+            [parseFloat((nx + nw).toFixed(4)), parseFloat((ny + nh).toFixed(4))],
+            [parseFloat(nx.toFixed(4)), parseFloat((ny + nh).toFixed(4))]
+          ]
+        });
+      }
+
+      if (importedSlots.length === 0) {
+        showToast('No valid bay entries found in CSV.');
+        return;
+      }
+
+      state.slots = importedSlots;
+      state.activeSlotId = importedSlots[0] ? importedSlots[0].id : null;
+      renderExcelSpreadsheet();
+      renderCalibrationCanvas();
+      showToast(`📥 Successfully imported ${importedSlots.length} bays! Click 'Save & Apply Live' to persist.`);
+    } catch (err) {
+      showToast(`Failed to parse CSV: ${err.message}`);
+    }
+  };
+  reader.readAsText(file);
+}
 
 async function saveSlotsToBackend() {
   try {
+    const saveBtn = document.getElementById('btn-save-excel-slots');
+    if (saveBtn) {
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+    }
+
+    const payload = {
+      reference_width: state.referenceSize.width || 1280,
+      reference_height: state.referenceSize.height || 720,
+      slots: state.slots.map(s => ({
+        id: s.id,
+        label: s.label || s.id,
+        zone: s.zone || 'Zone-A',
+        slot_type: s.slot_type || 'car',
+        enabled: s.enabled !== false,
+        points: s.points,
+      })),
+    };
+
     const res = await fetch('/api/slots', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        reference_width: state.referenceSize.width,
-        reference_height: state.referenceSize.height,
-        slots: state.slots,
-      }),
+      body: JSON.stringify(payload),
     });
+
     if (res.ok) {
-      showToast('Calibration saved successfully.');
+      showToast('✓ Parking bays saved & applied live to vision engine!');
+      fetchSlots();
+    } else {
+      const err = await res.json();
+      showToast(`Save failed: ${err.detail || 'Server error'}`);
     }
   } catch (err) {
-    showToast('Failed to save calibration.');
+    showToast(`Network error saving calibration: ${err.message}`);
+  } finally {
+    const saveBtn = document.getElementById('btn-save-excel-slots');
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.textContent = '💾 Save & Apply Live';
+    }
   }
 }
 

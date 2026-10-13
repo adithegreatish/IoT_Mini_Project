@@ -94,6 +94,13 @@ class LoggingConfig(BaseModel):
     backup_count: int = 5
 
 
+class PerformanceConfig(BaseModel):
+    max_memory_limit_mb: int = Field(default=7168, ge=512, le=32768)  # 7 GB buffer ceiling for Pi 5 (8GB RAM)
+    ring_buffer_enabled: bool = True
+    ring_buffer_max_frames: int = Field(default=500, ge=10, le=10000)
+    sqlite_cache_size_mb: int = Field(default=512, ge=16, le=4096)
+
+
 class RootConfig(BaseModel):
     app: AppConfig = Field(default_factory=AppConfig)
     camera: CameraConfig = Field(default_factory=CameraConfig)
@@ -105,3 +112,4 @@ class RootConfig(BaseModel):
     diagnostics: DiagnosticsConfig = Field(default_factory=DiagnosticsConfig)
     privacy: PrivacyConfig = Field(default_factory=PrivacyConfig)
     logging: LoggingConfig = Field(default_factory=LoggingConfig)
+    performance: PerformanceConfig = Field(default_factory=PerformanceConfig)

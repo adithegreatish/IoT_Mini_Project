@@ -1,11 +1,12 @@
-"""Authoritative camera service owning hardware capture and frame distribution."""
-
+import collections
+import gc
 import logging
 import threading
 import time
 from typing import Any, Dict, Optional, Tuple
 import cv2
 import numpy as np
+import psutil
 
 from app.camera.frame_provider import FrameMetadata, FrameProvider
 from app.camera.mock_camera import MockCamera
@@ -14,6 +15,9 @@ from app.config.schema import CameraConfig
 
 logger = logging.getLogger("smart_parking.camera_service")
 
+# 7.0 GB maximum buffer ceiling on Raspberry Pi 5 8GB
+MAX_RAM_BUFFER_MB = 7168
+
 
 class CameraService:
     """
@@ -21,16 +25,18 @@ class CameraService:
     Distributes frames to computer vision pipelines and MJPEG streaming endpoints.
     """
 
-    def __init__(self, config: CameraConfig):
+    def __init__(self, config: CameraConfig, max_buffer_mb: int = MAX_RAM_BUFFER_MB):
         self.config = config
+        self.max_buffer_mb = max_buffer_mb
         self._provider: Optional[FrameProvider] = None
         self._lock = threading.Lock()
 
-        # Operational states
+        # Operational states & dynamic ring buffering
         self.preview_paused: bool = False
         self.processing_active: bool = True
         self._last_jpeg: Optional[bytes] = None
         self._last_jpeg_ts: float = 0.0
+        self._ring_buffer = collections.deque(maxlen=500)
 
     def start(self) -> bool:
         with self._lock:
@@ -99,6 +105,12 @@ class CameraService:
 
         state_label = "STREAMING" if (is_healthy and not is_stale) else ("STALE" if is_stale else "DISCONNECTED")
 
+        mem_rss_mb = 0.0
+        try:
+            mem_rss_mb = round(psutil.Process().memory_info().rss / (1024 * 1024), 1)
+        except Exception:
+            pass
+
         return {
             "state": state_label,
             "is_healthy": is_healthy,
@@ -112,10 +124,13 @@ class CameraService:
             "preview_paused": self.preview_paused,
             "processing_active": self.processing_active,
             "last_frame_timestamp": meta.timestamp if meta else None,
+            "buffer_memory_mb": mem_rss_mb,
+            "max_buffer_mb": self.max_buffer_mb,
+            "ring_buffer_frames": len(self._ring_buffer),
         }
 
     def generate_mjpeg_frame(self, overlay_renderer=None) -> Optional[bytes]:
-        """Encodes latest frame to JPEG bytes with optional overlay and caching."""
+        """Encodes latest frame to JPEG bytes with optional overlay, caching, and 7GB buffer management."""
         if self.preview_paused:
             if self._last_jpeg:
                 return self._last_jpeg
@@ -133,8 +148,22 @@ class CameraService:
                 (0, 165, 255),
                 2,
             )
-            _, buf = cv2.imencode(".jpg", placeholder, [cv2.IMWRITE_JPEG_QUALITY, 65])
+            _, buf = cv2.imencode(".jpg", placeholder, [cv2.IMWRITE_JPEG_QUALITY, 55])
             return buf.tobytes()
+
+        # Dynamic high-throughput buffering
+        self._ring_buffer.append(frame)
+
+        # 7GB Buffer Ceiling Safety Guard
+        if len(self._ring_buffer) % 100 == 0:
+            try:
+                mem_mb = psutil.Process().memory_info().rss / (1024 * 1024)
+                if mem_mb >= (self.max_buffer_mb - 200):
+                    logger.warning(f"Process RAM reached {mem_mb:.1f} MB. Flusing buffer to maintain 7GB limit...")
+                    self._ring_buffer.clear()
+                    gc.collect()
+            except Exception:
+                pass
 
         # Cache check: if the frame timestamp is identical, reuse the cached JPEG
         frame_ts = meta.timestamp if meta else 0.0

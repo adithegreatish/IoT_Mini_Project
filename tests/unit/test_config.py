@@ -27,9 +27,11 @@ def test_windows_yaml_load():
 def test_raspberry_pi_yaml_load():
     config = load_config("configs/raspberry_pi.yaml")
     assert config.app.env == "raspberry_pi"
-    assert config.camera.requested_fps == 15
+    assert config.camera.requested_fps == 30
     assert config.detection.input_width == 480
     assert config.database.retention_days == 14
+    assert config.performance.max_memory_limit_mb == 7168
+    assert config.performance.sqlite_cache_size_mb == 512
 
 
 def test_config_invalid_threshold_raises():

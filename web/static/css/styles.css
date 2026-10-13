@@ -439,3 +439,38 @@ body {
   from { transform: translateX(100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
+
+/* Excel-Style Parking Spreadsheet */
+.excel-input, .excel-select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.excel-input:focus, .excel-select:focus {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+}
+
+.excel-row {
+  transition: background 0.15s ease;
+  cursor: pointer;
+}
+
+.excel-row:hover {
+  background: rgba(0, 240, 255, 0.04);
+}
+
+.excel-row.active-row td {
+  background: rgba(0, 240, 255, 0.09) !important;
+  border-top: 1px solid var(--accent-cyan);
+  border-bottom: 1px solid var(--accent-cyan);
+}
