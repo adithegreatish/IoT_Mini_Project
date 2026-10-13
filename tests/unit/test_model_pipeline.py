@@ -138,8 +138,12 @@ def test_end_to_end_pipeline_integration():
 
     # OCR direct execution
     ocr_res = ocr.recognize(plate_region)
-    assert ocr_res.is_readable is True
-    assert "DL 01 AB 1234" in ocr_res.normalized_text
+    if ocr.is_available:
+        assert ocr_res.is_readable is True
+        assert "DL 01 AB 1234" in ocr_res.normalized_text
+    else:
+        assert ocr_res.is_readable is False
+        assert "OCR engine unavailable" in (ocr_res.error_reason or "")
 
     # HSRP analysis execution
     hsrp_rep = hsrp.analyze_crop(plate_region)

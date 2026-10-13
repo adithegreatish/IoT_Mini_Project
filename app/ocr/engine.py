@@ -21,6 +21,20 @@ logger = logging.getLogger("smart_parking.ocr")
 
 _easyocr_reader = None
 _easyocr_lock = threading.Lock()
+_easyocr_available: Optional[bool] = None
+
+
+def is_easyocr_available() -> bool:
+    """Checks whether EasyOCR and its PyTorch backend are installed and importable."""
+    global _easyocr_available
+    if _easyocr_available is None:
+        try:
+            import torch
+            import easyocr
+            _easyocr_available = True
+        except (ImportError, ModuleNotFoundError):
+            _easyocr_available = False
+    return _easyocr_available
 
 
 def get_easyocr_reader(gpu: bool = True):
@@ -153,6 +167,13 @@ class OCREngine:
         self.conf_threshold = config.confidence_threshold
         self.engine_name = getattr(config, "engine", "easyocr")
 
+    @property
+    def is_available(self) -> bool:
+        """Checks if the underlying OCR backend (EasyOCR and PyTorch) is available."""
+        if not self.enabled:
+            return False
+        return is_easyocr_available()
+
     def preprocess_plate(self, plate_crop: np.ndarray) -> np.ndarray:
         """
         Preprocesses plate crop for optical character recognition:
@@ -189,6 +210,27 @@ class OCREngine:
         if w < 40 or h < 12:
             return OCRResult("UNREADABLE", "UNREADABLE", 0.0, False, False, f"Crop dimensions {w}x{h} insufficient for OCR")
 
+        # Fast rejection for blank or untextured crops without character contrast
+        if float(np.std(plate_crop)) < 5.0:
+            return OCRResult(
+                raw_text="UNREADABLE",
+                normalized_text="UNREADABLE",
+                confidence=0.0,
+                is_valid_format=False,
+                is_readable=False,
+                error_reason="Image has insufficient character contrast or is completely blank",
+            )
+
+        if not self.is_available:
+            return OCRResult(
+                raw_text="UNREADABLE",
+                normalized_text="UNREADABLE",
+                confidence=0.0,
+                is_valid_format=False,
+                is_readable=False,
+                error_reason="OCR engine unavailable: PyTorch / EasyOCR not installed in edge environment",
+            )
+
         # 1. Preprocessing
         enhanced = self.preprocess_plate(plate_crop)
 
@@ -199,6 +241,16 @@ class OCREngine:
                 enhanced,
                 detail=1,
                 paragraph=False,
+            )
+        except (ImportError, ModuleNotFoundError) as e:
+            logger.warning(f"EasyOCR or PyTorch not available: {e}")
+            return OCRResult(
+                raw_text="UNREADABLE",
+                normalized_text="UNREADABLE",
+                confidence=0.0,
+                is_valid_format=False,
+                is_readable=False,
+                error_reason=f"OCR engine unavailable: {e}",
             )
         except Exception as e:
             logger.error(f"EasyOCR inference error: {e}")

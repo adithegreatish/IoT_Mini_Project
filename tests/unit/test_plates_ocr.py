@@ -73,6 +73,8 @@ def test_ocr_engine_legible_plate():
     """Verifies real neural OCR recognition and Indian format normalization on legible text."""
     cfg = OCRConfig(enabled=True, engine="easyocr")
     engine = OCREngine(cfg)
+    if not engine.is_available:
+        pytest.skip("EasyOCR / PyTorch not installed in this environment (edge/Pi deployment)")
 
     # Render a high-contrast plate with Indian registration text
     plate = np.ones((100, 400, 3), dtype=np.uint8) * 255
