@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Parking & HSRP Management System</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-logo">P</div>
+      <div class="brand-text">
+        <h1>SMART PARKING &amp; HSRP SYSTEM</h1>
+        <span>Edge Vision · Raspberry Pi 5 · Windows</span>
+      </div>
+    </div>
+
+    <div class="header-status">
+      <div class="badge badge-live" id="camera-status-badge">
+        <span class="pulse-dot"></span>
+        <span id="camera-status-text">INITIALIZING</span>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--accent-cyan);" id="metric-fps">0.0 FPS</div>
+      <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);" id="metric-res">1280x720</div>
+      <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);" id="metric-uptime">0s</div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <button class="nav-tab active" data-target="overview">Overview</button>
+    <button class="nav-tab" data-target="monitor">Live Monitor</button>
+    <button class="nav-tab" data-target="allocation">Virtual Allocation</button>
+    <button class="nav-tab" data-target="calibration">Parking Calibration</button>
+    <button class="nav-tab" data-target="events">Vehicle &amp; Plate Events</button>
+    <button class="nav-tab" data-target="models">Model Management</button>
+    <button class="nav-tab" data-target="camera-settings">Camera Settings</button>
+    <button class="nav-tab" data-target="diagnostics">System Diagnostics</button>
+    <button class="nav-tab" data-target="datasets">Datasets &amp; Training</button>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- 1. OVERVIEW PANE -->
+    <section class="tab-pane active" id="pane-overview">
+      <div class="grid-cols-4">
+        <div class="stat-card">
+          <div class="stat-title">Active Calibrated Bays</div>
+          <div class="stat-value" id="counter-total">4</div>
+          <div class="stat-sub">Configured in calibration.json</div>
+        </div>
+        <div class="stat-card free">
+          <div class="stat-title">Free Bays (Available)</div>
+          <div class="stat-value" style="color: var(--status-free);" id="counter-free">2</div>
+          <div class="stat-sub">Verified Vacant</div>
+        </div>
+        <div class="stat-card occupied">
+          <div class="stat-title">Occupied Bays</div>
+          <div class="stat-value" style="color: var(--status-occupied);" id="counter-occupied">2</div>
+          <div class="stat-sub">Vehicle Detected</div>
+        </div>
+        <div class="stat-card unknown">
+          <div class="stat-title">Unknown / Stale</div>
+          <div class="stat-value" style="color: var(--status-unknown);" id="counter-unknown">0</div>
+          <div class="stat-sub">Insufficient Evidence</div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <div class="video-panel">
+          <div class="video-container">
+            <img class="video-element" src="/api/stream/video_feed" alt="Live Feed Preview">
+          </div>
+          <div class="stream-toolbar">
+            <span style="font-size: 13px; font-weight: 600;">Live Feed Preview</span>
+            <button class="btn btn-primary" onclick="switchTab('monitor')">Open Full Monitor &rarr;</button>
+          </div>
+        </div>
+
+        <div class="stat-card" style="height: 100%;">
+          <div class="stat-title">System Status &amp; Architecture</div>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px; margin-top: 14px;">
+            <div><strong>Capture Hardware:</strong> Zebronics USB Webcam / UVC</div>
+            <div><strong>Inference Runtime:</strong> ONNX Runtime (CPU Optimized)</div>
+            <div><strong>Occupancy Engine:</strong> Spatial Polygon IoU + Temporal Smoothing</div>
+            <div><strong>Plate Analysis:</strong> Independent HSRP-Style Pipeline</div>
+            <div><strong>Database:</strong> SQLite WAL (Local Storage Only)</div>
+            <div><strong>Privacy Mode:</strong> Plate Masking Active</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. LIVE MONITOR PANE -->
+    <section class="tab-pane" id="pane-monitor">
+      <div class="video-panel">
+        <div class="video-container">
+          <img class="video-element" id="monitor-video-feed" src="/api/stream/video_feed" alt="Live Camera Feed">
+        </div>
+        <div class="stream-toolbar">
+          <div class="toolbar-group">
+            <button class="btn" id="btn-pause-preview">Pause Preview</button>
+            <button class="btn btn-danger" id="btn-toggle-proc">Stop Processing</button>
+          </div>
+
+          <div class="toolbar-group">
+            <label for="select-scenario" style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Simulation Scenario:</label>
+            <select class="select-input" id="select-scenario">
+              <option value="normal">Normal (Periodic Traffic)</option>
+              <option value="all_free">All Bays Free</option>
+              <option value="all_occupied">All Bays Occupied</option>
+              <option value="mixed">Mixed State</option>
+              <option value="camera_loss">Camera Signal Loss</option>
+              <option value="straddling">Vehicle Straddling Boundary</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2B. VIRTUAL PARKING ALLOCATION & CONCURRENCY PANE -->
+    <section class="tab-pane" id="pane-allocation">
+      <div class="grid-cols-4">
+        <div class="stat-card free">
+          <div class="stat-title">Allocatable Vacant Bays</div>
+          <div class="stat-value" style="color: var(--status-free);" id="alloc-count-vacant">--</div>
+          <div class="stat-sub">Physically FREE &amp; Unreserved</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Active Reservations</div>
+          <div class="stat-value" style="color: var(--accent-cyan);" id="alloc-count-reserved">--</div>
+          <div class="stat-sub">Virtual Locks Active</div>
+        </div>
+        <div class="stat-card occupied">
+          <div class="stat-title">Physical Occupancy</div>
+          <div class="stat-value" style="color: var(--status-occupied);" id="alloc-count-occupied">--</div>
+          <div class="stat-sub">Detected by Camera</div>
+        </div>
+        <div class="stat-card unknown">
+          <div class="stat-title">Camera Unknown / Stale</div>
+          <div class="stat-value" style="color: var(--status-unknown);" id="alloc-count-unknown">--</div>
+          <div class="stat-sub">Unallocatable (Safety Gate)</div>
+        </div>
+      </div>
+
+      <!-- Zone and Type Breakdown Chips -->
+      <div class="stat-card" style="margin-bottom: 24px;">
+        <div class="stat-title">Real-Time Inventory Breakdown (Calculated Live)</div>
+        <div id="alloc-breakdown-chips" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 24px;">
+        <!-- Allocation Request Form -->
+        <div class="stat-card">
+          <div class="stat-title">Request Intelligent Slot Allocation</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+            Enforces strict concurrency isolation (SQLite <code>BEGIN IMMEDIATE</code>) to prevent double-allocation under race conditions.
+          </div>
+          <form id="form-allocate-slot" style="display: flex; flex-direction: column; gap: 14px;">
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted);">User / Driver ID</label>
+              <input type="text" class="text-input" id="alloc-input-user" value="driver_01" required style="width: 100%; margin-top: 4px;">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted);">Vehicle Registration Plate (HSRP)</label>
+              <input type="text" class="text-input" id="alloc-input-plate" placeholder="e.g. MH12AB1234" style="width: 100%; margin-top: 4px;">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div>
+                <label style="font-size: 12px; color: var(--text-muted);">Slot Type</label>
+                <select class="select-input" id="alloc-input-type" style="width: 100%; margin-top: 4px;">
+                  <option value="car">Car (Regular)</option>
+                  <option value="ev">EV Charging</option>
+                  <option value="accessible">Accessible</option>
+                  <option value="motorcycle">Motorcycle</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size: 12px; color: var(--text-muted);">Zone Filter</label>
+                <select class="select-input" id="alloc-input-zone" style="width: 100%; margin-top: 4px;">
+                  <option value="">Any Free Zone</option>
+                  <option value="Zone-A">Zone-A (Foreground)</option>
+                  <option value="Zone-B">Zone-B (Elevated/Upper)</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted);">Reservation Duration (Minutes)</label>
+              <select class="select-input" id="alloc-input-duration" style="width: 100%; margin-top: 4px;">
+                <option value="15">15 Minutes</option>
+                <option value="30" selected>30 Minutes (Default)</option>
+                <option value="60">60 Minutes</option>
+                <option value="120">120 Minutes</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btn-submit-allocation" style="margin-top: 8px;">
+              Allocate Parking Slot
+            </button>
+          </form>
+
+          <!-- Result Receipt Box -->
+          <div id="alloc-receipt-box" style="display: none; margin-top: 18px; padding: 14px; background: rgba(0, 200, 100, 0.1); border: 1px solid var(--status-free); border-radius: 8px;">
+            <div style="font-weight: 700; color: var(--status-free); font-size: 13px;">Allocation Confirmed</div>
+            <div style="font-size: 12px; margin-top: 6px; line-height: 1.6;" id="alloc-receipt-details"></div>
+          </div>
+        </div>
+
+        <!-- Live Bay Union & Reservations Table -->
+        <div class="stat-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div class="stat-title">Virtual Slot Registry &amp; Allocation Status</div>
+            <button class="btn btn-sm" onclick="fetchAvailability(true)">Refresh Live</button>
+          </div>
+          <div style="overflow-x: auto; max-height: 400px;">
+            <table class="event-table" id="table-allocation-slots">
+              <thead>
+                <tr>
+                  <th>Slot ID</th>
+                  <th>Zone / Level</th>
+                  <th>Type</th>
+                  <th>Physical State</th>
+                  <th>Virtual Status</th>
+                  <th>Reservation Code</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-allocation-slots">
+                <tr><td colspan="7" style="text-align: center; color: var(--text-muted);">Loading registry...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit History Section -->
+      <div class="stat-card" style="margin-top: 24px;">
+        <div class="stat-title">Allocation Concurrency Audit Trail (Immutable Log)</div>
+        <div style="overflow-x: auto; max-height: 250px; margin-top: 12px;">
+          <table class="event-table">
+            <thead>
+              <tr>
+                <th>Event Type</th>
+                <th>Slot ID</th>
+                <th>Reservation Code</th>
+                <th>Physical State</th>
+                <th>Audit Details</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-allocation-audit">
+              <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Loading audit trail...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PARKING CALIBRATION PANE -->
+    <section class="tab-pane" id="pane-calibration">
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <div class="video-panel">
+          <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #080c14;">
+            <canvas id="calibration-canvas" width="1280" height="720" style="width: 100%; height: 100%; cursor: crosshair;"></canvas>
+          </div>
+          <div class="stream-toolbar">
+            <span style="font-size: 12px; color: var(--text-muted);">
+              Click on the canvas to place polygon vertices. Connect at least 3 points to define a parking slot.
+            </span>
+            <button class="btn btn-danger" id="btn-clear-drawing">Clear Current Points</button>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-title">Configure Parking Bay</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px;">
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted);">Slot ID</label>
+              <input type="text" class="text-input" id="input-slot-id" placeholder="e.g. S01" style="width: 100%; margin-top: 4px;">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted);">Display Label</label>
+              <input type="text" class="text-input" id="input-slot-label" placeholder="e.g. Bay 1 (Reserved)" style="width: 100%; margin-top: 4px;">
+            </div>
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted);">Slot Vehicle Type</label>
+              <select class="select-input" id="select-slot-type" style="width: 100%; margin-top: 4px;">
+                <option value="car">Car (Standard)</option>
+                <option value="motorcycle">Motorcycle / Two-Wheeler</option>
+                <option value="bus">Bus / Commercial</option>
+                <option value="truck">Truck / Large Vehicle</option>
+              </select>
+            </div>
+            <button class="btn btn-accent" id="btn-add-slot" style="margin-top: 8px;">Save Bay Polygon</button>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <div class="stat-title">Configured Bays</div>
+            <div id="calibration-slots-list" style="margin-top: 10px; max-height: 250px; overflow-y: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. EVENTS PANE -->
+    <section class="tab-pane" id="pane-events">
+      <div style="margin-bottom: 24px;">
+        <h2 style="font-size: 16px; margin-bottom: 12px;">Recent Occupancy State Transitions</h2>
+        <div class="table-wrapper">
+          <table class="tech-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Slot ID</th>
+                <th>Previous State</th>
+                <th>New State</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody id="table-occupancy-events">
+              <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">No transitions recorded yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="font-size: 16px; margin-bottom: 12px;">License Plate &amp; HSRP Recognition Events (Masked by Default)</h2>
+        <div class="table-wrapper">
+          <table class="tech-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Slot ID</th>
+                <th>Masked Plate Number</th>
+                <th>HSRP Cue Outcome</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody id="table-plate-events">
+              <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">No plate events recorded yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MODEL MANAGEMENT PANE -->
+    <section class="tab-pane" id="pane-models">
+      <h2 style="font-size: 16px; margin-bottom: 12px;">Registered Deployment Models (ONNX Runtime)</h2>
+      <div class="table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Model ID</th>
+              <th>Architecture</th>
+              <th>Runtime</th>
+              <th>Purpose</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="table-models-tbody">
+            <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">Loading models...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. CAMERA SETTINGS PANE -->
+    <section class="tab-pane" id="pane-camera-settings">
+      <div class="stat-card" style="max-width: 800px;">
+        <div class="stat-title">Detected Video Capture Devices</div>
+        <div id="camera-devices-list" style="margin: 16px 0;"></div>
+        <button class="btn btn-primary" onclick="reconnectCamera()">Reconnect Camera Device</button>
+      </div>
+    </section>
+
+    <!-- 7. SYSTEM DIAGNOSTICS PANE -->
+    <section class="tab-pane" id="pane-diagnostics">
+      <div class="stat-card" style="margin-bottom: 24px;">
+        <div class="stat-title">Automated In-App Self-Diagnostics</div>
+        <p style="font-size: 13px; color: var(--text-muted); margin: 8px 0 16px 0;">
+          Executes automated health checks covering platform compatibility, configuration boundaries, database integrity, camera capture, and image quality gates.
+        </p>
+        <div style="display: flex; gap: 12px;">
+          <button class="btn btn-primary" id="btn-run-diag-quick">Run Quick Health Check</button>
+          <button class="btn btn-accent" id="btn-run-diag-full">Run Full Diagnostics Suite</button>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="diag-progress-bar"></div>
+        </div>
+        <div id="diag-summary-box" style="font-size: 13px; font-weight: 600; color: var(--text-main);">
+          Ready to run diagnostics.
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Test ID</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Duration</th>
+              <th>Output / Diagnostic Message</th>
+            </tr>
+          </thead>
+          <tbody id="diag-results-tbody">
+            <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">Click Run Diagnostics to begin.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 8. DATASETS PANE -->
+    <section class="tab-pane" id="pane-datasets">
+      <h2 style="font-size: 16px; margin-bottom: 12px;">Candidate Datasets &amp; Benchmark Provenance</h2>
+      <div class="table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Dataset</th>
+              <th>Purpose</th>
+              <th>Format</th>
+              <th>Licence / Attribution</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PKLot</strong></td>
+              <td>Parking occupancy polygon baseline</td>
+              <td>XML Polygons</td>
+              <td>Academic / Non-Commercial</td>
+              <td><span class="badge badge-mock">Candidate</span></td>
+            </tr>
+            <tr>
+              <td><strong>CNRPark+EXT</strong></td>
+              <td>Patch-level parking under weather variation</td>
+              <td>Image Patches</td>
+              <td>CC BY-NC-SA 4.0</td>
+              <td><span class="badge badge-mock">Candidate</span></td>
+            </tr>
+            <tr>
+              <td><strong>COCO (Vehicles)</strong></td>
+              <td>Pretrained vehicle detector classes (cars, bikes)</td>
+              <td>COCO JSON</td>
+              <td>CC BY 4.0</td>
+              <td><span class="badge badge-live">Verified Baseline</span></td>
+            </tr>
+            <tr>
+              <td><strong>India Driving Dataset (IDD)</strong></td>
+              <td>Indian road diversity &amp; two-wheelers</td>
+              <td>Polygonal / BBox</td>
+              <td>Academic Research Only</td>
+              <td><span class="badge badge-mock">Candidate</span></td>
+            </tr>
+            <tr>
+              <td><strong>Indian License Plates with Labels</strong></td>
+              <td>Plate localization bounding boxes</td>
+              <td>Pascal VOC</td>
+              <td>Open Database License</td>
+              <td><span class="badge badge-mock">Candidate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

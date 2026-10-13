@@ -1,0 +1,29 @@
+[Unit]
+Description=Smart Parking & HSRP Management Service
+After=network.target multi-user.target
+Wants=network.target
+
+[Service]
+Type=simple
+# Replace %i with username or install using install_service.sh
+User=%i
+WorkingDirectory=/home/%i/smart-parking
+Environment="SMART_PARKING_ROOT=/home/%i/smart-parking"
+Environment="PATH=/home/%i/smart-parking/.venv-pi/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/home/%i/smart-parking/.venv-pi/bin/python app/main.py --config configs/raspberry_pi.yaml
+Restart=always
+RestartSec=5s
+
+# Security sandboxing
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/%i/smart-parking/data /home/%i/smart-parking/logs
+
+# Standard Logging to systemd journal
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=smart-parking
+
+[Install]
+WantedBy=multi-user.target

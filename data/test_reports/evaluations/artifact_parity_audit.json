@@ -1,0 +1,111 @@
+{
+  "audit_timestamp": "2026-10-12T22:16:35Z",
+  "platform": {
+    "os": "Windows",
+    "platform_release": "11",
+    "architecture": "amd64",
+    "is_raspberry_pi": false,
+    "device_model": "Windows PC (10.0.26300)",
+    "python_version": "3.12.10",
+    "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+    "cpu_count": 20,
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+  },
+  "vehicle_detector": {
+    "model_name": "Vehicle Detector (YOLOv8n)",
+    "pt_path": "models\\vehicle_detector.pt",
+    "pt_sha256": "0f8c08dc8f4aff7f0b52582f38677c016b8caedf73ab4b39c182046a086e6089",
+    "onnx_path": "models\\vehicle_detector.onnx",
+    "onnx_sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc",
+    "test_images_evaluated": 12,
+    "tensor_parity": {
+      "max_absolute_error": 0.003052,
+      "mean_absolute_error": 1.275e-05,
+      "passes_numerical_tolerance": true
+    },
+    "post_nms_output_parity": {
+      "mean_box_match_rate": 0.4705,
+      "passes_output_equivalence": false
+    },
+    "latency_cpu": {
+      "device": "cpu",
+      "provider": "CPUExecutionProvider",
+      "mean_latency_ms": 44.73,
+      "p50_latency_ms": 43.86,
+      "p95_latency_ms": 53.82,
+      "min_latency_ms": 38.58,
+      "max_latency_ms": 54.63
+    },
+    "latency_gpu": {
+      "device": "gpu",
+      "provider": "CPUExecutionProvider",
+      "mean_latency_ms": 42.09,
+      "p50_latency_ms": 41.41,
+      "p95_latency_ms": 49.45,
+      "min_latency_ms": 34.62,
+      "max_latency_ms": 49.48
+    }
+  },
+  "plate_detector": {
+    "model_name": "Plate Detector (YOLOv8n)",
+    "pt_path": "models\\plate_detector.pt",
+    "pt_sha256": "df809821ab0a6b0ac3f90788071d598d83342c3da2d2d4fa574f1e7a7c3fa755",
+    "onnx_path": "models\\plate_detector.onnx",
+    "onnx_sha256": "efddfbc0d555a374389cb7847db06b776a22fed2b706eac56ce51596bae5cea4",
+    "test_images_evaluated": 12,
+    "tensor_parity": {
+      "max_absolute_error": 0.001404,
+      "mean_absolute_error": 1.342e-05,
+      "passes_numerical_tolerance": true
+    },
+    "post_nms_output_parity": {
+      "mean_box_match_rate": 0.8333,
+      "passes_output_equivalence": false
+    },
+    "latency_cpu": {
+      "device": "cpu",
+      "provider": "CPUExecutionProvider",
+      "mean_latency_ms": 42.24,
+      "p50_latency_ms": 40.86,
+      "p95_latency_ms": 49.48,
+      "min_latency_ms": 38.12,
+      "max_latency_ms": 53.13
+    },
+    "latency_gpu": {
+      "device": "gpu",
+      "provider": "CPUExecutionProvider",
+      "mean_latency_ms": 42.0,
+      "p50_latency_ms": 41.77,
+      "p95_latency_ms": 46.91,
+      "min_latency_ms": 37.41,
+      "max_latency_ms": 48.11
+    }
+  },
+  "manifest_consistency": [
+    {
+      "model_id": "vehicle-yolo-v8n",
+      "manifest_file": "models/vehicle_detector.onnx",
+      "file_exists": true,
+      "recorded_sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc",
+      "actual_sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc",
+      "hash_matches": true
+    },
+    {
+      "model_id": "plate-detector-tiny",
+      "manifest_file": "models/plate_detector.onnx",
+      "file_exists": true,
+      "recorded_sha256": "efddfbc0d555a374389cb7847db06b776a22fed2b706eac56ce51596bae5cea4",
+      "actual_sha256": "efddfbc0d555a374389cb7847db06b776a22fed2b706eac56ce51596bae5cea4",
+      "hash_matches": true
+    },
+    {
+      "model_id": "parking-occupancy-net",
+      "manifest_file": "models/occupancy_classifier.onnx",
+      "file_exists": true,
+      "recorded_sha256": "835781c13fb70a5e80505ab29c324a37aceac5803ec218a5ed249ef789e3e8bc",
+      "actual_sha256": "835781c13fb70a5e80505ab29c324a37aceac5803ec218a5ed249ef789e3e8bc",
+      "hash_matches": true
+    }
+  ]
+}

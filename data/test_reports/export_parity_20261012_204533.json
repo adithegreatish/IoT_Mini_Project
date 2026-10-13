@@ -1,0 +1,56 @@
+[
+  {
+    "model_id": "vehicle-yolo-v8n",
+    "model_name": "Vehicle Detector",
+    "onnx_path": "C:\\Users\\adity\\Downloads\\IoT\\models\\vehicle_detector.onnx",
+    "sha256": "c0c5dc4fac492fe42e77ce17af373091fa91fc159faa5255a00aa8387cfda352",
+    "size_mb": 12.18,
+    "parity": {
+      "success": true,
+      "is_parity_passed": true,
+      "max_absolute_error": 0.000977,
+      "mean_absolute_error": 1.371e-05,
+      "tolerance_threshold": 0.01,
+      "onnx_latency_ms": 31.47,
+      "pytorch_latency_ms": 77.14,
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "output_shape": [
+        1,
+        8,
+        8400
+      ]
+    }
+  },
+  {
+    "model_id": "plate-detector-tiny",
+    "model_name": "License Plate Detector",
+    "onnx_path": "C:\\Users\\adity\\Downloads\\IoT\\models\\plate_detector.onnx",
+    "sha256": "efddfbc0d555a374389cb7847db06b776a22fed2b706eac56ce51596bae5cea4",
+    "size_mb": 12.18,
+    "parity": {
+      "success": true,
+      "is_parity_passed": true,
+      "max_absolute_error": 0.000641,
+      "mean_absolute_error": 1.187e-05,
+      "tolerance_threshold": 0.01,
+      "onnx_latency_ms": 29.59,
+      "pytorch_latency_ms": 59.83,
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "output_shape": [
+        1,
+        5,
+        8400
+      ]
+    }
+  }
+]

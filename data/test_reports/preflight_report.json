@@ -1,0 +1,249 @@
+{
+  "timestamp": "2026-10-12T23:55:20.655204",
+  "target_platform": "Raspberry Pi 5 (8 GB, aarch64)",
+  "execution_platform": "Windows (AMD64)",
+  "overall_status": "PASS",
+  "counts": {
+    "pass": 21,
+    "warn": 2,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "category": "Platform",
+      "name": "Architecture",
+      "status": "WARN",
+      "details": "Currently running on Windows (amd64). Physical Pi 5 requires aarch64 Linux.",
+      "metadata": {
+        "arch": "amd64",
+        "system": "Windows",
+        "target": "Linux aarch64"
+      }
+    },
+    {
+      "category": "Platform",
+      "name": "Python Version",
+      "status": "PASS",
+      "details": "Python 3.12.10 meets requirements (>=3.10)",
+      "metadata": {
+        "version": "3.12.10"
+      }
+    },
+    {
+      "category": "Hardware",
+      "name": "RAM Capacity",
+      "status": "PASS",
+      "details": "15.63 GB Total RAM (4.06 GB free)",
+      "metadata": {
+        "total_gb": 15.63,
+        "free_gb": 4.06
+      }
+    },
+    {
+      "category": "Hardware",
+      "name": "Disk Space",
+      "status": "PASS",
+      "details": "342.82 GB free storage available",
+      "metadata": {
+        "free_gb": 342.82
+      }
+    },
+    {
+      "category": "Dependencies",
+      "name": "ONNX Runtime CPU Inference Engine",
+      "status": "PASS",
+      "details": "Module 'onnxruntime' available (v1.31.0)",
+      "metadata": {
+        "module": "onnxruntime",
+        "version": "1.31.0"
+      }
+    },
+    {
+      "category": "Dependencies",
+      "name": "OpenCV Image Processing",
+      "status": "PASS",
+      "details": "Module 'cv2' available (v5.0.0)",
+      "metadata": {
+        "module": "cv2",
+        "version": "5.0.0"
+      }
+    },
+    {
+      "category": "Dependencies",
+      "name": "NumPy Numerical Computing",
+      "status": "PASS",
+      "details": "Module 'numpy' available (v2.5.3)",
+      "metadata": {
+        "module": "numpy",
+        "version": "2.5.3"
+      }
+    },
+    {
+      "category": "Dependencies",
+      "name": "FastAPI Asynchronous Web Framework",
+      "status": "PASS",
+      "details": "Module 'fastapi' available (v0.143.0)",
+      "metadata": {
+        "module": "fastapi",
+        "version": "0.143.0"
+      }
+    },
+    {
+      "category": "Dependencies",
+      "name": "Uvicorn ASGI Server",
+      "status": "PASS",
+      "details": "Module 'uvicorn' available (v0.54.0)",
+      "metadata": {
+        "module": "uvicorn",
+        "version": "0.54.0"
+      }
+    },
+    {
+      "category": "Dependencies",
+      "name": "Pydantic Configuration Validation",
+      "status": "PASS",
+      "details": "Module 'pydantic' available (v2.14.0)",
+      "metadata": {
+        "module": "pydantic",
+        "version": "2.14.0"
+      }
+    },
+    {
+      "category": "Models",
+      "name": "occupancy_classifier.onnx",
+      "status": "PASS",
+      "details": "Winning Approach D Model verified (0.95 MB, SHA: e42e18e40b9337fd...)",
+      "metadata": {
+        "file": "occupancy_classifier.onnx",
+        "sha256": "e42e18e40b9337fde295c2e269845bfb9cb3df54d341971a03c6ae8b5d80105f",
+        "size_mb": 0.95
+      }
+    },
+    {
+      "category": "Models",
+      "name": "vehicle_detector.onnx",
+      "status": "PASS",
+      "details": "Vehicle Detector Model verified (12.18 MB, SHA: 8ea5414f0cf2bc4f...)",
+      "metadata": {
+        "file": "vehicle_detector.onnx",
+        "sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc",
+        "size_mb": 12.18
+      }
+    },
+    {
+      "category": "Models",
+      "name": "plate_detector.onnx",
+      "status": "PASS",
+      "details": "Plate Localizer Model (Optional) verified (12.18 MB, SHA: efddfbc0d555a374...)",
+      "metadata": {
+        "file": "plate_detector.onnx",
+        "sha256": "efddfbc0d555a374389cb7847db06b776a22fed2b706eac56ce51596bae5cea4",
+        "size_mb": 12.18
+      }
+    },
+    {
+      "category": "Models",
+      "name": "occupancy_classifier_baseline_cnrpark.onnx",
+      "status": "PASS",
+      "details": "Baseline Rollback ONNX (ARM64 CPU) verified (0.95 MB, SHA: 835781c13fb70a5e...)",
+      "metadata": {
+        "file": "occupancy_classifier_baseline_cnrpark.onnx",
+        "sha256": "835781c13fb70a5e80505ab29c324a37aceac5803ec218a5ed249ef789e3e8bc",
+        "size_mb": 0.95
+      }
+    },
+    {
+      "category": "Models",
+      "name": "occupancy_classifier_baseline_cnrpark.pt",
+      "status": "PASS",
+      "details": "Baseline Rollback Checkpoint verified (0.96 MB, SHA: 5040dc0cfc9edda3...)",
+      "metadata": {
+        "file": "occupancy_classifier_baseline_cnrpark.pt",
+        "sha256": "5040dc0cfc9edda3c3f698444bb8e9ed039d20750f96683f34b7f255a6b20884",
+        "size_mb": 0.96
+      }
+    },
+    {
+      "category": "Configuration",
+      "name": "raspberry_pi.yaml",
+      "status": "PASS",
+      "details": "Valid YAML schema (env=raspberry_pi, stale=2.0s)",
+      "metadata": {
+        "file": "configs/raspberry_pi.yaml"
+      }
+    },
+    {
+      "category": "Configuration",
+      "name": "windows.yaml",
+      "status": "PASS",
+      "details": "Valid YAML schema (env=windows, stale=2.0s)",
+      "metadata": {
+        "file": "configs/windows.yaml"
+      }
+    },
+    {
+      "category": "Filesystem",
+      "name": "Write: data/",
+      "status": "PASS",
+      "details": "Directory is writable (C:\\Users\\adity\\Downloads\\IoT\\data)",
+      "metadata": {
+        "dir": "data"
+      }
+    },
+    {
+      "category": "Filesystem",
+      "name": "Write: logs/",
+      "status": "PASS",
+      "details": "Directory is writable (C:\\Users\\adity\\Downloads\\IoT\\logs)",
+      "metadata": {
+        "dir": "logs"
+      }
+    },
+    {
+      "category": "Filesystem",
+      "name": "Write: data/test_reports/",
+      "status": "PASS",
+      "details": "Directory is writable (C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports)",
+      "metadata": {
+        "dir": "data/test_reports"
+      }
+    },
+    {
+      "category": "Database",
+      "name": "SQLite Schema",
+      "status": "PASS",
+      "details": "All schema tables present: parking_slots, slot_reservations, occupancy_events",
+      "metadata": {
+        "tables": [
+          "schema_migrations",
+          "calibration_revisions",
+          "sqlite_sequence",
+          "occupancy_events",
+          "plate_events",
+          "diagnostic_runs",
+          "parking_slots",
+          "slot_reservations",
+          "allocation_audit_log"
+        ]
+      }
+    },
+    {
+      "category": "Camera",
+      "name": "Hardware Video Device",
+      "status": "WARN",
+      "details": "Running on Windows. Connect USB webcam before running on physical Pi.",
+      "metadata": {
+        "system": "Windows"
+      }
+    },
+    {
+      "category": "Model Preflight",
+      "name": "ONNX CPU Inference",
+      "status": "PASS",
+      "details": "Patch inference verified (is_occupied=False, conf=1.00)",
+      "metadata": {
+        "threshold": 0.65
+      }
+    }
+  ]
+}

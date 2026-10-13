@@ -1,0 +1,168 @@
+{
+  "evaluation_id": "eval_20261012_172228",
+  "timestamp": "2026-10-12T17:22:50.614714",
+  "platform": {
+    "os": "Windows",
+    "platform_release": "11",
+    "architecture": "amd64",
+    "is_raspberry_pi": false,
+    "device_model": "Windows PC (10.0.26300)",
+    "python_version": "3.12.10",
+    "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+    "cpu_count": 20,
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+  },
+  "test_dataset": {
+    "manifest_path": "C:\\Users\\adity\\Downloads\\IoT\\data\\splits\\test_manifest.json",
+    "vehicle_test_samples": 3,
+    "plate_test_samples": 273
+  },
+  "vehicle_detector": {
+    "model_id": "vehicle-yolo-v8n",
+    "pt_path": "C:\\Users\\adity\\Downloads\\IoT\\models\\vehicle_detector.pt",
+    "onnx_path": "C:\\Users\\adity\\Downloads\\IoT\\models\\vehicle_detector.onnx",
+    "pt_sha256": "e48530d42f531e0bd14cdd77849b2035983fa20c068629db660712a3d888ad38",
+    "onnx_sha256": "24457ba79689f609a61c09baed2f91fce5d36da3e1c7fb4eeafff0628f4ffc94",
+    "test_metrics": {
+      "precision": 0.6458,
+      "recall": 1.0,
+      "mAP50": 0.995,
+      "mAP50_95": 0.6693,
+      "fitness": 0.6693,
+      "speed_preprocess_ms": 0.67,
+      "speed_inference_ms": 13.31,
+      "speed_postprocess_ms": 0.91
+    },
+    "onnx_latency": {
+      "samples_evaluated": 3,
+      "mean_latency_ms": 29.28,
+      "p50_latency_ms": 29.54,
+      "p95_latency_ms": 30.46,
+      "min_latency_ms": 27.72,
+      "max_latency_ms": 30.57
+    }
+  },
+  "plate_detector": {
+    "model_id": "plate-detector-tiny",
+    "pt_path": "C:\\Users\\adity\\Downloads\\IoT\\models\\plate_detector.pt",
+    "onnx_path": "C:\\Users\\adity\\Downloads\\IoT\\models\\plate_detector.onnx",
+    "pt_sha256": "ae0cd501cad155de187911729ce2118be286552b500b63a5a5a5c18f7b451302",
+    "onnx_sha256": "2709413af4bdf668f7b4e08da6c084f8b5ca8ea190f331fd957083485a3de304",
+    "test_metrics": {
+      "precision": 0.968,
+      "recall": 0.9492,
+      "mAP50": 0.9654,
+      "mAP50_95": 0.6528,
+      "fitness": 0.6528,
+      "speed_preprocess_ms": 0.71,
+      "speed_inference_ms": 1.79,
+      "speed_postprocess_ms": 0.67
+    },
+    "onnx_latency": {
+      "samples_evaluated": 50,
+      "mean_latency_ms": 28.68,
+      "p50_latency_ms": 27.98,
+      "p95_latency_ms": 35.88,
+      "min_latency_ms": 24.56,
+      "max_latency_ms": 43.43
+    }
+  },
+  "ocr_engine": {
+    "engine": "easyocr",
+    "metrics": {
+      "total_test_images": 40,
+      "plates_detected": 32,
+      "detection_rate": 0.8,
+      "readable_count": 19,
+      "readable_rate": 0.5938,
+      "valid_format_count": 0,
+      "valid_format_rate": 0.0,
+      "unreadable_abstention_rate": 0.525,
+      "mean_ocr_latency_ms": 68.71,
+      "p95_ocr_latency_ms": 43.28,
+      "sample_transcriptions": [
+        {
+          "image": "CarLongPlateGen2163_jpg.rf.9d19ff0a4a9a989ee7edfde44014cb0f.jpg",
+          "plate_conf": 0.795,
+          "raw_text": "GIF445585",
+          "normalized": "GIF445585",
+          "is_readable": false,
+          "is_valid_format": false
+        },
+        {
+          "image": "xemay1373_jpg.rf.6bcdbaaa595e76acabdf6622f2357f42.jpg",
+          "plate_conf": 0.864,
+          "raw_text": "59S2 31606",
+          "normalized": "59S231606",
+          "is_readable": true,
+          "is_valid_format": false
+        },
+        {
+          "image": "xemay1550_jpg.rf.15b9564ecc26d5f3e1b91921facbcf79.jpg",
+          "plate_conf": 0.725,
+          "raw_text": "8181 387463",
+          "normalized": "8181387463",
+          "is_readable": true,
+          "is_valid_format": false
+        },
+        {
+          "image": "xemay993_jpg.rf.2fabd96b732b79721acfaf79e454af69.jpg",
+          "plate_conf": 0.841,
+          "raw_text": "594T1 53485",
+          "normalized": "594T153485",
+          "is_readable": true,
+          "is_valid_format": false
+        },
+        {
+          "image": "xemay1744_jpg.rf.5c900892fe3df8d00664eb0267378caa.jpg",
+          "plate_conf": 0.806,
+          "raw_text": "63HY1 0200",
+          "normalized": "63HY10200",
+          "is_readable": true,
+          "is_valid_format": false
+        },
+        {
+          "image": "CarLongPlateGen2185_jpg.rf.08f981065e76fa41d63e024715fbf055.jpg",
+          "plate_conf": 0.767,
+          "raw_text": "G0LD04L11",
+          "normalized": "G0LD04L11",
+          "is_readable": false,
+          "is_valid_format": false
+        },
+        {
+          "image": "CarLongPlateGen3216_jpg.rf.a1105fa467a09fb580b9588bfc407e9f.jpg",
+          "plate_conf": 0.746,
+          "raw_text": "61F22029",
+          "normalized": "61F22029",
+          "is_readable": true,
+          "is_valid_format": false
+        },
+        {
+          "image": "CarLongPlateGen1473_jpg.rf.081be8ff7ecbff8949f80219435e9fdd.jpg",
+          "plate_conf": 0.645,
+          "raw_text": "E122029",
+          "normalized": "E122029",
+          "is_readable": false,
+          "is_valid_format": false
+        },
+        {
+          "image": "image_0044.jpg",
+          "plate_conf": 0.526,
+          "raw_text": "MPI3G49462",
+          "normalized": "MPI3G49462",
+          "is_readable": true,
+          "is_valid_format": false
+        },
+        {
+          "image": "CarLongPlateGen1064_jpg.rf.bd56f319a6b938b84e09afdcede2cda4.jpg",
+          "plate_conf": 0.706,
+          "raw_text": "151F459881",
+          "normalized": "151F459881",
+          "is_readable": false,
+          "is_valid_format": false
+        }
+      ]
+    }
+  }
+}

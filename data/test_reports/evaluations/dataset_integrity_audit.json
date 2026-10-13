@@ -1,0 +1,215 @@
+{
+  "timestamp": "2026-10-12T22:11:09Z",
+  "vehicles": {
+    "dataset": "Vehicles (COCO 2017)",
+    "sample_counts": {
+      "train": 1657,
+      "val": 119,
+      "test": 120
+    },
+    "exact_duplicates_across_splits": {
+      "train_val_count": 0,
+      "train_test_count": 0,
+      "val_test_count": 0,
+      "is_zero_exact_leakage": true
+    },
+    "perceptual_near_duplicates_train_test": {
+      "evaluated_pairs": 60000,
+      "flagged_near_duplicates_count": 0,
+      "samples": []
+    }
+  },
+  "plates": {
+    "dataset": "License Plates",
+    "sample_counts": {
+      "train": 1268,
+      "val": 271,
+      "test": 273
+    },
+    "exact_duplicates_across_splits": {
+      "train_val_count": 0,
+      "train_test_count": 0,
+      "val_test_count": 0,
+      "is_zero_exact_leakage": true
+    },
+    "perceptual_near_duplicates_train_test": {
+      "evaluated_pairs": 136500,
+      "flagged_near_duplicates_count": 7,
+      "samples": [
+        {
+          "test_image": "CarLongPlate156_jpg.rf.c4a25368f230ae14760815159faca475.jpg",
+          "train_image": "CarLongPlate15_jpg.rf.09aab4909f01f5170ceb1367e1fd10b4.jpg",
+          "hamming_distance": 2
+        },
+        {
+          "test_image": "CarLongPlate156_jpg.rf.c4a25368f230ae14760815159faca475.jpg",
+          "train_image": "CarLongPlate38_jpg.rf.fbd01def25d5785b681af940f4e3bc56.jpg",
+          "hamming_distance": 3
+        },
+        {
+          "test_image": "CarLongPlate156_jpg.rf.c4a25368f230ae14760815159faca475.jpg",
+          "train_image": "CarLongPlateGen1239_jpg.rf.108025c1f0a5cf4ea8b5ff24db5958be.jpg",
+          "hamming_distance": 0
+        },
+        {
+          "test_image": "CarLongPlate22_jpg.rf.43f77ea42b6b05b2e60a345f53c29745.jpg",
+          "train_image": "CarLongPlateGen1118_jpg.rf.2a41a5a6f6b645ae61164941875042cc.jpg",
+          "hamming_distance": 0
+        },
+        {
+          "test_image": "CarLongPlate259_jpg.rf.a577bc501b90f6f5faf71bcacc00ce2f.jpg",
+          "train_image": "CarLongPlateGen1331_jpg.rf.14afbf14f25de15a318eef52a39b79f1.jpg",
+          "hamming_distance": 1
+        }
+      ]
+    }
+  },
+  "occupancy_duplicates": {
+    "dataset": "CNRPark+EXT Patches",
+    "sample_counts": {
+      "train": 10066,
+      "val": 1258,
+      "test": 1260
+    },
+    "exact_duplicates_across_splits": {
+      "train_val_count": 0,
+      "train_test_count": 0,
+      "val_test_count": 0,
+      "is_zero_exact_leakage": true
+    },
+    "perceptual_near_duplicates_train_test": {
+      "evaluated_pairs": 630000,
+      "flagged_near_duplicates_count": 126,
+      "samples": [
+        {
+          "test_image": "20150703_0810_7.jpg",
+          "train_image": "20150703_0815_7.jpg",
+          "hamming_distance": 3
+        },
+        {
+          "test_image": "20150703_0810_7.jpg",
+          "train_image": "20150703_0820_7.jpg",
+          "hamming_distance": 2
+        },
+        {
+          "test_image": "20150703_0820_14.jpg",
+          "train_image": "20150703_0810_14.jpg",
+          "hamming_distance": 2
+        },
+        {
+          "test_image": "20150703_0830_1.jpg",
+          "train_image": "20150703_0845_1.jpg",
+          "hamming_distance": 2
+        },
+        {
+          "test_image": "20150703_0840_15.jpg",
+          "train_image": "20150703_0835_15.jpg",
+          "hamming_distance": 2
+        }
+      ]
+    }
+  },
+  "occupancy_provenance": {
+    "csv_metadata_records": 157549,
+    "splits_composition": {
+      "train": {
+        "total_patches": 10066,
+        "camera_counts": {
+          "A": 4972,
+          "B": 5094
+        },
+        "unique_dates_count": 2,
+        "dates": [
+          "20150703",
+          "20150708"
+        ],
+        "unique_slots_count": 104
+      },
+      "val": {
+        "total_patches": 1258,
+        "camera_counts": {
+          "A": 560,
+          "B": 698
+        },
+        "unique_dates_count": 2,
+        "dates": [
+          "20150703",
+          "20150708"
+        ],
+        "unique_slots_count": 104
+      },
+      "test": {
+        "total_patches": 1260,
+        "camera_counts": {
+          "A": 639,
+          "B": 621
+        },
+        "unique_dates_count": 2,
+        "dates": [
+          "20150703",
+          "20150708"
+        ],
+        "unique_slots_count": 104
+      }
+    },
+    "date_session_leakage": {
+      "train_test_shared_dates_count": 2,
+      "shared_dates_details": {
+        "train_val_shared_dates": [
+          "20150703",
+          "20150708"
+        ],
+        "train_test_shared_dates": [
+          "20150703",
+          "20150708"
+        ],
+        "val_test_shared_dates": [
+          "20150703",
+          "20150708"
+        ]
+      },
+      "observation": "Patches were randomly or stratifiably split across capture dates and cameras A and B. Because identical physical slot angles appear across multiple timestamps on the same days, a random split does not measure unseen-camera generalization. A true cross-camera benchmark requires training on Camera A and evaluating on Camera B."
+    }
+  },
+  "occupancy_camera_evaluation": {
+    "Camera_A": {
+      "total_evaluated": 639,
+      "free_count": 268,
+      "busy_count": 371,
+      "tp": 370,
+      "tn": 266,
+      "fp": 2,
+      "fn": 1,
+      "accuracy": 0.9953,
+      "precision": 0.9946,
+      "recall": 0.9973,
+      "f1": 0.996
+    },
+    "Camera_B": {
+      "total_evaluated": 621,
+      "free_count": 151,
+      "busy_count": 470,
+      "tp": 460,
+      "tn": 138,
+      "fp": 13,
+      "fn": 10,
+      "accuracy": 0.963,
+      "precision": 0.9725,
+      "recall": 0.9787,
+      "f1": 0.9756
+    },
+    "All_Test": {
+      "total_evaluated": 1260,
+      "free_count": 419,
+      "busy_count": 841,
+      "tp": 830,
+      "tn": 404,
+      "fp": 15,
+      "fn": 11,
+      "accuracy": 0.9794,
+      "precision": 0.9822,
+      "recall": 0.9869,
+      "f1": 0.9846
+    }
+  }
+}

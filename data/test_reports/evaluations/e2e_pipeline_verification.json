@@ -1,0 +1,330 @@
+[
+  {
+    "image": "image_0001.jpg",
+    "resolution": "2448x3264",
+    "stage_timings_ms": {
+      "vehicle_detection_ms": 64.49,
+      "plate_detection_ms": 65.36
+    },
+    "vehicles_detected_count": 0,
+    "vehicles": [],
+    "plates_detected_count": 1,
+    "plates": [
+      {
+        "plate_index": 0,
+        "plate_bbox": [
+          364,
+          1076,
+          1163,
+          1770
+        ],
+        "plate_confidence": 0.818,
+        "ocr": {
+          "raw_text": "AP29 AN 0074",
+          "normalized_text": "AP 29 AN 0074",
+          "is_readable": true,
+          "is_valid_format": true,
+          "confidence": 0.894,
+          "error_reason": null,
+          "latency_ms": 4296.55
+        },
+        "hsrp_visual_cues": {
+          "outcome": "NON_HSRP_OR_UNCERTAIN",
+          "blue_strip_observed": false,
+          "observed_aspect_ratio": 1.15,
+          "visual_notes": [
+            "Aspect ratio 1.15 diverges from typical HSRP range (3.2-5.4).",
+            "No prominent blue IND margin detected on left edge.",
+            "Features uncertain or non-standard styling."
+          ],
+          "authoritative_verification": "UNVERIFIED_VISUAL_HEURISTIC_ONLY (Requires official VAHAN integration)"
+        },
+        "pipeline_status": "RECOGNIZED_AND_VALIDATED"
+      }
+    ]
+  },
+  {
+    "image": "image_0005.jpg",
+    "resolution": "3000x4000",
+    "stage_timings_ms": {
+      "vehicle_detection_ms": 71.66,
+      "plate_detection_ms": 80.09
+    },
+    "vehicles_detected_count": 0,
+    "vehicles": [],
+    "plates_detected_count": 1,
+    "plates": [
+      {
+        "plate_index": 0,
+        "plate_bbox": [
+          944,
+          1005,
+          1837,
+          1338
+        ],
+        "plate_confidence": 0.763,
+        "ocr": {
+          "raw_text": "TN-23-L.4547",
+          "normalized_text": "TN 23 L 4547",
+          "is_readable": true,
+          "is_valid_format": true,
+          "confidence": 0.554,
+          "error_reason": null,
+          "latency_ms": 65.88
+        },
+        "hsrp_visual_cues": {
+          "outcome": "NON_HSRP_OR_UNCERTAIN",
+          "blue_strip_observed": false,
+          "observed_aspect_ratio": 2.68,
+          "visual_notes": [
+            "Aspect ratio 2.68 diverges from typical HSRP range (3.2-5.4).",
+            "No prominent blue IND margin detected on left edge.",
+            "Features uncertain or non-standard styling."
+          ],
+          "authoritative_verification": "UNVERIFIED_VISUAL_HEURISTIC_ONLY (Requires official VAHAN integration)"
+        },
+        "pipeline_status": "RECOGNIZED_AND_VALIDATED"
+      }
+    ]
+  },
+  {
+    "image": "image_0010.jpg",
+    "resolution": "3120x4160",
+    "stage_timings_ms": {
+      "vehicle_detection_ms": 65.79,
+      "plate_detection_ms": 65.1
+    },
+    "vehicles_detected_count": 1,
+    "vehicles": [
+      {
+        "class_name": "car",
+        "confidence": 0.642,
+        "pixel_box": [
+          156,
+          714,
+          2764,
+          3142
+        ]
+      }
+    ],
+    "plates_detected_count": 2,
+    "plates": [
+      {
+        "plate_index": 0,
+        "plate_bbox": [
+          1093,
+          2026,
+          1947,
+          2315
+        ],
+        "plate_confidence": 0.768,
+        "ocr": {
+          "raw_text": "MH; 20.BC. 5122",
+          "normalized_text": "MH 20 BC 5122",
+          "is_readable": false,
+          "is_valid_format": true,
+          "confidence": 0.394,
+          "error_reason": null,
+          "latency_ms": 54.57
+        },
+        "hsrp_visual_cues": {
+          "outcome": "NON_HSRP_OR_UNCERTAIN",
+          "blue_strip_observed": false,
+          "observed_aspect_ratio": 2.96,
+          "visual_notes": [
+            "Aspect ratio 2.96 diverges from typical HSRP range (3.2-5.4).",
+            "No prominent blue IND margin detected on left edge.",
+            "Features uncertain or non-standard styling."
+          ],
+          "authoritative_verification": "UNVERIFIED_VISUAL_HEURISTIC_ONLY (Requires official VAHAN integration)"
+        },
+        "pipeline_status": "UNREADABLE_PLATE"
+      },
+      {
+        "plate_index": 1,
+        "plate_bbox": [
+          1415,
+          912,
+          1701,
+          1011
+        ],
+        "plate_confidence": 0.546,
+        "ocr": {
+          "raw_text": "CAR SHINGAR GS] AUROAD THAHE 75694453",
+          "normalized_text": "CARSHINGARGSAUROADTHAHE75694453",
+          "is_readable": false,
+          "is_valid_format": false,
+          "confidence": 0.298,
+          "error_reason": "Unrecognized state code 'CA'",
+          "latency_ms": 54.93
+        },
+        "hsrp_visual_cues": {
+          "outcome": "NON_HSRP_OR_UNCERTAIN",
+          "blue_strip_observed": false,
+          "observed_aspect_ratio": 2.89,
+          "visual_notes": [
+            "Aspect ratio 2.89 diverges from typical HSRP range (3.2-5.4).",
+            "No prominent blue IND margin detected on left edge.",
+            "Features uncertain or non-standard styling."
+          ],
+          "authoritative_verification": "UNVERIFIED_VISUAL_HEURISTIC_ONLY (Requires official VAHAN integration)"
+        },
+        "pipeline_status": "UNREADABLE_PLATE"
+      }
+    ]
+  },
+  {
+    "image": "image_0020.jpg",
+    "resolution": "2448x3264",
+    "stage_timings_ms": {
+      "vehicle_detection_ms": 86.1,
+      "plate_detection_ms": 71.11
+    },
+    "vehicles_detected_count": 0,
+    "vehicles": [],
+    "plates_detected_count": 1,
+    "plates": [
+      {
+        "plate_index": 0,
+        "plate_bbox": [
+          511,
+          1056,
+          1551,
+          1679
+        ],
+        "plate_confidence": 0.709,
+        "ocr": {
+          "raw_text": "AP28 BW 9994",
+          "normalized_text": "AP 28 BW 9994",
+          "is_readable": true,
+          "is_valid_format": true,
+          "confidence": 0.739,
+          "error_reason": null,
+          "latency_ms": 59.64
+        },
+        "hsrp_visual_cues": {
+          "outcome": "NON_HSRP_OR_UNCERTAIN",
+          "blue_strip_observed": false,
+          "observed_aspect_ratio": 1.67,
+          "visual_notes": [
+            "Aspect ratio 1.67 diverges from typical HSRP range (3.2-5.4).",
+            "No prominent blue IND margin detected on left edge.",
+            "Features uncertain or non-standard styling."
+          ],
+          "authoritative_verification": "UNVERIFIED_VISUAL_HEURISTIC_ONLY (Requires official VAHAN integration)"
+        },
+        "pipeline_status": "RECOGNIZED_AND_VALIDATED"
+      }
+    ]
+  },
+  {
+    "image": "image_0022.jpg",
+    "resolution": "4000x3000",
+    "stage_timings_ms": {
+      "vehicle_detection_ms": 79.08,
+      "plate_detection_ms": 81.16
+    },
+    "vehicles_detected_count": 1,
+    "vehicles": [
+      {
+        "class_name": "motorcycle",
+        "confidence": 0.678,
+        "pixel_box": [
+          6,
+          5,
+          2998,
+          3010
+        ]
+      }
+    ],
+    "plates_detected_count": 1,
+    "plates": [
+      {
+        "plate_index": 0,
+        "plate_bbox": [
+          141,
+          1191,
+          2641,
+          2799
+        ],
+        "plate_confidence": 0.53,
+        "ocr": {
+          "raw_text": "RLGG IND H7JL",
+          "normalized_text": "RLGGH7JL",
+          "is_readable": true,
+          "is_valid_format": false,
+          "confidence": 0.524,
+          "error_reason": "Unrecognized state code 'RL'",
+          "latency_ms": 112.72
+        },
+        "hsrp_visual_cues": {
+          "outcome": "NON_HSRP_OR_UNCERTAIN",
+          "blue_strip_observed": true,
+          "observed_aspect_ratio": 1.55,
+          "visual_notes": [
+            "Aspect ratio 1.55 diverges from typical HSRP range (3.2-5.4).",
+            "Observable blue color band detected on left margin (30.6% pixels).",
+            "Features uncertain or non-standard styling."
+          ],
+          "authoritative_verification": "UNVERIFIED_VISUAL_HEURISTIC_ONLY (Requires official VAHAN integration)"
+        },
+        "pipeline_status": "INVALID_REGISTRATION_FORMAT"
+      }
+    ]
+  },
+  {
+    "image": "image_0041.jpg",
+    "resolution": "2448x3264",
+    "stage_timings_ms": {
+      "vehicle_detection_ms": 80.03,
+      "plate_detection_ms": 82.98
+    },
+    "vehicles_detected_count": 1,
+    "vehicles": [
+      {
+        "class_name": "motorcycle",
+        "confidence": 0.826,
+        "pixel_box": [
+          733,
+          3,
+          1542,
+          1410
+        ]
+      }
+    ],
+    "plates_detected_count": 1,
+    "plates": [
+      {
+        "plate_index": 0,
+        "plate_bbox": [
+          939,
+          850,
+          1262,
+          1087
+        ],
+        "plate_confidence": 0.775,
+        "ocr": {
+          "raw_text": "TN 58 AP 5280",
+          "normalized_text": "TN 58 AP 5280",
+          "is_readable": true,
+          "is_valid_format": true,
+          "confidence": 0.944,
+          "error_reason": null,
+          "latency_ms": 59.79
+        },
+        "hsrp_visual_cues": {
+          "outcome": "NON_HSRP_OR_UNCERTAIN",
+          "blue_strip_observed": true,
+          "observed_aspect_ratio": 1.36,
+          "visual_notes": [
+            "Aspect ratio 1.36 diverges from typical HSRP range (3.2-5.4).",
+            "Observable blue color band detected on left margin (15.3% pixels).",
+            "Features uncertain or non-standard styling."
+          ],
+          "authoritative_verification": "UNVERIFIED_VISUAL_HEURISTIC_ONLY (Requires official VAHAN integration)"
+        },
+        "pipeline_status": "RECOGNIZED_AND_VALIDATED"
+      }
+    ]
+  }
+]

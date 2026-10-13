@@ -1,0 +1,42 @@
+training:
+  vehicle_detector:
+    architecture: "yolov8n"
+    pretrained_weights: "yolov8n.pt"
+    epochs: 35
+    batch_size: 16
+    imgsz: 640
+    device: "0"  # NVIDIA GeForce RTX 4070
+    workers: 0
+    seed: 42
+    save_dir: "models/training_runs/vehicle"
+
+  plate_detector:
+    architecture: "yolov8n"
+    pretrained_weights: "yolov8n.pt"
+    epochs: 60
+    batch_size: 16
+    imgsz: 640
+    device: "0"
+    workers: 0
+    seed: 42
+    save_dir: "models/training_runs/plate"
+
+  occupancy_classifier:
+    architecture: "LightweightOccupancyNet"
+    backbone: "custom_cnn"
+    epochs: 8
+    batch_size: 64
+    imgsz: 150
+    learning_rate: 0.001
+    device: "cuda"
+    save_dir: "models/training_runs/occupancy"
+
+  hsrp_classifier:
+    backbone: "mobilenet_v3_small"
+    classes: ["HSRP_STYLE", "OTHER_STYLE"]
+    epochs: 30
+    batch_size: 32
+    imgsz: 224
+    learning_rate: 0.001
+    save_dir: "models/training_runs/hsrp"
+

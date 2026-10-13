@@ -1,0 +1,178 @@
+{
+  "report_id": "diag_20261011_000445",
+  "timestamp": "2026-10-11T00:04:45.471135",
+  "run_type": "full",
+  "overall_status": "PASS",
+  "platform": {
+    "os": "Windows",
+    "platform_release": "11",
+    "architecture": "amd64",
+    "is_raspberry_pi": false,
+    "device_model": "Windows PC (10.0.26300)",
+    "python_version": "3.12.10",
+    "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+    "cpu_count": 20,
+    "cuda_available": false,
+    "gpu_name": null
+  },
+  "summary": {
+    "total": 9,
+    "pass": 9,
+    "warn": 0,
+    "fail": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "total_duration_sec": 2.218,
+  "results": [
+    {
+      "test_id": "env_check",
+      "name": "Python & Platform Compatibility",
+      "description": "Validates Python version and host OS architecture.",
+      "status": "PASS",
+      "duration_ms": 42.84,
+      "message": "Compatible environment detected: Python 3.12.10 on Windows PC (10.0.26300).",
+      "corrective_action": null,
+      "details": {
+        "os": "Windows",
+        "platform_release": "11",
+        "architecture": "amd64",
+        "is_raspberry_pi": false,
+        "device_model": "Windows PC (10.0.26300)",
+        "python_version": "3.12.10",
+        "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+        "cpu_count": 20,
+        "cuda_available": false,
+        "gpu_name": null
+      }
+    },
+    {
+      "test_id": "config_check",
+      "name": "Configuration Schema & Precedence",
+      "description": "Validates syntax and boundaries in central YAML config.",
+      "status": "PASS",
+      "duration_ms": 3.12,
+      "message": "Configuration valid (profile: windows, camera index: 0).",
+      "corrective_action": null,
+      "details": {
+        "env": "windows",
+        "port": 8000
+      }
+    },
+    {
+      "test_id": "fs_perms",
+      "name": "Filesystem Write Permissions",
+      "description": "Checks directory access for logs, data, and models.",
+      "status": "PASS",
+      "duration_ms": 2.0,
+      "message": "Read/write permissions verified across data, logs, and report directories.",
+      "corrective_action": null,
+      "details": {}
+    },
+    {
+      "test_id": "db_health",
+      "name": "SQLite Database & Schema Integrity",
+      "description": "Tests database connection, migrations, and read/write cycle.",
+      "status": "PASS",
+      "duration_ms": 8.43,
+      "message": "SQLite active at schema version 1. Read/write transaction verified.",
+      "corrective_action": null,
+      "details": {}
+    },
+    {
+      "test_id": "camera_enum",
+      "name": "Camera Enumeration & Probe",
+      "description": "Scans available video capture devices.",
+      "status": "PASS",
+      "duration_ms": 2072.34,
+      "message": "Physical camera device #0 is connected and ready.",
+      "corrective_action": null,
+      "details": {
+        "devices_found": [
+          {
+            "device_index": 0,
+            "is_available": true,
+            "can_read_frame": true,
+            "default_width": 640,
+            "default_height": 480,
+            "reported_fps": 30.0,
+            "backend_name": "DSHOW",
+            "display_name": "Camera Device #0 (DSHOW)"
+          },
+          {
+            "device_index": 1,
+            "is_available": true,
+            "can_read_frame": true,
+            "default_width": 1280,
+            "default_height": 720,
+            "reported_fps": 30.0,
+            "backend_name": "DSHOW",
+            "display_name": "Camera Device #1 (DSHOW)"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "model_manifest",
+      "name": "Model Registry & Manifest Hash",
+      "description": "Verifies models/manifest.json presence and model metadata.",
+      "status": "PASS",
+      "duration_ms": 0.51,
+      "message": "Model manifest valid. Registered models: 2.",
+      "corrective_action": null,
+      "details": {
+        "registered_models": [
+          "vehicle-yolo-v8n",
+          "plate-detector-tiny"
+        ]
+      }
+    },
+    {
+      "test_id": "frame_quality",
+      "name": "Image Quality Assessment Gate",
+      "description": "Tests blur, brightness, contrast, and glare analysis on test frame.",
+      "status": "PASS",
+      "duration_ms": 87.47,
+      "message": "Image quality rated: EXCELLENT (blur: 1169.3, luminance: 59.1).",
+      "corrective_action": null,
+      "details": {
+        "status": "EXCELLENT",
+        "blur_score": 1169.35,
+        "brightness": 59.08,
+        "contrast": 43.95,
+        "glare_ratio": 0.0121,
+        "width": 1280,
+        "height": 720,
+        "issues": []
+      }
+    },
+    {
+      "test_id": "slot_geom",
+      "name": "Parking Polygon Geometry Integrity",
+      "description": "Validates calibration polygons for minimum area and non-overlap.",
+      "status": "PASS",
+      "duration_ms": 1.0,
+      "message": "Verified 1 calibrated parking bay polygons.",
+      "corrective_action": null,
+      "details": {
+        "slots_count": 1,
+        "slot_ids": [
+          "T01"
+        ]
+      }
+    },
+    {
+      "test_id": "disk_resources",
+      "name": "Host System Resources & Disk Space",
+      "description": "Inspects available disk storage and CPU load.",
+      "status": "PASS",
+      "duration_ms": 0.0,
+      "message": "Storage healthy: 357.75 GB available on host drive.",
+      "corrective_action": null,
+      "details": {
+        "free_gb": 357.75,
+        "total_gb": 952.79
+      }
+    }
+  ]
+}

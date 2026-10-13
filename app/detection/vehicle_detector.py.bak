@@ -1,0 +1,173 @@
+"""Vehicle detection module with ONNX Runtime backend and robust mock fallback."""
+
+from dataclasses import dataclass
+import logging
+from pathlib import Path
+from typing import List, Optional, Tuple
+import cv2
+import numpy as np
+
+from app.config.schema import DetectionConfig
+from app.infrastructure.paths import paths
+
+logger = logging.getLogger("smart_parking.detection")
+
+
+@dataclass
+class DetectionResult:
+    bbox: Tuple[float, float, float, float]  # Normalized [xmin, ymin, xmax, ymax] in [0, 1]
+    confidence: float
+    class_name: str
+    pixel_box: Tuple[int, int, int, int]    # [xmin, ymin, xmax, ymax] in pixels
+
+
+class VehicleDetector:
+    """Detects vehicles using ONNX Runtime model or intelligent synthetic fallback."""
+
+    COCO_CLASSES = [
+        "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat"
+    ]
+    TARGET_VEHICLE_CLASSES = {"car", "motorcycle", "bus", "truck"}
+
+    def __init__(self, config: DetectionConfig):
+        self.config = config
+        self.enabled = config.enabled
+        self.conf_threshold = config.confidence_threshold
+        self.input_width = config.input_width
+        self.input_height = config.input_height
+
+        self._session = None
+        self._is_mock_fallback = False
+        self._init_session()
+
+    def _init_session(self) -> None:
+        if not self.enabled:
+            logger.info("Vehicle detector disabled in configuration.")
+            return
+
+        model_path = paths.resolve(self.config.model_path)
+        if model_path.exists() and self.config.runtime == "onnx":
+            try:
+                import onnxruntime as ort
+                opts = ort.SessionOptions()
+                opts.intra_op_num_threads = 4
+                self._session = ort.InferenceSession(str(model_path), sess_options=opts, providers=["CPUExecutionProvider"])
+                logger.info(f"Loaded ONNX vehicle detector from {model_path}")
+                return
+            except Exception as e:
+                logger.warning(f"Failed to load ONNX model ({e}). Using mock detector fallback.")
+
+        logger.info("Using mock/heuristic vehicle detector engine.")
+        self._is_mock_fallback = True
+
+    def detect(self, frame: Optional[np.ndarray]) -> List[DetectionResult]:
+        """Detects vehicles in frame and returns bounding boxes."""
+        if not self.enabled or frame is None or frame.size == 0:
+            return []
+
+        h, w = frame.shape[:2]
+
+        if self._session is not None and not self._is_mock_fallback:
+            return self._run_onnx_inference(frame, w, h)
+        else:
+            return self._run_heuristic_mock_detection(frame, w, h)
+
+    def _run_onnx_inference(self, frame: np.ndarray, w: int, h: int) -> List[DetectionResult]:
+        """Runs true ONNX model inference."""
+        # Preprocessing: letterbox/resize to input dimensions
+        resized = cv2.resize(frame, (self.input_width, self.input_height))
+        rgb = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
+        input_tensor = (rgb.astype(np.float32) / 255.0).transpose(2, 0, 1)[np.newaxis, ...]
+
+        input_name = self._session.get_inputs()[0].name
+        outputs = self._session.run(None, {input_name: input_tensor})
+
+        # Process YOLO-style outputs: [1, 84, 8400]
+        output = outputs[0]
+        if len(output.shape) == 3 and output.shape[1] < output.shape[2]:
+            output = output.transpose(0, 2, 1)
+
+        boxes = []
+        confidences = []
+        class_ids = []
+
+        for row in output[0]:
+            cx, cy, bw, bh = row[:4]
+            scores = row[4:]
+            class_id = int(np.argmax(scores))
+            score = float(scores[class_id])
+
+            if score >= self.conf_threshold:
+                cname = self.COCO_CLASSES[class_id] if class_id < len(self.COCO_CLASSES) else "car"
+                if cname in self.TARGET_VEHICLE_CLASSES:
+                    xmin = max(0.0, (cx - bw / 2) / self.input_width)
+                    ymin = max(0.0, (cy - bh / 2) / self.input_height)
+                    xmax = min(1.0, (cx + bw / 2) / self.input_width)
+                    ymax = min(1.0, (cy + bh / 2) / self.input_height)
+
+                    boxes.append([xmin, ymin, xmax, ymax])
+                    confidences.append(score)
+                    class_ids.append(cname)
+
+        results = []
+        for box, conf, cname in zip(boxes, confidences, class_ids):
+            px_box = (
+                int(box[0] * w),
+                int(box[1] * h),
+                int(box[2] * w),
+                int(box[3] * h),
+            )
+            results.append(DetectionResult(
+                bbox=tuple(box),
+                confidence=round(conf, 3),
+                class_name=cname,
+                pixel_box=px_box,
+            ))
+        return results
+
+    def _run_heuristic_mock_detection(self, frame: np.ndarray, w: int, h: int) -> List[DetectionResult]:
+        """
+        Intelligent detector fallback for offline/synthetic testing:
+        Detects vehicle presence by analyzing color variance and contours in parking bays.
+        """
+        results: List[DetectionResult] = []
+
+        # Find rectangular vehicle bodies in the parking lot region (y from 0.40 to 0.90)
+        roi_y1 = int(h * 0.40)
+        roi_y2 = int(h * 0.92)
+        roi = frame[roi_y1:roi_y2, :]
+
+        # Convert to HSV to find colored vehicle bodies against dark gray asphalt
+        hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+        sat = hsv[:, :, 1]
+        val = hsv[:, :, 2]
+
+        # Colored vehicles stand out with higher saturation or bright contrast
+        vehicle_mask = (sat > 50) | (val > 190)
+        mask_uint8 = vehicle_mask.astype(np.uint8) * 255
+
+        contours, _ = cv2.findContours(mask_uint8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        min_veh_area = (w * h) * 0.015
+
+        for cnt in contours:
+            area = cv2.contourArea(cnt)
+            if area >= min_veh_area:
+                bx, by, bw, bh = cv2.boundingRect(cnt)
+                # Remap to full frame
+                full_y = by + roi_y1
+                xmin = round(bx / w, 3)
+                ymin = round(full_y / h, 3)
+                xmax = round((bx + bw) / w, 3)
+                ymax = round((full_y + bh) / h, 3)
+
+                aspect = bw / max(1, bh)
+                cname = "motorcycle" if aspect < 0.6 else "car"
+
+                results.append(DetectionResult(
+                    bbox=(xmin, ymin, xmax, ymax),
+                    confidence=0.88,
+                    class_name=cname,
+                    pixel_box=(bx, full_y, bx + bw, full_y + bh),
+                ))
+
+        return results

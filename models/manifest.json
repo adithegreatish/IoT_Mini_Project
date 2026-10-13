@@ -1,0 +1,163 @@
+{
+  "manifest_version": "1.0.0",
+  "updated_at": "2026-10-10T12:00:00Z",
+  "models": [
+    {
+      "model_id": "vehicle-yolo-v8n",
+      "purpose": "Detects vehicles (cars, motorcycles, buses, trucks) for parking slot occupancy mapping",
+      "version": "1.0.0",
+      "creation_date": "2026-10-10",
+      "architecture": "YOLOv8-Nano",
+      "export_format": "ONNX",
+      "file_path": "models/vehicle_detector.onnx",
+      "sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc",
+      "runtime": "onnxruntime",
+      "supported_platforms": [
+        "windows-x86_64",
+        "linux-aarch64"
+      ],
+      "license": "AGPL-3.0 / MIT wrapper",
+      "input": {
+        "width": 640,
+        "height": 640,
+        "channels": 3,
+        "color_format": "RGB",
+        "normalization": "scale_0_1"
+      },
+      "classes": [
+        "car",
+        "motorcycle",
+        "bus",
+        "truck"
+      ],
+      "metrics": {
+        "mAP50": 0.5611,
+        "latency_pi5_ms": 78.4,
+        "latency_windows_ms": 29.28,
+        "mAP50_95": 0.3938,
+        "precision": 0.6854,
+        "recall": 0.5145,
+        "training_duration_sec": 974.54
+      },
+      "limitations": "Accuracy degrades in heavy rain, extreme glare, and severe lens distortion at boundary parking bays.",
+      "updated_at": "2026-10-12T22:00:19.392381"
+    },
+    {
+      "model_id": "plate-detector-tiny",
+      "purpose": "Localizes registration plate bounding box within vehicle crop",
+      "version": "1.0.0",
+      "creation_date": "2026-10-10",
+      "architecture": "YOLOv8-Nano-Plate",
+      "export_format": "ONNX",
+      "file_path": "models/plate_detector.onnx",
+      "sha256": "efddfbc0d555a374389cb7847db06b776a22fed2b706eac56ce51596bae5cea4",
+      "runtime": "onnxruntime",
+      "supported_platforms": [
+        "windows-x86_64",
+        "linux-aarch64"
+      ],
+      "license": "Academic / MIT",
+      "input": {
+        "width": 640,
+        "height": 640,
+        "channels": 3,
+        "color_format": "RGB",
+        "normalization": "scale_0_1"
+      },
+      "classes": [
+        "license_plate"
+      ],
+      "metrics": {
+        "precision": 0.9815,
+        "recall": 0.9437,
+        "latency_pi5_ms": 65.1,
+        "latency_windows_ms": 28.68,
+        "mAP50": 0.9761,
+        "mAP50_95": 0.6781,
+        "training_duration_sec": 1002.14
+      },
+      "limitations": "Requires plate width of at least 60px in image frame to localize reliably.",
+      "updated_at": "2026-10-12T17:46:21.119383"
+    },
+    {
+      "model_id": "parking-occupancy-net",
+      "purpose": "Classifies parking space patch occupancy (FREE vs BUSY) with high precision under diverse weather and illumination",
+      "version": "2.1.0",
+      "creation_date": "2026-10-12",
+      "architecture": "LightweightOccupancyNet",
+      "export_format": "ONNX",
+      "file_path": "models/occupancy_classifier.onnx",
+      "sha256": "e42e18e40b9337fde295c2e269845bfb9cb3df54d341971a03c6ae8b5d80105f",
+      "runtime": "onnxruntime",
+      "supported_platforms": [
+        "windows-x86_64",
+        "linux-aarch64"
+      ],
+      "license": "ODbL v1.0 compatible / MIT",
+      "input": {
+        "width": 150,
+        "height": 150,
+        "channels": 3,
+        "color_format": "RGB",
+        "normalization": "imagenet"
+      },
+      "classes": [
+        "free",
+        "busy"
+      ],
+      "metrics": {
+        "combined_accuracy": 0.9709,
+        "combined_macro_f1": 0.9709,
+        "cnrpark_test_accuracy": 0.9849,
+        "cnrpark_test_macro_f1": 0.983,
+        "pklot_test_accuracy": 0.9599,
+        "pklot_test_macro_f1": 0.9547,
+        "latency_windows_ms": 0.355,
+        "selected_validation_threshold": 0.65,
+        "latency_batch50_ms": 18.386,
+        "ufpr04_macro_f1": 0.9177,
+        "ufpr05_macro_f1": 0.7895,
+        "camera09_macro_f1": 0.9115,
+        "historical_benchmark_macro_f1": 0.9305
+      },
+      "limitations": "Optimal for parking bay patches with camera elevation >= 2.5 meters. Deep occlusions by tall pillars may degrade confidence.",
+      "updated_at": "2026-10-12T23:20:23.512351",
+      "dataset": "CNRPark+EXT + PKLot Cross-Dataset",
+      "winning_approach": "Approach_D_Domain_Augmented"
+    },
+    {
+      "model_id": "parking-occupancy-net-baseline-rollback",
+      "purpose": "Validated baseline occupancy classifier for emergency rollback (Approach A)",
+      "version": "1.0.0",
+      "creation_date": "2026-10-10",
+      "architecture": "LightweightOccupancyNet",
+      "export_format": "ONNX",
+      "file_path": "models/occupancy_classifier_baseline_cnrpark.onnx",
+      "sha256": "835781c13fb70a5e80505ab29c324a37aceac5803ec218a5ed249ef789e3e8bc",
+      "runtime": "onnxruntime",
+      "supported_platforms": [
+        "windows-x86_64",
+        "linux-aarch64"
+      ],
+      "license": "ODbL v1.0 compatible / MIT",
+      "input": {
+        "width": 150,
+        "height": 150,
+        "channels": 3,
+        "color_format": "RGB",
+        "normalization": "imagenet"
+      },
+      "classes": [
+        "free",
+        "busy"
+      ],
+      "metrics": {
+        "cnrpark_test_accuracy": 0.9849,
+        "cnrpark_test_macro_f1": 0.9830,
+        "latency_windows_ms": 0.355
+      },
+      "limitations": "Trained solely on CNRPark; subject to domain shift on PKLot.",
+      "updated_at": "2026-10-12T23:54:00.000000"
+    }
+  ]
+}

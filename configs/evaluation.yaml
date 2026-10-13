@@ -1,0 +1,15 @@
+evaluation:
+  metrics:
+    detection:
+      iou_threshold: 0.50
+      score_threshold: 0.25
+    ocr:
+      calculate_cer: true
+      exact_match: true
+      unreadable_abstention_rate: true
+    occupancy:
+      confusion_matrix: true
+      transition_stability_window: 10
+  test_data:
+    manifest: "data/splits/test_manifest.json"
+    output_dir: "data/test_reports/evaluations"

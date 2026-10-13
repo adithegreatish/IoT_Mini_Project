@@ -1,0 +1,27 @@
+{
+  "total_csv_records": 157549,
+  "unique_cameras": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "A",
+    "B"
+  ],
+  "unique_capture_dates": 6,
+  "occupancy_distribution": {
+    "free": 69866,
+    "busy": 87683,
+    "free_ratio": 0.4435
+  },
+  "weather_distribution": {
+    "S": 75762,
+    "O": 44243,
+    "R": 37544
+  }
+}

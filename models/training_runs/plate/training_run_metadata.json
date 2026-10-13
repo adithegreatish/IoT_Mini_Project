@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-10-12T17:46:21.120616",
+  "model_id": "plate-detector-tiny",
+  "architecture": "yolov8n",
+  "epochs": 50,
+  "batch_size": 16,
+  "imgsz": 640,
+  "device": "0",
+  "duration_sec": 1002.14,
+  "weights": {
+    "checkpoint_pt": "C:\\Users\\adity\\Downloads\\IoT\\models\\plate_detector.pt",
+    "checkpoint_sha256": "df809821ab0a6b0ac3f90788071d598d83342c3da2d2d4fa574f1e7a7c3fa755",
+    "onnx": "C:\\Users\\adity\\Downloads\\IoT\\models\\plate_detector.onnx",
+    "onnx_sha256": "efddfbc0d555a374389cb7847db06b776a22fed2b706eac56ce51596bae5cea4"
+  },
+  "metrics": {
+    "mAP50": 0.9761,
+    "mAP50_95": 0.6781,
+    "precision": 0.9815,
+    "recall": 0.9437,
+    "training_duration_sec": 1002.14
+  }
+}

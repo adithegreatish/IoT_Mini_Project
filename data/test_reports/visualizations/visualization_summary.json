@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-10-12T23:20:34.892508",
+  "generated_grids": [
+    "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\visualizations\\occupancy_vis_ufpr04_sunny.jpg",
+    "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\visualizations\\occupancy_vis_ufpr04_rainy.jpg",
+    "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\visualizations\\occupancy_vis_ufpr05_cloudy_rainy.jpg",
+    "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\visualizations\\occupancy_vis_cnrpark_camera09.jpg",
+    "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\visualizations\\occupancy_generalization_gallery.jpg"
+  ],
+  "count": 5
+}

@@ -1,0 +1,782 @@
+{
+  "timestamp": "2026-10-12T22:15:10Z",
+  "validation_set": {
+    "images_count": 119,
+    "instances_count": 436,
+    "class_distribution": {
+      "car": 286,
+      "motorcycle": 38,
+      "bus": 33,
+      "truck": 79
+    }
+  },
+  "threshold_sweep": [
+    {
+      "confidence_threshold": 0.25,
+      "overall": {
+        "precision": 0.5546,
+        "recall": 0.4427,
+        "f1": 0.4923
+      },
+      "per_class": {
+        "car": {
+          "tp": 112,
+          "fp": 87,
+          "fn": 174,
+          "precision": 0.5628,
+          "recall": 0.3916,
+          "f1": 0.4619
+        },
+        "motorcycle": {
+          "tp": 19,
+          "fp": 18,
+          "fn": 19,
+          "precision": 0.5135,
+          "recall": 0.5,
+          "f1": 0.5067
+        },
+        "bus": {
+          "tp": 24,
+          "fp": 14,
+          "fn": 9,
+          "precision": 0.6316,
+          "recall": 0.7273,
+          "f1": 0.6761
+        },
+        "truck": {
+          "tp": 38,
+          "fp": 36,
+          "fn": 41,
+          "precision": 0.5135,
+          "recall": 0.481,
+          "f1": 0.4967
+        }
+      },
+      "truck_confusions": {
+        "truck_predicted_as_car": 12,
+        "truck_predicted_as_background": 23,
+        "truck_predicted_as_bus": 1
+      },
+      "truck_fp_samples": [
+        {
+          "image": "000000055150.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.27,
+          "best_iou": 0.823
+        },
+        {
+          "image": "000000097679.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.808,
+          "best_iou": 0.87
+        },
+        {
+          "image": "000000136715.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.492,
+          "best_iou": 0.18
+        },
+        {
+          "image": "000000166391.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.544,
+          "best_iou": 0.901
+        },
+        {
+          "image": "000000172648.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.511,
+          "best_iou": 0.376
+        },
+        {
+          "image": "000000183246.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.586,
+          "best_iou": 0.836
+        },
+        {
+          "image": "000000210394.jpg",
+          "type": "CONFUSED_WITH_BUS",
+          "pred_conf": 0.61,
+          "best_iou": 0.965
+        },
+        {
+          "image": "000000260925.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.631,
+          "best_iou": 0.981
+        },
+        {
+          "image": "000000292997.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.819,
+          "best_iou": 0.946
+        },
+        {
+          "image": "000000350003.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.525,
+          "best_iou": 0.947
+        }
+      ]
+    },
+    {
+      "confidence_threshold": 0.3,
+      "overall": {
+        "precision": 0.5954,
+        "recall": 0.4151,
+        "f1": 0.4892
+      },
+      "per_class": {
+        "car": {
+          "tp": 103,
+          "fp": 64,
+          "fn": 183,
+          "precision": 0.6168,
+          "recall": 0.3601,
+          "f1": 0.4547
+        },
+        "motorcycle": {
+          "tp": 19,
+          "fp": 15,
+          "fn": 19,
+          "precision": 0.5588,
+          "recall": 0.5,
+          "f1": 0.5278
+        },
+        "bus": {
+          "tp": 24,
+          "fp": 12,
+          "fn": 9,
+          "precision": 0.6667,
+          "recall": 0.7273,
+          "f1": 0.6957
+        },
+        "truck": {
+          "tp": 35,
+          "fp": 32,
+          "fn": 44,
+          "precision": 0.5224,
+          "recall": 0.443,
+          "f1": 0.4795
+        }
+      },
+      "truck_confusions": {
+        "truck_predicted_as_car": 11,
+        "truck_predicted_as_background": 20,
+        "truck_predicted_as_bus": 1
+      },
+      "truck_fp_samples": [
+        {
+          "image": "000000097679.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.808,
+          "best_iou": 0.87
+        },
+        {
+          "image": "000000136715.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.492,
+          "best_iou": 0.18
+        },
+        {
+          "image": "000000166391.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.544,
+          "best_iou": 0.901
+        },
+        {
+          "image": "000000172648.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.511,
+          "best_iou": 0.376
+        },
+        {
+          "image": "000000183246.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.586,
+          "best_iou": 0.836
+        },
+        {
+          "image": "000000210394.jpg",
+          "type": "CONFUSED_WITH_BUS",
+          "pred_conf": 0.61,
+          "best_iou": 0.965
+        },
+        {
+          "image": "000000260925.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.631,
+          "best_iou": 0.981
+        },
+        {
+          "image": "000000292997.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.819,
+          "best_iou": 0.946
+        },
+        {
+          "image": "000000350003.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.525,
+          "best_iou": 0.947
+        },
+        {
+          "image": "000000361506.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.643,
+          "best_iou": 0.0
+        }
+      ]
+    },
+    {
+      "confidence_threshold": 0.35,
+      "overall": {
+        "precision": 0.6306,
+        "recall": 0.3876,
+        "f1": 0.4801
+      },
+      "per_class": {
+        "car": {
+          "tp": 95,
+          "fp": 45,
+          "fn": 191,
+          "precision": 0.6786,
+          "recall": 0.3322,
+          "f1": 0.446
+        },
+        "motorcycle": {
+          "tp": 17,
+          "fp": 12,
+          "fn": 21,
+          "precision": 0.5862,
+          "recall": 0.4474,
+          "f1": 0.5075
+        },
+        "bus": {
+          "tp": 24,
+          "fp": 11,
+          "fn": 9,
+          "precision": 0.6857,
+          "recall": 0.7273,
+          "f1": 0.7059
+        },
+        "truck": {
+          "tp": 33,
+          "fp": 31,
+          "fn": 46,
+          "precision": 0.5156,
+          "recall": 0.4177,
+          "f1": 0.4615
+        }
+      },
+      "truck_confusions": {
+        "truck_predicted_as_car": 10,
+        "truck_predicted_as_background": 20,
+        "truck_predicted_as_bus": 1
+      },
+      "truck_fp_samples": [
+        {
+          "image": "000000097679.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.808,
+          "best_iou": 0.87
+        },
+        {
+          "image": "000000136715.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.492,
+          "best_iou": 0.18
+        },
+        {
+          "image": "000000166391.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.544,
+          "best_iou": 0.901
+        },
+        {
+          "image": "000000172648.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.511,
+          "best_iou": 0.376
+        },
+        {
+          "image": "000000183246.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.586,
+          "best_iou": 0.836
+        },
+        {
+          "image": "000000210394.jpg",
+          "type": "CONFUSED_WITH_BUS",
+          "pred_conf": 0.61,
+          "best_iou": 0.965
+        },
+        {
+          "image": "000000260925.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.631,
+          "best_iou": 0.981
+        },
+        {
+          "image": "000000292997.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.819,
+          "best_iou": 0.946
+        },
+        {
+          "image": "000000350003.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.525,
+          "best_iou": 0.947
+        },
+        {
+          "image": "000000361506.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.643,
+          "best_iou": 0.0
+        }
+      ]
+    },
+    {
+      "confidence_threshold": 0.4,
+      "overall": {
+        "precision": 0.6584,
+        "recall": 0.367,
+        "f1": 0.4713
+      },
+      "per_class": {
+        "car": {
+          "tp": 86,
+          "fp": 35,
+          "fn": 200,
+          "precision": 0.7107,
+          "recall": 0.3007,
+          "f1": 0.4226
+        },
+        "motorcycle": {
+          "tp": 17,
+          "fp": 12,
+          "fn": 21,
+          "precision": 0.5862,
+          "recall": 0.4474,
+          "f1": 0.5075
+        },
+        "bus": {
+          "tp": 24,
+          "fp": 8,
+          "fn": 9,
+          "precision": 0.75,
+          "recall": 0.7273,
+          "f1": 0.7385
+        },
+        "truck": {
+          "tp": 33,
+          "fp": 28,
+          "fn": 46,
+          "precision": 0.541,
+          "recall": 0.4177,
+          "f1": 0.4714
+        }
+      },
+      "truck_confusions": {
+        "truck_predicted_as_car": 10,
+        "truck_predicted_as_background": 17,
+        "truck_predicted_as_bus": 1
+      },
+      "truck_fp_samples": [
+        {
+          "image": "000000097679.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.808,
+          "best_iou": 0.87
+        },
+        {
+          "image": "000000136715.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.492,
+          "best_iou": 0.18
+        },
+        {
+          "image": "000000166391.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.544,
+          "best_iou": 0.901
+        },
+        {
+          "image": "000000172648.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.511,
+          "best_iou": 0.376
+        },
+        {
+          "image": "000000183246.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.586,
+          "best_iou": 0.836
+        },
+        {
+          "image": "000000210394.jpg",
+          "type": "CONFUSED_WITH_BUS",
+          "pred_conf": 0.61,
+          "best_iou": 0.965
+        },
+        {
+          "image": "000000260925.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.631,
+          "best_iou": 0.981
+        },
+        {
+          "image": "000000292997.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.819,
+          "best_iou": 0.946
+        },
+        {
+          "image": "000000350003.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.525,
+          "best_iou": 0.947
+        },
+        {
+          "image": "000000361506.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.643,
+          "best_iou": 0.0
+        }
+      ]
+    },
+    {
+      "confidence_threshold": 0.45,
+      "overall": {
+        "precision": 0.6711,
+        "recall": 0.3509,
+        "f1": 0.4608
+      },
+      "per_class": {
+        "car": {
+          "tp": 82,
+          "fp": 33,
+          "fn": 204,
+          "precision": 0.713,
+          "recall": 0.2867,
+          "f1": 0.409
+        },
+        "motorcycle": {
+          "tp": 15,
+          "fp": 9,
+          "fn": 23,
+          "precision": 0.625,
+          "recall": 0.3947,
+          "f1": 0.4839
+        },
+        "bus": {
+          "tp": 23,
+          "fp": 8,
+          "fn": 10,
+          "precision": 0.7419,
+          "recall": 0.697,
+          "f1": 0.7188
+        },
+        "truck": {
+          "tp": 33,
+          "fp": 25,
+          "fn": 46,
+          "precision": 0.569,
+          "recall": 0.4177,
+          "f1": 0.4818
+        }
+      },
+      "truck_confusions": {
+        "truck_predicted_as_car": 10,
+        "truck_predicted_as_background": 14,
+        "truck_predicted_as_bus": 1
+      },
+      "truck_fp_samples": [
+        {
+          "image": "000000097679.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.808,
+          "best_iou": 0.87
+        },
+        {
+          "image": "000000136715.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.492,
+          "best_iou": 0.18
+        },
+        {
+          "image": "000000166391.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.544,
+          "best_iou": 0.901
+        },
+        {
+          "image": "000000172648.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.511,
+          "best_iou": 0.376
+        },
+        {
+          "image": "000000183246.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.586,
+          "best_iou": 0.836
+        },
+        {
+          "image": "000000210394.jpg",
+          "type": "CONFUSED_WITH_BUS",
+          "pred_conf": 0.61,
+          "best_iou": 0.965
+        },
+        {
+          "image": "000000260925.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.631,
+          "best_iou": 0.981
+        },
+        {
+          "image": "000000292997.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.819,
+          "best_iou": 0.946
+        },
+        {
+          "image": "000000350003.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.525,
+          "best_iou": 0.947
+        },
+        {
+          "image": "000000361506.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.643,
+          "best_iou": 0.0
+        }
+      ]
+    },
+    {
+      "confidence_threshold": 0.5,
+      "overall": {
+        "precision": 0.7073,
+        "recall": 0.3326,
+        "f1": 0.4524
+      },
+      "per_class": {
+        "car": {
+          "tp": 76,
+          "fp": 28,
+          "fn": 210,
+          "precision": 0.7308,
+          "recall": 0.2657,
+          "f1": 0.3897
+        },
+        "motorcycle": {
+          "tp": 15,
+          "fp": 6,
+          "fn": 23,
+          "precision": 0.7143,
+          "recall": 0.3947,
+          "f1": 0.5085
+        },
+        "bus": {
+          "tp": 23,
+          "fp": 5,
+          "fn": 10,
+          "precision": 0.8214,
+          "recall": 0.697,
+          "f1": 0.7541
+        },
+        "truck": {
+          "tp": 31,
+          "fp": 21,
+          "fn": 48,
+          "precision": 0.5962,
+          "recall": 0.3924,
+          "f1": 0.4733
+        }
+      },
+      "truck_confusions": {
+        "truck_predicted_as_car": 10,
+        "truck_predicted_as_background": 10,
+        "truck_predicted_as_bus": 1
+      },
+      "truck_fp_samples": [
+        {
+          "image": "000000097679.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.808,
+          "best_iou": 0.87
+        },
+        {
+          "image": "000000166391.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.544,
+          "best_iou": 0.901
+        },
+        {
+          "image": "000000172648.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.511,
+          "best_iou": 0.376
+        },
+        {
+          "image": "000000183246.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.586,
+          "best_iou": 0.836
+        },
+        {
+          "image": "000000210394.jpg",
+          "type": "CONFUSED_WITH_BUS",
+          "pred_conf": 0.61,
+          "best_iou": 0.965
+        },
+        {
+          "image": "000000260925.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.631,
+          "best_iou": 0.981
+        },
+        {
+          "image": "000000292997.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.819,
+          "best_iou": 0.946
+        },
+        {
+          "image": "000000350003.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.525,
+          "best_iou": 0.947
+        },
+        {
+          "image": "000000361506.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.643,
+          "best_iou": 0.0
+        },
+        {
+          "image": "000000372260.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.589,
+          "best_iou": 0.132
+        }
+      ]
+    },
+    {
+      "confidence_threshold": 0.55,
+      "overall": {
+        "precision": 0.7588,
+        "recall": 0.2959,
+        "f1": 0.4257
+      },
+      "per_class": {
+        "car": {
+          "tp": 65,
+          "fp": 17,
+          "fn": 221,
+          "precision": 0.7927,
+          "recall": 0.2273,
+          "f1": 0.3533
+        },
+        "motorcycle": {
+          "tp": 14,
+          "fp": 3,
+          "fn": 24,
+          "precision": 0.8235,
+          "recall": 0.3684,
+          "f1": 0.5091
+        },
+        "bus": {
+          "tp": 23,
+          "fp": 5,
+          "fn": 10,
+          "precision": 0.8214,
+          "recall": 0.697,
+          "f1": 0.7541
+        },
+        "truck": {
+          "tp": 27,
+          "fp": 16,
+          "fn": 52,
+          "precision": 0.6279,
+          "recall": 0.3418,
+          "f1": 0.4426
+        }
+      },
+      "truck_confusions": {
+        "truck_predicted_as_car": 9,
+        "truck_predicted_as_bus": 1,
+        "truck_predicted_as_background": 6
+      },
+      "truck_fp_samples": [
+        {
+          "image": "000000097679.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.808,
+          "best_iou": 0.87
+        },
+        {
+          "image": "000000183246.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.586,
+          "best_iou": 0.836
+        },
+        {
+          "image": "000000210394.jpg",
+          "type": "CONFUSED_WITH_BUS",
+          "pred_conf": 0.61,
+          "best_iou": 0.965
+        },
+        {
+          "image": "000000260925.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.631,
+          "best_iou": 0.981
+        },
+        {
+          "image": "000000292997.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.819,
+          "best_iou": 0.946
+        },
+        {
+          "image": "000000361506.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.643,
+          "best_iou": 0.0
+        },
+        {
+          "image": "000000372260.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.589,
+          "best_iou": 0.132
+        },
+        {
+          "image": "000000397351.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.681,
+          "best_iou": 0.909
+        },
+        {
+          "image": "000000426268.jpg",
+          "type": "BACKGROUND_FALSE_POSITIVE",
+          "pred_conf": 0.624,
+          "best_iou": 0.0
+        },
+        {
+          "image": "000000438017.jpg",
+          "type": "CONFUSED_WITH_CAR",
+          "pred_conf": 0.599,
+          "best_iou": 0.778
+        }
+      ]
+    }
+  ],
+  "optimal_threshold": {
+    "confidence_threshold": 0.25,
+    "overall_f1": 0.4923
+  }
+}

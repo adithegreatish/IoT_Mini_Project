@@ -1,0 +1,1959 @@
+{
+  "timestamp": "2026-10-12T23:18:57.548902",
+  "evaluation_objective": "Leave-One-Lot-Out Cross-Dataset Generalization Benchmark",
+  "winning_model": "Approach_D_Domain_Augmented",
+  "selected_validation_threshold": 0.65,
+  "onnx_parity": {
+    "verified": true,
+    "max_difference": 1.7285346984863281e-06,
+    "mean_difference": 7.562339305877686e-07,
+    "threshold_used": 0.65
+  },
+  "artifacts": {
+    "onnx_file": "models/occupancy_classifier.onnx",
+    "onnx_sha256": "e42e18e40b9337fde295c2e269845bfb9cb3df54d341971a03c6ae8b5d80105f",
+    "pt_file": "models/occupancy_classifier.pt",
+    "pt_sha256": "f7f1eacc2ae0df29967a541b3ba987b8ccd3d636cab5b8d0bd37ee1451f3b6e5"
+  },
+  "latency_benchmarks": {
+    "single_patch_cpu_ms": {
+      "mean": 0.355,
+      "p50": 0.314,
+      "p95": 0.567,
+      "min": 0.237,
+      "max": 1.467
+    },
+    "batch50_cpu_ms": {
+      "mean": 18.386,
+      "p50": 16.855,
+      "p95": 22.651
+    }
+  },
+  "models_benchmarked": {
+    "Approach_A_CNRPark_Only": {
+      "selected_validation_threshold": 0.5,
+      "test_evaluations": {
+        "UFPR04_LeaveOneLotOut": {
+          "total_samples": 1110,
+          "occupied_samples": 679,
+          "vacant_samples": 431,
+          "predicted_occupied": 1054,
+          "predicted_vacant": 56,
+          "predicted_unknown": 0,
+          "accuracy": 0.6604,
+          "balanced_accuracy": 0.5631,
+          "macro_f1": 0.5042,
+          "occupied_metrics": {
+            "precision": 0.6433,
+            "recall": 0.9985,
+            "f1": 0.7825,
+            "support": 679
+          },
+          "free_metrics": {
+            "precision": 0.9821,
+            "recall": 0.1276,
+            "f1": 0.2259,
+            "support": 431
+          },
+          "correct_free_bays": 55,
+          "correct_occupied_bays": 678,
+          "false_occupied_bays": 376,
+          "false_free_bays": 1,
+          "false_free_rate": 0.0015,
+          "confusion_matrix": {
+            "tp": 678,
+            "tn": 55,
+            "fp": 376,
+            "fn": 1
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 37,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 370,
+              "occupied_samples": 228,
+              "vacant_samples": 142,
+              "predicted_occupied": 357,
+              "predicted_vacant": 13,
+              "predicted_unknown": 0,
+              "accuracy": 0.6514,
+              "balanced_accuracy": 0.5458,
+              "macro_f1": 0.4736,
+              "occupied_metrics": {
+                "precision": 0.6387,
+                "recall": 1.0,
+                "f1": 0.7795,
+                "support": 228
+              },
+              "free_metrics": {
+                "precision": 1.0,
+                "recall": 0.0915,
+                "f1": 0.1677,
+                "support": 142
+              },
+              "correct_free_bays": 13,
+              "correct_occupied_bays": 228,
+              "false_occupied_bays": 129,
+              "false_free_bays": 0,
+              "false_free_rate": 0.0,
+              "confusion_matrix": {
+                "tp": 228,
+                "tn": 13,
+                "fp": 129,
+                "fn": 0
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Rainy": {
+              "total_samples": 370,
+              "occupied_samples": 172,
+              "vacant_samples": 198,
+              "predicted_occupied": 336,
+              "predicted_vacant": 34,
+              "predicted_unknown": 0,
+              "accuracy": 0.5514,
+              "balanced_accuracy": 0.5804,
+              "macro_f1": 0.4789,
+              "occupied_metrics": {
+                "precision": 0.5089,
+                "recall": 0.9942,
+                "f1": 0.6732,
+                "support": 172
+              },
+              "free_metrics": {
+                "precision": 0.9706,
+                "recall": 0.1667,
+                "f1": 0.2845,
+                "support": 198
+              },
+              "correct_free_bays": 33,
+              "correct_occupied_bays": 171,
+              "false_occupied_bays": 165,
+              "false_free_bays": 1,
+              "false_free_rate": 0.0058,
+              "confusion_matrix": {
+                "tp": 171,
+                "tn": 33,
+                "fp": 165,
+                "fn": 1
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Sunny": {
+              "total_samples": 370,
+              "occupied_samples": 279,
+              "vacant_samples": 91,
+              "predicted_occupied": 361,
+              "predicted_vacant": 9,
+              "predicted_unknown": 0,
+              "accuracy": 0.7784,
+              "balanced_accuracy": 0.5495,
+              "macro_f1": 0.5259,
+              "occupied_metrics": {
+                "precision": 0.7729,
+                "recall": 1.0,
+                "f1": 0.8719,
+                "support": 279
+              },
+              "free_metrics": {
+                "precision": 1.0,
+                "recall": 0.0989,
+                "f1": 0.18,
+                "support": 91
+              },
+              "correct_free_bays": 9,
+              "correct_occupied_bays": 279,
+              "false_occupied_bays": 82,
+              "false_free_bays": 0,
+              "false_free_rate": 0.0,
+              "confusion_matrix": {
+                "tp": 279,
+                "tn": 9,
+                "fp": 82,
+                "fn": 0
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            }
+          }
+        },
+        "UFPR05_LeaveOneLotOut": {
+          "total_samples": 1380,
+          "occupied_samples": 737,
+          "vacant_samples": 643,
+          "predicted_occupied": 1164,
+          "predicted_vacant": 216,
+          "predicted_unknown": 0,
+          "accuracy": 0.6804,
+          "balanced_accuracy": 0.6578,
+          "macro_f1": 0.6273,
+          "occupied_metrics": {
+            "precision": 0.6271,
+            "recall": 0.9905,
+            "f1": 0.768,
+            "support": 737
+          },
+          "free_metrics": {
+            "precision": 0.9676,
+            "recall": 0.325,
+            "f1": 0.4866,
+            "support": 643
+          },
+          "correct_free_bays": 209,
+          "correct_occupied_bays": 730,
+          "false_occupied_bays": 434,
+          "false_free_bays": 7,
+          "false_free_rate": 0.0095,
+          "confusion_matrix": {
+            "tp": 730,
+            "tn": 209,
+            "fp": 434,
+            "fn": 7
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 46,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 460,
+              "occupied_samples": 232,
+              "vacant_samples": 228,
+              "predicted_occupied": 393,
+              "predicted_vacant": 67,
+              "predicted_unknown": 0,
+              "accuracy": 0.6457,
+              "balanced_accuracy": 0.6426,
+              "macro_f1": 0.5933,
+              "occupied_metrics": {
+                "precision": 0.5878,
+                "recall": 0.9957,
+                "f1": 0.7392,
+                "support": 232
+              },
+              "free_metrics": {
+                "precision": 0.9851,
+                "recall": 0.2895,
+                "f1": 0.4475,
+                "support": 228
+              },
+              "correct_free_bays": 66,
+              "correct_occupied_bays": 231,
+              "false_occupied_bays": 162,
+              "false_free_bays": 1,
+              "false_free_rate": 0.0043,
+              "confusion_matrix": {
+                "tp": 231,
+                "tn": 66,
+                "fp": 162,
+                "fn": 1
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Rainy": {
+              "total_samples": 460,
+              "occupied_samples": 276,
+              "vacant_samples": 184,
+              "predicted_occupied": 394,
+              "predicted_vacant": 66,
+              "predicted_unknown": 0,
+              "accuracy": 0.7261,
+              "balanced_accuracy": 0.6612,
+              "macro_f1": 0.654,
+              "occupied_metrics": {
+                "precision": 0.6904,
+                "recall": 0.9855,
+                "f1": 0.8119,
+                "support": 276
+              },
+              "free_metrics": {
+                "precision": 0.9394,
+                "recall": 0.337,
+                "f1": 0.496,
+                "support": 184
+              },
+              "correct_free_bays": 62,
+              "correct_occupied_bays": 272,
+              "false_occupied_bays": 122,
+              "false_free_bays": 4,
+              "false_free_rate": 0.0145,
+              "confusion_matrix": {
+                "tp": 272,
+                "tn": 62,
+                "fp": 122,
+                "fn": 4
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Sunny": {
+              "total_samples": 460,
+              "occupied_samples": 229,
+              "vacant_samples": 231,
+              "predicted_occupied": 377,
+              "predicted_vacant": 83,
+              "predicted_unknown": 0,
+              "accuracy": 0.6696,
+              "balanced_accuracy": 0.671,
+              "macro_f1": 0.6325,
+              "occupied_metrics": {
+                "precision": 0.6021,
+                "recall": 0.9913,
+                "f1": 0.7492,
+                "support": 229
+              },
+              "free_metrics": {
+                "precision": 0.9759,
+                "recall": 0.3506,
+                "f1": 0.5159,
+                "support": 231
+              },
+              "correct_free_bays": 81,
+              "correct_occupied_bays": 227,
+              "false_occupied_bays": 150,
+              "false_free_bays": 2,
+              "false_free_rate": 0.0087,
+              "confusion_matrix": {
+                "tp": 227,
+                "tn": 81,
+                "fp": 150,
+                "fn": 2
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            }
+          }
+        },
+        "CNRPark_Camera09_HeldOut": {
+          "total_samples": 1500,
+          "occupied_samples": 1062,
+          "vacant_samples": 438,
+          "predicted_occupied": 914,
+          "predicted_vacant": 586,
+          "predicted_unknown": 0,
+          "accuracy": 0.8467,
+          "balanced_accuracy": 0.8642,
+          "macro_f1": 0.8295,
+          "occupied_metrics": {
+            "precision": 0.9551,
+            "recall": 0.822,
+            "f1": 0.8836,
+            "support": 1062
+          },
+          "free_metrics": {
+            "precision": 0.6775,
+            "recall": 0.9064,
+            "f1": 0.7754,
+            "support": 438
+          },
+          "correct_free_bays": 397,
+          "correct_occupied_bays": 873,
+          "false_occupied_bays": 41,
+          "false_free_bays": 189,
+          "false_free_rate": 0.178,
+          "confusion_matrix": {
+            "tp": 873,
+            "tn": 397,
+            "fp": 41,
+            "fn": 189
+          },
+          "source_frames_count": 63,
+          "parking_slots_count": 28,
+          "weather_breakdown": {
+            "Overcast": {
+              "total_samples": 912,
+              "occupied_samples": 616,
+              "vacant_samples": 296,
+              "predicted_occupied": 504,
+              "predicted_vacant": 408,
+              "predicted_unknown": 0,
+              "accuracy": 0.8333,
+              "balanced_accuracy": 0.8591,
+              "macro_f1": 0.8242,
+              "occupied_metrics": {
+                "precision": 0.9603,
+                "recall": 0.7857,
+                "f1": 0.8643,
+                "support": 616
+              },
+              "free_metrics": {
+                "precision": 0.6765,
+                "recall": 0.9324,
+                "f1": 0.7841,
+                "support": 296
+              },
+              "correct_free_bays": 276,
+              "correct_occupied_bays": 484,
+              "false_occupied_bays": 20,
+              "false_free_bays": 132,
+              "false_free_rate": 0.2143,
+              "confusion_matrix": {
+                "tp": 484,
+                "tn": 276,
+                "fp": 20,
+                "fn": 132
+              },
+              "source_frames_count": 42,
+              "parking_slots_count": 28
+            },
+            "Sunny": {
+              "total_samples": 588,
+              "occupied_samples": 446,
+              "vacant_samples": 142,
+              "predicted_occupied": 410,
+              "predicted_vacant": 178,
+              "predicted_unknown": 0,
+              "accuracy": 0.8673,
+              "balanced_accuracy": 0.8622,
+              "macro_f1": 0.8326,
+              "occupied_metrics": {
+                "precision": 0.9488,
+                "recall": 0.8722,
+                "f1": 0.9089,
+                "support": 446
+              },
+              "free_metrics": {
+                "precision": 0.6798,
+                "recall": 0.8521,
+                "f1": 0.7562,
+                "support": 142
+              },
+              "correct_free_bays": 121,
+              "correct_occupied_bays": 389,
+              "false_occupied_bays": 21,
+              "false_free_bays": 57,
+              "false_free_rate": 0.1278,
+              "confusion_matrix": {
+                "tp": 389,
+                "tn": 121,
+                "fp": 21,
+                "fn": 57
+              },
+              "source_frames_count": 21,
+              "parking_slots_count": 28
+            }
+          }
+        },
+        "CNRPark_Historical_Benchmark": {
+          "total_samples": 1260,
+          "occupied_samples": 841,
+          "vacant_samples": 419,
+          "predicted_occupied": 845,
+          "predicted_vacant": 415,
+          "predicted_unknown": 0,
+          "accuracy": 0.9794,
+          "balanced_accuracy": 0.9756,
+          "macro_f1": 0.9767,
+          "occupied_metrics": {
+            "precision": 0.9822,
+            "recall": 0.9869,
+            "f1": 0.9846,
+            "support": 841
+          },
+          "free_metrics": {
+            "precision": 0.9735,
+            "recall": 0.9642,
+            "f1": 0.9688,
+            "support": 419
+          },
+          "correct_free_bays": 404,
+          "correct_occupied_bays": 830,
+          "false_occupied_bays": 15,
+          "false_free_bays": 11,
+          "false_free_rate": 0.0131,
+          "confusion_matrix": {
+            "tp": 830,
+            "tn": 404,
+            "fp": 15,
+            "fn": 11
+          },
+          "source_frames_count": 1,
+          "parking_slots_count": 1,
+          "weather_breakdown": {
+            "Unknown": {
+              "total_samples": 1260,
+              "occupied_samples": 841,
+              "vacant_samples": 419,
+              "predicted_occupied": 845,
+              "predicted_vacant": 415,
+              "predicted_unknown": 0,
+              "accuracy": 0.9794,
+              "balanced_accuracy": 0.9756,
+              "macro_f1": 0.9767,
+              "occupied_metrics": {
+                "precision": 0.9822,
+                "recall": 0.9869,
+                "f1": 0.9846,
+                "support": 841
+              },
+              "free_metrics": {
+                "precision": 0.9735,
+                "recall": 0.9642,
+                "f1": 0.9688,
+                "support": 419
+              },
+              "correct_free_bays": 404,
+              "correct_occupied_bays": 830,
+              "false_occupied_bays": 15,
+              "false_free_bays": 11,
+              "false_free_rate": 0.0131,
+              "confusion_matrix": {
+                "tp": 830,
+                "tn": 404,
+                "fp": 15,
+                "fn": 11
+              },
+              "source_frames_count": 1,
+              "parking_slots_count": 1
+            }
+          }
+        }
+      }
+    },
+    "Approach_B_CNRExt_Full": {
+      "selected_validation_threshold": 0.7500000000000002,
+      "test_evaluations": {
+        "UFPR04_LeaveOneLotOut": {
+          "total_samples": 1110,
+          "occupied_samples": 679,
+          "vacant_samples": 431,
+          "predicted_occupied": 977,
+          "predicted_vacant": 133,
+          "predicted_unknown": 0,
+          "accuracy": 0.7207,
+          "balanced_accuracy": 0.6429,
+          "macro_f1": 0.6316,
+          "occupied_metrics": {
+            "precision": 0.6888,
+            "recall": 0.9912,
+            "f1": 0.8128,
+            "support": 679
+          },
+          "free_metrics": {
+            "precision": 0.9549,
+            "recall": 0.2947,
+            "f1": 0.4504,
+            "support": 431
+          },
+          "correct_free_bays": 127,
+          "correct_occupied_bays": 673,
+          "false_occupied_bays": 304,
+          "false_free_bays": 6,
+          "false_free_rate": 0.0088,
+          "confusion_matrix": {
+            "tp": 673,
+            "tn": 127,
+            "fp": 304,
+            "fn": 6
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 37,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 370,
+              "occupied_samples": 228,
+              "vacant_samples": 142,
+              "predicted_occupied": 342,
+              "predicted_vacant": 28,
+              "predicted_unknown": 0,
+              "accuracy": 0.6919,
+              "balanced_accuracy": 0.5986,
+              "macro_f1": 0.5647,
+              "occupied_metrics": {
+                "precision": 0.6667,
+                "recall": 1.0,
+                "f1": 0.8,
+                "support": 228
+              },
+              "free_metrics": {
+                "precision": 1.0,
+                "recall": 0.1972,
+                "f1": 0.3294,
+                "support": 142
+              },
+              "correct_free_bays": 28,
+              "correct_occupied_bays": 228,
+              "false_occupied_bays": 114,
+              "false_free_bays": 0,
+              "false_free_rate": 0.0,
+              "confusion_matrix": {
+                "tp": 228,
+                "tn": 28,
+                "fp": 114,
+                "fn": 0
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Rainy": {
+              "total_samples": 370,
+              "occupied_samples": 172,
+              "vacant_samples": 198,
+              "predicted_occupied": 294,
+              "predicted_vacant": 76,
+              "predicted_unknown": 0,
+              "accuracy": 0.6486,
+              "balanced_accuracy": 0.6702,
+              "macro_f1": 0.6233,
+              "occupied_metrics": {
+                "precision": 0.5714,
+                "recall": 0.9767,
+                "f1": 0.721,
+                "support": 172
+              },
+              "free_metrics": {
+                "precision": 0.9474,
+                "recall": 0.3636,
+                "f1": 0.5255,
+                "support": 198
+              },
+              "correct_free_bays": 72,
+              "correct_occupied_bays": 168,
+              "false_occupied_bays": 126,
+              "false_free_bays": 4,
+              "false_free_rate": 0.0233,
+              "confusion_matrix": {
+                "tp": 168,
+                "tn": 72,
+                "fp": 126,
+                "fn": 4
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Sunny": {
+              "total_samples": 370,
+              "occupied_samples": 279,
+              "vacant_samples": 91,
+              "predicted_occupied": 341,
+              "predicted_vacant": 29,
+              "predicted_unknown": 0,
+              "accuracy": 0.8216,
+              "balanced_accuracy": 0.6448,
+              "macro_f1": 0.6718,
+              "occupied_metrics": {
+                "precision": 0.8123,
+                "recall": 0.9928,
+                "f1": 0.8935,
+                "support": 279
+              },
+              "free_metrics": {
+                "precision": 0.931,
+                "recall": 0.2967,
+                "f1": 0.45,
+                "support": 91
+              },
+              "correct_free_bays": 27,
+              "correct_occupied_bays": 277,
+              "false_occupied_bays": 64,
+              "false_free_bays": 2,
+              "false_free_rate": 0.0072,
+              "confusion_matrix": {
+                "tp": 277,
+                "tn": 27,
+                "fp": 64,
+                "fn": 2
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            }
+          }
+        },
+        "UFPR05_LeaveOneLotOut": {
+          "total_samples": 1380,
+          "occupied_samples": 737,
+          "vacant_samples": 643,
+          "predicted_occupied": 1255,
+          "predicted_vacant": 125,
+          "predicted_unknown": 0,
+          "accuracy": 0.6203,
+          "balanced_accuracy": 0.5928,
+          "macro_f1": 0.5273,
+          "occupied_metrics": {
+            "precision": 0.5849,
+            "recall": 0.9959,
+            "f1": 0.7369,
+            "support": 737
+          },
+          "free_metrics": {
+            "precision": 0.976,
+            "recall": 0.1897,
+            "f1": 0.3177,
+            "support": 643
+          },
+          "correct_free_bays": 122,
+          "correct_occupied_bays": 734,
+          "false_occupied_bays": 521,
+          "false_free_bays": 3,
+          "false_free_rate": 0.0041,
+          "confusion_matrix": {
+            "tp": 734,
+            "tn": 122,
+            "fp": 521,
+            "fn": 3
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 46,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 460,
+              "occupied_samples": 232,
+              "vacant_samples": 228,
+              "predicted_occupied": 419,
+              "predicted_vacant": 41,
+              "predicted_unknown": 0,
+              "accuracy": 0.5935,
+              "balanced_accuracy": 0.5899,
+              "macro_f1": 0.5088,
+              "occupied_metrics": {
+                "precision": 0.5537,
+                "recall": 1.0,
+                "f1": 0.7127,
+                "support": 232
+              },
+              "free_metrics": {
+                "precision": 1.0,
+                "recall": 0.1798,
+                "f1": 0.3048,
+                "support": 228
+              },
+              "correct_free_bays": 41,
+              "correct_occupied_bays": 232,
+              "false_occupied_bays": 187,
+              "false_free_bays": 0,
+              "false_free_rate": 0.0,
+              "confusion_matrix": {
+                "tp": 232,
+                "tn": 41,
+                "fp": 187,
+                "fn": 0
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Rainy": {
+              "total_samples": 460,
+              "occupied_samples": 276,
+              "vacant_samples": 184,
+              "predicted_occupied": 424,
+              "predicted_vacant": 36,
+              "predicted_unknown": 0,
+              "accuracy": 0.6696,
+              "balanced_accuracy": 0.5888,
+              "macro_f1": 0.546,
+              "occupied_metrics": {
+                "precision": 0.6462,
+                "recall": 0.9928,
+                "f1": 0.7829,
+                "support": 276
+              },
+              "free_metrics": {
+                "precision": 0.9444,
+                "recall": 0.1848,
+                "f1": 0.3091,
+                "support": 184
+              },
+              "correct_free_bays": 34,
+              "correct_occupied_bays": 274,
+              "false_occupied_bays": 150,
+              "false_free_bays": 2,
+              "false_free_rate": 0.0072,
+              "confusion_matrix": {
+                "tp": 274,
+                "tn": 34,
+                "fp": 150,
+                "fn": 2
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Sunny": {
+              "total_samples": 460,
+              "occupied_samples": 229,
+              "vacant_samples": 231,
+              "predicted_occupied": 412,
+              "predicted_vacant": 48,
+              "predicted_unknown": 0,
+              "accuracy": 0.5978,
+              "balanced_accuracy": 0.5995,
+              "macro_f1": 0.5242,
+              "occupied_metrics": {
+                "precision": 0.5534,
+                "recall": 0.9956,
+                "f1": 0.7114,
+                "support": 229
+              },
+              "free_metrics": {
+                "precision": 0.9792,
+                "recall": 0.2035,
+                "f1": 0.3369,
+                "support": 231
+              },
+              "correct_free_bays": 47,
+              "correct_occupied_bays": 228,
+              "false_occupied_bays": 184,
+              "false_free_bays": 1,
+              "false_free_rate": 0.0044,
+              "confusion_matrix": {
+                "tp": 228,
+                "tn": 47,
+                "fp": 184,
+                "fn": 1
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            }
+          }
+        },
+        "CNRPark_Camera09_HeldOut": {
+          "total_samples": 1500,
+          "occupied_samples": 1062,
+          "vacant_samples": 438,
+          "predicted_occupied": 1052,
+          "predicted_vacant": 448,
+          "predicted_unknown": 0,
+          "accuracy": 0.928,
+          "balanced_accuracy": 0.9163,
+          "macro_f1": 0.9135,
+          "occupied_metrics": {
+            "precision": 0.9534,
+            "recall": 0.9444,
+            "f1": 0.9489,
+            "support": 1062
+          },
+          "free_metrics": {
+            "precision": 0.8683,
+            "recall": 0.8881,
+            "f1": 0.8781,
+            "support": 438
+          },
+          "correct_free_bays": 389,
+          "correct_occupied_bays": 1003,
+          "false_occupied_bays": 49,
+          "false_free_bays": 59,
+          "false_free_rate": 0.0556,
+          "confusion_matrix": {
+            "tp": 1003,
+            "tn": 389,
+            "fp": 49,
+            "fn": 59
+          },
+          "source_frames_count": 63,
+          "parking_slots_count": 28,
+          "weather_breakdown": {
+            "Overcast": {
+              "total_samples": 912,
+              "occupied_samples": 616,
+              "vacant_samples": 296,
+              "predicted_occupied": 610,
+              "predicted_vacant": 302,
+              "predicted_unknown": 0,
+              "accuracy": 0.932,
+              "balanced_accuracy": 0.9251,
+              "macro_f1": 0.9229,
+              "occupied_metrics": {
+                "precision": 0.9541,
+                "recall": 0.9448,
+                "f1": 0.9494,
+                "support": 616
+              },
+              "free_metrics": {
+                "precision": 0.8874,
+                "recall": 0.9054,
+                "f1": 0.8963,
+                "support": 296
+              },
+              "correct_free_bays": 268,
+              "correct_occupied_bays": 582,
+              "false_occupied_bays": 28,
+              "false_free_bays": 34,
+              "false_free_rate": 0.0552,
+              "confusion_matrix": {
+                "tp": 582,
+                "tn": 268,
+                "fp": 28,
+                "fn": 34
+              },
+              "source_frames_count": 42,
+              "parking_slots_count": 28
+            },
+            "Sunny": {
+              "total_samples": 588,
+              "occupied_samples": 446,
+              "vacant_samples": 142,
+              "predicted_occupied": 442,
+              "predicted_vacant": 146,
+              "predicted_unknown": 0,
+              "accuracy": 0.9218,
+              "balanced_accuracy": 0.898,
+              "macro_f1": 0.8942,
+              "occupied_metrics": {
+                "precision": 0.9525,
+                "recall": 0.9439,
+                "f1": 0.9482,
+                "support": 446
+              },
+              "free_metrics": {
+                "precision": 0.8288,
+                "recall": 0.8521,
+                "f1": 0.8403,
+                "support": 142
+              },
+              "correct_free_bays": 121,
+              "correct_occupied_bays": 421,
+              "false_occupied_bays": 21,
+              "false_free_bays": 25,
+              "false_free_rate": 0.0561,
+              "confusion_matrix": {
+                "tp": 421,
+                "tn": 121,
+                "fp": 21,
+                "fn": 25
+              },
+              "source_frames_count": 21,
+              "parking_slots_count": 28
+            }
+          }
+        },
+        "CNRPark_Historical_Benchmark": {
+          "total_samples": 1260,
+          "occupied_samples": 841,
+          "vacant_samples": 419,
+          "predicted_occupied": 801,
+          "predicted_vacant": 459,
+          "predicted_unknown": 0,
+          "accuracy": 0.9476,
+          "balanced_accuracy": 0.953,
+          "macro_f1": 0.9423,
+          "occupied_metrics": {
+            "precision": 0.9838,
+            "recall": 0.937,
+            "f1": 0.9598,
+            "support": 841
+          },
+          "free_metrics": {
+            "precision": 0.8845,
+            "recall": 0.969,
+            "f1": 0.9248,
+            "support": 419
+          },
+          "correct_free_bays": 406,
+          "correct_occupied_bays": 788,
+          "false_occupied_bays": 13,
+          "false_free_bays": 53,
+          "false_free_rate": 0.063,
+          "confusion_matrix": {
+            "tp": 788,
+            "tn": 406,
+            "fp": 13,
+            "fn": 53
+          },
+          "source_frames_count": 1,
+          "parking_slots_count": 1,
+          "weather_breakdown": {
+            "Unknown": {
+              "total_samples": 1260,
+              "occupied_samples": 841,
+              "vacant_samples": 419,
+              "predicted_occupied": 801,
+              "predicted_vacant": 459,
+              "predicted_unknown": 0,
+              "accuracy": 0.9476,
+              "balanced_accuracy": 0.953,
+              "macro_f1": 0.9423,
+              "occupied_metrics": {
+                "precision": 0.9838,
+                "recall": 0.937,
+                "f1": 0.9598,
+                "support": 841
+              },
+              "free_metrics": {
+                "precision": 0.8845,
+                "recall": 0.969,
+                "f1": 0.9248,
+                "support": 419
+              },
+              "correct_free_bays": 406,
+              "correct_occupied_bays": 788,
+              "false_occupied_bays": 13,
+              "false_free_bays": 53,
+              "false_free_rate": 0.063,
+              "confusion_matrix": {
+                "tp": 788,
+                "tn": 406,
+                "fp": 13,
+                "fn": 53
+              },
+              "source_frames_count": 1,
+              "parking_slots_count": 1
+            }
+          }
+        }
+      }
+    },
+    "Approach_C_Combined": {
+      "selected_validation_threshold": 0.45000000000000007,
+      "test_evaluations": {
+        "UFPR04_LeaveOneLotOut": {
+          "total_samples": 1110,
+          "occupied_samples": 679,
+          "vacant_samples": 431,
+          "predicted_occupied": 637,
+          "predicted_vacant": 473,
+          "predicted_unknown": 0,
+          "accuracy": 0.9207,
+          "balanced_accuracy": 0.9255,
+          "macro_f1": 0.9179,
+          "occupied_metrics": {
+            "precision": 0.9639,
+            "recall": 0.9043,
+            "f1": 0.9331,
+            "support": 679
+          },
+          "free_metrics": {
+            "precision": 0.8626,
+            "recall": 0.9466,
+            "f1": 0.9027,
+            "support": 431
+          },
+          "correct_free_bays": 408,
+          "correct_occupied_bays": 614,
+          "false_occupied_bays": 23,
+          "false_free_bays": 65,
+          "false_free_rate": 0.0957,
+          "confusion_matrix": {
+            "tp": 614,
+            "tn": 408,
+            "fp": 23,
+            "fn": 65
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 37,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 370,
+              "occupied_samples": 228,
+              "vacant_samples": 142,
+              "predicted_occupied": 199,
+              "predicted_vacant": 171,
+              "predicted_unknown": 0,
+              "accuracy": 0.8892,
+              "balanced_accuracy": 0.9021,
+              "macro_f1": 0.8865,
+              "occupied_metrics": {
+                "precision": 0.9698,
+                "recall": 0.8465,
+                "f1": 0.904,
+                "support": 228
+              },
+              "free_metrics": {
+                "precision": 0.7953,
+                "recall": 0.9577,
+                "f1": 0.869,
+                "support": 142
+              },
+              "correct_free_bays": 136,
+              "correct_occupied_bays": 193,
+              "false_occupied_bays": 6,
+              "false_free_bays": 35,
+              "false_free_rate": 0.1535,
+              "confusion_matrix": {
+                "tp": 193,
+                "tn": 136,
+                "fp": 6,
+                "fn": 35
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Rainy": {
+              "total_samples": 370,
+              "occupied_samples": 172,
+              "vacant_samples": 198,
+              "predicted_occupied": 173,
+              "predicted_vacant": 197,
+              "predicted_unknown": 0,
+              "accuracy": 0.9378,
+              "balanced_accuracy": 0.9377,
+              "macro_f1": 0.9376,
+              "occupied_metrics": {
+                "precision": 0.9306,
+                "recall": 0.936,
+                "f1": 0.9333,
+                "support": 172
+              },
+              "free_metrics": {
+                "precision": 0.9442,
+                "recall": 0.9394,
+                "f1": 0.9418,
+                "support": 198
+              },
+              "correct_free_bays": 186,
+              "correct_occupied_bays": 161,
+              "false_occupied_bays": 12,
+              "false_free_bays": 11,
+              "false_free_rate": 0.064,
+              "confusion_matrix": {
+                "tp": 161,
+                "tn": 186,
+                "fp": 12,
+                "fn": 11
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Sunny": {
+              "total_samples": 370,
+              "occupied_samples": 279,
+              "vacant_samples": 91,
+              "predicted_occupied": 265,
+              "predicted_vacant": 105,
+              "predicted_unknown": 0,
+              "accuracy": 0.9351,
+              "balanced_accuracy": 0.9385,
+              "macro_f1": 0.9167,
+              "occupied_metrics": {
+                "precision": 0.9811,
+                "recall": 0.9319,
+                "f1": 0.9559,
+                "support": 279
+              },
+              "free_metrics": {
+                "precision": 0.819,
+                "recall": 0.9451,
+                "f1": 0.8776,
+                "support": 91
+              },
+              "correct_free_bays": 86,
+              "correct_occupied_bays": 260,
+              "false_occupied_bays": 5,
+              "false_free_bays": 19,
+              "false_free_rate": 0.0681,
+              "confusion_matrix": {
+                "tp": 260,
+                "tn": 86,
+                "fp": 5,
+                "fn": 19
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            }
+          }
+        },
+        "UFPR05_LeaveOneLotOut": {
+          "total_samples": 1380,
+          "occupied_samples": 737,
+          "vacant_samples": 643,
+          "predicted_occupied": 1091,
+          "predicted_vacant": 289,
+          "predicted_unknown": 0,
+          "accuracy": 0.7319,
+          "balanced_accuracy": 0.7131,
+          "macro_f1": 0.7003,
+          "occupied_metrics": {
+            "precision": 0.6682,
+            "recall": 0.9891,
+            "f1": 0.7976,
+            "support": 737
+          },
+          "free_metrics": {
+            "precision": 0.9723,
+            "recall": 0.437,
+            "f1": 0.603,
+            "support": 643
+          },
+          "correct_free_bays": 281,
+          "correct_occupied_bays": 729,
+          "false_occupied_bays": 362,
+          "false_free_bays": 8,
+          "false_free_rate": 0.0109,
+          "confusion_matrix": {
+            "tp": 729,
+            "tn": 281,
+            "fp": 362,
+            "fn": 8
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 46,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 460,
+              "occupied_samples": 232,
+              "vacant_samples": 228,
+              "predicted_occupied": 348,
+              "predicted_vacant": 112,
+              "predicted_unknown": 0,
+              "accuracy": 0.7478,
+              "balanced_accuracy": 0.7456,
+              "macro_f1": 0.7294,
+              "occupied_metrics": {
+                "precision": 0.6667,
+                "recall": 1.0,
+                "f1": 0.8,
+                "support": 232
+              },
+              "free_metrics": {
+                "precision": 1.0,
+                "recall": 0.4912,
+                "f1": 0.6588,
+                "support": 228
+              },
+              "correct_free_bays": 112,
+              "correct_occupied_bays": 232,
+              "false_occupied_bays": 116,
+              "false_free_bays": 0,
+              "false_free_rate": 0.0,
+              "confusion_matrix": {
+                "tp": 232,
+                "tn": 112,
+                "fp": 116,
+                "fn": 0
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Rainy": {
+              "total_samples": 460,
+              "occupied_samples": 276,
+              "vacant_samples": 184,
+              "predicted_occupied": 392,
+              "predicted_vacant": 68,
+              "predicted_unknown": 0,
+              "accuracy": 0.7217,
+              "balanced_accuracy": 0.6576,
+              "macro_f1": 0.6502,
+              "occupied_metrics": {
+                "precision": 0.6888,
+                "recall": 0.9783,
+                "f1": 0.8084,
+                "support": 276
+              },
+              "free_metrics": {
+                "precision": 0.9118,
+                "recall": 0.337,
+                "f1": 0.4921,
+                "support": 184
+              },
+              "correct_free_bays": 62,
+              "correct_occupied_bays": 270,
+              "false_occupied_bays": 122,
+              "false_free_bays": 6,
+              "false_free_rate": 0.0217,
+              "confusion_matrix": {
+                "tp": 270,
+                "tn": 62,
+                "fp": 122,
+                "fn": 6
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Sunny": {
+              "total_samples": 460,
+              "occupied_samples": 229,
+              "vacant_samples": 231,
+              "predicted_occupied": 351,
+              "predicted_vacant": 109,
+              "predicted_unknown": 0,
+              "accuracy": 0.7261,
+              "balanced_accuracy": 0.7272,
+              "macro_f1": 0.7061,
+              "occupied_metrics": {
+                "precision": 0.6467,
+                "recall": 0.9913,
+                "f1": 0.7828,
+                "support": 229
+              },
+              "free_metrics": {
+                "precision": 0.9817,
+                "recall": 0.4632,
+                "f1": 0.6294,
+                "support": 231
+              },
+              "correct_free_bays": 107,
+              "correct_occupied_bays": 227,
+              "false_occupied_bays": 124,
+              "false_free_bays": 2,
+              "false_free_rate": 0.0087,
+              "confusion_matrix": {
+                "tp": 227,
+                "tn": 107,
+                "fp": 124,
+                "fn": 2
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            }
+          }
+        },
+        "CNRPark_Camera09_HeldOut": {
+          "total_samples": 1500,
+          "occupied_samples": 1062,
+          "vacant_samples": 438,
+          "predicted_occupied": 1114,
+          "predicted_vacant": 386,
+          "predicted_unknown": 0,
+          "accuracy": 0.9267,
+          "balanced_accuracy": 0.8939,
+          "macro_f1": 0.908,
+          "occupied_metrics": {
+            "precision": 0.9273,
+            "recall": 0.9727,
+            "f1": 0.9494,
+            "support": 1062
+          },
+          "free_metrics": {
+            "precision": 0.9249,
+            "recall": 0.8151,
+            "f1": 0.8665,
+            "support": 438
+          },
+          "correct_free_bays": 357,
+          "correct_occupied_bays": 1033,
+          "false_occupied_bays": 81,
+          "false_free_bays": 29,
+          "false_free_rate": 0.0273,
+          "confusion_matrix": {
+            "tp": 1033,
+            "tn": 357,
+            "fp": 81,
+            "fn": 29
+          },
+          "source_frames_count": 63,
+          "parking_slots_count": 28,
+          "weather_breakdown": {
+            "Overcast": {
+              "total_samples": 912,
+              "occupied_samples": 616,
+              "vacant_samples": 296,
+              "predicted_occupied": 662,
+              "predicted_vacant": 250,
+              "predicted_unknown": 0,
+              "accuracy": 0.9298,
+              "balanced_accuracy": 0.8998,
+              "macro_f1": 0.9164,
+              "occupied_metrics": {
+                "precision": 0.9169,
+                "recall": 0.9854,
+                "f1": 0.9499,
+                "support": 616
+              },
+              "free_metrics": {
+                "precision": 0.964,
+                "recall": 0.8142,
+                "f1": 0.8828,
+                "support": 296
+              },
+              "correct_free_bays": 241,
+              "correct_occupied_bays": 607,
+              "false_occupied_bays": 55,
+              "false_free_bays": 9,
+              "false_free_rate": 0.0146,
+              "confusion_matrix": {
+                "tp": 607,
+                "tn": 241,
+                "fp": 55,
+                "fn": 9
+              },
+              "source_frames_count": 42,
+              "parking_slots_count": 28
+            },
+            "Sunny": {
+              "total_samples": 588,
+              "occupied_samples": 446,
+              "vacant_samples": 142,
+              "predicted_occupied": 452,
+              "predicted_vacant": 136,
+              "predicted_unknown": 0,
+              "accuracy": 0.9218,
+              "balanced_accuracy": 0.886,
+              "macro_f1": 0.8917,
+              "occupied_metrics": {
+                "precision": 0.9425,
+                "recall": 0.9552,
+                "f1": 0.9488,
+                "support": 446
+              },
+              "free_metrics": {
+                "precision": 0.8529,
+                "recall": 0.8169,
+                "f1": 0.8345,
+                "support": 142
+              },
+              "correct_free_bays": 116,
+              "correct_occupied_bays": 426,
+              "false_occupied_bays": 26,
+              "false_free_bays": 20,
+              "false_free_rate": 0.0448,
+              "confusion_matrix": {
+                "tp": 426,
+                "tn": 116,
+                "fp": 26,
+                "fn": 20
+              },
+              "source_frames_count": 21,
+              "parking_slots_count": 28
+            }
+          }
+        },
+        "CNRPark_Historical_Benchmark": {
+          "total_samples": 1260,
+          "occupied_samples": 841,
+          "vacant_samples": 419,
+          "predicted_occupied": 822,
+          "predicted_vacant": 438,
+          "predicted_unknown": 0,
+          "accuracy": 0.9484,
+          "balanced_accuracy": 0.9476,
+          "macro_f1": 0.9425,
+          "occupied_metrics": {
+            "precision": 0.972,
+            "recall": 0.9501,
+            "f1": 0.9609,
+            "support": 841
+          },
+          "free_metrics": {
+            "precision": 0.9041,
+            "recall": 0.9451,
+            "f1": 0.9242,
+            "support": 419
+          },
+          "correct_free_bays": 396,
+          "correct_occupied_bays": 799,
+          "false_occupied_bays": 23,
+          "false_free_bays": 42,
+          "false_free_rate": 0.0499,
+          "confusion_matrix": {
+            "tp": 799,
+            "tn": 396,
+            "fp": 23,
+            "fn": 42
+          },
+          "source_frames_count": 1,
+          "parking_slots_count": 1,
+          "weather_breakdown": {
+            "Unknown": {
+              "total_samples": 1260,
+              "occupied_samples": 841,
+              "vacant_samples": 419,
+              "predicted_occupied": 822,
+              "predicted_vacant": 438,
+              "predicted_unknown": 0,
+              "accuracy": 0.9484,
+              "balanced_accuracy": 0.9476,
+              "macro_f1": 0.9425,
+              "occupied_metrics": {
+                "precision": 0.972,
+                "recall": 0.9501,
+                "f1": 0.9609,
+                "support": 841
+              },
+              "free_metrics": {
+                "precision": 0.9041,
+                "recall": 0.9451,
+                "f1": 0.9242,
+                "support": 419
+              },
+              "correct_free_bays": 396,
+              "correct_occupied_bays": 799,
+              "false_occupied_bays": 23,
+              "false_free_bays": 42,
+              "false_free_rate": 0.0499,
+              "confusion_matrix": {
+                "tp": 799,
+                "tn": 396,
+                "fp": 23,
+                "fn": 42
+              },
+              "source_frames_count": 1,
+              "parking_slots_count": 1
+            }
+          }
+        }
+      }
+    },
+    "Approach_D_Domain_Augmented": {
+      "selected_validation_threshold": 0.6500000000000001,
+      "test_evaluations": {
+        "UFPR04_LeaveOneLotOut": {
+          "total_samples": 1110,
+          "occupied_samples": 679,
+          "vacant_samples": 431,
+          "predicted_occupied": 643,
+          "predicted_vacant": 467,
+          "predicted_unknown": 0,
+          "accuracy": 0.9207,
+          "balanced_accuracy": 0.9242,
+          "macro_f1": 0.9177,
+          "occupied_metrics": {
+            "precision": 0.9596,
+            "recall": 0.9087,
+            "f1": 0.9334,
+            "support": 679
+          },
+          "free_metrics": {
+            "precision": 0.8672,
+            "recall": 0.9397,
+            "f1": 0.902,
+            "support": 431
+          },
+          "correct_free_bays": 405,
+          "correct_occupied_bays": 617,
+          "false_occupied_bays": 26,
+          "false_free_bays": 62,
+          "false_free_rate": 0.0913,
+          "confusion_matrix": {
+            "tp": 617,
+            "tn": 405,
+            "fp": 26,
+            "fn": 62
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 37,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 370,
+              "occupied_samples": 228,
+              "vacant_samples": 142,
+              "predicted_occupied": 208,
+              "predicted_vacant": 162,
+              "predicted_unknown": 0,
+              "accuracy": 0.9081,
+              "balanced_accuracy": 0.9161,
+              "macro_f1": 0.9051,
+              "occupied_metrics": {
+                "precision": 0.9663,
+                "recall": 0.8816,
+                "f1": 0.922,
+                "support": 228
+              },
+              "free_metrics": {
+                "precision": 0.8333,
+                "recall": 0.9507,
+                "f1": 0.8882,
+                "support": 142
+              },
+              "correct_free_bays": 135,
+              "correct_occupied_bays": 201,
+              "false_occupied_bays": 7,
+              "false_free_bays": 27,
+              "false_free_rate": 0.1184,
+              "confusion_matrix": {
+                "tp": 201,
+                "tn": 135,
+                "fp": 7,
+                "fn": 27
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Rainy": {
+              "total_samples": 370,
+              "occupied_samples": 172,
+              "vacant_samples": 198,
+              "predicted_occupied": 170,
+              "predicted_vacant": 200,
+              "predicted_unknown": 0,
+              "accuracy": 0.9243,
+              "balanced_accuracy": 0.9236,
+              "macro_f1": 0.9239,
+              "occupied_metrics": {
+                "precision": 0.9235,
+                "recall": 0.9128,
+                "f1": 0.9181,
+                "support": 172
+              },
+              "free_metrics": {
+                "precision": 0.925,
+                "recall": 0.9343,
+                "f1": 0.9296,
+                "support": 198
+              },
+              "correct_free_bays": 185,
+              "correct_occupied_bays": 157,
+              "false_occupied_bays": 13,
+              "false_free_bays": 15,
+              "false_free_rate": 0.0872,
+              "confusion_matrix": {
+                "tp": 157,
+                "tn": 185,
+                "fp": 13,
+                "fn": 15
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            },
+            "Sunny": {
+              "total_samples": 370,
+              "occupied_samples": 279,
+              "vacant_samples": 91,
+              "predicted_occupied": 265,
+              "predicted_vacant": 105,
+              "predicted_unknown": 0,
+              "accuracy": 0.9297,
+              "balanced_accuracy": 0.9312,
+              "macro_f1": 0.9098,
+              "occupied_metrics": {
+                "precision": 0.9774,
+                "recall": 0.9283,
+                "f1": 0.9522,
+                "support": 279
+              },
+              "free_metrics": {
+                "precision": 0.8095,
+                "recall": 0.9341,
+                "f1": 0.8673,
+                "support": 91
+              },
+              "correct_free_bays": 85,
+              "correct_occupied_bays": 259,
+              "false_occupied_bays": 6,
+              "false_free_bays": 20,
+              "false_free_rate": 0.0717,
+              "confusion_matrix": {
+                "tp": 259,
+                "tn": 85,
+                "fp": 6,
+                "fn": 20
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 37
+            }
+          }
+        },
+        "UFPR05_LeaveOneLotOut": {
+          "total_samples": 1380,
+          "occupied_samples": 737,
+          "vacant_samples": 643,
+          "predicted_occupied": 991,
+          "predicted_vacant": 389,
+          "predicted_unknown": 0,
+          "accuracy": 0.8029,
+          "balanced_accuracy": 0.7894,
+          "macro_f1": 0.7895,
+          "occupied_metrics": {
+            "precision": 0.7346,
+            "recall": 0.9878,
+            "f1": 0.8426,
+            "support": 737
+          },
+          "free_metrics": {
+            "precision": 0.9769,
+            "recall": 0.591,
+            "f1": 0.7364,
+            "support": 643
+          },
+          "correct_free_bays": 380,
+          "correct_occupied_bays": 728,
+          "false_occupied_bays": 263,
+          "false_free_bays": 9,
+          "false_free_rate": 0.0122,
+          "confusion_matrix": {
+            "tp": 728,
+            "tn": 380,
+            "fp": 263,
+            "fn": 9
+          },
+          "source_frames_count": 30,
+          "parking_slots_count": 46,
+          "weather_breakdown": {
+            "Cloudy": {
+              "total_samples": 460,
+              "occupied_samples": 232,
+              "vacant_samples": 228,
+              "predicted_occupied": 314,
+              "predicted_vacant": 146,
+              "predicted_unknown": 0,
+              "accuracy": 0.8217,
+              "balanced_accuracy": 0.8202,
+              "macro_f1": 0.8153,
+              "occupied_metrics": {
+                "precision": 0.7389,
+                "recall": 1.0,
+                "f1": 0.8498,
+                "support": 232
+              },
+              "free_metrics": {
+                "precision": 1.0,
+                "recall": 0.6404,
+                "f1": 0.7807,
+                "support": 228
+              },
+              "correct_free_bays": 146,
+              "correct_occupied_bays": 232,
+              "false_occupied_bays": 82,
+              "false_free_bays": 0,
+              "false_free_rate": 0.0,
+              "confusion_matrix": {
+                "tp": 232,
+                "tn": 146,
+                "fp": 82,
+                "fn": 0
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Rainy": {
+              "total_samples": 460,
+              "occupied_samples": 276,
+              "vacant_samples": 184,
+              "predicted_occupied": 356,
+              "predicted_vacant": 104,
+              "predicted_unknown": 0,
+              "accuracy": 0.7957,
+              "balanced_accuracy": 0.7509,
+              "macro_f1": 0.7624,
+              "occupied_metrics": {
+                "precision": 0.7556,
+                "recall": 0.9746,
+                "f1": 0.8513,
+                "support": 276
+              },
+              "free_metrics": {
+                "precision": 0.9327,
+                "recall": 0.5272,
+                "f1": 0.6736,
+                "support": 184
+              },
+              "correct_free_bays": 97,
+              "correct_occupied_bays": 269,
+              "false_occupied_bays": 87,
+              "false_free_bays": 7,
+              "false_free_rate": 0.0254,
+              "confusion_matrix": {
+                "tp": 269,
+                "tn": 97,
+                "fp": 87,
+                "fn": 7
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            },
+            "Sunny": {
+              "total_samples": 460,
+              "occupied_samples": 229,
+              "vacant_samples": 231,
+              "predicted_occupied": 321,
+              "predicted_vacant": 139,
+              "predicted_unknown": 0,
+              "accuracy": 0.7913,
+              "balanced_accuracy": 0.7922,
+              "macro_f1": 0.783,
+              "occupied_metrics": {
+                "precision": 0.7072,
+                "recall": 0.9913,
+                "f1": 0.8255,
+                "support": 229
+              },
+              "free_metrics": {
+                "precision": 0.9856,
+                "recall": 0.5931,
+                "f1": 0.7405,
+                "support": 231
+              },
+              "correct_free_bays": 137,
+              "correct_occupied_bays": 227,
+              "false_occupied_bays": 94,
+              "false_free_bays": 2,
+              "false_free_rate": 0.0087,
+              "confusion_matrix": {
+                "tp": 227,
+                "tn": 137,
+                "fp": 94,
+                "fn": 2
+              },
+              "source_frames_count": 10,
+              "parking_slots_count": 46
+            }
+          }
+        },
+        "CNRPark_Camera09_HeldOut": {
+          "total_samples": 1500,
+          "occupied_samples": 1062,
+          "vacant_samples": 438,
+          "predicted_occupied": 1073,
+          "predicted_vacant": 427,
+          "predicted_unknown": 0,
+          "accuracy": 0.9273,
+          "balanced_accuracy": 0.9084,
+          "macro_f1": 0.9115,
+          "occupied_metrics": {
+            "precision": 0.9441,
+            "recall": 0.9539,
+            "f1": 0.9489,
+            "support": 1062
+          },
+          "free_metrics": {
+            "precision": 0.8852,
+            "recall": 0.863,
+            "f1": 0.874,
+            "support": 438
+          },
+          "correct_free_bays": 378,
+          "correct_occupied_bays": 1013,
+          "false_occupied_bays": 60,
+          "false_free_bays": 49,
+          "false_free_rate": 0.0461,
+          "confusion_matrix": {
+            "tp": 1013,
+            "tn": 378,
+            "fp": 60,
+            "fn": 49
+          },
+          "source_frames_count": 63,
+          "parking_slots_count": 28,
+          "weather_breakdown": {
+            "Overcast": {
+              "total_samples": 912,
+              "occupied_samples": 616,
+              "vacant_samples": 296,
+              "predicted_occupied": 636,
+              "predicted_vacant": 276,
+              "predicted_unknown": 0,
+              "accuracy": 0.9342,
+              "balanced_accuracy": 0.9162,
+              "macro_f1": 0.9236,
+              "occupied_metrics": {
+                "precision": 0.9371,
+                "recall": 0.9675,
+                "f1": 0.9521,
+                "support": 616
+              },
+              "free_metrics": {
+                "precision": 0.9275,
+                "recall": 0.8649,
+                "f1": 0.8951,
+                "support": 296
+              },
+              "correct_free_bays": 256,
+              "correct_occupied_bays": 596,
+              "false_occupied_bays": 40,
+              "false_free_bays": 20,
+              "false_free_rate": 0.0325,
+              "confusion_matrix": {
+                "tp": 596,
+                "tn": 256,
+                "fp": 40,
+                "fn": 20
+              },
+              "source_frames_count": 42,
+              "parking_slots_count": 28
+            },
+            "Sunny": {
+              "total_samples": 588,
+              "occupied_samples": 446,
+              "vacant_samples": 142,
+              "predicted_occupied": 437,
+              "predicted_vacant": 151,
+              "predicted_unknown": 0,
+              "accuracy": 0.9167,
+              "balanced_accuracy": 0.8971,
+              "macro_f1": 0.8886,
+              "occupied_metrics": {
+                "precision": 0.9542,
+                "recall": 0.935,
+                "f1": 0.9445,
+                "support": 446
+              },
+              "free_metrics": {
+                "precision": 0.8079,
+                "recall": 0.8592,
+                "f1": 0.8328,
+                "support": 142
+              },
+              "correct_free_bays": 122,
+              "correct_occupied_bays": 417,
+              "false_occupied_bays": 20,
+              "false_free_bays": 29,
+              "false_free_rate": 0.065,
+              "confusion_matrix": {
+                "tp": 417,
+                "tn": 122,
+                "fp": 20,
+                "fn": 29
+              },
+              "source_frames_count": 21,
+              "parking_slots_count": 28
+            }
+          }
+        },
+        "CNRPark_Historical_Benchmark": {
+          "total_samples": 1260,
+          "occupied_samples": 841,
+          "vacant_samples": 419,
+          "predicted_occupied": 812,
+          "predicted_vacant": 448,
+          "predicted_unknown": 0,
+          "accuracy": 0.9373,
+          "balanced_accuracy": 0.9381,
+          "macro_f1": 0.9305,
+          "occupied_metrics": {
+            "precision": 0.9692,
+            "recall": 0.9358,
+            "f1": 0.9522,
+            "support": 841
+          },
+          "free_metrics": {
+            "precision": 0.8795,
+            "recall": 0.9403,
+            "f1": 0.9089,
+            "support": 419
+          },
+          "correct_free_bays": 394,
+          "correct_occupied_bays": 787,
+          "false_occupied_bays": 25,
+          "false_free_bays": 54,
+          "false_free_rate": 0.0642,
+          "confusion_matrix": {
+            "tp": 787,
+            "tn": 394,
+            "fp": 25,
+            "fn": 54
+          },
+          "source_frames_count": 1,
+          "parking_slots_count": 1,
+          "weather_breakdown": {
+            "Unknown": {
+              "total_samples": 1260,
+              "occupied_samples": 841,
+              "vacant_samples": 419,
+              "predicted_occupied": 812,
+              "predicted_vacant": 448,
+              "predicted_unknown": 0,
+              "accuracy": 0.9373,
+              "balanced_accuracy": 0.9381,
+              "macro_f1": 0.9305,
+              "occupied_metrics": {
+                "precision": 0.9692,
+                "recall": 0.9358,
+                "f1": 0.9522,
+                "support": 841
+              },
+              "free_metrics": {
+                "precision": 0.8795,
+                "recall": 0.9403,
+                "f1": 0.9089,
+                "support": 419
+              },
+              "correct_free_bays": 394,
+              "correct_occupied_bays": 787,
+              "false_occupied_bays": 25,
+              "false_free_bays": 54,
+              "false_free_rate": 0.0642,
+              "confusion_matrix": {
+                "tp": 787,
+                "tn": 394,
+                "fp": 25,
+                "fn": 54
+              },
+              "source_frames_count": 1,
+              "parking_slots_count": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "selection_rationale": "Approach D incorporates domain-appropriate illumination, contrast, and synthetic canopy shadow augmentation. While matching Approach C on UFPR04 (0.9177 vs 0.9179 macro-F1), it achieves a decisive +8.92% macro-F1 gain on UFPR05 (0.7895 vs 0.7003) and raises free recall from 43.70% to 59.10%, producing the highest cross-domain generalization average across all unseen lots."
+}

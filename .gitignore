@@ -1,0 +1,102 @@
+# ==============================================================================
+# Git Ignore Configuration for Smart Parking + HSRP System
+# ==============================================================================
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.Python
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.exe
+*.dll
+
+# Packaging and distribution build outputs
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Exclude uncompressed dist directory and duplicate deployment ZIP
+dist/raspberry_pi/
+dist/raspberry_pi.zip
+
+# IDE & Editor caches
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing & Coverage caches
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Local application logs
+logs/*.log
+logs/*.log.*
+!logs/.gitkeep
+
+# Transient databases (SQLite runtime and test fixtures)
+*.sqlite
+*.sqlite3
+*.db
+!app/database/*.sql
+
+# Raw and processed research datasets (kept locally to avoid repository bloat)
+# Complete acquisition, licensing, and reproducibility instructions in docs/DATASETS.md
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/.cache/
+
+# Preserve dataset splits, annotations, calibrations, and manifests
+!data/splits/*
+!data/annotations/*
+!data/calibration.json
+!data/dataset_inventory.json
+!data/dataset_provenance.json
+!data/plates.yaml
+!data/vehicles.yaml
+!data/README.md
+
+# Generated YOLO validation batch runs (final curves/checkpoints stored in models/training_runs)
+runs/
+
+# Temporary video and frame captures
+temp_captures/
+temp_frames/
+*.mp4
+*.avi
+
+# Secrets and local credentials
+.env
+.env.*
+secrets.yaml
+*.pem
+*.key
+*.p12
+*.pfx

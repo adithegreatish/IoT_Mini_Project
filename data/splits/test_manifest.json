@@ -1,0 +1,1973 @@
+{
+  "created_at": "2026-10-12T17:27:52.054933",
+  "vehicles": [
+    {
+      "image": "data/processed/vehicles/images/test/000000575243.jpg",
+      "label": "data/processed/vehicles/labels/test/000000575243.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000200839.jpg",
+      "label": "data/processed/vehicles/labels/test/000000200839.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000122606.jpg",
+      "label": "data/processed/vehicles/labels/test/000000122606.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000343934.jpg",
+      "label": "data/processed/vehicles/labels/test/000000343934.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000479912.jpg",
+      "label": "data/processed/vehicles/labels/test/000000479912.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000301061.jpg",
+      "label": "data/processed/vehicles/labels/test/000000301061.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000369812.jpg",
+      "label": "data/processed/vehicles/labels/test/000000369812.txt",
+      "box_count": 9
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000491090.jpg",
+      "label": "data/processed/vehicles/labels/test/000000491090.txt",
+      "box_count": 5
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000165518.jpg",
+      "label": "data/processed/vehicles/labels/test/000000165518.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000236845.jpg",
+      "label": "data/processed/vehicles/labels/test/000000236845.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000427338.jpg",
+      "label": "data/processed/vehicles/labels/test/000000427338.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000165039.jpg",
+      "label": "data/processed/vehicles/labels/test/000000165039.txt",
+      "box_count": 9
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000054593.jpg",
+      "label": "data/processed/vehicles/labels/test/000000054593.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000202339.jpg",
+      "label": "data/processed/vehicles/labels/test/000000202339.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000303566.jpg",
+      "label": "data/processed/vehicles/labels/test/000000303566.txt",
+      "box_count": 8
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000240940.jpg",
+      "label": "data/processed/vehicles/labels/test/000000240940.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000569565.jpg",
+      "label": "data/processed/vehicles/labels/test/000000569565.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000176037.jpg",
+      "label": "data/processed/vehicles/labels/test/000000176037.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000044590.jpg",
+      "label": "data/processed/vehicles/labels/test/000000044590.txt",
+      "box_count": 13
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000253002.jpg",
+      "label": "data/processed/vehicles/labels/test/000000253002.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000169169.jpg",
+      "label": "data/processed/vehicles/labels/test/000000169169.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000421455.jpg",
+      "label": "data/processed/vehicles/labels/test/000000421455.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000478474.jpg",
+      "label": "data/processed/vehicles/labels/test/000000478474.txt",
+      "box_count": 8
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000203389.jpg",
+      "label": "data/processed/vehicles/labels/test/000000203389.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000291791.jpg",
+      "label": "data/processed/vehicles/labels/test/000000291791.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000344909.jpg",
+      "label": "data/processed/vehicles/labels/test/000000344909.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000138639.jpg",
+      "label": "data/processed/vehicles/labels/test/000000138639.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000577976.jpg",
+      "label": "data/processed/vehicles/labels/test/000000577976.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000400367.jpg",
+      "label": "data/processed/vehicles/labels/test/000000400367.txt",
+      "box_count": 14
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000141597.jpg",
+      "label": "data/processed/vehicles/labels/test/000000141597.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000564336.jpg",
+      "label": "data/processed/vehicles/labels/test/000000564336.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000458325.jpg",
+      "label": "data/processed/vehicles/labels/test/000000458325.txt",
+      "box_count": 14
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000057672.jpg",
+      "label": "data/processed/vehicles/labels/test/000000057672.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000484029.jpg",
+      "label": "data/processed/vehicles/labels/test/000000484029.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000511760.jpg",
+      "label": "data/processed/vehicles/labels/test/000000511760.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000201934.jpg",
+      "label": "data/processed/vehicles/labels/test/000000201934.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000499775.jpg",
+      "label": "data/processed/vehicles/labels/test/000000499775.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000162858.jpg",
+      "label": "data/processed/vehicles/labels/test/000000162858.txt",
+      "box_count": 13
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000276720.jpg",
+      "label": "data/processed/vehicles/labels/test/000000276720.txt",
+      "box_count": 5
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000284725.jpg",
+      "label": "data/processed/vehicles/labels/test/000000284725.txt",
+      "box_count": 7
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000137727.jpg",
+      "label": "data/processed/vehicles/labels/test/000000137727.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000281759.jpg",
+      "label": "data/processed/vehicles/labels/test/000000281759.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000474452.jpg",
+      "label": "data/processed/vehicles/labels/test/000000474452.txt",
+      "box_count": 15
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000339870.jpg",
+      "label": "data/processed/vehicles/labels/test/000000339870.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000553511.jpg",
+      "label": "data/processed/vehicles/labels/test/000000553511.txt",
+      "box_count": 5
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000549738.jpg",
+      "label": "data/processed/vehicles/labels/test/000000549738.txt",
+      "box_count": 9
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000086483.jpg",
+      "label": "data/processed/vehicles/labels/test/000000086483.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000568147.jpg",
+      "label": "data/processed/vehicles/labels/test/000000568147.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000067616.jpg",
+      "label": "data/processed/vehicles/labels/test/000000067616.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000215723.jpg",
+      "label": "data/processed/vehicles/labels/test/000000215723.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000175438.jpg",
+      "label": "data/processed/vehicles/labels/test/000000175438.txt",
+      "box_count": 14
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000495146.jpg",
+      "label": "data/processed/vehicles/labels/test/000000495146.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000033221.jpg",
+      "label": "data/processed/vehicles/labels/test/000000033221.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000057149.jpg",
+      "label": "data/processed/vehicles/labels/test/000000057149.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000524850.jpg",
+      "label": "data/processed/vehicles/labels/test/000000524850.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000149406.jpg",
+      "label": "data/processed/vehicles/labels/test/000000149406.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000433774.jpg",
+      "label": "data/processed/vehicles/labels/test/000000433774.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000280710.jpg",
+      "label": "data/processed/vehicles/labels/test/000000280710.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000463037.jpg",
+      "label": "data/processed/vehicles/labels/test/000000463037.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000467848.jpg",
+      "label": "data/processed/vehicles/labels/test/000000467848.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000222094.jpg",
+      "label": "data/processed/vehicles/labels/test/000000222094.txt",
+      "box_count": 10
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000415536.jpg",
+      "label": "data/processed/vehicles/labels/test/000000415536.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000067213.jpg",
+      "label": "data/processed/vehicles/labels/test/000000067213.txt",
+      "box_count": 5
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000291634.jpg",
+      "label": "data/processed/vehicles/labels/test/000000291634.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000105923.jpg",
+      "label": "data/processed/vehicles/labels/test/000000105923.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000402433.jpg",
+      "label": "data/processed/vehicles/labels/test/000000402433.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000343976.jpg",
+      "label": "data/processed/vehicles/labels/test/000000343976.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000032941.jpg",
+      "label": "data/processed/vehicles/labels/test/000000032941.txt",
+      "box_count": 8
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000198928.jpg",
+      "label": "data/processed/vehicles/labels/test/000000198928.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000455624.jpg",
+      "label": "data/processed/vehicles/labels/test/000000455624.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000269632.jpg",
+      "label": "data/processed/vehicles/labels/test/000000269632.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000278848.jpg",
+      "label": "data/processed/vehicles/labels/test/000000278848.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000084492.jpg",
+      "label": "data/processed/vehicles/labels/test/000000084492.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000292456.jpg",
+      "label": "data/processed/vehicles/labels/test/000000292456.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000081394.jpg",
+      "label": "data/processed/vehicles/labels/test/000000081394.txt",
+      "box_count": 5
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000574425.jpg",
+      "label": "data/processed/vehicles/labels/test/000000574425.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000260266.jpg",
+      "label": "data/processed/vehicles/labels/test/000000260266.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000166664.jpg",
+      "label": "data/processed/vehicles/labels/test/000000166664.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000130699.jpg",
+      "label": "data/processed/vehicles/labels/test/000000130699.txt",
+      "box_count": 9
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000560474.jpg",
+      "label": "data/processed/vehicles/labels/test/000000560474.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000263463.jpg",
+      "label": "data/processed/vehicles/labels/test/000000263463.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000570539.jpg",
+      "label": "data/processed/vehicles/labels/test/000000570539.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000521052.jpg",
+      "label": "data/processed/vehicles/labels/test/000000521052.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000135410.jpg",
+      "label": "data/processed/vehicles/labels/test/000000135410.txt",
+      "box_count": 7
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000006723.jpg",
+      "label": "data/processed/vehicles/labels/test/000000006723.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000210273.jpg",
+      "label": "data/processed/vehicles/labels/test/000000210273.txt",
+      "box_count": 28
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000443498.jpg",
+      "label": "data/processed/vehicles/labels/test/000000443498.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000338624.jpg",
+      "label": "data/processed/vehicles/labels/test/000000338624.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000169996.jpg",
+      "label": "data/processed/vehicles/labels/test/000000169996.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000315187.jpg",
+      "label": "data/processed/vehicles/labels/test/000000315187.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000572303.jpg",
+      "label": "data/processed/vehicles/labels/test/000000572303.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000523241.jpg",
+      "label": "data/processed/vehicles/labels/test/000000523241.txt",
+      "box_count": 7
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000485237.jpg",
+      "label": "data/processed/vehicles/labels/test/000000485237.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000534673.jpg",
+      "label": "data/processed/vehicles/labels/test/000000534673.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000155341.jpg",
+      "label": "data/processed/vehicles/labels/test/000000155341.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000424975.jpg",
+      "label": "data/processed/vehicles/labels/test/000000424975.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000017207.jpg",
+      "label": "data/processed/vehicles/labels/test/000000017207.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000454978.jpg",
+      "label": "data/processed/vehicles/labels/test/000000454978.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000377723.jpg",
+      "label": "data/processed/vehicles/labels/test/000000377723.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000177934.jpg",
+      "label": "data/processed/vehicles/labels/test/000000177934.txt",
+      "box_count": 11
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000168330.jpg",
+      "label": "data/processed/vehicles/labels/test/000000168330.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000082821.jpg",
+      "label": "data/processed/vehicles/labels/test/000000082821.txt",
+      "box_count": 5
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000018837.jpg",
+      "label": "data/processed/vehicles/labels/test/000000018837.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000019109.jpg",
+      "label": "data/processed/vehicles/labels/test/000000019109.txt",
+      "box_count": 14
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000319534.jpg",
+      "label": "data/processed/vehicles/labels/test/000000319534.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000445834.jpg",
+      "label": "data/processed/vehicles/labels/test/000000445834.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000076416.jpg",
+      "label": "data/processed/vehicles/labels/test/000000076416.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000410880.jpg",
+      "label": "data/processed/vehicles/labels/test/000000410880.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000555050.jpg",
+      "label": "data/processed/vehicles/labels/test/000000555050.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000507667.jpg",
+      "label": "data/processed/vehicles/labels/test/000000507667.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000087144.jpg",
+      "label": "data/processed/vehicles/labels/test/000000087144.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000553339.jpg",
+      "label": "data/processed/vehicles/labels/test/000000553339.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000119911.jpg",
+      "label": "data/processed/vehicles/labels/test/000000119911.txt",
+      "box_count": 5
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000171382.jpg",
+      "label": "data/processed/vehicles/labels/test/000000171382.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000187144.jpg",
+      "label": "data/processed/vehicles/labels/test/000000187144.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000206487.jpg",
+      "label": "data/processed/vehicles/labels/test/000000206487.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000555597.jpg",
+      "label": "data/processed/vehicles/labels/test/000000555597.txt",
+      "box_count": 13
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000017029.jpg",
+      "label": "data/processed/vehicles/labels/test/000000017029.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000098392.jpg",
+      "label": "data/processed/vehicles/labels/test/000000098392.txt",
+      "box_count": 7
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000477227.jpg",
+      "label": "data/processed/vehicles/labels/test/000000477227.txt",
+      "box_count": 5
+    }
+  ],
+  "plates": [
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2163_jpg.rf.9d19ff0a4a9a989ee7edfde44014cb0f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2163_jpg.rf.9d19ff0a4a9a989ee7edfde44014cb0f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1373_jpg.rf.6bcdbaaa595e76acabdf6622f2357f42.jpg",
+      "label": "data/processed/plates/labels/test/xemay1373_jpg.rf.6bcdbaaa595e76acabdf6622f2357f42.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1550_jpg.rf.15b9564ecc26d5f3e1b91921facbcf79.jpg",
+      "label": "data/processed/plates/labels/test/xemay1550_jpg.rf.15b9564ecc26d5f3e1b91921facbcf79.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay993_jpg.rf.2fabd96b732b79721acfaf79e454af69.jpg",
+      "label": "data/processed/plates/labels/test/xemay993_jpg.rf.2fabd96b732b79721acfaf79e454af69.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2832_jpg.rf.703a5b7036f936a39dfaa5352eced71f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2832_jpg.rf.703a5b7036f936a39dfaa5352eced71f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/image_0015.jpg",
+      "label": "data/processed/plates/labels/test/image_0015.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1744_jpg.rf.5c900892fe3df8d00664eb0267378caa.jpg",
+      "label": "data/processed/plates/labels/test/xemay1744_jpg.rf.5c900892fe3df8d00664eb0267378caa.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2185_jpg.rf.08f981065e76fa41d63e024715fbf055.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2185_jpg.rf.08f981065e76fa41d63e024715fbf055.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3216_jpg.rf.a1105fa467a09fb580b9588bfc407e9f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3216_jpg.rf.a1105fa467a09fb580b9588bfc407e9f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate243_jpg.rf.ff07cb282d34b21c337d99711c090832.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate243_jpg.rf.ff07cb282d34b21c337d99711c090832.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1473_jpg.rf.081be8ff7ecbff8949f80219435e9fdd.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1473_jpg.rf.081be8ff7ecbff8949f80219435e9fdd.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/image_0044.jpg",
+      "label": "data/processed/plates/labels/test/image_0044.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1064_jpg.rf.bd56f319a6b938b84e09afdcede2cda4.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1064_jpg.rf.bd56f319a6b938b84e09afdcede2cda4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2937_jpg.rf.6f89f63e1e363890c7eb16ff77667ed4.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2937_jpg.rf.6f89f63e1e363890c7eb16ff77667ed4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen675_jpg.rf.9d0b55d7cea1ea87f0b5adf1395df9b6.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen675_jpg.rf.9d0b55d7cea1ea87f0b5adf1395df9b6.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1434_jpg.rf.a520a582af6736e708365ea8bb85f092.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1434_jpg.rf.a520a582af6736e708365ea8bb85f092.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3609_jpg.rf.7e95d98075c351cfb65107fb8f325eb7.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3609_jpg.rf.7e95d98075c351cfb65107fb8f325eb7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1912_jpg.rf.d8d21ba22663eb14d9122e15540688fc.jpg",
+      "label": "data/processed/plates/labels/test/xemay1912_jpg.rf.d8d21ba22663eb14d9122e15540688fc.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2896_jpg.rf.f2dbb1423bed51ffa289c048d8dad53e.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2896_jpg.rf.f2dbb1423bed51ffa289c048d8dad53e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay906_jpg.rf.dbf437d4df3d7a95ba1417ab7d751326.jpg",
+      "label": "data/processed/plates/labels/test/xemay906_jpg.rf.dbf437d4df3d7a95ba1417ab7d751326.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate980_jpg.rf.c72a32dca16129a687293b99028716c8.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate980_jpg.rf.c72a32dca16129a687293b99028716c8.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/rotatengoaigiao12_jpg.rf.580d02d103bbdfb85c7c63689f863344.jpg",
+      "label": "data/processed/plates/labels/test/rotatengoaigiao12_jpg.rf.580d02d103bbdfb85c7c63689f863344.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay75_jpg.rf.232b6c58a46c417bf057a5c7495bdce3.jpg",
+      "label": "data/processed/plates/labels/test/xemay75_jpg.rf.232b6c58a46c417bf057a5c7495bdce3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1769_jpg.rf.4f19f71e0b863da6ef6728128660fd9c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1769_jpg.rf.4f19f71e0b863da6ef6728128660fd9c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3716_jpg.rf.b5d33e659b94d432c210dbf5a838aa88.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3716_jpg.rf.b5d33e659b94d432c210dbf5a838aa88.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen570_jpg.rf.305252bdd2798c370af7f1d702c0dd97.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen570_jpg.rf.305252bdd2798c370af7f1d702c0dd97.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay550_jpg.rf.96cd25e8621309b2d9ef426f04ae3653.jpg",
+      "label": "data/processed/plates/labels/test/xemay550_jpg.rf.96cd25e8621309b2d9ef426f04ae3653.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1264_jpg.rf.2704e9ac84e24195f2f7aa818243d4f9.jpg",
+      "label": "data/processed/plates/labels/test/xemay1264_jpg.rf.2704e9ac84e24195f2f7aa818243d4f9.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate489_jpg.rf.5a93c737314792a34286bac35ef48b0b.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate489_jpg.rf.5a93c737314792a34286bac35ef48b0b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay239_jpg.rf.3e0239e95eae3d1fc41c2ce0dbf7631b.jpg",
+      "label": "data/processed/plates/labels/test/xemay239_jpg.rf.3e0239e95eae3d1fc41c2ce0dbf7631b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay137_jpg.rf.43f639e8a5f13fe6fa19dc923c0392c7.jpg",
+      "label": "data/processed/plates/labels/test/xemay137_jpg.rf.43f639e8a5f13fe6fa19dc923c0392c7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay898_jpg.rf.98f50a6627832b7c2e62d85d7865f8a7.jpg",
+      "label": "data/processed/plates/labels/test/xemay898_jpg.rf.98f50a6627832b7c2e62d85d7865f8a7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen27_jpg.rf.d628d9a2ac60fed47ecead12ee54cf3d.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen27_jpg.rf.d628d9a2ac60fed47ecead12ee54cf3d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate42_jpg.rf.0ea26356577a7d9df20faf2aaacdced7.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate42_jpg.rf.0ea26356577a7d9df20faf2aaacdced7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1041_jpg.rf.f622a803dcf62992396d431d618ad700.jpg",
+      "label": "data/processed/plates/labels/test/xemay1041_jpg.rf.f622a803dcf62992396d431d618ad700.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay744_jpg.rf.4fd3653c0a26e971b117ac2dc47811e4.jpg",
+      "label": "data/processed/plates/labels/test/xemay744_jpg.rf.4fd3653c0a26e971b117ac2dc47811e4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/cropquandoi53_jpg.rf.8ba91533e4fa22df2f09b3a9a26424af.jpg",
+      "label": "data/processed/plates/labels/test/cropquandoi53_jpg.rf.8ba91533e4fa22df2f09b3a9a26424af.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3805_jpg.rf.fdece9f17015d665c93b22170ef97166.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3805_jpg.rf.fdece9f17015d665c93b22170ef97166.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3611_jpg.rf.e5b31fe26147106eec8f1cf288748138.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3611_jpg.rf.e5b31fe26147106eec8f1cf288748138.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3474_jpg.rf.1e1d7c0b7179fe3d39558074f8ea5749.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3474_jpg.rf.1e1d7c0b7179fe3d39558074f8ea5749.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/Cars220_png_jpg.rf.81bad1c1044af7be0980824d992accd2.jpg",
+      "label": "data/processed/plates/labels/test/Cars220_png_jpg.rf.81bad1c1044af7be0980824d992accd2.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate981_jpg.rf.80f478ceae30f321aa9101f102d74eeb.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate981_jpg.rf.80f478ceae30f321aa9101f102d74eeb.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1312_jpg.rf.41ae258d8f7ec55481e0a47b2749440d.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1312_jpg.rf.41ae258d8f7ec55481e0a47b2749440d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1391_jpg.rf.f5a2c79fbacdd06e8156064bc1590fca.jpg",
+      "label": "data/processed/plates/labels/test/xemay1391_jpg.rf.f5a2c79fbacdd06e8156064bc1590fca.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen588_jpg.rf.3e48fef8a9c1ba562a9fa7021b72622a.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen588_jpg.rf.3e48fef8a9c1ba562a9fa7021b72622a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2392_jpg.rf.6fb3dd4496c1ed0c89b4d756f4fd8536.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2392_jpg.rf.6fb3dd4496c1ed0c89b4d756f4fd8536.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2045_jpg.rf.e8daea5ed80fead316872260620aef1d.jpg",
+      "label": "data/processed/plates/labels/test/xemay2045_jpg.rf.e8daea5ed80fead316872260620aef1d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1251_jpg.rf.37184e035454e720451ae4e435a27788.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1251_jpg.rf.37184e035454e720451ae4e435a27788.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1215_jpg.rf.731d06c54e378589f57f4efe3558365d.jpg",
+      "label": "data/processed/plates/labels/test/xemay1215_jpg.rf.731d06c54e378589f57f4efe3558365d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/cropquandoi59_jpg.rf.5973a028617d99abf33131ba3db4de29.jpg",
+      "label": "data/processed/plates/labels/test/cropquandoi59_jpg.rf.5973a028617d99abf33131ba3db4de29.txt",
+      "box_count": 4
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay351_jpg.rf.52ff3621e221cd95dbe1ca6639d5d285.jpg",
+      "label": "data/processed/plates/labels/test/xemay351_jpg.rf.52ff3621e221cd95dbe1ca6639d5d285.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3310_jpg.rf.a3327cf28bc8855dd31d2eea775a1971.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3310_jpg.rf.a3327cf28bc8855dd31d2eea775a1971.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen923_jpg.rf.6c13e669375c266ca60405c49fbfa2e8.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen923_jpg.rf.6c13e669375c266ca60405c49fbfa2e8.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay254_jpg.rf.a1e6695accf2ec7da7e72040d25ed656.jpg",
+      "label": "data/processed/plates/labels/test/xemay254_jpg.rf.a1e6695accf2ec7da7e72040d25ed656.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1217_jpg.rf.b60c978a5fbba392363e628a942f347a.jpg",
+      "label": "data/processed/plates/labels/test/xemay1217_jpg.rf.b60c978a5fbba392363e628a942f347a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate156_jpg.rf.c4a25368f230ae14760815159faca475.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate156_jpg.rf.c4a25368f230ae14760815159faca475.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1426_jpg.rf.7d5df67832704d0df23d92629b32c2c4.jpg",
+      "label": "data/processed/plates/labels/test/xemay1426_jpg.rf.7d5df67832704d0df23d92629b32c2c4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/image_0040.jpg",
+      "label": "data/processed/plates/labels/test/image_0040.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2081_jpg.rf.e7dc92880d36dd2e5059dae6a4ab3561.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2081_jpg.rf.e7dc92880d36dd2e5059dae6a4ab3561.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1538_jpg.rf.b98a38aaa8042cbc13e88b2351b78665.jpg",
+      "label": "data/processed/plates/labels/test/xemay1538_jpg.rf.b98a38aaa8042cbc13e88b2351b78665.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1322_jpg.rf.0aded009d18c79f762543e356b5a3e7a.jpg",
+      "label": "data/processed/plates/labels/test/xemay1322_jpg.rf.0aded009d18c79f762543e356b5a3e7a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/image_0002.jpg",
+      "label": "data/processed/plates/labels/test/image_0002.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen479_jpg.rf.f682f82d3401c9c1c534052d110e7b9b.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen479_jpg.rf.f682f82d3401c9c1c534052d110e7b9b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1337_jpg.rf.469c84bd0abb6180e5544a3ebce61647.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1337_jpg.rf.469c84bd0abb6180e5544a3ebce61647.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1057_jpg.rf.f748a7b156f1db54305f8ac38101d898.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1057_jpg.rf.f748a7b156f1db54305f8ac38101d898.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2176_jpg.rf.8b8af68e48d20b14d04a4ed995b8ddfe.jpg",
+      "label": "data/processed/plates/labels/test/xemay2176_jpg.rf.8b8af68e48d20b14d04a4ed995b8ddfe.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3290_jpg.rf.3fde48764ac56e172e68789ea5932622.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3290_jpg.rf.3fde48764ac56e172e68789ea5932622.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1163_jpg.rf.c69d7b9f8df7c655f4e08b93f226d738.jpg",
+      "label": "data/processed/plates/labels/test/xemay1163_jpg.rf.c69d7b9f8df7c655f4e08b93f226d738.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate894_jpg.rf.4eec7dca618ea80c592f79653bfad4c6.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate894_jpg.rf.4eec7dca618ea80c592f79653bfad4c6.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3146_jpg.rf.5e84009ed6a874d895d1be8334d9611f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3146_jpg.rf.5e84009ed6a874d895d1be8334d9611f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1749_jpg.rf.55b5612d437e430a4fc4472e104001a0.jpg",
+      "label": "data/processed/plates/labels/test/xemay1749_jpg.rf.55b5612d437e430a4fc4472e104001a0.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1840_jpg.rf.4b9bca722978a4ae6f02b8172dfca6b2.jpg",
+      "label": "data/processed/plates/labels/test/xemay1840_jpg.rf.4b9bca722978a4ae6f02b8172dfca6b2.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1775_jpg.rf.1853ea817ddfd5fce243be90a8ab2ebe.jpg",
+      "label": "data/processed/plates/labels/test/xemay1775_jpg.rf.1853ea817ddfd5fce243be90a8ab2ebe.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2710_jpg.rf.b3d91a23ffdc2dda3b599a8b1611bac3.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2710_jpg.rf.b3d91a23ffdc2dda3b599a8b1611bac3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1341_jpg.rf.140c5cc488925965d8919b3f9bef18e4.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1341_jpg.rf.140c5cc488925965d8919b3f9bef18e4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2468_jpg.rf.7a2079458ac7d261cd9eb7fef777b4f6.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2468_jpg.rf.7a2079458ac7d261cd9eb7fef777b4f6.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1699_jpg.rf.ede32e72a2aabf8de9ddc3ce5a796bc3.jpg",
+      "label": "data/processed/plates/labels/test/xemay1699_jpg.rf.ede32e72a2aabf8de9ddc3ce5a796bc3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate224_jpg.rf.8f786ad38054d2526119511682cda8b0.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate224_jpg.rf.8f786ad38054d2526119511682cda8b0.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1441_jpg.rf.3f2e954e4aecd4b5339222d4979e07ce.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1441_jpg.rf.3f2e954e4aecd4b5339222d4979e07ce.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3616_jpg.rf.ef16e2713795ee9799fa9de7c8a8b6cd.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3616_jpg.rf.ef16e2713795ee9799fa9de7c8a8b6cd.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/0282f7277fe55a1d_jpg.rf.aa5676e3bf2672fb593e34636e60518a.jpg",
+      "label": "data/processed/plates/labels/test/0282f7277fe55a1d_jpg.rf.aa5676e3bf2672fb593e34636e60518a.txt",
+      "box_count": 3
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3278_jpg.rf.30671cc5e5573e7b5af76cb87367ad74.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3278_jpg.rf.30671cc5e5573e7b5af76cb87367ad74.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate326_jpg.rf.3356085f4eed66fa42701e64b789c3ac.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate326_jpg.rf.3356085f4eed66fa42701e64b789c3ac.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/image_0007.jpg",
+      "label": "data/processed/plates/labels/test/image_0007.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate138_jpg.rf.df8d2bdb73db7a29397e5a766bf2a6ea.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate138_jpg.rf.df8d2bdb73db7a29397e5a766bf2a6ea.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1947_jpg.rf.8a6c5e76969c44862a22e7317fd41795.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1947_jpg.rf.8a6c5e76969c44862a22e7317fd41795.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2167_jpg.rf.da840f283b1ad8dc168142e8bed58c77.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2167_jpg.rf.da840f283b1ad8dc168142e8bed58c77.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1181_jpg.rf.b144b19c355bb0befe42f925ab3d7ccd.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1181_jpg.rf.b144b19c355bb0befe42f925ab3d7ccd.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2526_jpg.rf.618d93e60d637d7de47569eb0364dc45.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2526_jpg.rf.618d93e60d637d7de47569eb0364dc45.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen690_jpg.rf.5be3baf15ca4d5ad9b8b5b5bf6fbba9a.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen690_jpg.rf.5be3baf15ca4d5ad9b8b5b5bf6fbba9a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1749_jpg.rf.1863c3f78c8ca5f14acf5efe2cbcaac7.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1749_jpg.rf.1863c3f78c8ca5f14acf5efe2cbcaac7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay838_jpg.rf.41cd829a461509e0cc687d760418d6c8.jpg",
+      "label": "data/processed/plates/labels/test/xemay838_jpg.rf.41cd829a461509e0cc687d760418d6c8.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate143_jpg.rf.5436ca68d3773cea8697561d5c93e7f4.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate143_jpg.rf.5436ca68d3773cea8697561d5c93e7f4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay990_jpg.rf.3a2149ba4b6927dee233e00a5febe4e1.jpg",
+      "label": "data/processed/plates/labels/test/xemay990_jpg.rf.3a2149ba4b6927dee233e00a5febe4e1.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen35_jpg.rf.f898bbc79d6119b907cc2687a6f55af6.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen35_jpg.rf.f898bbc79d6119b907cc2687a6f55af6.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen709_jpg.rf.28fda967f92026bc8e1ff01a46e7716c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen709_jpg.rf.28fda967f92026bc8e1ff01a46e7716c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/Cars160_png_jpg.rf.7dd008d6a0798f4bca00e0ea95fc0a62.jpg",
+      "label": "data/processed/plates/labels/test/Cars160_png_jpg.rf.7dd008d6a0798f4bca00e0ea95fc0a62.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate293_jpg.rf.33d3f39380916e1dd9a03fa31edac42b.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate293_jpg.rf.33d3f39380916e1dd9a03fa31edac42b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2748_jpg.rf.4f0986b95ce8d68a828fef829851579c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2748_jpg.rf.4f0986b95ce8d68a828fef829851579c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/image_0024.jpg",
+      "label": "data/processed/plates/labels/test/image_0024.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay433_jpg.rf.fea71af5ade9331f95133878068d35e2.jpg",
+      "label": "data/processed/plates/labels/test/xemay433_jpg.rf.fea71af5ade9331f95133878068d35e2.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3193_jpg.rf.a57a38f4ad8613ab49c0b99c9de829b4.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3193_jpg.rf.a57a38f4ad8613ab49c0b99c9de829b4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/Cars278_png_jpg.rf.f39555489608cfd640b1c300945e3d5c.jpg",
+      "label": "data/processed/plates/labels/test/Cars278_png_jpg.rf.f39555489608cfd640b1c300945e3d5c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay731_jpg.rf.e2b2ec4f88d6f9e96deaff8e272cf473.jpg",
+      "label": "data/processed/plates/labels/test/xemay731_jpg.rf.e2b2ec4f88d6f9e96deaff8e272cf473.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2485_jpg.rf.0ab0ec67f11d424a29cc56ba6aacf987.jpg",
+      "label": "data/processed/plates/labels/test/xemay2485_jpg.rf.0ab0ec67f11d424a29cc56ba6aacf987.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate244_jpg.rf.c7f7bb041ac093c9bcf54317ba72023d.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate244_jpg.rf.c7f7bb041ac093c9bcf54317ba72023d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay943_jpg.rf.ca3dcc09713f8eb9a6170cf2cce08be0.jpg",
+      "label": "data/processed/plates/labels/test/xemay943_jpg.rf.ca3dcc09713f8eb9a6170cf2cce08be0.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/00166578c691cd43_jpg.rf.6e069182acc1cdc8d631336f8358876f.jpg",
+      "label": "data/processed/plates/labels/test/00166578c691cd43_jpg.rf.6e069182acc1cdc8d631336f8358876f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen971_jpg.rf.09154d600f0afdfc562931bf180e8278.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen971_jpg.rf.09154d600f0afdfc562931bf180e8278.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay403_jpg.rf.5fd492ccc4993e75c3cbe7b671801b21.jpg",
+      "label": "data/processed/plates/labels/test/xemay403_jpg.rf.5fd492ccc4993e75c3cbe7b671801b21.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2374_jpg.rf.2841c35ec3905a22c907e7220e59e878.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2374_jpg.rf.2841c35ec3905a22c907e7220e59e878.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/rotatequandoi43_jpg.rf.4ba1d0693e49a4d741fe01a02be844f3.jpg",
+      "label": "data/processed/plates/labels/test/rotatequandoi43_jpg.rf.4ba1d0693e49a4d741fe01a02be844f3.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate933_jpg.rf.8aa8bc44598cdedb498e7c621b85f22d.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate933_jpg.rf.8aa8bc44598cdedb498e7c621b85f22d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2669_jpg.rf.13a628cf0cb98031fcbab1b19fa20844.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2669_jpg.rf.13a628cf0cb98031fcbab1b19fa20844.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2132_jpg.rf.89cb26f297dd838401b76172259e8d0d.jpg",
+      "label": "data/processed/plates/labels/test/xemay2132_jpg.rf.89cb26f297dd838401b76172259e8d0d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay175_jpg.rf.7a02217bbf7375f2abe308c1f0540281.jpg",
+      "label": "data/processed/plates/labels/test/xemay175_jpg.rf.7a02217bbf7375f2abe308c1f0540281.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1988_jpg.rf.6a7f15786bcca06703f0801555ae6e02.jpg",
+      "label": "data/processed/plates/labels/test/xemay1988_jpg.rf.6a7f15786bcca06703f0801555ae6e02.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2314_jpg.rf.3babf8ce194e19767c2ea6a4c123ab73.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2314_jpg.rf.3babf8ce194e19767c2ea6a4c123ab73.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2032_jpg.rf.7410d2ff22dada43ef1fe246aa7d0901.jpg",
+      "label": "data/processed/plates/labels/test/xemay2032_jpg.rf.7410d2ff22dada43ef1fe246aa7d0901.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen847_jpg.rf.ebf3abe39a18857d04aa6d3e36d2089f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen847_jpg.rf.ebf3abe39a18857d04aa6d3e36d2089f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2717_jpg.rf.f0c660161e96d9968dbccf41913ae906.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2717_jpg.rf.f0c660161e96d9968dbccf41913ae906.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2297_jpg.rf.8485dbf343a9a0c953d9896ac80fc29c.jpg",
+      "label": "data/processed/plates/labels/test/xemay2297_jpg.rf.8485dbf343a9a0c953d9896ac80fc29c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay249_jpg.rf.5358218e466bb846e2d7476acf0dc354.jpg",
+      "label": "data/processed/plates/labels/test/xemay249_jpg.rf.5358218e466bb846e2d7476acf0dc354.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/boderquandoi51_jpg.rf.c3da2f434fefa4724d0a152a3b2ab380.jpg",
+      "label": "data/processed/plates/labels/test/boderquandoi51_jpg.rf.c3da2f434fefa4724d0a152a3b2ab380.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/boderquandoi47_jpg.rf.cf04ae8ae34ec3a33c9fc3d57f2e86dc.jpg",
+      "label": "data/processed/plates/labels/test/boderquandoi47_jpg.rf.cf04ae8ae34ec3a33c9fc3d57f2e86dc.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2402_jpg.rf.07217ff4b4f6d50694c110dd6b86cad5.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2402_jpg.rf.07217ff4b4f6d50694c110dd6b86cad5.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/cropquandoi19_jpg.rf.d8384c51efb8872c8d914c858228895d.jpg",
+      "label": "data/processed/plates/labels/test/cropquandoi19_jpg.rf.d8384c51efb8872c8d914c858228895d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3599_jpg.rf.08330a9f756c104dc0a5f0fe4cc1c791.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3599_jpg.rf.08330a9f756c104dc0a5f0fe4cc1c791.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1293_jpg.rf.3a67068c7f39943d01b06b1395b6c2ba.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1293_jpg.rf.3a67068c7f39943d01b06b1395b6c2ba.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1996_jpg.rf.a85232adcd7532f76a224eb4105001a8.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1996_jpg.rf.a85232adcd7532f76a224eb4105001a8.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2064_jpg.rf.f9b7be92997ca59ece5236b4a81c3aa0.jpg",
+      "label": "data/processed/plates/labels/test/xemay2064_jpg.rf.f9b7be92997ca59ece5236b4a81c3aa0.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1446_jpg.rf.5e8400c8af94256219707b673c1d4adb.jpg",
+      "label": "data/processed/plates/labels/test/xemay1446_jpg.rf.5e8400c8af94256219707b673c1d4adb.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/00d90448dcea9140_jpg.rf.3a6c6e55b881ce09630e734cebc9ded8.jpg",
+      "label": "data/processed/plates/labels/test/00d90448dcea9140_jpg.rf.3a6c6e55b881ce09630e734cebc9ded8.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate259_jpg.rf.a577bc501b90f6f5faf71bcacc00ce2f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate259_jpg.rf.a577bc501b90f6f5faf71bcacc00ce2f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2179_jpg.rf.60f685bfabc582b203460ed28eb72b8e.jpg",
+      "label": "data/processed/plates/labels/test/xemay2179_jpg.rf.60f685bfabc582b203460ed28eb72b8e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay481_jpg.rf.a9ba7bb4fca515ec3b3bb657ebc00e77.jpg",
+      "label": "data/processed/plates/labels/test/xemay481_jpg.rf.a9ba7bb4fca515ec3b3bb657ebc00e77.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1466_jpg.rf.85f9c731cae150f70bd73ea24558f83c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1466_jpg.rf.85f9c731cae150f70bd73ea24558f83c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2932_jpg.rf.e1690e6c14ae75dbe44eb08c47c74b3f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2932_jpg.rf.e1690e6c14ae75dbe44eb08c47c74b3f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1645_jpg.rf.1944db09b7f99f3d44defbe5dd837ec1.jpg",
+      "label": "data/processed/plates/labels/test/xemay1645_jpg.rf.1944db09b7f99f3d44defbe5dd837ec1.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay991_jpg.rf.cc20add6d52c7bbd59d0a28fc1a8413b.jpg",
+      "label": "data/processed/plates/labels/test/xemay991_jpg.rf.cc20add6d52c7bbd59d0a28fc1a8413b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/0069ea8b00e4a8d7_jpg.rf.ec91af70b9d12895a362960cd6a9625b.jpg",
+      "label": "data/processed/plates/labels/test/0069ea8b00e4a8d7_jpg.rf.ec91af70b9d12895a362960cd6a9625b.txt",
+      "box_count": 6
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1594_jpg.rf.1b3708065126f3eb6b3a44a0be4b9f80.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1594_jpg.rf.1b3708065126f3eb6b3a44a0be4b9f80.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1373_jpg.rf.98d7d824669f42469d33ab2a9b4cf35f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1373_jpg.rf.98d7d824669f42469d33ab2a9b4cf35f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2222_jpg.rf.b6f55063e801c710e8e0501b3ce9f2cd.jpg",
+      "label": "data/processed/plates/labels/test/xemay2222_jpg.rf.b6f55063e801c710e8e0501b3ce9f2cd.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay363_jpg.rf.3113fc4392607cee14b62554cee6f142.jpg",
+      "label": "data/processed/plates/labels/test/xemay363_jpg.rf.3113fc4392607cee14b62554cee6f142.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate93_jpg.rf.024fc3820c8845d51b65c8bddcb76272.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate93_jpg.rf.024fc3820c8845d51b65c8bddcb76272.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay586_jpg.rf.979e4984b74cb3c60cf69dc4f131fbfb.jpg",
+      "label": "data/processed/plates/labels/test/xemay586_jpg.rf.979e4984b74cb3c60cf69dc4f131fbfb.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate57_jpg.rf.6d4a04d5255cc2703fa08cf575a6edd3.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate57_jpg.rf.6d4a04d5255cc2703fa08cf575a6edd3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3058_jpg.rf.a955855975e8bf5541b830d656b9da45.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3058_jpg.rf.a955855975e8bf5541b830d656b9da45.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2801_jpg.rf.cf897b3c50c9280a1a822653e5e366d3.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2801_jpg.rf.cf897b3c50c9280a1a822653e5e366d3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2097_jpg.rf.b81a391ec9fb671156a862f120250b44.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2097_jpg.rf.b81a391ec9fb671156a862f120250b44.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1619_jpg.rf.4ca49afa1e93f022b31305d29aa9bfb8.jpg",
+      "label": "data/processed/plates/labels/test/xemay1619_jpg.rf.4ca49afa1e93f022b31305d29aa9bfb8.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1839_jpg.rf.6101a475378b180456d502f20a1d8440.jpg",
+      "label": "data/processed/plates/labels/test/xemay1839_jpg.rf.6101a475378b180456d502f20a1d8440.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen431_jpg.rf.506432619121384fcc1b9470e22c4a41.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen431_jpg.rf.506432619121384fcc1b9470e22c4a41.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2215_jpg.rf.9dec2d82d9e7d1ca5522db5683514785.jpg",
+      "label": "data/processed/plates/labels/test/xemay2215_jpg.rf.9dec2d82d9e7d1ca5522db5683514785.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay382_jpg.rf.6c40e41a47095bdfbad37f4776ab662a.jpg",
+      "label": "data/processed/plates/labels/test/xemay382_jpg.rf.6c40e41a47095bdfbad37f4776ab662a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate22_jpg.rf.43f77ea42b6b05b2e60a345f53c29745.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate22_jpg.rf.43f77ea42b6b05b2e60a345f53c29745.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate804_jpg.rf.4071b4f0f55c5f0e774e72348122f59e.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate804_jpg.rf.4071b4f0f55c5f0e774e72348122f59e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3303_jpg.rf.b8f213e6e8518aaeb1ae04fb02b4f1fa.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3303_jpg.rf.b8f213e6e8518aaeb1ae04fb02b4f1fa.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1412_jpg.rf.28bf5cc95c7f1ddef5a9f53770be8710.jpg",
+      "label": "data/processed/plates/labels/test/xemay1412_jpg.rf.28bf5cc95c7f1ddef5a9f53770be8710.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate369_jpg.rf.9979837b91b8072099b6f1997c66c5a9.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate369_jpg.rf.9979837b91b8072099b6f1997c66c5a9.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/Cars360_png_jpg.rf.fee1c7e14ca3944429a2c0392d6a6bd6.jpg",
+      "label": "data/processed/plates/labels/test/Cars360_png_jpg.rf.fee1c7e14ca3944429a2c0392d6a6bd6.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen939_jpg.rf.294350a9ebabb527b627e34f09b9b01b.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen939_jpg.rf.294350a9ebabb527b627e34f09b9b01b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1240_jpg.rf.192fe067fcf6a01bc145ba4609fba340.jpg",
+      "label": "data/processed/plates/labels/test/xemay1240_jpg.rf.192fe067fcf6a01bc145ba4609fba340.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/boderquandoi62_jpg.rf.aa6152803e6c2ba655846e477358311b.jpg",
+      "label": "data/processed/plates/labels/test/boderquandoi62_jpg.rf.aa6152803e6c2ba655846e477358311b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate283_jpg.rf.c979d90face2e7e04d51ed492b4f2377.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate283_jpg.rf.c979d90face2e7e04d51ed492b4f2377.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/boderquandoi36_jpg.rf.e10fd142c03fa1baee12d2156cfb09f0.jpg",
+      "label": "data/processed/plates/labels/test/boderquandoi36_jpg.rf.e10fd142c03fa1baee12d2156cfb09f0.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/006017783a8beb66_jpg.rf.8b2aa9465a7461f5c336aa7e1c8cd36e.jpg",
+      "label": "data/processed/plates/labels/test/006017783a8beb66_jpg.rf.8b2aa9465a7461f5c336aa7e1c8cd36e.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate499_jpg.rf.6228538685ee0a1a9e9de9d6d4397bc2.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate499_jpg.rf.6228538685ee0a1a9e9de9d6d4397bc2.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2802_jpg.rf.36417d95986cf6073c3378a210debae4.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2802_jpg.rf.36417d95986cf6073c3378a210debae4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay124_jpg.rf.f965fcf3860eedf85703e4b935c7e8e5.jpg",
+      "label": "data/processed/plates/labels/test/xemay124_jpg.rf.f965fcf3860eedf85703e4b935c7e8e5.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2316_jpg.rf.8dabecdddbe2d716bcd173faa91c76c6.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2316_jpg.rf.8dabecdddbe2d716bcd173faa91c76c6.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen369_jpg.rf.177067872b12bce748fba3a658a24771.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen369_jpg.rf.177067872b12bce748fba3a658a24771.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3576_jpg.rf.0dd45fd47a1acae108d811c8a4f80735.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3576_jpg.rf.0dd45fd47a1acae108d811c8a4f80735.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2150_jpg.rf.706776bb6bdc802d394701ef6411aa54.jpg",
+      "label": "data/processed/plates/labels/test/xemay2150_jpg.rf.706776bb6bdc802d394701ef6411aa54.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3221_jpg.rf.165221d14f8948fcfabf57cc37b64291.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3221_jpg.rf.165221d14f8948fcfabf57cc37b64291.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2773_jpg.rf.254bc403e64e6bfb68dae74509883ef1.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2773_jpg.rf.254bc403e64e6bfb68dae74509883ef1.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2357_jpg.rf.2d817deb595b6bc2b35a2509e22ffb25.jpg",
+      "label": "data/processed/plates/labels/test/xemay2357_jpg.rf.2d817deb595b6bc2b35a2509e22ffb25.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1575_jpg.rf.ab05c3683713bbf6ff6866a0ab6f4373.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1575_jpg.rf.ab05c3683713bbf6ff6866a0ab6f4373.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate460_jpg.rf.227b300dd25af80484b84052781c32e5.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate460_jpg.rf.227b300dd25af80484b84052781c32e5.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1946_jpg.rf.98e139d60d162ade6dca3ae084e7429a.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1946_jpg.rf.98e139d60d162ade6dca3ae084e7429a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2231_jpg.rf.c19db2ddeaabfa9808a94c1e714326af.jpg",
+      "label": "data/processed/plates/labels/test/xemay2231_jpg.rf.c19db2ddeaabfa9808a94c1e714326af.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/rotatengoaigiao9_jpg.rf.c60cafe3081b73891d1aa0978f13127c.jpg",
+      "label": "data/processed/plates/labels/test/rotatengoaigiao9_jpg.rf.c60cafe3081b73891d1aa0978f13127c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/Cars115_png_jpg.rf.8bbdb4fe05a737eaf0c5899f6ec05032.jpg",
+      "label": "data/processed/plates/labels/test/Cars115_png_jpg.rf.8bbdb4fe05a737eaf0c5899f6ec05032.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3725_jpg.rf.c4636a702a14de0f39b822ce79e2178d.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3725_jpg.rf.c4636a702a14de0f39b822ce79e2178d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen685_jpg.rf.54b2f02004ad267be3648a9f691cc82a.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen685_jpg.rf.54b2f02004ad267be3648a9f691cc82a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay526_jpg.rf.166e5eac818feee2b23f0557d87e30cb.jpg",
+      "label": "data/processed/plates/labels/test/xemay526_jpg.rf.166e5eac818feee2b23f0557d87e30cb.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1600_jpg.rf.dfa4a8da707500ad5d571b91ec9caffa.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1600_jpg.rf.dfa4a8da707500ad5d571b91ec9caffa.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate577_jpg.rf.5bc9559cfadf8b26024bc3bfd161daf9.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate577_jpg.rf.5bc9559cfadf8b26024bc3bfd161daf9.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/01bfea359c5d1131_jpg.rf.5ade42a2af6324a4cf852fc0437cd599.jpg",
+      "label": "data/processed/plates/labels/test/01bfea359c5d1131_jpg.rf.5ade42a2af6324a4cf852fc0437cd599.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2910_jpg.rf.78b5a298eb1c8ffa27fe7f18a1fc448e.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2910_jpg.rf.78b5a298eb1c8ffa27fe7f18a1fc448e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2799_jpg.rf.5f2ee02758e7dfa4435394facfdb659c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2799_jpg.rf.5f2ee02758e7dfa4435394facfdb659c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate410_jpg.rf.71e5d914dcb9652cfee14d6726664063.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate410_jpg.rf.71e5d914dcb9652cfee14d6726664063.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1485_jpg.rf.b19526b4d7fcac739a4baa0b98694a39.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1485_jpg.rf.b19526b4d7fcac739a4baa0b98694a39.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2110_jpg.rf.42e20be03ad2a3e96cdb8fce22b62629.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2110_jpg.rf.42e20be03ad2a3e96cdb8fce22b62629.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3642_jpg.rf.9d1350f7a99bb45aca99dff246aba4d3.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3642_jpg.rf.9d1350f7a99bb45aca99dff246aba4d3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2482_jpg.rf.20539f1d5f865d0ba5b4087d99707f3b.jpg",
+      "label": "data/processed/plates/labels/test/xemay2482_jpg.rf.20539f1d5f865d0ba5b4087d99707f3b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3742_jpg.rf.66eb507c10d31e66e551c5d33385a82e.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3742_jpg.rf.66eb507c10d31e66e551c5d33385a82e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay969_jpg.rf.6f15b95042d1a027cb73763e360dad99.jpg",
+      "label": "data/processed/plates/labels/test/xemay969_jpg.rf.6f15b95042d1a027cb73763e360dad99.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1077_jpg.rf.2ec245332822c59ee9eb6b96dc869920.jpg",
+      "label": "data/processed/plates/labels/test/xemay1077_jpg.rf.2ec245332822c59ee9eb6b96dc869920.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen698_jpg.rf.933c4b3cdc12b4b944db54e946b369b3.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen698_jpg.rf.933c4b3cdc12b4b944db54e946b369b3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2142_jpg.rf.04edc8bc65afe49d7ff1cad031acb6ba.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2142_jpg.rf.04edc8bc65afe49d7ff1cad031acb6ba.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen754_jpg.rf.c3f403b6ecc169329cf1ec78b72dcee5.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen754_jpg.rf.c3f403b6ecc169329cf1ec78b72dcee5.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1963_jpg.rf.121e318718ed2acce02f709116ac9307.jpg",
+      "label": "data/processed/plates/labels/test/xemay1963_jpg.rf.121e318718ed2acce02f709116ac9307.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2779_jpg.rf.1491b0d3eee8d6413406409cf73fafca.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2779_jpg.rf.1491b0d3eee8d6413406409cf73fafca.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2354_jpg.rf.5423706dbe28ae53c11b77fc6e1c218c.jpg",
+      "label": "data/processed/plates/labels/test/xemay2354_jpg.rf.5423706dbe28ae53c11b77fc6e1c218c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1322_jpg.rf.b1aeadad27cc80a8f67722f2437b3c37.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1322_jpg.rf.b1aeadad27cc80a8f67722f2437b3c37.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1624_jpg.rf.fecab131f1308ab2556a2747f84981a5.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1624_jpg.rf.fecab131f1308ab2556a2747f84981a5.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/01121f7b33853547_jpg.rf.716ccbca6e28ca4958cd9efc4302db4a.jpg",
+      "label": "data/processed/plates/labels/test/01121f7b33853547_jpg.rf.716ccbca6e28ca4958cd9efc4302db4a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2976_jpg.rf.c91496717e30eaee30d58c9a3d50d992.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2976_jpg.rf.c91496717e30eaee30d58c9a3d50d992.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2605_jpg.rf.815ea5c7c4886067bd409f077726322f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2605_jpg.rf.815ea5c7c4886067bd409f077726322f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/Cars337_png_jpg.rf.f80962104dff26bf9026bf7eaa348cf8.jpg",
+      "label": "data/processed/plates/labels/test/Cars337_png_jpg.rf.f80962104dff26bf9026bf7eaa348cf8.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1920_jpg.rf.df8bfb57d0c7a8cebf9c863056f7adca.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1920_jpg.rf.df8bfb57d0c7a8cebf9c863056f7adca.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3758_jpg.rf.33d859cd70b88eb1c0f94239c42c781f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3758_jpg.rf.33d859cd70b88eb1c0f94239c42c781f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2361_jpg.rf.6969a0beb979bbddc3ececac91f03c55.jpg",
+      "label": "data/processed/plates/labels/test/xemay2361_jpg.rf.6969a0beb979bbddc3ececac91f03c55.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay40_jpg.rf.4f0c051a18808a3f374fcccfab79755f.jpg",
+      "label": "data/processed/plates/labels/test/xemay40_jpg.rf.4f0c051a18808a3f374fcccfab79755f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2249_jpg.rf.a980bd9bbaa1291970bc83d5050d3275.jpg",
+      "label": "data/processed/plates/labels/test/xemay2249_jpg.rf.a980bd9bbaa1291970bc83d5050d3275.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2917_jpg.rf.0a1036097d1bbd194396842493155de9.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2917_jpg.rf.0a1036097d1bbd194396842493155de9.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/rotatequandoi49_jpg.rf.bec1bf014ce966edf5638c744321700e.jpg",
+      "label": "data/processed/plates/labels/test/rotatequandoi49_jpg.rf.bec1bf014ce966edf5638c744321700e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1958_jpg.rf.57b084e74ba62bc1c4ab6f06036d98a7.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1958_jpg.rf.57b084e74ba62bc1c4ab6f06036d98a7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3831_jpg.rf.c33ccdf9678408e41c85050e2281767e.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3831_jpg.rf.c33ccdf9678408e41c85050e2281767e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1500_jpg.rf.76366a4410c65834849503098d21c070.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1500_jpg.rf.76366a4410c65834849503098d21c070.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay69_jpg.rf.c949369082ba7357dc1023a110a1cbcc.jpg",
+      "label": "data/processed/plates/labels/test/xemay69_jpg.rf.c949369082ba7357dc1023a110a1cbcc.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate87_jpg.rf.74b3451c25be45c97c95606680d16512.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate87_jpg.rf.74b3451c25be45c97c95606680d16512.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate741_jpg.rf.6167852a52fef35e9452c3797852e9fe.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate741_jpg.rf.6167852a52fef35e9452c3797852e9fe.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay521_jpg.rf.bc7c023f647a31583227402b4ab6d0b2.jpg",
+      "label": "data/processed/plates/labels/test/xemay521_jpg.rf.bc7c023f647a31583227402b4ab6d0b2.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3085_jpg.rf.3f5779b9218dba1965ad6a4314e8a322.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3085_jpg.rf.3f5779b9218dba1965ad6a4314e8a322.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen830_jpg.rf.9acff9cc3a3a3742dc4bd96486d4bb0f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen830_jpg.rf.9acff9cc3a3a3742dc4bd96486d4bb0f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1873_jpg.rf.8976bc8c255c79a41c6412bff69534e1.jpg",
+      "label": "data/processed/plates/labels/test/xemay1873_jpg.rf.8976bc8c255c79a41c6412bff69534e1.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2604_jpg.rf.5d28bc4d1ae271dc29cc31d6cfd0f9a7.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2604_jpg.rf.5d28bc4d1ae271dc29cc31d6cfd0f9a7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/02855802b0710e43_jpg.rf.bbef3e55642f9566c2b202d6cce4bd28.jpg",
+      "label": "data/processed/plates/labels/test/02855802b0710e43_jpg.rf.bbef3e55642f9566c2b202d6cce4bd28.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen370_jpg.rf.d62a920aa0098b6583a8fccf87081b88.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen370_jpg.rf.d62a920aa0098b6583a8fccf87081b88.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3498_jpg.rf.2bb8eb80de12a324988d22a681b5a5db.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3498_jpg.rf.2bb8eb80de12a324988d22a681b5a5db.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate666_jpg.rf.8b762f8622dded64360cb6bc04bcd77b.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate666_jpg.rf.8b762f8622dded64360cb6bc04bcd77b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2609_jpg.rf.4e09004078edd5af9d4fc89dfcca8ebf.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2609_jpg.rf.4e09004078edd5af9d4fc89dfcca8ebf.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate332_jpg.rf.3c3b345ba03f0efb88edbd5cbeed096b.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate332_jpg.rf.3c3b345ba03f0efb88edbd5cbeed096b.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/image_0014.jpg",
+      "label": "data/processed/plates/labels/test/image_0014.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1249_jpg.rf.4f94398600fd3221e2528074ead774bd.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1249_jpg.rf.4f94398600fd3221e2528074ead774bd.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1242_jpg.rf.adbc4965d5c5126511009a9de92e53b1.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1242_jpg.rf.adbc4965d5c5126511009a9de92e53b1.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/boderquandoi22_jpg.rf.07bdfdd8b711422820b68b7dbc2f4c8c.jpg",
+      "label": "data/processed/plates/labels/test/boderquandoi22_jpg.rf.07bdfdd8b711422820b68b7dbc2f4c8c.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen150_jpg.rf.dd3630b380ff03d0a6fac04495cc7e6c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen150_jpg.rf.dd3630b380ff03d0a6fac04495cc7e6c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2954_jpg.rf.9c734cf05796071b8d41d02b7cbf54d7.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2954_jpg.rf.9c734cf05796071b8d41d02b7cbf54d7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/009fcce3b5493593_jpg.rf.d4b9a4869d0d50338e27e91422a0f256.jpg",
+      "label": "data/processed/plates/labels/test/009fcce3b5493593_jpg.rf.d4b9a4869d0d50338e27e91422a0f256.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay359_jpg.rf.617a2e3820db2696051b77d03f9086b3.jpg",
+      "label": "data/processed/plates/labels/test/xemay359_jpg.rf.617a2e3820db2696051b77d03f9086b3.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/Cars279_png_jpg.rf.299f883ebd98637e142aaa643aeac1bc.jpg",
+      "label": "data/processed/plates/labels/test/Cars279_png_jpg.rf.299f883ebd98637e142aaa643aeac1bc.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate816_jpg.rf.1a50798274e5d1146355c090416cf8a6.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate816_jpg.rf.1a50798274e5d1146355c090416cf8a6.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3524_jpg.rf.3355420d78b42c73616c510b506c9984.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3524_jpg.rf.3355420d78b42c73616c510b506c9984.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2457_jpg.rf.951725e0ef57c06f9e88bc1f67818166.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2457_jpg.rf.951725e0ef57c06f9e88bc1f67818166.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen932_jpg.rf.0050f60b590a185e4177396ef50d8f8a.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen932_jpg.rf.0050f60b590a185e4177396ef50d8f8a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1415_jpg.rf.64ff69b75b1a99c3a76da3d0c5b6ae08.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1415_jpg.rf.64ff69b75b1a99c3a76da3d0c5b6ae08.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen656_jpg.rf.0c8e1fb890237572cd4f7221b499861f.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen656_jpg.rf.0c8e1fb890237572cd4f7221b499861f.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2234_jpg.rf.ee7110247840d8d3bbfef150312f4bba.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2234_jpg.rf.ee7110247840d8d3bbfef150312f4bba.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate801_jpg.rf.9e69116293668d022b3e096d5f7ac112.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate801_jpg.rf.9e69116293668d022b3e096d5f7ac112.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay1675_jpg.rf.9bc808f0aa20240fa5a329f536cc6ae0.jpg",
+      "label": "data/processed/plates/labels/test/xemay1675_jpg.rf.9bc808f0aa20240fa5a329f536cc6ae0.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3866_jpg.rf.74cd483493257a7da085dc0460b97350.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3866_jpg.rf.74cd483493257a7da085dc0460b97350.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen137_jpg.rf.6341aa810116fc0a3d80f84dd69edd74.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen137_jpg.rf.6341aa810116fc0a3d80f84dd69edd74.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3424_jpg.rf.65b8cf5b3f67e1879866ee0bec2ae521.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3424_jpg.rf.65b8cf5b3f67e1879866ee0bec2ae521.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3872_jpg.rf.d5f1e9bdbd2f9e5ffcb0569fb4605c30.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3872_jpg.rf.d5f1e9bdbd2f9e5ffcb0569fb4605c30.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1863_jpg.rf.0943df0fe683fcf63e57d200682f72c7.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1863_jpg.rf.0943df0fe683fcf63e57d200682f72c7.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen83_jpg.rf.730e779cd8d4802ddd4eb3f72cc87c46.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen83_jpg.rf.730e779cd8d4802ddd4eb3f72cc87c46.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate31_jpg.rf.fa4bf6b875e496cde50089ad01d57335.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate31_jpg.rf.fa4bf6b875e496cde50089ad01d57335.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2242_jpg.rf.3957a8e61b1b3b74811ebc8a8282e52c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2242_jpg.rf.3957a8e61b1b3b74811ebc8a8282e52c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate199_jpg.rf.273def49eb63b5aee394f08ea5dcff20.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate199_jpg.rf.273def49eb63b5aee394f08ea5dcff20.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1959_jpg.rf.7959705335a060ef12fe5c2888e2cee4.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1959_jpg.rf.7959705335a060ef12fe5c2888e2cee4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen1385_jpg.rf.38a651f350ccee00d5f94982c220a50e.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen1385_jpg.rf.38a651f350ccee00d5f94982c220a50e.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/brightnessquandoi96_jpg.rf.84995ee429672f3b6931000a94e33e3b.jpg",
+      "label": "data/processed/plates/labels/test/brightnessquandoi96_jpg.rf.84995ee429672f3b6931000a94e33e3b.txt",
+      "box_count": 2
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen3441_jpg.rf.9c379544be1a4b9bbe508613dfbe8c29.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen3441_jpg.rf.9c379544be1a4b9bbe508613dfbe8c29.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemayBigPlate153_jpg.rf.a3d16f2d610375f5299e79ea39f4510a.jpg",
+      "label": "data/processed/plates/labels/test/xemayBigPlate153_jpg.rf.a3d16f2d610375f5299e79ea39f4510a.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/boderngoaigiao9_jpg.rf.ae849f242e9ccae3ad31f7548e4578be.jpg",
+      "label": "data/processed/plates/labels/test/boderngoaigiao9_jpg.rf.ae849f242e9ccae3ad31f7548e4578be.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/xemay2042_jpg.rf.39acaeca02dd861e9642f39dcaf880b4.jpg",
+      "label": "data/processed/plates/labels/test/xemay2042_jpg.rf.39acaeca02dd861e9642f39dcaf880b4.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlate916_jpg.rf.642c03ec15feaa000003274eed3e6a1c.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlate916_jpg.rf.642c03ec15feaa000003274eed3e6a1c.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen175_jpg.rf.7a87114474916d42c6f5de984349a16d.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen175_jpg.rf.7a87114474916d42c6f5de984349a16d.txt",
+      "box_count": 1
+    },
+    {
+      "image": "data/processed/plates/images/test/CarLongPlateGen2358_jpg.rf.19b78cd5a64409d6ec1ba3ce03f1ada6.jpg",
+      "label": "data/processed/plates/labels/test/CarLongPlateGen2358_jpg.rf.19b78cd5a64409d6ec1ba3ce03f1ada6.txt",
+      "box_count": 1
+    }
+  ],
+  "updated_at": "2026-10-12T20:41:40.787082"
+}

@@ -1,0 +1,64 @@
+{
+  "audit_timestamp": "2026-10-12T21:36:23.720976",
+  "vehicles": {
+    "source": "COCO 2017 (val2017 base + targeted train2017 high-recall expansion)",
+    "splits": {
+      "train": {
+        "images": 1657,
+        "instances": {
+          "bus": 766,
+          "car": 3580,
+          "truck": 1284,
+          "motorcycle": 1240
+        },
+        "total_instances": 6870
+      },
+      "val": {
+        "images": 119,
+        "instances": {
+          "truck": 79,
+          "car": 286,
+          "bus": 33,
+          "motorcycle": 38
+        },
+        "total_instances": 436
+      },
+      "test": {
+        "images": 120,
+        "instances": {
+          "car": 335,
+          "bus": 55,
+          "truck": 60,
+          "motorcycle": 59
+        },
+        "total_instances": 509
+      }
+    },
+    "leakage": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "invalid_boxes": 0
+  },
+  "parking_occupancy": {
+    "source": "CNRPark+EXT (ODbL v1.0)",
+    "patches_dir": "data/processed/parking_occupancy",
+    "manifest": "data/splits/parking_occupancy_manifest.json"
+  },
+  "parking_geometry": {
+    "source": "PKLot (UFPR / Voxel51, CC BY 4.0)",
+    "frames_dir": "data/raw/pklot/full_frames",
+    "calibration_file": "data/processed/parking_slots/pklot_pucpr_calibration.json"
+  },
+  "blocked_datasets": {
+    "bdd100k": {
+      "status": "BLOCKED_BY_ACCESS_CONTROLS",
+      "reason": "Requires authenticated research account registration on bdd-data.berkeley.edu; direct unauthenticated downloads return HTTP 403."
+    },
+    "ua_detrac": {
+      "status": "BLOCKED_BY_LICENSE_CONTROLS",
+      "reason": "Requires academic license agreement submission and institutional login credentials on RIT/Albany portal."
+    }
+  }
+}

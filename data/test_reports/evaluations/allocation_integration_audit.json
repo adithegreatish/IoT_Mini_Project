@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-10-12T23:21:19Z",
+  "end_to_end_workflow": {
+    "synchronized_slots": 99,
+    "inference_occupied_count": 0,
+    "inference_free_count": 99,
+    "occupied_slot_rejection_passed": true,
+    "unknown_slot_rejection_passed": true,
+    "valid_allocation_receipt": {
+      "success": true,
+      "reservation_code": "RES-C2077C4F",
+      "slot_id": "PK-A03",
+      "slot_label": "Bay A3",
+      "zone": "Row-A",
+      "level": "Ground",
+      "slot_type": "standard",
+      "reserved_at": "2026-10-12T23:21:19.188187",
+      "expires_at": "2026-10-13T00:06:19.188187"
+    },
+    "double_allocation_prevention_passed": true,
+    "slot_release_passed": true,
+    "availability_metrics": {
+      "total_slots": 99,
+      "physical_free": 99,
+      "physical_occupied": 0,
+      "allocatable_vacant": 99
+    }
+  },
+  "concurrency_stress_test": {
+    "threads_simulated": 10,
+    "successful_reservations": 1,
+    "rejected_conflicts": 9,
+    "unhandled_errors": 0,
+    "double_allocations_detected": 0,
+    "concurrency_safety_verified": true
+  },
+  "database_persistence": {
+    "reservation_code": "RES-00798677",
+    "active_plate": "TN 01 ZZ 9999",
+    "audit_entries_persisted": 1,
+    "persists_across_restart": true
+  }
+}

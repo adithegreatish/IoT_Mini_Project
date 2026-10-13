@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-10-12T22:00:19.392904",
+  "model_id": "vehicle-yolo-v8n",
+  "architecture": "yolov8n",
+  "epochs": 35,
+  "batch_size": 16,
+  "imgsz": 640,
+  "device": "0",
+  "duration_sec": 974.54,
+  "weights": {
+    "checkpoint_pt": "models/vehicle_detector.pt",
+    "checkpoint_sha256": "0f8c08dc8f4aff7f0b52582f38677c016b8caedf73ab4b39c182046a086e6089",
+    "onnx": "models/vehicle_detector.onnx",
+    "onnx_sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc"
+  },
+  "metrics": {
+    "mAP50": 0.5611,
+    "mAP50_95": 0.3938,
+    "precision": 0.6854,
+    "recall": 0.5145,
+    "training_duration_sec": 974.54
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "ufpr04_spots": {
+    "total_images": 3791,
+    "total_spot_annotations": 137217,
+    "unique_dates": 30,
+    "occupancy": {
+      "empty": 75152,
+      "occupied": 62065
+    },
+    "climate_image_distribution": {
+      "3": 285,
+      "2": 2098,
+      "1": 1408
+    },
+    "json_path": "data/raw/pklot/annotations_metapklot/ufpr04_spots.json"
+  },
+  "ufpr05_spots": {
+    "total_images": 4135,
+    "total_spot_annotations": 190210,
+    "unique_dates": 33,
+    "occupancy": {
+      "empty": 80839,
+      "occupied": 109371
+    },
+    "climate_image_distribution": {
+      "2": 2484,
+      "1": 1425,
+      "3": 226
+    },
+    "json_path": "data/raw/pklot/annotations_metapklot/ufpr05_spots.json"
+  },
+  "pucpr_spots": {
+    "total_images": 4474,
+    "total_spot_annotations": 872430,
+    "unique_dates": 37,
+    "occupancy": {
+      "empty": 500280,
+      "occupied": 372150
+    },
+    "climate_image_distribution": {
+      "2": 2315,
+      "1": 1328,
+      "3": 831
+    },
+    "json_path": "data/raw/pklot/annotations_metapklot/pucpr_spots.json"
+  }
+}

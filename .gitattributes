@@ -1,0 +1,26 @@
+# ==============================================================================
+# Git Attributes & Git LFS Configuration
+# ==============================================================================
+
+# Machine learning model artifacts and weights tracked via Git LFS
+*.onnx filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+*.bin filter=lfs diff=lfs merge=lfs -text
+
+# Standalone deployment archive tracked via Git LFS
+*.zip filter=lfs diff=lfs merge=lfs -text
+
+# Large research split manifest (>50MB) tracked via Git LFS
+data/splits/cnrpark_full_manifest.json filter=lfs diff=lfs merge=lfs -text
+
+# Enforce consistent Unix LF line endings for scripts, configs, and systemd units
+*.sh text eol=lf
+*.service text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.toml text eol=lf

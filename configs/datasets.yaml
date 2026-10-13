@@ -1,0 +1,42 @@
+datasets:
+  candidate_sources:
+    pklot:
+      name: "PKLot"
+      url: "https://web.inf.ufpr.br/luizoliveira/research-interests/pklot/"
+      purpose: "Parking occupancy polygon baseline"
+      format: "XML / polygon coordinates"
+      verified: false
+    cnrpark:
+      name: "CNRPark+EXT"
+      url: "https://cnrpark.it/"
+      purpose: "Parking patch classification under diverse weather"
+      format: "Image patches"
+      verified: false
+    coco:
+      name: "COCO Vehicle Subset"
+      url: "https://cocodataset.org/"
+      purpose: "Pretrained vehicle bounding boxes (cars, bikes, buses, trucks)"
+      format: "COCO JSON"
+      verified: true
+    idd:
+      name: "India Driving Dataset (IDD)"
+      url: "https://idd.insaan.iiit.ac.in/"
+      purpose: "Indian road-scene diversity & two-wheeler representation"
+      format: "IDD JSON"
+      verified: false
+    indian_plates:
+      name: "Indian License Plates with Labels"
+      url: "https://www.kaggle.com/datasets/kedarsai/indian-license-plates-with-labels"
+      purpose: "Indian license plate localization bounding boxes"
+      format: "Pascal VOC / CSV"
+      verified: false
+
+local_capture:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  annotations_dir: "data/annotations"
+  splits_dir: "data/splits"
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  group_by_session: true  # Prevent temporal leakage across adjacent frames

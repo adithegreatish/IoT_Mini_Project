@@ -1,0 +1,3473 @@
+{
+  "timestamp": "2026-10-12T23:21:24Z",
+  "visualization": {
+    "image_size": "1280x720",
+    "total_calibrated_slots": 99,
+    "output_path": "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\pklot_overlay_visualization.jpg",
+    "slot_bboxes": {
+      "PK-A01": [
+        278,
+        184,
+        46,
+        46
+      ],
+      "PK-A02": [
+        310,
+        184,
+        45,
+        49
+      ],
+      "PK-A03": [
+        344,
+        184,
+        44,
+        49
+      ],
+      "PK-A04": [
+        375,
+        184,
+        46,
+        48
+      ],
+      "PK-A05": [
+        408,
+        186,
+        44,
+        46
+      ],
+      "PK-A06": [
+        461,
+        184,
+        43,
+        46
+      ],
+      "PK-A07": [
+        499,
+        185,
+        37,
+        45
+      ],
+      "PK-A08": [
+        534,
+        185,
+        34,
+        47
+      ],
+      "PK-A09": [
+        564,
+        184,
+        36,
+        46
+      ],
+      "PK-A10": [
+        598,
+        185,
+        36,
+        45
+      ],
+      "PK-A11": [
+        631,
+        186,
+        33,
+        41
+      ],
+      "PK-A12": [
+        664,
+        185,
+        36,
+        43
+      ],
+      "PK-A13": [
+        701,
+        184,
+        33,
+        38
+      ],
+      "PK-A14": [
+        734,
+        182,
+        38,
+        44
+      ],
+      "PK-A15": [
+        775,
+        182,
+        33,
+        44
+      ],
+      "PK-A16": [
+        807,
+        183,
+        35,
+        39
+      ],
+      "PK-A17": [
+        844,
+        183,
+        35,
+        39
+      ],
+      "PK-A18": [
+        880,
+        182,
+        35,
+        38
+      ],
+      "PK-A19": [
+        916,
+        182,
+        41,
+        40
+      ],
+      "PK-A20": [
+        956,
+        176,
+        37,
+        46
+      ],
+      "PK-A21": [
+        987,
+        180,
+        40,
+        40
+      ],
+      "PK-A22": [
+        1021,
+        175,
+        48,
+        46
+      ],
+      "PK-B01": [
+        226,
+        266,
+        55,
+        45
+      ],
+      "PK-B02": [
+        258,
+        265,
+        54,
+        46
+      ],
+      "PK-B03": [
+        295,
+        265,
+        49,
+        47
+      ],
+      "PK-B04": [
+        334,
+        267,
+        53,
+        44
+      ],
+      "PK-B05": [
+        376,
+        267,
+        49,
+        45
+      ],
+      "PK-B06": [
+        425,
+        268,
+        47,
+        43
+      ],
+      "PK-B07": [
+        457,
+        266,
+        47,
+        45
+      ],
+      "PK-B08": [
+        503,
+        264,
+        44,
+        43
+      ],
+      "PK-B09": [
+        536,
+        265,
+        44,
+        43
+      ],
+      "PK-B10": [
+        573,
+        263,
+        45,
+        46
+      ],
+      "PK-B11": [
+        614,
+        263,
+        41,
+        45
+      ],
+      "PK-B12": [
+        647,
+        264,
+        42,
+        44
+      ],
+      "PK-B13": [
+        689,
+        259,
+        39,
+        51
+      ],
+      "PK-B14": [
+        728,
+        264,
+        38,
+        44
+      ],
+      "PK-B15": [
+        763,
+        259,
+        45,
+        48
+      ],
+      "PK-B16": [
+        808,
+        254,
+        41,
+        53
+      ],
+      "PK-B17": [
+        849,
+        256,
+        40,
+        55
+      ],
+      "PK-B18": [
+        884,
+        254,
+        47,
+        54
+      ],
+      "PK-B19": [
+        928,
+        256,
+        41,
+        52
+      ],
+      "PK-B20": [
+        966,
+        255,
+        49,
+        55
+      ],
+      "PK-B21": [
+        1010,
+        256,
+        44,
+        52
+      ],
+      "PK-B22": [
+        1051,
+        257,
+        47,
+        50
+      ],
+      "PK-C01": [
+        201,
+        303,
+        48,
+        59
+      ],
+      "PK-C02": [
+        233,
+        304,
+        58,
+        60
+      ],
+      "PK-C03": [
+        272,
+        301,
+        51,
+        61
+      ],
+      "PK-C04": [
+        306,
+        308,
+        54,
+        57
+      ],
+      "PK-C05": [
+        349,
+        306,
+        48,
+        59
+      ],
+      "PK-C06": [
+        409,
+        307,
+        41,
+        61
+      ],
+      "PK-C07": [
+        443,
+        306,
+        55,
+        60
+      ],
+      "PK-C08": [
+        481,
+        309,
+        49,
+        56
+      ],
+      "PK-C09": [
+        523,
+        303,
+        49,
+        62
+      ],
+      "PK-C10": [
+        564,
+        310,
+        41,
+        55
+      ],
+      "PK-C11": [
+        605,
+        310,
+        44,
+        55
+      ],
+      "PK-C12": [
+        642,
+        311,
+        44,
+        53
+      ],
+      "PK-C13": [
+        690,
+        310,
+        34,
+        52
+      ],
+      "PK-C14": [
+        724,
+        310,
+        42,
+        53
+      ],
+      "PK-C15": [
+        766,
+        310,
+        38,
+        53
+      ],
+      "PK-C16": [
+        807,
+        308,
+        42,
+        53
+      ],
+      "PK-C17": [
+        850,
+        310,
+        42,
+        53
+      ],
+      "PK-C18": [
+        888,
+        310,
+        47,
+        49
+      ],
+      "PK-C19": [
+        934,
+        309,
+        43,
+        54
+      ],
+      "PK-C20": [
+        972,
+        307,
+        50,
+        54
+      ],
+      "PK-C21": [
+        1016,
+        310,
+        47,
+        51
+      ],
+      "PK-C22": [
+        1058,
+        303,
+        55,
+        55
+      ],
+      "PK-D01": [
+        41,
+        500,
+        69,
+        55
+      ],
+      "PK-D02": [
+        87,
+        499,
+        71,
+        63
+      ],
+      "PK-D03": [
+        141,
+        500,
+        70,
+        63
+      ],
+      "PK-D04": [
+        164,
+        417,
+        59,
+        56
+      ],
+      "PK-D05": [
+        188,
+        499,
+        77,
+        65
+      ],
+      "PK-D06": [
+        210,
+        417,
+        59,
+        57
+      ],
+      "PK-D07": [
+        253,
+        416,
+        54,
+        57
+      ],
+      "PK-D08": [
+        246,
+        497,
+        70,
+        67
+      ],
+      "PK-D09": [
+        295,
+        420,
+        55,
+        55
+      ],
+      "PK-D10": [
+        295,
+        499,
+        69,
+        64
+      ],
+      "PK-D11": [
+        350,
+        500,
+        69,
+        59
+      ],
+      "PK-D12": [
+        361,
+        419,
+        52,
+        53
+      ],
+      "PK-D13": [
+        404,
+        416,
+        53,
+        57
+      ],
+      "PK-D14": [
+        407,
+        503,
+        69,
+        59
+      ],
+      "PK-D15": [
+        445,
+        416,
+        64,
+        62
+      ],
+      "PK-D16": [
+        461,
+        507,
+        66,
+        61
+      ],
+      "PK-D17": [
+        492,
+        418,
+        54,
+        57
+      ],
+      "PK-D18": [
+        518,
+        503,
+        63,
+        60
+      ],
+      "PK-D19": [
+        535,
+        419,
+        54,
+        60
+      ],
+      "PK-D20": [
+        576,
+        505,
+        53,
+        63
+      ],
+      "PK-D21": [
+        579,
+        418,
+        48,
+        60
+      ],
+      "PK-D22": [
+        625,
+        418,
+        48,
+        64
+      ],
+      "PK-D23": [
+        624,
+        507,
+        60,
+        64
+      ],
+      "PK-D24": [
+        669,
+        418,
+        49,
+        57
+      ],
+      "PK-D25": [
+        717,
+        417,
+        48,
+        63
+      ],
+      "PK-D26": [
+        763,
+        417,
+        46,
+        59
+      ],
+      "PK-D27": [
+        811,
+        420,
+        47,
+        61
+      ],
+      "PK-D28": [
+        855,
+        421,
+        55,
+        61
+      ],
+      "PK-D29": [
+        903,
+        420,
+        55,
+        61
+      ],
+      "PK-D30": [
+        951,
+        418,
+        54,
+        64
+      ],
+      "PK-D31": [
+        996,
+        418,
+        58,
+        67
+      ],
+      "PK-D32": [
+        1044,
+        417,
+        54,
+        65
+      ],
+      "PK-D33": [
+        1089,
+        416,
+        62,
+        64
+      ]
+    }
+  },
+  "mode_b_candidates_generated": 1,
+  "unseen_camera_evaluation": {
+    "unseen_camera_id": "pklot_pucpr_cam01",
+    "total_frames_evaluated": 4,
+    "total_slot_patch_evaluations": 396,
+    "prediction_distribution": {
+      "occupied": 280,
+      "free": 116
+    },
+    "metrics_against_ground_truth": {
+      "accuracy": 0.8333,
+      "ground_truth_distribution": {
+        "occupied": 136,
+        "free": 62
+      },
+      "confusion_matrix": {
+        "tp": 122,
+        "tn": 43,
+        "fp": 19,
+        "fn": 14
+      },
+      "free_metrics": {
+        "precision": 0.7544,
+        "recall": 0.6935,
+        "f1": 0.7227,
+        "correct_free_bays": 43
+      },
+      "occupied_metrics": {
+        "precision": 0.8652,
+        "recall": 0.8971,
+        "f1": 0.8809,
+        "correct_occupied_bays": 122
+      },
+      "false_free_bays": 14,
+      "false_free_rate": 0.1029
+    },
+    "frame_details": [
+      {
+        "frame": "2012-09-11_15_16_58.jpg",
+        "slots_evaluated": 99,
+        "occupied_count": 68,
+        "free_count": 31,
+        "slots": [
+          {
+            "slot_id": "PK-A01",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9145,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A02",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9057,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A03",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.5803,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A04",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.979,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A05",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9861,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A06",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.98,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A07",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9982,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A08",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9968,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A09",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9938,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A10",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9965,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A11",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.998,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A12",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.7775,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A13",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.983,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A14",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9977,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A15",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9974,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A16",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9979,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A17",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9157,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A18",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9974,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A19",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9294,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A20",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9956,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A21",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.7161,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A22",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9922,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B01",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8811,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B02",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9378,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B03",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9923,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B04",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8726,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B05",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9825,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B06",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9383,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B07",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9569,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B08",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9656,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B09",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9619,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B10",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9775,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B11",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9981,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B12",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9966,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B13",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9581,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B14",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9823,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B15",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.868,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B16",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9962,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B17",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9614,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B18",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9859,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B19",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9998,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B20",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9708,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B21",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9464,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B22",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9895,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-C01",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9156,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C02",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9914,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C03",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9882,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C04",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.8882,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C05",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9965,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C06",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.999,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C07",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.8864,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C08",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9903,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C09",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9883,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C10",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9862,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C11",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9992,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C12",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9697,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C13",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.8483,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C14",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9414,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C15",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9999,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C16",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9218,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C17",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9097,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C18",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9596,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C19",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9957,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C20",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9917,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C21",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9842,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C22",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9888,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D01",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9307,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D02",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.6396,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D03",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.993,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D04",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9856,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D05",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8674,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D06",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.999,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D07",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.7291,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D08",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8576,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D09",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 1.0,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D10",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.8304,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D11",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9692,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D12",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D13",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D14",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.8,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D15",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9962,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D16",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.7093,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D17",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9821,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D18",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.8965,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D19",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9955,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D20",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.7741,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D21",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9902,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D22",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D23",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.6519,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D24",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9995,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D25",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9995,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D26",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9939,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D27",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.997,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D28",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9976,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D29",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9995,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D30",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9996,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D31",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9996,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D32",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9966,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D33",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9963,
+            "gt_class": 1,
+            "gt_occupied": true
+          }
+        ]
+      },
+      {
+        "frame": "2012-09-11_15_27_08.jpg",
+        "slots_evaluated": 99,
+        "occupied_count": 68,
+        "free_count": 31,
+        "slots": [
+          {
+            "slot_id": "PK-A01",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9531
+          },
+          {
+            "slot_id": "PK-A02",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9115
+          },
+          {
+            "slot_id": "PK-A03",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.7806
+          },
+          {
+            "slot_id": "PK-A04",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9914
+          },
+          {
+            "slot_id": "PK-A05",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9886
+          },
+          {
+            "slot_id": "PK-A06",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9659
+          },
+          {
+            "slot_id": "PK-A07",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9986
+          },
+          {
+            "slot_id": "PK-A08",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9978
+          },
+          {
+            "slot_id": "PK-A09",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9957
+          },
+          {
+            "slot_id": "PK-A10",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9978
+          },
+          {
+            "slot_id": "PK-A11",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9984
+          },
+          {
+            "slot_id": "PK-A12",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.8108
+          },
+          {
+            "slot_id": "PK-A13",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.986
+          },
+          {
+            "slot_id": "PK-A14",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9982
+          },
+          {
+            "slot_id": "PK-A15",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9986
+          },
+          {
+            "slot_id": "PK-A16",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9984
+          },
+          {
+            "slot_id": "PK-A17",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.921
+          },
+          {
+            "slot_id": "PK-A18",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9973
+          },
+          {
+            "slot_id": "PK-A19",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.928
+          },
+          {
+            "slot_id": "PK-A20",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9971
+          },
+          {
+            "slot_id": "PK-A21",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.8726
+          },
+          {
+            "slot_id": "PK-A22",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9893
+          },
+          {
+            "slot_id": "PK-B01",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8983
+          },
+          {
+            "slot_id": "PK-B02",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9382
+          },
+          {
+            "slot_id": "PK-B03",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9975
+          },
+          {
+            "slot_id": "PK-B04",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.87
+          },
+          {
+            "slot_id": "PK-B05",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9829
+          },
+          {
+            "slot_id": "PK-B06",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8798
+          },
+          {
+            "slot_id": "PK-B07",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9852
+          },
+          {
+            "slot_id": "PK-B08",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9884
+          },
+          {
+            "slot_id": "PK-B09",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9142
+          },
+          {
+            "slot_id": "PK-B10",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9881
+          },
+          {
+            "slot_id": "PK-B11",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9712
+          },
+          {
+            "slot_id": "PK-B12",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9865
+          },
+          {
+            "slot_id": "PK-B13",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9842
+          },
+          {
+            "slot_id": "PK-B14",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.6544
+          },
+          {
+            "slot_id": "PK-B15",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9792
+          },
+          {
+            "slot_id": "PK-B16",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9794
+          },
+          {
+            "slot_id": "PK-B17",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9246
+          },
+          {
+            "slot_id": "PK-B18",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9394
+          },
+          {
+            "slot_id": "PK-B19",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 1.0
+          },
+          {
+            "slot_id": "PK-B20",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9924
+          },
+          {
+            "slot_id": "PK-B21",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9915
+          },
+          {
+            "slot_id": "PK-B22",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8113
+          },
+          {
+            "slot_id": "PK-C01",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9567
+          },
+          {
+            "slot_id": "PK-C02",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9889
+          },
+          {
+            "slot_id": "PK-C03",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9853
+          },
+          {
+            "slot_id": "PK-C04",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9528
+          },
+          {
+            "slot_id": "PK-C05",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9888
+          },
+          {
+            "slot_id": "PK-C06",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9991
+          },
+          {
+            "slot_id": "PK-C07",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9487
+          },
+          {
+            "slot_id": "PK-C08",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.995
+          },
+          {
+            "slot_id": "PK-C09",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9849
+          },
+          {
+            "slot_id": "PK-C10",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.998
+          },
+          {
+            "slot_id": "PK-C11",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.6312
+          },
+          {
+            "slot_id": "PK-C12",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9904
+          },
+          {
+            "slot_id": "PK-C13",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.925
+          },
+          {
+            "slot_id": "PK-C14",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.8055
+          },
+          {
+            "slot_id": "PK-C15",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9998
+          },
+          {
+            "slot_id": "PK-C16",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9067
+          },
+          {
+            "slot_id": "PK-C17",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.8411
+          },
+          {
+            "slot_id": "PK-C18",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9544
+          },
+          {
+            "slot_id": "PK-C19",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9971
+          },
+          {
+            "slot_id": "PK-C20",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.997
+          },
+          {
+            "slot_id": "PK-C21",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9862
+          },
+          {
+            "slot_id": "PK-C22",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.998
+          },
+          {
+            "slot_id": "PK-D01",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9593
+          },
+          {
+            "slot_id": "PK-D02",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.806
+          },
+          {
+            "slot_id": "PK-D03",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9858
+          },
+          {
+            "slot_id": "PK-D04",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9952
+          },
+          {
+            "slot_id": "PK-D05",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8453
+          },
+          {
+            "slot_id": "PK-D06",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9995
+          },
+          {
+            "slot_id": "PK-D07",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9992
+          },
+          {
+            "slot_id": "PK-D08",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.801
+          },
+          {
+            "slot_id": "PK-D09",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999
+          },
+          {
+            "slot_id": "PK-D10",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.8558
+          },
+          {
+            "slot_id": "PK-D11",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9562
+          },
+          {
+            "slot_id": "PK-D12",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9998
+          },
+          {
+            "slot_id": "PK-D13",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999
+          },
+          {
+            "slot_id": "PK-D14",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.8943
+          },
+          {
+            "slot_id": "PK-D15",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.992
+          },
+          {
+            "slot_id": "PK-D16",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.7468
+          },
+          {
+            "slot_id": "PK-D17",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.987
+          },
+          {
+            "slot_id": "PK-D18",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9706
+          },
+          {
+            "slot_id": "PK-D19",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.996
+          },
+          {
+            "slot_id": "PK-D20",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.803
+          },
+          {
+            "slot_id": "PK-D21",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9923
+          },
+          {
+            "slot_id": "PK-D22",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9998
+          },
+          {
+            "slot_id": "PK-D23",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.7375
+          },
+          {
+            "slot_id": "PK-D24",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9991
+          },
+          {
+            "slot_id": "PK-D25",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999
+          },
+          {
+            "slot_id": "PK-D26",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9948
+          },
+          {
+            "slot_id": "PK-D27",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.8261
+          },
+          {
+            "slot_id": "PK-D28",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.998
+          },
+          {
+            "slot_id": "PK-D29",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999
+          },
+          {
+            "slot_id": "PK-D30",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997
+          },
+          {
+            "slot_id": "PK-D31",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9992
+          },
+          {
+            "slot_id": "PK-D32",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9926
+          },
+          {
+            "slot_id": "PK-D33",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9956
+          }
+        ]
+      },
+      {
+        "frame": "2012-09-11_15_31_50.jpg",
+        "slots_evaluated": 99,
+        "occupied_count": 73,
+        "free_count": 26,
+        "slots": [
+          {
+            "slot_id": "PK-A01",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9589,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A02",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9574,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A03",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.778,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A04",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9918,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A05",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9675,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A06",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.96,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A07",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9971,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A08",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9976,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A09",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9935,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A10",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.997,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A11",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9986,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A12",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.7237,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A13",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9853,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A14",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9973,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A15",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9992,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A16",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9989,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A17",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.8289,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A18",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9953,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A19",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.8839,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A20",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.996,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-A21",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.8554,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-A22",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9925,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B01",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8646,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B02",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.947,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B03",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9968,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B04",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8644,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B05",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9918,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B06",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.7482,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B07",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9983,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B08",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9963,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B09",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.5972,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B10",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9958,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B11",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.5881,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B12",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.5632,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B13",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9979,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B14",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.5396,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B15",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9604,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B16",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.7495,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B17",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.7478,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-B18",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9784,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B19",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 1.0,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B20",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9886,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B21",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9961,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-B22",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.8922,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-C01",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9263,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C02",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9838,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C03",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9924,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C04",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9265,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C05",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9795,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C06",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9994,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C07",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.8914,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C08",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9864,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C09",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9761,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C10",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9965,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C11",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.7963,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C12",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9809,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C13",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9232,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C14",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.7037,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C15",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9999,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C16",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9186,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C17",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.6874,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C18",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9101,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C19",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9952,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C20",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9949,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C21",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9846,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-C22",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.998,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D01",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9287,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D02",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9487,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D03",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9896,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D04",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.994,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D05",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8664,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D06",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D07",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9984,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D08",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8367,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D09",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 1.0,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D10",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9114,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D11",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9619,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D12",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9998,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D13",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D14",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9269,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D15",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9983,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D16",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.7973,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D17",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9924,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D18",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9768,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D19",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9957,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D20",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9045,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D21",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9742,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D22",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D23",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.5399,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D24",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9987,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D25",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9998,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D26",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9949,
+            "gt_class": 1,
+            "gt_occupied": true
+          },
+          {
+            "slot_id": "PK-D27",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9978,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D28",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D29",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9998,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D30",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D31",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9979,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D32",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.988,
+            "gt_class": 0,
+            "gt_occupied": false
+          },
+          {
+            "slot_id": "PK-D33",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9926,
+            "gt_class": 1,
+            "gt_occupied": true
+          }
+        ]
+      },
+      {
+        "frame": "2012-09-11_15_45_57.jpg",
+        "slots_evaluated": 99,
+        "occupied_count": 71,
+        "free_count": 28,
+        "slots": [
+          {
+            "slot_id": "PK-A01",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9963
+          },
+          {
+            "slot_id": "PK-A02",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9712
+          },
+          {
+            "slot_id": "PK-A03",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9808
+          },
+          {
+            "slot_id": "PK-A04",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9941
+          },
+          {
+            "slot_id": "PK-A05",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9969
+          },
+          {
+            "slot_id": "PK-A06",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9961
+          },
+          {
+            "slot_id": "PK-A07",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9987
+          },
+          {
+            "slot_id": "PK-A08",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9983
+          },
+          {
+            "slot_id": "PK-A09",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9972
+          },
+          {
+            "slot_id": "PK-A10",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.997
+          },
+          {
+            "slot_id": "PK-A11",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9971
+          },
+          {
+            "slot_id": "PK-A12",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9959
+          },
+          {
+            "slot_id": "PK-A13",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9992
+          },
+          {
+            "slot_id": "PK-A14",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9983
+          },
+          {
+            "slot_id": "PK-A15",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9946
+          },
+          {
+            "slot_id": "PK-A16",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9966
+          },
+          {
+            "slot_id": "PK-A17",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9658
+          },
+          {
+            "slot_id": "PK-A18",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9977
+          },
+          {
+            "slot_id": "PK-A19",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9981
+          },
+          {
+            "slot_id": "PK-A20",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9968
+          },
+          {
+            "slot_id": "PK-A21",
+            "zone": "Row-A",
+            "predicted_occupied": true,
+            "confidence": 0.9959
+          },
+          {
+            "slot_id": "PK-A22",
+            "zone": "Row-A",
+            "predicted_occupied": false,
+            "confidence": 0.9887
+          },
+          {
+            "slot_id": "PK-B01",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.8233
+          },
+          {
+            "slot_id": "PK-B02",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.7498
+          },
+          {
+            "slot_id": "PK-B03",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9991
+          },
+          {
+            "slot_id": "PK-B04",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.913
+          },
+          {
+            "slot_id": "PK-B05",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9944
+          },
+          {
+            "slot_id": "PK-B06",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9877
+          },
+          {
+            "slot_id": "PK-B07",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9988
+          },
+          {
+            "slot_id": "PK-B08",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9971
+          },
+          {
+            "slot_id": "PK-B09",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9314
+          },
+          {
+            "slot_id": "PK-B10",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9966
+          },
+          {
+            "slot_id": "PK-B11",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.996
+          },
+          {
+            "slot_id": "PK-B12",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9847
+          },
+          {
+            "slot_id": "PK-B13",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9982
+          },
+          {
+            "slot_id": "PK-B14",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9897
+          },
+          {
+            "slot_id": "PK-B15",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9866
+          },
+          {
+            "slot_id": "PK-B16",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.997
+          },
+          {
+            "slot_id": "PK-B17",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9641
+          },
+          {
+            "slot_id": "PK-B18",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9879
+          },
+          {
+            "slot_id": "PK-B19",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9991
+          },
+          {
+            "slot_id": "PK-B20",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9819
+          },
+          {
+            "slot_id": "PK-B21",
+            "zone": "Row-B",
+            "predicted_occupied": true,
+            "confidence": 0.9938
+          },
+          {
+            "slot_id": "PK-B22",
+            "zone": "Row-B",
+            "predicted_occupied": false,
+            "confidence": 0.9495
+          },
+          {
+            "slot_id": "PK-C01",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9938
+          },
+          {
+            "slot_id": "PK-C02",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9975
+          },
+          {
+            "slot_id": "PK-C03",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.997
+          },
+          {
+            "slot_id": "PK-C04",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.96
+          },
+          {
+            "slot_id": "PK-C05",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9958
+          },
+          {
+            "slot_id": "PK-C06",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9999
+          },
+          {
+            "slot_id": "PK-C07",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9775
+          },
+          {
+            "slot_id": "PK-C08",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.997
+          },
+          {
+            "slot_id": "PK-C09",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.992
+          },
+          {
+            "slot_id": "PK-C10",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9982
+          },
+          {
+            "slot_id": "PK-C11",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.951
+          },
+          {
+            "slot_id": "PK-C12",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9937
+          },
+          {
+            "slot_id": "PK-C13",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.8136
+          },
+          {
+            "slot_id": "PK-C14",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9105
+          },
+          {
+            "slot_id": "PK-C15",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 1.0
+          },
+          {
+            "slot_id": "PK-C16",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9618
+          },
+          {
+            "slot_id": "PK-C17",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9574
+          },
+          {
+            "slot_id": "PK-C18",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9793
+          },
+          {
+            "slot_id": "PK-C19",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.997
+          },
+          {
+            "slot_id": "PK-C20",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9969
+          },
+          {
+            "slot_id": "PK-C21",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9899
+          },
+          {
+            "slot_id": "PK-C22",
+            "zone": "Row-C",
+            "predicted_occupied": true,
+            "confidence": 0.9943
+          },
+          {
+            "slot_id": "PK-D01",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9413
+          },
+          {
+            "slot_id": "PK-D02",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9711
+          },
+          {
+            "slot_id": "PK-D03",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9883
+          },
+          {
+            "slot_id": "PK-D04",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9917
+          },
+          {
+            "slot_id": "PK-D05",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8873
+          },
+          {
+            "slot_id": "PK-D06",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9992
+          },
+          {
+            "slot_id": "PK-D07",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9982
+          },
+          {
+            "slot_id": "PK-D08",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8367
+          },
+          {
+            "slot_id": "PK-D09",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999
+          },
+          {
+            "slot_id": "PK-D10",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9474
+          },
+          {
+            "slot_id": "PK-D11",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.993
+          },
+          {
+            "slot_id": "PK-D12",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997
+          },
+          {
+            "slot_id": "PK-D13",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9999
+          },
+          {
+            "slot_id": "PK-D14",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9786
+          },
+          {
+            "slot_id": "PK-D15",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9982
+          },
+          {
+            "slot_id": "PK-D16",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9453
+          },
+          {
+            "slot_id": "PK-D17",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9927
+          },
+          {
+            "slot_id": "PK-D18",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9929
+          },
+          {
+            "slot_id": "PK-D19",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9975
+          },
+          {
+            "slot_id": "PK-D20",
+            "zone": "Row-D",
+            "predicted_occupied": false,
+            "confidence": 0.9895
+          },
+          {
+            "slot_id": "PK-D21",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9943
+          },
+          {
+            "slot_id": "PK-D22",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9997
+          },
+          {
+            "slot_id": "PK-D23",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.8055
+          },
+          {
+            "slot_id": "PK-D24",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9984
+          },
+          {
+            "slot_id": "PK-D25",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9996
+          },
+          {
+            "slot_id": "PK-D26",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.996
+          },
+          {
+            "slot_id": "PK-D27",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9968
+          },
+          {
+            "slot_id": "PK-D28",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9996
+          },
+          {
+            "slot_id": "PK-D29",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9994
+          },
+          {
+            "slot_id": "PK-D30",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9993
+          },
+          {
+            "slot_id": "PK-D31",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9967
+          },
+          {
+            "slot_id": "PK-D32",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.9929
+          },
+          {
+            "slot_id": "PK-D33",
+            "zone": "Row-D",
+            "predicted_occupied": true,
+            "confidence": 0.989
+          }
+        ]
+      }
+    ]
+  },
+  "safety_failure_modes": {
+    "camera_disconnect": {
+      "initial_state": "OCCUPIED",
+      "post_timeout_state": "UNKNOWN",
+      "safe_transition_to_unknown": true,
+      "never_treated_as_free": true
+    },
+    "stale_frame_freeze": {
+      "initial_state": "FREE",
+      "frozen_timeout_state": "UNKNOWN",
+      "safe_transition_to_unknown": true,
+      "prevents_allocating_stale_free": true
+    },
+    "severe_underexposure": {
+      "simulated_lighting": "Pitch Black (0, 0, 0)",
+      "prediction_occupied": true,
+      "confidence": 0.8777,
+      "notes": "Low-confidence/extreme underexposure detected without crashing."
+    },
+    "resolution_mismatch_detection": {
+      "calibrated_resolution": "1280x720",
+      "active_camera_resolution": "640x480",
+      "mismatch_detected": true,
+      "policy": "Reject stale calibration and mark all slots UNKNOWN until recalibrated."
+    }
+  }
+}

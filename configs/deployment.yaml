@@ -1,0 +1,21 @@
+deployment:
+  target_hardware: "Raspberry Pi 5 (8 GB RAM)"
+  recommended_os: "Raspberry Pi OS 64-bit (Debian 12 Bookworm)"
+  camera_hardware: "Zebronics USB Webcam (UVC Compliant)"
+  runtime:
+    preferred_format: "ONNX"
+    execution_provider: "CPUExecutionProvider"
+    num_threads: 4
+  kiosk_mode:
+    browser: "chromium-browser"
+    flags:
+      - "--noerrdialogs"
+      - "--disable-infobars"
+      - "--kiosk"
+      - "--check-for-update-interval=31536000"
+    url: "http://127.0.0.1:8000"
+  systemd_service:
+    name: "smart-parking.service"
+    user: "pi"
+    working_dir: "/home/pi/smart-parking"
+    exec_start: "/home/pi/smart-parking/.venv/bin/python -m app.main --config configs/raspberry_pi.yaml"

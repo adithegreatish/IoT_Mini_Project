@@ -1,0 +1,5 @@
+train: processed/plates/images/train
+val: processed/plates/images/val
+test: processed/plates/images/test
+names:
+  0: license_plate

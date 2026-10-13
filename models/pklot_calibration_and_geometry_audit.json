@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-10-12T22:35:40",
+  "root_cause_diagnosis": {
+    "primary_defect_1": "Old 24-slot calibration in pklot_pucpr_calibration.json was manually drawn over the foreground roadway driveway (y in [0.35, 0.54] and [0.58, 0.88]), rather than actual parking spaces. The boxes were 100x216px (over 4x larger than genuine bays).",
+    "primary_defect_2": "The classifier was trained strictly on CNRPark+EXT (pale gray concrete/gravel in Pisa), creating a catastrophic domain shift when exposed to Brazilian dark asphalt with intense canopy shadows.",
+    "reproduction_of_audit_result": {
+      "total_observations_tested": 396,
+      "predicted_occupied": 348,
+      "predicted_free": 48,
+      "finding": "Confirmed: Classifier predicted 348/396 (100%) observations as occupied."
+    }
+  },
+  "genuine_ground_truth_benchmark_cnrpark_only": {
+    "total_true_slots": 99,
+    "true_occupied_count": 67,
+    "true_free_count": 32,
+    "predicted_occupied_count": 93,
+    "predicted_free_count": 6,
+    "correct_free_bays_identified": 6,
+    "false_occupied_on_free_bays": 26,
+    "free_recall": 0.1875,
+    "overall_accuracy": 0.7374,
+    "confusion_matrix": {
+      "tp": 67,
+      "tn": 6,
+      "fp": 26,
+      "fn": 0
+    }
+  },
+  "audit_visualization_saved": "data/processed/pklot_calibration_geometry_audit.jpg"
+}

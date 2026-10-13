@@ -1,0 +1,131 @@
+{
+  "report_id": "diag_20261010_235256",
+  "timestamp": "2026-10-10T23:52:56.655644",
+  "run_type": "quick",
+  "overall_status": "PASS",
+  "platform": {
+    "os": "Windows",
+    "platform_release": "11",
+    "architecture": "amd64",
+    "is_raspberry_pi": false,
+    "device_model": "Windows PC (10.0.26300)",
+    "python_version": "3.12.10",
+    "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+    "cpu_count": 20,
+    "cuda_available": false,
+    "gpu_name": null
+  },
+  "summary": {
+    "total": 6,
+    "pass": 6,
+    "warn": 0,
+    "fail": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "total_duration_sec": 2.201,
+  "results": [
+    {
+      "test_id": "env_check",
+      "name": "Python & Platform Compatibility",
+      "description": "Validates Python version and host OS architecture.",
+      "status": "PASS",
+      "duration_ms": 76.82,
+      "message": "Compatible environment detected: Python 3.12.10 on Windows PC (10.0.26300).",
+      "corrective_action": null,
+      "details": {
+        "os": "Windows",
+        "platform_release": "11",
+        "architecture": "amd64",
+        "is_raspberry_pi": false,
+        "device_model": "Windows PC (10.0.26300)",
+        "python_version": "3.12.10",
+        "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+        "cpu_count": 20,
+        "cuda_available": false,
+        "gpu_name": null
+      }
+    },
+    {
+      "test_id": "config_check",
+      "name": "Configuration Schema & Precedence",
+      "description": "Validates syntax and boundaries in central YAML config.",
+      "status": "PASS",
+      "duration_ms": 3.0,
+      "message": "Configuration valid (profile: windows, camera index: 0).",
+      "corrective_action": null,
+      "details": {
+        "env": "windows",
+        "port": 8000
+      }
+    },
+    {
+      "test_id": "fs_perms",
+      "name": "Filesystem Write Permissions",
+      "description": "Checks directory access for logs, data, and models.",
+      "status": "PASS",
+      "duration_ms": 2.0,
+      "message": "Read/write permissions verified across data, logs, and report directories.",
+      "corrective_action": null,
+      "details": {}
+    },
+    {
+      "test_id": "db_health",
+      "name": "SQLite Database & Schema Integrity",
+      "description": "Tests database connection, migrations, and read/write cycle.",
+      "status": "PASS",
+      "duration_ms": 3.12,
+      "message": "SQLite active at schema version 1. Read/write transaction verified.",
+      "corrective_action": null,
+      "details": {}
+    },
+    {
+      "test_id": "camera_enum",
+      "name": "Camera Enumeration & Probe",
+      "description": "Scans available video capture devices.",
+      "status": "PASS",
+      "duration_ms": 2114.53,
+      "message": "Physical camera device #0 is connected and ready.",
+      "corrective_action": null,
+      "details": {
+        "devices_found": [
+          {
+            "device_index": 0,
+            "is_available": true,
+            "can_read_frame": true,
+            "default_width": 640,
+            "default_height": 480,
+            "reported_fps": 30.0,
+            "backend_name": "DSHOW",
+            "display_name": "Camera Device #0 (DSHOW)"
+          },
+          {
+            "device_index": 1,
+            "is_available": true,
+            "can_read_frame": true,
+            "default_width": 1280,
+            "default_height": 720,
+            "reported_fps": 30.0,
+            "backend_name": "DSHOW",
+            "display_name": "Camera Device #1 (DSHOW)"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "model_manifest",
+      "name": "Model Registry & Manifest Hash",
+      "description": "Verifies models/manifest.json presence and model metadata.",
+      "status": "PASS",
+      "duration_ms": 1.05,
+      "message": "Model manifest valid. Registered models: 2.",
+      "corrective_action": null,
+      "details": {
+        "registered_models": [
+          "vehicle-yolo-v8n",
+          "plate-detector-tiny"
+        ]
+      }
+    }
+  ]
+}

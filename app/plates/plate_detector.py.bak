@@ -1,0 +1,88 @@
+"""License plate detector extracting high-resolution plate crops."""
+
+from dataclasses import dataclass
+import logging
+from typing import List, Optional, Tuple
+import cv2
+import numpy as np
+
+from app.config.schema import PlatesConfig
+from app.infrastructure.paths import paths
+
+logger = logging.getLogger("smart_parking.plates")
+
+
+@dataclass
+class PlateDetectionResult:
+    crop: np.ndarray
+    bbox: Tuple[int, int, int, int]  # [xmin, ymin, xmax, ymax] within vehicle crop
+    confidence: float
+
+
+class PlateDetector:
+    """Localizes license plate regions from vehicle bounding boxes."""
+
+    def __init__(self, config: PlatesConfig):
+        self.config = config
+        self.enabled = config.enabled
+        self.conf_threshold = config.confidence_threshold
+        self.min_w = config.min_crop_width
+        self.min_h = config.min_crop_height
+
+    def extract_plate(self, vehicle_crop: Optional[np.ndarray]) -> Optional[PlateDetectionResult]:
+        """Extracts candidate license plate crop from vehicle image."""
+        if not self.enabled or vehicle_crop is None or vehicle_crop.size == 0:
+            return None
+
+        vh, vw = vehicle_crop.shape[:2]
+        if vw < 60 or vh < 60:
+            return None
+
+        # Look for plate in lower 40% of vehicle chassis
+        search_y1 = int(vh * 0.60)
+        roi = vehicle_crop[search_y1:, :]
+
+        gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        # Plates exhibit high horizontal edge density due to characters
+        sobel_x = cv2.Sobel(gray, cv2.CV_8U, 1, 0, ksize=3)
+        _, thresh = cv2.threshold(sobel_x, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+        # Morphological closing to group characters into one plate block
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (17, 3))
+        closed = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+
+        contours, _ = cv2.findContours(closed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        best_crop = None
+        best_area = 0
+
+        for cnt in contours:
+            x, y, w, h = cv2.boundingRect(cnt)
+            aspect = w / float(max(1, h))
+            if 2.0 <= aspect <= 6.0 and w >= self.min_w and h >= self.min_h:
+                area = w * h
+                if area > best_area:
+                    best_area = area
+                    full_y = y + search_y1
+                    plate_img = vehicle_crop[full_y : full_y + h, x : x + w]
+                    best_crop = PlateDetectionResult(
+                        crop=plate_img,
+                        bbox=(x, full_y, x + w, full_y + h),
+                        confidence=0.82,
+                    )
+
+        # If edge detection failed, extract central lower baseline slice
+        if best_crop is None and vw >= 100:
+            pw = int(vw * 0.55)
+            ph = max(22, int(vh * 0.16))
+            px = (vw - pw) // 2
+            py = int(vh * 0.78)
+            if py + ph <= vh and px + pw <= vw:
+                slice_img = vehicle_crop[py : py + ph, px : px + pw]
+                return PlateDetectionResult(
+                    crop=slice_img,
+                    bbox=(px, py, px + pw, py + ph),
+                    confidence=0.70,
+                )
+
+        return best_crop

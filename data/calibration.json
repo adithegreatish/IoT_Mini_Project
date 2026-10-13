@@ -1,0 +1,33 @@
+{
+  "version": 32,
+  "reference_width": 1280,
+  "reference_height": 720,
+  "camera_fingerprint": "zebronics_uvc",
+  "updated_at": "2026-10-13T09:19:38.869090",
+  "slots": [
+    {
+      "id": "T01",
+      "label": "Test Bay",
+      "slot_type": "car",
+      "enabled": true,
+      "points": [
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.3,
+          0.1
+        ],
+        [
+          0.3,
+          0.4
+        ],
+        [
+          0.1,
+          0.4
+        ]
+      ]
+    }
+  ]
+}

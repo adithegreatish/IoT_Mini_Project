@@ -1,0 +1,40 @@
+"""Safe file path resolution and directory management."""
+
+from pathlib import Path
+from typing import Union
+from app.config.loader import find_workspace_root
+
+
+class PathManager:
+    """Manages workspace-relative paths and ensures required directories exist."""
+
+    def __init__(self, root: Union[str, Path] = None):
+        self.root = Path(root) if root else find_workspace_root()
+
+    def resolve(self, relative_or_absolute: Union[str, Path]) -> Path:
+        """Resolves path safely against workspace root."""
+        p = Path(relative_or_absolute)
+        if p.is_absolute():
+            return p
+        return (self.root / p).resolve()
+
+    def ensure_directories(self) -> None:
+        """Ensures all standard project directories exist."""
+        standard_dirs = [
+            self.root / "logs",
+            self.root / "data",
+            self.root / "data" / "raw",
+            self.root / "data" / "processed",
+            self.root / "data" / "annotations",
+            self.root / "data" / "splits",
+            self.root / "data" / "demo",
+            self.root / "data" / "test_reports",
+            self.root / "models",
+            self.root / "configs",
+        ]
+        for d in standard_dirs:
+            d.mkdir(parents=True, exist_ok=True)
+
+
+# Global default instance
+paths = PathManager()

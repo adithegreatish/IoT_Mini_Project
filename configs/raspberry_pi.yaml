@@ -1,0 +1,79 @@
+app:
+  name: "Smart Parking & HSRP System (Pi Edition)"
+  version: "1.0.0"
+  env: "raspberry_pi"
+  host: "127.0.0.1"  # Or 0.0.0.0 if explicitly enabled
+  port: 8000
+  debug: false
+
+camera:
+  device_index: 0
+  backend: "V4L2"
+  requested_width: 1280
+  requested_height: 720
+  requested_fps: 15  # Balanced for Pi thermal envelope
+  buffer_size: 1
+  reconnect_interval_sec: 2.0
+  reconnect_max_attempts: 15
+  stale_threshold_sec: 2.0  # Conservative 2.0s fail-safe threshold
+  mock_mode: false
+  synthetic_scenario: "normal"
+
+parking:
+  calibration_file: "data/calibration.json"
+  occupancy_threshold: 0.35
+  classifier_threshold: 0.65  # Approach D optimal validation threshold
+  inference_mode: "hybrid"  # "classifier", "detector", or "hybrid"
+  classifier_model_path: "models/occupancy_classifier.onnx"
+  smoothing_window_frames: 6
+  hysteresis_confirm_frames: 4
+  unknown_timeout_sec: 5.0
+
+detection:
+  enabled: true
+  model_id: "vehicle-yolo-v8n"
+  model_path: "models/vehicle_detector.onnx"
+  runtime: "onnx"
+  confidence_threshold: 0.40
+  input_width: 480  # Optimized resolution for Pi CPU throughput
+  input_height: 480
+  classes: ["car", "motorcycle", "bus", "truck"]
+  inference_interval_ms: 120  # ~8-10 FPS to preserve Pi 5 CPU & thermals
+
+plates:
+  enabled: true
+  model_id: "plate-detector-tiny"
+  model_path: "models/plate_detector.onnx"
+  runtime: "onnx"
+  confidence_threshold: 0.45
+  min_crop_width: 60
+  min_crop_height: 20
+  hsrp_cue_analysis_enabled: true
+
+ocr:
+  enabled: false  # Optional on Pi: disabled by default to conserve CPU & memory
+  engine: "easyocr"
+  confidence_threshold: 0.50
+  registration_pattern: "^[A-Z]{2}[0-9]{1,2}[A-Z]{0,3}[0-9]{4}$"
+  allow_uncertain: true
+
+database:
+  db_path: "data/parking_events.sqlite"
+  retention_days: 14  # Conserve SD card storage on Pi
+  vacuum_on_startup: true
+
+diagnostics:
+  report_dir: "data/test_reports"
+  quick_timeout_sec: 15.0
+  full_timeout_sec: 90.0
+
+privacy:
+  mask_plates_by_default: true
+  redact_log_plates: true
+  allow_raw_retention: false
+
+logging:
+  level: "INFO"
+  file_path: "logs/app.log"
+  max_bytes: 5242880  # 5 MB
+  backup_count: 3

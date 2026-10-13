@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-parking-hsrp"
+version = "1.0.0"
+description = "Smart Parking Management & Indian HSRP-Style Registration-Plate Recognition"
+authors = [
+    { name = "Smart Parking Research Team" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.8.0",
+    "pyyaml>=6.0",
+    "numpy>=1.26.0",
+    "shapely>=2.0.0",
+    "jinja2>=3.1.0",
+]
+
+[project.optional-dependencies]
+windows = [
+    "opencv-python>=4.10.0",
+    "onnxruntime>=1.19.0",
+]
+pi = [
+    "opencv-python-headless>=4.10.0",
+    "onnxruntime>=1.19.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "httpx>=0.27.0",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = [
+    "unit: pure unit tests without external hardware",
+    "integration: tests spanning multiple application components",
+    "hardware: tests that require physical camera or display",
+]

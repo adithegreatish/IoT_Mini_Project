@@ -1,0 +1,79 @@
+app:
+  name: "Smart Parking & HSRP System"
+  version: "1.0.0"
+  env: "windows"
+  host: "127.0.0.1"
+  port: 8000
+  debug: true
+
+camera:
+  device_index: 0
+  backend: "DSHOW"  # DirectShow on Windows, V4L2 on Linux
+  requested_width: 1280
+  requested_height: 720
+  requested_fps: 30
+  buffer_size: 1
+  reconnect_interval_sec: 2.0
+  reconnect_max_attempts: 10
+  stale_threshold_sec: 2.0
+  mock_mode: false  # Auto-falls back to mock if device 0 fails and mock allowed
+  synthetic_scenario: "normal"
+
+parking:
+  calibration_file: "data/calibration.json"
+  occupancy_threshold: 0.35  # minimum intersection area ratio
+  classifier_threshold: 0.65  # Approach D validated threshold
+  inference_mode: "detector"
+  classifier_model_path: "models/occupancy_classifier.onnx"
+  smoothing_window_frames: 5
+  hysteresis_confirm_frames: 3
+  unknown_timeout_sec: 5.0
+
+detection:
+  enabled: true
+  model_id: "vehicle-yolo-v8n"
+  model_path: "models/vehicle_detector.onnx"
+  runtime: "onnx"  # onnx, opencv, or mock
+  confidence_threshold: 0.40
+  input_width: 640
+  input_height: 640
+  classes: ["car", "motorcycle", "bus", "truck"]
+  inference_interval_ms: 66  # ~15 FPS max inference cadence to preserve CPU
+
+plates:
+  enabled: true
+  model_id: "plate-detector-tiny"
+  model_path: "models/plate_detector.onnx"
+  runtime: "onnx"
+  confidence_threshold: 0.45
+  min_crop_width: 60
+  min_crop_height: 20
+  hsrp_cue_analysis_enabled: true
+
+ocr:
+  enabled: true
+  engine: "easyocr"  # easyocr, heuristic, tesseract, paddle, mock
+  confidence_threshold: 0.50
+  registration_pattern: "^[A-Z]{2}[0-9]{1,2}[A-Z]{0,3}[0-9]{4}$"
+  allow_uncertain: true
+
+database:
+  db_path: "data/parking_events.sqlite"
+  retention_days: 30
+  vacuum_on_startup: false
+
+diagnostics:
+  report_dir: "data/test_reports"
+  quick_timeout_sec: 10.0
+  full_timeout_sec: 60.0
+
+privacy:
+  mask_plates_by_default: true
+  redact_log_plates: true
+  allow_raw_retention: false
+
+logging:
+  level: "INFO"
+  file_path: "logs/app.log"
+  max_bytes: 10485760  # 10 MB
+  backup_count: 5
