@@ -1,0 +1,27 @@
+{
+  "updated_at": "2026-10-14T00:14:23.612343",
+  "total_candidates": 1,
+  "candidates": [
+    {
+      "frame_id": "cand_20261014_001423_0000",
+      "timestamp": "2026-10-14T00:14:23.612343",
+      "reason": "LOW_CONFIDENCE_CAR_0.35",
+      "confidence": 0.353,
+      "class_name": "car",
+      "suggested_bbox": [
+        0.9256,
+        0.3621,
+        0.956,
+        0.4227
+      ],
+      "image_rel_path": "data/active_learning/candidates/images/cand_20261014_001423_0000.jpg",
+      "review_status": "PENDING",
+      "reviewed_at": null,
+      "corrected_bbox": null,
+      "corrected_class": null,
+      "image_width": 1280,
+      "image_height": 720,
+      "dhash": 13134212339631856444
+    }
+  ]
+}

@@ -36,7 +36,7 @@
     <button class="nav-tab" data-target="allocation">Virtual Allocation</button>
     <button class="nav-tab" data-target="calibration">Parking Calibration</button>
     <button class="nav-tab" data-target="events">Vehicle &amp; Plate Events</button>
-    <button class="nav-tab" data-target="models">Model Management</button>
+    <button class="nav-tab" data-target="models">🔬 AI Model Lab</button>
     <button class="nav-tab" data-target="camera-settings">Camera Settings</button>
     <button class="nav-tab" data-target="diagnostics">System Diagnostics</button>
     <button class="nav-tab" data-target="datasets">Datasets &amp; Training</button>
@@ -534,24 +534,182 @@
       </div>
     </section>
 
-    <!-- 5. MODEL MANAGEMENT PANE -->
+    <!-- 5. AI MODEL LAB PANE -->
     <section class="tab-pane" id="pane-models">
-      <h2 style="font-size: 16px; margin-bottom: 12px;">Registered Deployment Models (ONNX Runtime)</h2>
-      <div class="table-wrapper">
-        <table class="tech-table">
-          <thead>
-            <tr>
-              <th>Model ID</th>
-              <th>Architecture</th>
-              <th>Runtime</th>
-              <th>Purpose</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="table-models-tbody">
-            <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">Loading models...</td></tr>
-          </tbody>
-        </table>
+      <!-- Lab Header -->
+      <div class="lab-header">
+        <div class="lab-title">
+          <h2>🔬 AI Research Lab &amp; Continuous Model Improvement</h2>
+          <p>Reproducible active learning, multi-view benchmarking, gated candidate promotion &amp; safe rollback</p>
+        </div>
+        <div class="lab-actions">
+          <button class="btn btn-accent" onclick="triggerLabFrameCapture()">📸 Capture Candidate Frame</button>
+          <button class="btn btn-outline" id="btn-lab-rollback" onclick="triggerLabRollback()">⚡ Rollback Production</button>
+          <button class="btn btn-primary" onclick="loadAiLabData()">🔄 Refresh Lab</button>
+        </div>
+      </div>
+
+      <!-- Top Metric Cards -->
+      <div class="grid-cols-4" style="margin-bottom: 24px;">
+        <div class="stat-card">
+          <div class="stat-title">Active Production Model</div>
+          <div class="stat-value" style="font-size: 20px; color: var(--accent-cyan);" id="lab-active-version">v1.0.0</div>
+          <div class="stat-sub" id="lab-active-details">YOLOv8-Nano · ONNX Runtime</div>
+          <div style="margin-top: 8px; font-size: 11px; display: flex; align-items: center; gap: 6px;">
+            <span class="pulse-dot"></span>
+            <span id="lab-integrity-badge" style="color: var(--status-free); font-weight: 600;">SHA-256 Verified</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-title">Edge Latency Profile</div>
+          <div class="stat-value" style="font-size: 20px;" id="lab-bench-latency">42.5 ms</div>
+          <div class="stat-sub" id="lab-bench-fps">23.5 FPS · 640x640</div>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+            Raspberry Pi Budget: &lt;120 ms
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-title">Test Set mAP@50 (Held-Out)</div>
+          <div class="stat-value" style="font-size: 20px; color: var(--status-free);" id="lab-metric-map50">59.50%</div>
+          <div class="stat-sub" id="lab-metric-map5095">mAP@50-95: 37.97%</div>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted);" id="lab-class-summary">
+            Car: 60.4% · Bus: 71.9% · Truck: 38.7%
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-title">Active Learning Queue</div>
+          <div class="stat-value" style="font-size: 20px; color: var(--status-unknown);" id="lab-queue-pending">0 Pending</div>
+          <div class="stat-sub" id="lab-queue-budget">Storage: Local / 250 MB</div>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+            Privacy Guard: Plates Masked
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1: Candidate Experiments & Model Lineage -->
+      <div class="stat-card" style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h3 style="font-size: 15px; font-weight: 700;">🧪 Registered Experimental Candidates &amp; Lineage</h3>
+            <p style="font-size: 12px; color: var(--text-muted);">Trained candidate models awaiting independent test evaluation and promotion gates</p>
+          </div>
+          <div style="font-size: 12px; color: var(--text-dim);">
+            Automated Promotion: <strong style="color: var(--accent-cyan);">Gated Only</strong>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="tech-table">
+            <thead>
+              <tr>
+                <th>Experiment ID</th>
+                <th>Preset / Architecture</th>
+                <th>Epochs</th>
+                <th>Status</th>
+                <th>Val mAP@50</th>
+                <th>Test mAP@50</th>
+                <th>ONNX SHA-256</th>
+                <th style="text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="lab-experiments-tbody">
+              <tr><td colspan="8" style="text-align: center; color: var(--text-dim); padding: 18px;">Loading experiments...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 2: Model Comparison Suite (Baseline vs Candidate) -->
+      <div class="stat-card" style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 15px; font-weight: 700;">⚖️ Side-by-Side Model Comparison Suite</h3>
+            <p style="font-size: 12px; color: var(--text-muted);">Direct comparison between active production baseline and candidate on identical test benchmark</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label style="font-size: 12px; color: var(--text-muted);">Select Candidate:</label>
+            <select class="excel-select" id="lab-select-candidate" onchange="loadCandidateComparison(this.value)" style="width: 240px;"></select>
+          </div>
+        </div>
+
+        <div id="lab-regression-banner" style="display: none; padding: 12px 16px; border-radius: var(--radius-sm); background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; font-size: 12px; margin-bottom: 16px;">
+          <strong>⚠️ REGRESSION WARNING:</strong> <span id="lab-regression-text">Candidate regresses on one or more metrics.</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="tech-table">
+            <thead>
+              <tr>
+                <th>Evaluation Metric</th>
+                <th>Active Baseline</th>
+                <th>Candidate Experiment</th>
+                <th>Absolute Delta</th>
+                <th>Gate Verdict</th>
+              </tr>
+            </thead>
+            <tbody id="lab-comparison-tbody">
+              <tr><td colspan="5" style="text-align: center; color: var(--text-dim); padding: 18px;">Select a candidate to view comparison.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: Visual Error Gallery -->
+      <div class="stat-card" style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 15px; font-weight: 700;">🖼️ Visual Error Gallery (Diagnostic Analysis)</h3>
+            <p style="font-size: 12px; color: var(--text-muted);">Empirical false positives, class confusions, and missed vehicles extracted during benchmark evaluation</p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-outline" id="btn-gallery-fp" onclick="switchGalleryView('fp')">🔴 False Positives / Confusions (<span id="count-fp">0</span>)</button>
+            <button class="btn btn-outline" id="btn-gallery-fn" onclick="switchGalleryView('fn')">🟠 Missed Vehicles (<span id="count-fn">0</span>)</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="lab-gallery-container">
+          <div style="grid-column: 1 / -1; text-align: center; color: var(--text-dim); padding: 24px;">
+            Loading error gallery samples...
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Dataset Health & Active Learning Queue -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+        <!-- Dataset Health -->
+        <div class="stat-card">
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 12px;">📊 Dataset Health &amp; Multi-View Splits</h3>
+          <div id="lab-dataset-health-content" style="font-size: 13px; line-height: 1.8;">
+            Loading dataset audit...
+          </div>
+        </div>
+
+        <!-- Active Learning Candidates Queue -->
+        <div class="stat-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 15px; font-weight: 700;">🎯 Active Learning Review Queue</h3>
+            <button class="btn btn-accent" style="font-size: 11px; padding: 4px 10px;" onclick="triggerLabFrameCapture()">+ Capture Current Frame</button>
+          </div>
+          <div id="lab-candidates-queue-list" style="max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+            <div style="color: var(--text-dim); text-align: center; padding: 16px;">Loading candidate queue...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Exportable Research Reports -->
+      <div class="stat-card">
+        <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 12px;">📑 Exportable Research Reports &amp; Audit Logs</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Access comprehensive Markdown research reports documenting baseline audits, partition leakage verification, and edge deployment readiness.
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn btn-outline" onclick="openDocModal('baseline', 'Baseline Verification Audit')">📄 BASELINE_AUDIT.md</button>
+          <button class="btn btn-outline" onclick="openDocModal('splits', 'Dataset & Split Hygiene Audit')">📄 DATASET_AND_SPLIT_AUDIT.md</button>
+          <button class="btn btn-outline" onclick="openDocModal('readiness', 'Deployment Readiness Report')">📄 DEPLOYMENT_READINESS.md</button>
+        </div>
       </div>
     </section>
 
@@ -657,6 +815,17 @@
     </section>
 
   </main>
+
+  <!-- Document Viewer Modal -->
+  <div class="doc-modal" id="doc-modal">
+    <div class="doc-modal-content">
+      <div class="doc-modal-header">
+        <h3 id="doc-modal-title" style="font-size: 15px; font-weight: 700;">Research Document</h3>
+        <button class="btn btn-outline" style="padding: 4px 10px;" onclick="closeDocModal()">✕ Close</button>
+      </div>
+      <div class="doc-modal-body" id="doc-modal-body"></div>
+    </div>
+  </div>
 
   <!-- Toast Container -->
   <div class="toast-container" id="toast-container"></div>

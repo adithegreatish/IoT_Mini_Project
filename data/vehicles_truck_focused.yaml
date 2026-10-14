@@ -1,0 +1,9 @@
+path: data
+train: processed/multidataset/images/train
+val: processed/multidataset/images/val
+test: processed/multidataset/images/test
+names:
+  0: car
+  1: motorcycle
+  2: bus
+  3: truck

@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-10-14T00:18:54.762303",
+  "model_path": "models/experiments/exp_20261014_001738_balanced_smoke/weights/best.onnx",
+  "model_sha256": "86e75588fed758f47bfa65b821a867005295e9e359ef2bceac1b5977cab898f1",
+  "platform": {
+    "os": "Windows",
+    "platform_release": "11",
+    "architecture": "amd64",
+    "is_raspberry_pi": false,
+    "device_model": "Windows PC (10.0.26300)",
+    "python_version": "3.12.10",
+    "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+    "cpu_count": 20,
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+  },
+  "benchmarks": [
+    {
+      "resolution": "640x640",
+      "threads": 2,
+      "iterations": 20,
+      "mean_latency_ms": 61.63,
+      "median_latency_ms": 60.23,
+      "p95_latency_ms": 68.69,
+      "min_latency_ms": 58.56,
+      "max_latency_ms": 75.11,
+      "fps": 16.23,
+      "stage_breakdown": {
+        "preprocess_mean_ms": 3.36,
+        "inference_mean_ms": 46.79,
+        "postprocess_mean_ms": 11.47
+      },
+      "memory_rss_mb": 159.4
+    }
+  ]
+}

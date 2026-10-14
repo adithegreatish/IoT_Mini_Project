@@ -9210,6 +9210,62 @@
           }
         ]
       }
+    },
+    "indian_cctv_heldout_benchmark": {
+      "name": "Untouched Independent Indian Urban CCTV Benchmark",
+      "provenance_url": "https://huggingface.co/datasets/iisc-aim/UVH-26",
+      "license": "CC BY 4.0",
+      "source_archive": "UVH-26-MV-Val.json",
+      "manifest_path": "data\\splits\\test_indian_cctv_heldout_manifest.json",
+      "created_at": "2026-10-14T13:46:02.711029",
+      "total_images": 200,
+      "total_instances": 2102,
+      "class_counts": {
+        "motorcycle": 1214,
+        "truck": 161,
+        "car": 586,
+        "bus": 141
+      },
+      "leakage_status": "PASSED_ZERO_LEAKAGE",
+      "temporal_buffer": ">100 frame ID spacing against all train/val sets",
+      "provenance_limitations": "Camera station IDs not provided in official IISc AIM metadata; image and frame disjointness 100% verified."
+    },
+    "balanced_multisource_training_mix": {
+      "name": "Arm C Balanced Multi-Source Training Mix",
+      "manifest_path": "data\\splits\\balanced_multisource_manifest.json",
+      "dataset_yaml": "data/vehicles_balanced_multisource.yaml",
+      "total_samples_per_epoch": 3199,
+      "source_breakdown": {
+        "coco_general": {
+          "count": 1657,
+          "percentage": 51.8
+        },
+        "coco_motorcycle_reinforcement": {
+          "count": 497,
+          "percentage": 15.54
+        },
+        "uvh26_indian_cctv": {
+          "count": 700,
+          "percentage": 21.88
+        },
+        "visdrone_aerial": {
+          "count": 345,
+          "percentage": 10.78
+        }
+      },
+      "class_instance_counts": {
+        "car": 15702,
+        "motorcycle": 10171,
+        "bus": 1621,
+        "truck": 2831
+      },
+      "sampling_policy": {
+        "coco_general": "100% of COCO training images (1,657) to anchor horizontal street perspective",
+        "coco_motorcycle_reinforcement": "1x duplication of 497 motorcycle-containing COCO images to prevent overhead CCTV bias",
+        "uvh26_indian_cctv": "Stratified selection of 700 images (566 truck-focused + 134 bus-focused) to improve commercial vehicle recall",
+        "visdrone_aerial": "100% of VisDrone supplement images (345) to train small/distant vehicle detection"
+      },
+      "leakage_status": "PASSED_ZERO_LEAKAGE"
     }
   },
   "vehicles": {

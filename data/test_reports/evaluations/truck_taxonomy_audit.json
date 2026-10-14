@@ -1,0 +1,138 @@
+{
+  "coco_geometry": {
+    "car": {
+      "count": 3580,
+      "area_mean": 0.02325,
+      "area_p10": 0.00047,
+      "area_p50": 0.00387,
+      "area_p90": 0.04481,
+      "aspect_ratio_mean": 1.312,
+      "aspect_ratio_p50": 1.069
+    },
+    "motorcycle": {
+      "count": 1240,
+      "area_mean": 0.12167,
+      "area_p10": 0.00204,
+      "area_p50": 0.0297,
+      "area_p90": 0.4114,
+      "aspect_ratio_mean": 0.82,
+      "aspect_ratio_p50": 0.702
+    },
+    "bus": {
+      "count": 766,
+      "area_mean": 0.18617,
+      "area_p10": 0.00411,
+      "area_p50": 0.07934,
+      "area_p90": 0.55166,
+      "aspect_ratio_mean": 1.159,
+      "aspect_ratio_p50": 0.987
+    },
+    "truck": {
+      "count": 1284,
+      "area_mean": 0.0928,
+      "area_p10": 0.00199,
+      "area_p50": 0.01766,
+      "area_p90": 0.33021,
+      "aspect_ratio_mean": 1.204,
+      "aspect_ratio_p50": 1.029
+    }
+  },
+  "uvh26_geometry": {
+    "car": {
+      "count": 2965,
+      "area_mean": 0.0214,
+      "area_p10": 0.0021,
+      "area_p50": 0.00866,
+      "area_p90": 0.05851,
+      "aspect_ratio_mean": 0.747,
+      "aspect_ratio_p50": 0.693
+    },
+    "motorcycle": {
+      "count": 6343,
+      "area_mean": 0.00782,
+      "area_p10": 0.00086,
+      "area_p50": 0.00387,
+      "area_p90": 0.02027,
+      "aspect_ratio_mean": 0.412,
+      "aspect_ratio_p50": 0.356
+    },
+    "bus": {
+      "count": 706,
+      "area_mean": 0.06225,
+      "area_p10": 0.00295,
+      "area_p50": 0.01689,
+      "area_p90": 0.17635,
+      "aspect_ratio_mean": 0.778,
+      "aspect_ratio_p50": 0.673
+    },
+    "truck": {
+      "count": 750,
+      "area_mean": 0.07187,
+      "area_p10": 0.00386,
+      "area_p50": 0.02765,
+      "area_p90": 0.212,
+      "aspect_ratio_mean": 0.682,
+      "aspect_ratio_p50": 0.59
+    }
+  },
+  "visdrone_geometry": {
+    "car": {
+      "count": 9182,
+      "area_mean": 0.00251,
+      "area_p10": 0.00015,
+      "area_p50": 0.00108,
+      "area_p90": 0.00624,
+      "aspect_ratio_mean": 0.788,
+      "aspect_ratio_p50": 0.675
+    },
+    "motorcycle": {
+      "count": 3109,
+      "area_mean": 0.0008,
+      "area_p10": 0.00011,
+      "area_p50": 0.00044,
+      "area_p90": 0.00166,
+      "aspect_ratio_mean": 0.538,
+      "aspect_ratio_p50": 0.45
+    },
+    "bus": {
+      "count": 123,
+      "area_mean": 0.00295,
+      "area_p10": 0.00013,
+      "area_p50": 0.00089,
+      "area_p90": 0.00757,
+      "aspect_ratio_mean": 0.53,
+      "aspect_ratio_p50": 0.433
+    },
+    "truck": {
+      "count": 592,
+      "area_mean": 0.00561,
+      "area_p10": 0.00022,
+      "area_p50": 0.0017,
+      "area_p90": 0.01192,
+      "aspect_ratio_mean": 0.699,
+      "aspect_ratio_p50": 0.562
+    }
+  },
+  "root_cause_analysis": [
+    {
+      "error_modality": "Pickup & Utility Vehicle Ambiguity",
+      "mechanism": "In COCO, American-style pickup trucks (e.g. Ford F-150) were frequently annotated as 'truck', while smaller compact utility pickups were annotated as 'car'. In Indian traffic (UVH-26), Mahindra Bolero pickups and Tata Ace mini-trucks share high visual similarity with SUVs and passenger vans.",
+      "mitigation": "Exclude ambiguous LCVs from primary car/truck definitions and enforce canonical mapping: heavy commercial lorries -> truck, standard passenger vehicles -> car."
+    },
+    {
+      "error_modality": "Scale & Distance Imbalance (Small Background Objects)",
+      "mechanism": "Trucks in background traffic occupy small bounding box areas (<0.5% of 1080p frame) with low pixel contrast, causing high false-negative rate at standard confidence thresholds.",
+      "mitigation": "Incorporate multi-scale training with random scaling (scale=0.6) and VisDrone steep-angle surveillance examples."
+    },
+    {
+      "error_modality": "Perspective Distortion between CCTV and Street Driving",
+      "mechanism": "Surveillance cameras mounted 5-10 meters above intersections view truck roofs and cargo bays rather than the front grilles typical of dashcam or pedestrian photography.",
+      "mitigation": "Train directly on UVH-26 high-angle Bengaluru Safe City CCTV imagery to learn overhead roof and cargo bed features."
+    },
+    {
+      "error_modality": "Class Imbalance in Primary Training Corpus",
+      "mechanism": "In earlier baseline, cars outnumbered trucks 3:1 (3,580 cars vs 1,284 trucks), causing the network cross-entropy loss to favor car predictions on ambiguous vehicle boundaries.",
+      "mitigation": "Targeted truck oversampling (1.5x) and HSV value augmentation in Experiment D to equalize gradient contributions."
+    }
+  ]
+}

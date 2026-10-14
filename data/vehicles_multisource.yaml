@@ -1,0 +1,14 @@
+path: data
+train:
+- processed/vehicles/images/train
+- processed/uvh26_subset/images/train
+- processed/visdrone_supplement/images
+val:
+- processed/vehicles/images/val
+- processed/uvh26_subset/images/val
+test: processed/vehicles/images/test
+names:
+  0: car
+  1: motorcycle
+  2: bus
+  3: truck

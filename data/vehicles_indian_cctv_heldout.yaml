@@ -1,0 +1,9 @@
+path: data
+train: processed/vehicles/images/train
+val: processed/uvh26_subset/images/val
+test: processed/uvh26_heldout_test/images
+names:
+  0: car
+  1: motorcycle
+  2: bus
+  3: truck

@@ -1,0 +1,991 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-10-14T14:09:29.973399",
+  "active_model": {
+    "model_id": "vehicle-yolo-v8n",
+    "version": "1.0.0",
+    "status": "ACTIVE_PRODUCTION",
+    "promoted_at": "2026-10-12T22:00:19Z",
+    "pt_path": "models/vehicle_detector.pt",
+    "onnx_path": "models/vehicle_detector.onnx",
+    "pt_sha256": "0f8c08dc8f4aff7f0b52582f38677c016b8caedf73ab4b39c182046a086e6089",
+    "onnx_sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc",
+    "architecture": "YOLOv8-Nano",
+    "input_dimensions": [
+      640,
+      640
+    ],
+    "classes": [
+      "car",
+      "motorcycle",
+      "bus",
+      "truck"
+    ],
+    "metrics": {
+      "precision": 0.6224,
+      "recall": 0.5459,
+      "mAP50": 0.595,
+      "mAP50_95": 0.3797,
+      "per_class": {
+        "car": {
+          "precision": 0.698,
+          "recall": 0.5552,
+          "ap50": 0.6038,
+          "ap50_95": 0.3717
+        },
+        "motorcycle": {
+          "precision": 0.7648,
+          "recall": 0.5932,
+          "ap50": 0.6698,
+          "ap50_95": 0.3585
+        },
+        "bus": {
+          "precision": 0.6797,
+          "recall": 0.6182,
+          "ap50": 0.7192,
+          "ap50_95": 0.5449
+        },
+        "truck": {
+          "precision": 0.3473,
+          "recall": 0.4168,
+          "ap50": 0.3873,
+          "ap50_95": 0.2438
+        }
+      },
+      "latency_pi5_ms": 78.4,
+      "latency_windows_ms": 29.28
+    },
+    "lineage": {
+      "dataset_source": "COCO 2017 high-recall vehicle expansion",
+      "training_instances": 6870,
+      "epochs": 35,
+      "device": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    }
+  },
+  "previous_stable_model": null,
+  "candidates": [
+    {
+      "experiment_id": "exp_20261014_001738_balanced_smoke",
+      "registered_at": "2026-10-14T00:18:38.377320",
+      "status": "CANDIDATE",
+      "pt_path": "models/experiments/exp_20261014_001738_balanced_smoke/weights/best.pt",
+      "onnx_path": "models/experiments/exp_20261014_001738_balanced_smoke/weights/best.onnx",
+      "pt_sha256": "5b8f947253a7c4fc3efc90d18d88fdc0df52bb774a547a3c0265a171311f12bb",
+      "onnx_sha256": "0928321cc66abf4facb9f206f8c0f517e57a992c340d6f4f10ec5a3fea24002d",
+      "training_config": {
+        "epochs": 1,
+        "batch_size": 4,
+        "imgsz": 640,
+        "device": "0",
+        "gpu_name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+        "duration_sec": 51.47,
+        "weights": "yolov8n.pt"
+      },
+      "validation_metrics": {
+        "precision": 0.2024,
+        "recall": 0.2555,
+        "mAP50": 0.1499,
+        "mAP50_95": 0.0787,
+        "training_duration_sec": 51.47,
+        "per_class": {
+          "car": {
+            "precision": 0.3199,
+            "recall": 0.1538,
+            "ap50": 0.1244,
+            "ap50_95": 0.0534
+          },
+          "motorcycle": {
+            "precision": 0.2729,
+            "recall": 0.1053,
+            "ap50": 0.0875,
+            "ap50_95": 0.0328
+          },
+          "bus": {
+            "precision": 0.0424,
+            "recall": 0.6364,
+            "ap50": 0.3104,
+            "ap50_95": 0.187
+          },
+          "truck": {
+            "precision": 0.1742,
+            "recall": 0.1266,
+            "ap50": 0.0773,
+            "ap50_95": 0.0418
+          }
+        }
+      },
+      "test_metrics": {
+        "precision": 0.1436,
+        "recall": 0.2231,
+        "mAP50": 0.0984,
+        "mAP50_95": 0.0434,
+        "speed_preprocess_ms": 0.77,
+        "speed_inference_ms": 3.37,
+        "speed_postprocess_ms": 1.17,
+        "per_class": {
+          "car": {
+            "precision": 0.3422,
+            "recall": 0.2687,
+            "ap50": 0.1959,
+            "ap50_95": 0.0951
+          },
+          "motorcycle": {
+            "precision": 0.117,
+            "recall": 0.036,
+            "ap50": 0.0655,
+            "ap50_95": 0.0222
+          },
+          "bus": {
+            "precision": 0.0373,
+            "recall": 0.4545,
+            "ap50": 0.0804,
+            "ap50_95": 0.0315
+          },
+          "truck": {
+            "precision": 0.0778,
+            "recall": 0.1333,
+            "ap50": 0.0519,
+            "ap50_95": 0.0247
+          }
+        }
+      },
+      "notes": "Standard balanced training matching project baseline"
+    },
+    {
+      "experiment_id": "exp_india_cctv_1ep",
+      "registered_at": "2026-10-14T13:02:38.819536",
+      "status": "CANDIDATE",
+      "pt_path": "models/experiments/exp_india_cctv_1ep/weights/best.pt",
+      "onnx_path": "models/experiments/exp_india_cctv_1ep/weights/best.onnx",
+      "pt_sha256": "ab5963d7e554ffd4323075914ccc4d283d9fa98743c3670cedc0321f5791d0dc",
+      "onnx_sha256": "4bee957d5039bd759c6fcf3f3813226d907620d4a10bf6db047f388a1d9e2c09",
+      "training_config": {
+        "epochs": 1,
+        "batch_size": 16,
+        "imgsz": 640,
+        "device": "0",
+        "duration_sec": 97.46,
+        "base_weights": "C:\\Users\\adity\\Downloads\\IoT\\models\\vehicle_detector.pt",
+        "data_yaml": "C:\\Users\\adity\\Downloads\\IoT\\data\\vehicles_india_cctv.yaml"
+      },
+      "validation_metrics": {
+        "precision": 0.3951,
+        "recall": 0.3364,
+        "mAP50": 0.2796,
+        "mAP50_95": 0.1568,
+        "speed_preprocess_ms": 1.72,
+        "speed_inference_ms": 2.95,
+        "speed_postprocess_ms": 2.68,
+        "per_class": {
+          "car": {
+            "precision": 0.6639,
+            "recall": 0.3417,
+            "ap50": 0.4207,
+            "ap50_95": 0.2611
+          },
+          "motorcycle": {
+            "precision": 0.6486,
+            "recall": 0.27,
+            "ap50": 0.3627,
+            "ap50_95": 0.1774
+          },
+          "bus": {
+            "precision": 0.1663,
+            "recall": 0.4207,
+            "ap50": 0.2544,
+            "ap50_95": 0.1487
+          },
+          "truck": {
+            "precision": 0.1017,
+            "recall": 0.3133,
+            "ap50": 0.0807,
+            "ap50_95": 0.0401
+          }
+        },
+        "training_duration_sec": 97.46
+      },
+      "test_metrics": {
+        "precision": 0.3412,
+        "recall": 0.2828,
+        "mAP50": 0.2156,
+        "mAP50_95": 0.1012,
+        "speed_preprocess_ms": 1.99,
+        "speed_inference_ms": 4.22,
+        "speed_postprocess_ms": 2.89,
+        "per_class": {
+          "car": {
+            "precision": 0.6957,
+            "recall": 0.1701,
+            "ap50": 0.2929,
+            "ap50_95": 0.1495
+          },
+          "motorcycle": {
+            "precision": 0.343,
+            "recall": 0.0975,
+            "ap50": 0.1119,
+            "ap50_95": 0.0361
+          },
+          "bus": {
+            "precision": 0.1996,
+            "recall": 0.5636,
+            "ap50": 0.3438,
+            "ap50_95": 0.1771
+          },
+          "truck": {
+            "precision": 0.1263,
+            "recall": 0.3,
+            "ap50": 0.1138,
+            "ap50_95": 0.042
+          }
+        }
+      },
+      "notes": "Multi-dataset candidate exp_india_cctv_1ep (45 epochs)",
+      "multi_view_evaluations": {
+        "view1_general_benchmark": {
+          "precision": 0.3412,
+          "recall": 0.2828,
+          "mAP50": 0.2156,
+          "mAP50_95": 0.1012,
+          "speed_preprocess_ms": 1.99,
+          "speed_inference_ms": 4.22,
+          "speed_postprocess_ms": 2.89,
+          "per_class": {
+            "car": {
+              "precision": 0.6957,
+              "recall": 0.1701,
+              "ap50": 0.2929,
+              "ap50_95": 0.1495
+            },
+            "motorcycle": {
+              "precision": 0.343,
+              "recall": 0.0975,
+              "ap50": 0.1119,
+              "ap50_95": 0.0361
+            },
+            "bus": {
+              "precision": 0.1996,
+              "recall": 0.5636,
+              "ap50": 0.3438,
+              "ap50_95": 0.1771
+            },
+            "truck": {
+              "precision": 0.1263,
+              "recall": 0.3,
+              "ap50": 0.1138,
+              "ap50_95": 0.042
+            }
+          }
+        },
+        "view2_parking_camera": {
+          "view_name": "real_parking_camera",
+          "sample_count": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "per_class": {
+            "car": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 4,
+              "fn": 0
+            },
+            "motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 7,
+              "fn": 0
+            },
+            "bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "latency_mean_ms": 30.24,
+          "latency_p95_ms": 29.35
+        },
+        "view3_difficult_cases": {
+          "view_name": "difficult_cases",
+          "sample_count": 87,
+          "precision": 0.5469,
+          "recall": 0.0768,
+          "f1": 0.1346,
+          "per_class": {
+            "car": {
+              "precision": 0.913,
+              "recall": 0.066,
+              "f1": 0.1232,
+              "tp": 21,
+              "fp": 2,
+              "fn": 297
+            },
+            "motorcycle": {
+              "precision": 0.5,
+              "recall": 0.0238,
+              "f1": 0.0455,
+              "tp": 1,
+              "fp": 1,
+              "fn": 41
+            },
+            "bus": {
+              "precision": 0.3571,
+              "recall": 0.2778,
+              "f1": 0.3125,
+              "tp": 10,
+              "fp": 18,
+              "fn": 26
+            },
+            "truck": {
+              "precision": 0.2727,
+              "recall": 0.05,
+              "f1": 0.0845,
+              "tp": 3,
+              "fp": 8,
+              "fn": 57
+            }
+          },
+          "latency_mean_ms": 29.05,
+          "latency_p95_ms": 61.05
+        },
+        "view4_indian_traffic_cctv": {
+          "view_name": "indian_urban_traffic_cctv",
+          "sample_count": 200,
+          "precision": 0.777,
+          "recall": 0.1003,
+          "f1": 0.1777,
+          "per_class": {
+            "car": {
+              "precision": 0.9216,
+              "recall": 0.1685,
+              "f1": 0.2848,
+              "tp": 94,
+              "fp": 8,
+              "fn": 464
+            },
+            "motorcycle": {
+              "precision": 0.898,
+              "recall": 0.071,
+              "f1": 0.1315,
+              "tp": 88,
+              "fp": 10,
+              "fn": 1152
+            },
+            "bus": {
+              "precision": 0.4821,
+              "recall": 0.2061,
+              "f1": 0.2888,
+              "tp": 27,
+              "fp": 29,
+              "fn": 104
+            },
+            "truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 13,
+              "fn": 154
+            }
+          },
+          "latency_mean_ms": 24.34,
+          "latency_p95_ms": 43.31
+        }
+      }
+    },
+    {
+      "experiment_id": "exp_india_cctv_10ep",
+      "registered_at": "2026-10-14T13:21:59.265937",
+      "status": "CANDIDATE",
+      "pt_path": "models/experiments/exp_india_cctv_10ep/weights/best.pt",
+      "onnx_path": "models/experiments/exp_india_cctv_10ep/weights/best.onnx",
+      "pt_sha256": "23a48b0ca67d22173e8ecc82bfb9c3d638735239ab75ab8ad555cda8b0c1727b",
+      "onnx_sha256": "ee7048983f0a31360d0ce3739addbbe0af6bc536252d05511e3f4d9faa130067",
+      "training_config": {
+        "epochs": 10,
+        "batch_size": 16,
+        "imgsz": 640,
+        "device": "0",
+        "duration_sec": 716.3,
+        "base_weights": "C:\\Users\\adity\\Downloads\\IoT\\models\\vehicle_detector.pt",
+        "data_yaml": "C:\\Users\\adity\\Downloads\\IoT\\data\\vehicles_india_cctv.yaml"
+      },
+      "validation_metrics": {
+        "precision": 0.663,
+        "recall": 0.6088,
+        "mAP50": 0.6647,
+        "mAP50_95": 0.4836,
+        "speed_preprocess_ms": 1.12,
+        "speed_inference_ms": 3.17,
+        "speed_postprocess_ms": 1.98,
+        "per_class": {
+          "car": {
+            "precision": 0.761,
+            "recall": 0.6413,
+            "ap50": 0.7184,
+            "ap50_95": 0.5446
+          },
+          "motorcycle": {
+            "precision": 0.7514,
+            "recall": 0.6909,
+            "ap50": 0.7754,
+            "ap50_95": 0.513
+          },
+          "bus": {
+            "precision": 0.6496,
+            "recall": 0.5879,
+            "ap50": 0.687,
+            "ap50_95": 0.5443
+          },
+          "truck": {
+            "precision": 0.49,
+            "recall": 0.515,
+            "ap50": 0.478,
+            "ap50_95": 0.3324
+          }
+        },
+        "training_duration_sec": 716.3
+      },
+      "test_metrics": {
+        "precision": 0.6064,
+        "recall": 0.5068,
+        "mAP50": 0.5722,
+        "mAP50_95": 0.3684,
+        "speed_preprocess_ms": 1.57,
+        "speed_inference_ms": 3.94,
+        "speed_postprocess_ms": 2.81,
+        "per_class": {
+          "car": {
+            "precision": 0.6875,
+            "recall": 0.5045,
+            "ap50": 0.5843,
+            "ap50_95": 0.3632
+          },
+          "motorcycle": {
+            "precision": 0.6865,
+            "recall": 0.5196,
+            "ap50": 0.5936,
+            "ap50_95": 0.3286
+          },
+          "bus": {
+            "precision": 0.737,
+            "recall": 0.6364,
+            "ap50": 0.7336,
+            "ap50_95": 0.536
+          },
+          "truck": {
+            "precision": 0.3148,
+            "recall": 0.3667,
+            "ap50": 0.3772,
+            "ap50_95": 0.2456
+          }
+        }
+      },
+      "notes": "Multi-dataset candidate exp_india_cctv_10ep (45 epochs)",
+      "multi_view_evaluations": {
+        "view1_general_benchmark": {
+          "precision": 0.6064,
+          "recall": 0.5068,
+          "mAP50": 0.5722,
+          "mAP50_95": 0.3684,
+          "speed_preprocess_ms": 1.57,
+          "speed_inference_ms": 3.94,
+          "speed_postprocess_ms": 2.81,
+          "per_class": {
+            "car": {
+              "precision": 0.6875,
+              "recall": 0.5045,
+              "ap50": 0.5843,
+              "ap50_95": 0.3632
+            },
+            "motorcycle": {
+              "precision": 0.6865,
+              "recall": 0.5196,
+              "ap50": 0.5936,
+              "ap50_95": 0.3286
+            },
+            "bus": {
+              "precision": 0.737,
+              "recall": 0.6364,
+              "ap50": 0.7336,
+              "ap50_95": 0.536
+            },
+            "truck": {
+              "precision": 0.3148,
+              "recall": 0.3667,
+              "ap50": 0.3772,
+              "ap50_95": 0.2456
+            }
+          }
+        },
+        "view2_parking_camera": {
+          "view_name": "real_parking_camera",
+          "sample_count": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "per_class": {
+            "car": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 0
+            },
+            "motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 4,
+              "fn": 0
+            }
+          },
+          "latency_mean_ms": 29.76,
+          "latency_p95_ms": 31.53
+        },
+        "view3_difficult_cases": {
+          "view_name": "difficult_cases",
+          "sample_count": 87,
+          "precision": 0.7637,
+          "recall": 0.3969,
+          "f1": 0.5224,
+          "per_class": {
+            "car": {
+              "precision": 0.828,
+              "recall": 0.4088,
+              "f1": 0.5474,
+              "tp": 130,
+              "fp": 27,
+              "fn": 188
+            },
+            "motorcycle": {
+              "precision": 0.76,
+              "recall": 0.4524,
+              "f1": 0.5672,
+              "tp": 19,
+              "fp": 6,
+              "fn": 23
+            },
+            "bus": {
+              "precision": 0.8421,
+              "recall": 0.4444,
+              "f1": 0.5818,
+              "tp": 16,
+              "fp": 3,
+              "fn": 20
+            },
+            "truck": {
+              "precision": 0.4444,
+              "recall": 0.2667,
+              "f1": 0.3333,
+              "tp": 16,
+              "fp": 20,
+              "fn": 44
+            }
+          },
+          "latency_mean_ms": 32.6,
+          "latency_p95_ms": 62.67
+        },
+        "view4_indian_traffic_cctv": {
+          "view_name": "indian_urban_traffic_cctv",
+          "sample_count": 200,
+          "precision": 0.8391,
+          "recall": 0.6159,
+          "f1": 0.7104,
+          "per_class": {
+            "car": {
+              "precision": 0.8645,
+              "recall": 0.7204,
+              "f1": 0.7859,
+              "tp": 402,
+              "fp": 63,
+              "fn": 156
+            },
+            "motorcycle": {
+              "precision": 0.8637,
+              "recall": 0.6081,
+              "f1": 0.7137,
+              "tp": 754,
+              "fp": 119,
+              "fn": 486
+            },
+            "bus": {
+              "precision": 0.7711,
+              "recall": 0.4885,
+              "f1": 0.5981,
+              "tp": 64,
+              "fp": 19,
+              "fn": 67
+            },
+            "truck": {
+              "precision": 0.5833,
+              "recall": 0.4091,
+              "f1": 0.4809,
+              "tp": 63,
+              "fp": 45,
+              "fn": 91
+            }
+          },
+          "latency_mean_ms": 24.62,
+          "latency_p95_ms": 39.07
+        }
+      }
+    },
+    {
+      "experiment_id": "exp_balanced_multisource_10ep",
+      "registered_at": "2026-10-14T14:07:18.890637",
+      "status": "EXPERIMENTAL_CANDIDATE",
+      "pt_path": "models/experiments/exp_balanced_multisource_10ep/weights/best.pt",
+      "onnx_path": "models/experiments/exp_balanced_multisource_10ep/weights/best.onnx",
+      "pt_sha256": "e84030919bfa1aa0bc2ff236a157a93bc36ca43c02259af132d098782d2ca087",
+      "onnx_sha256": "219fa4ed7e118a576026aaddc82ad6e9e46babe1024fec77fbf09d6dd44f3fdb",
+      "training_config": {
+        "epochs": 10,
+        "batch_size": 16,
+        "imgsz": 640,
+        "device": "0",
+        "gpu_name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+        "duration_sec": 477.13,
+        "weights": "models/vehicle_detector.pt"
+      },
+      "validation_metrics": {
+        "precision": 0.5573,
+        "recall": 0.5111,
+        "mAP50": 0.5312,
+        "mAP50_95": 0.3706,
+        "training_duration_sec": 477.13,
+        "per_class": {
+          "car": {
+            "precision": 0.7001,
+            "recall": 0.6078,
+            "ap50": 0.6665,
+            "ap50_95": 0.4902
+          },
+          "motorcycle": {
+            "precision": 0.6568,
+            "recall": 0.6322,
+            "ap50": 0.6973,
+            "ap50_95": 0.4311
+          },
+          "bus": {
+            "precision": 0.4379,
+            "recall": 0.4695,
+            "ap50": 0.4633,
+            "ap50_95": 0.3679
+          },
+          "truck": {
+            "precision": 0.4345,
+            "recall": 0.3348,
+            "ap50": 0.2976,
+            "ap50_95": 0.1932
+          }
+        }
+      },
+      "test_metrics": {
+        "mAP50": 0.4578,
+        "mAP50_95": 0.2788,
+        "precision": 0.475,
+        "recall": 0.4515,
+        "per_class": {
+          "car": {
+            "precision": 0.6427,
+            "recall": 0.451,
+            "ap50": 0.5192,
+            "ap50_95": 0.31
+          },
+          "motorcycle": {
+            "precision": 0.4675,
+            "recall": 0.4915,
+            "ap50": 0.469,
+            "ap50_95": 0.2567
+          },
+          "bus": {
+            "precision": 0.5515,
+            "recall": 0.5636,
+            "ap50": 0.6127,
+            "ap50_95": 0.4397
+          },
+          "truck": {
+            "precision": 0.2385,
+            "recall": 0.3,
+            "ap50": 0.2303,
+            "ap50_95": 0.1087
+          }
+        }
+      },
+      "notes": "Arm C Balanced Multi-Source: Improves Indian CCTV mAP50 to 0.5631 (+28.2% over baseline), but regresses on General COCO (0.4578 vs 0.5930 baseline) due to VisDrone small-scale anchor interference. Retained as experimental candidate.",
+      "multi_view_evaluations": {
+        "view1_general_coco_test": {
+          "mAP50": 0.4578,
+          "mAP50_95": 0.2788,
+          "precision": 0.475,
+          "recall": 0.4515,
+          "per_class": {
+            "car": {
+              "precision": 0.6427,
+              "recall": 0.451,
+              "ap50": 0.5192,
+              "ap50_95": 0.31
+            },
+            "motorcycle": {
+              "precision": 0.4675,
+              "recall": 0.4915,
+              "ap50": 0.469,
+              "ap50_95": 0.2567
+            },
+            "bus": {
+              "precision": 0.5515,
+              "recall": 0.5636,
+              "ap50": 0.6127,
+              "ap50_95": 0.4397
+            },
+            "truck": {
+              "precision": 0.2385,
+              "recall": 0.3,
+              "ap50": 0.2303,
+              "ap50_95": 0.1087
+            }
+          }
+        },
+        "view4_independent_indian_cctv_heldout": {
+          "mAP50": 0.5631,
+          "mAP50_95": 0.3874,
+          "precision": 0.5245,
+          "recall": 0.579,
+          "per_class": {
+            "car": {
+              "precision": 0.6884,
+              "recall": 0.8072,
+              "ap50": 0.8097,
+              "ap50_95": 0.6196
+            },
+            "motorcycle": {
+              "precision": 0.6174,
+              "recall": 0.6796,
+              "ap50": 0.7077,
+              "ap50_95": 0.4442
+            },
+            "bus": {
+              "precision": 0.4464,
+              "recall": 0.4752,
+              "ap50": 0.4485,
+              "ap50_95": 0.3091
+            },
+            "truck": {
+              "precision": 0.3456,
+              "recall": 0.354,
+              "ap50": 0.2865,
+              "ap50_95": 0.1768
+            }
+          },
+          "operational_metrics_at_conf40": {
+            "precision": 0.7912,
+            "recall": 0.55,
+            "f1": 0.6489,
+            "per_class": {
+              "car": {
+                "precision": 0.8178,
+                "recall": 0.7201,
+                "f1": 0.7658,
+                "tp": 422,
+                "fp": 94,
+                "fn": 164
+              },
+              "motorcycle": {
+                "precision": 0.8067,
+                "recall": 0.5568,
+                "f1": 0.6588,
+                "tp": 676,
+                "fp": 162,
+                "fn": 538
+              },
+              "bus": {
+                "precision": 0.589,
+                "recall": 0.305,
+                "f1": 0.4019,
+                "tp": 43,
+                "fp": 30,
+                "fn": 98
+              },
+              "truck": {
+                "precision": 0.4412,
+                "recall": 0.0932,
+                "f1": 0.1539,
+                "tp": 15,
+                "fp": 19,
+                "fn": 146
+              }
+            }
+          }
+        },
+        "view2_parking_camera": {
+          "view_name": "real_parking_camera",
+          "sample_count": 30,
+          "pr_curve_metrics": {
+            "mAP50": 0.0,
+            "mAP50_95": 0.0,
+            "per_class": {
+              "car": {
+                "ap50": 0.0,
+                "ap50_95": 0.0
+              },
+              "motorcycle": {
+                "ap50": 0.0,
+                "ap50_95": 0.0
+              },
+              "bus": {
+                "ap50": 0.0,
+                "ap50_95": 0.0
+              },
+              "truck": {
+                "ap50": 0.0,
+                "ap50_95": 0.0
+              }
+            }
+          },
+          "operational_metrics_at_conf40": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "per_class": {
+              "car": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "tp": 0,
+                "fp": 2506,
+                "fn": 0
+              },
+              "motorcycle": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "tp": 0,
+                "fp": 0,
+                "fn": 0
+              },
+              "bus": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "tp": 0,
+                "fp": 0,
+                "fn": 0
+              },
+              "truck": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "tp": 0,
+                "fp": 0,
+                "fn": 0
+              }
+            }
+          },
+          "latency_mean_ms": 8.98,
+          "latency_p95_ms": 10.0
+        },
+        "view3_difficult_cases": {
+          "view_name": "difficult_cases",
+          "sample_count": 87,
+          "pr_curve_metrics": {
+            "mAP50": 0.4414,
+            "mAP50_95": 0.2597,
+            "per_class": {
+              "car": {
+                "ap50": 0.5282,
+                "ap50_95": 0.3174
+              },
+              "motorcycle": {
+                "ap50": 0.3914,
+                "ap50_95": 0.1999
+              },
+              "bus": {
+                "ap50": 0.5201,
+                "ap50_95": 0.3685
+              },
+              "truck": {
+                "ap50": 0.3257,
+                "ap50_95": 0.1531
+              }
+            }
+          },
+          "operational_metrics_at_conf40": {
+            "precision": 0.8272,
+            "recall": 0.2939,
+            "f1": 0.4337,
+            "per_class": {
+              "car": {
+                "precision": 0.8718,
+                "recall": 0.3208,
+                "f1": 0.469,
+                "tp": 102,
+                "fp": 15,
+                "fn": 216
+              },
+              "motorcycle": {
+                "precision": 0.6316,
+                "recall": 0.2857,
+                "f1": 0.3934,
+                "tp": 12,
+                "fp": 7,
+                "fn": 30
+              },
+              "bus": {
+                "precision": 0.7692,
+                "recall": 0.2778,
+                "f1": 0.4082,
+                "tp": 10,
+                "fp": 3,
+                "fn": 26
+              },
+              "truck": {
+                "precision": 0.7692,
+                "recall": 0.1667,
+                "f1": 0.274,
+                "tp": 10,
+                "fp": 3,
+                "fn": 50
+              }
+            }
+          },
+          "latency_mean_ms": 13.07,
+          "latency_p95_ms": 40.51
+        }
+      }
+    }
+  ],
+  "history": []
+}

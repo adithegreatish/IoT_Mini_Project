@@ -1,0 +1,251 @@
+{
+  "evaluation_id": "eval_20261014_001541",
+  "timestamp": "2026-10-14T00:15:41.063948",
+  "model_path": "models/vehicle_detector.pt",
+  "model_sha256": "0f8c08dc8f4aff7f0b52582f38677c016b8caedf73ab4b39c182046a086e6089",
+  "evaluation_device": "0",
+  "view1_general_benchmark": {
+    "precision": 0.6224,
+    "recall": 0.5459,
+    "mAP50": 0.595,
+    "mAP50_95": 0.3797,
+    "speed_preprocess_ms": 0.97,
+    "speed_inference_ms": 3.32,
+    "speed_postprocess_ms": 0.78,
+    "per_class": {
+      "car": {
+        "precision": 0.698,
+        "recall": 0.5552,
+        "ap50": 0.6038,
+        "ap50_95": 0.3717
+      },
+      "motorcycle": {
+        "precision": 0.7648,
+        "recall": 0.5932,
+        "ap50": 0.6698,
+        "ap50_95": 0.3585
+      },
+      "bus": {
+        "precision": 0.6797,
+        "recall": 0.6182,
+        "ap50": 0.7192,
+        "ap50_95": 0.5449
+      },
+      "truck": {
+        "precision": 0.3473,
+        "recall": 0.4168,
+        "ap50": 0.3873,
+        "ap50_95": 0.2438
+      }
+    }
+  },
+  "error_gallery": {
+    "false_positives": [
+      {
+        "image": "000000006723.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "car",
+        "gt_class": "truck",
+        "confidence": 0.745,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000006723_car_vs_truck.jpg"
+      },
+      {
+        "image": "000000006723.jpg",
+        "type": "BACKGROUND_FALSE_POSITIVE",
+        "pred_class": "bus",
+        "confidence": 0.401,
+        "crop_path": "data/test_reports/error_gallery/false_positives/fp_000000006723_bus.jpg"
+      },
+      {
+        "image": "000000017207.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "truck",
+        "gt_class": "car",
+        "confidence": 0.852,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000017207_truck_vs_car.jpg"
+      },
+      {
+        "image": "000000018837.jpg",
+        "type": "BACKGROUND_FALSE_POSITIVE",
+        "pred_class": "bus",
+        "confidence": 0.57,
+        "crop_path": "data/test_reports/error_gallery/false_positives/fp_000000018837_bus.jpg"
+      },
+      {
+        "image": "000000019109.jpg",
+        "type": "BACKGROUND_FALSE_POSITIVE",
+        "pred_class": "car",
+        "confidence": 0.62,
+        "crop_path": "data/test_reports/error_gallery/false_positives/fp_000000019109_car.jpg"
+      },
+      {
+        "image": "000000032941.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "bus",
+        "gt_class": "truck",
+        "confidence": 0.548,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000032941_bus_vs_truck.jpg"
+      },
+      {
+        "image": "000000044590.jpg",
+        "type": "BACKGROUND_FALSE_POSITIVE",
+        "pred_class": "motorcycle",
+        "confidence": 0.696,
+        "crop_path": "data/test_reports/error_gallery/false_positives/fp_000000044590_motorcycle.jpg"
+      },
+      {
+        "image": "000000044590.jpg",
+        "type": "BACKGROUND_FALSE_POSITIVE",
+        "pred_class": "motorcycle",
+        "confidence": 0.48,
+        "crop_path": "data/test_reports/error_gallery/false_positives/fp_000000044590_motorcycle.jpg"
+      },
+      {
+        "image": "000000054593.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "truck",
+        "gt_class": "car",
+        "confidence": 0.589,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000054593_truck_vs_car.jpg"
+      },
+      {
+        "image": "000000067213.jpg",
+        "type": "BACKGROUND_FALSE_POSITIVE",
+        "pred_class": "car",
+        "confidence": 0.79,
+        "crop_path": "data/test_reports/error_gallery/false_positives/fp_000000067213_car.jpg"
+      },
+      {
+        "image": "000000067213.jpg",
+        "type": "BACKGROUND_FALSE_POSITIVE",
+        "pred_class": "truck",
+        "confidence": 0.61,
+        "crop_path": "data/test_reports/error_gallery/false_positives/fp_000000067213_truck.jpg"
+      },
+      {
+        "image": "000000067213.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "truck",
+        "gt_class": "car",
+        "confidence": 0.444,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000067213_truck_vs_car.jpg"
+      },
+      {
+        "image": "000000067213.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "truck",
+        "gt_class": "car",
+        "confidence": 0.414,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000067213_truck_vs_car.jpg"
+      },
+      {
+        "image": "000000067616.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "truck",
+        "gt_class": "car",
+        "confidence": 0.898,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000067616_truck_vs_car.jpg"
+      },
+      {
+        "image": "000000067616.jpg",
+        "type": "CLASS_CONFUSION",
+        "pred_class": "car",
+        "gt_class": "truck",
+        "confidence": 0.692,
+        "crop_path": "data/test_reports/error_gallery/false_positives/confused_000000067616_car_vs_truck.jpg"
+      }
+    ],
+    "false_negatives": [
+      {
+        "image": "000000006723.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "car",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000006723_car.jpg"
+      },
+      {
+        "image": "000000006723.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "car",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000006723_car.jpg"
+      },
+      {
+        "image": "000000006723.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "bus",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000006723_bus.jpg"
+      },
+      {
+        "image": "000000006723.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "truck",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000006723_truck.jpg"
+      },
+      {
+        "image": "000000006723.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "truck",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000006723_truck.jpg"
+      },
+      {
+        "image": "000000017029.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "car",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000017029_car.jpg"
+      },
+      {
+        "image": "000000017207.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "car",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000017207_car.jpg"
+      },
+      {
+        "image": "000000018837.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "car",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000018837_car.jpg"
+      },
+      {
+        "image": "000000019109.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "motorcycle",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000019109_motorcycle.jpg"
+      },
+      {
+        "image": "000000019109.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "motorcycle",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000019109_motorcycle.jpg"
+      },
+      {
+        "image": "000000019109.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "motorcycle",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000019109_motorcycle.jpg"
+      },
+      {
+        "image": "000000019109.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "motorcycle",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000019109_motorcycle.jpg"
+      },
+      {
+        "image": "000000019109.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "motorcycle",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000019109_motorcycle.jpg"
+      },
+      {
+        "image": "000000019109.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "motorcycle",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000019109_motorcycle.jpg"
+      },
+      {
+        "image": "000000032941.jpg",
+        "type": "FALSE_NEGATIVE_MISSED_VEHICLE",
+        "gt_class": "car",
+        "crop_path": "data/test_reports/error_gallery/false_negatives/fn_000000032941_car.jpg"
+      }
+    ]
+  }
+}

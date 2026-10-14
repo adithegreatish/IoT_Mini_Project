@@ -52,13 +52,56 @@
     "calibration_file": "data/processed/parking_slots/pklot_pucpr_calibration.json"
   },
   "blocked_datasets": {
-    "bdd100k": {
+    "idd": {
+      "name": "India Driving Dataset (IDD Detection)",
+      "organization": "INSAAN / IIIT Hyderabad & Intel India",
+      "url": "https://idd.insaan.iiit.ac.in/dataset/details/",
+      "download_portal": "https://idd.insaan.iiit.ac.in/dataset/download/",
+      "license": "IDD Academic Research License (Custom Non-Commercial)",
       "status": "BLOCKED_BY_ACCESS_CONTROLS",
-      "reason": "Requires authenticated research account registration on bdd-data.berkeley.edu; direct unauthenticated downloads return HTTP 403."
+      "access_method": "Authenticated web form login required (HTTP 401 on unauthenticated Hugging Face mirror)",
+      "reason": "Official download requires interactive user registration and login credentials on insaan.iiit.ac.in. In accordance with policy, unauthenticated scraping and credential bypass are prohibited.",
+      "action_taken": "Documented limitation in audit manifest; continuing with accessible sources."
     },
-    "ua_detrac": {
-      "status": "BLOCKED_BY_LICENSE_CONTROLS",
-      "reason": "Requires academic license agreement submission and institutional login credentials on RIT/Albany portal."
+    "bdd100k": {
+      "name": "BDD100K: A Diverse Driving Video Dataset",
+      "organization": "Berkeley DeepDrive, UC Berkeley",
+      "url": "https://www.bdd100k.com/",
+      "license": "Custom Research License / BSD-3 (Toolkit)",
+      "status": "BLOCKED_BY_ACCESS_CONTROLS",
+      "access_method": "Gated institutional research portal (bdd-data.berkeley.edu)",
+      "reason": "Direct unauthenticated downloads return HTTP 403; public mirror dl.yf.io fails SSL hostname verification. TLS verification cannot be disabled per security invariant.",
+      "action_taken": "Documented limitation in audit manifest; continuing with accessible sources."
     }
+  },
+  "uvh26": {
+    "source": "UVH-26 (AIM @ IISc, CC BY 4.0)",
+    "train_images": 1000,
+    "train_instances": {
+      "truck": 750,
+      "motorcycle": 6343,
+      "bus": 706,
+      "car": 2965
+    },
+    "val_heldout_images": 200,
+    "val_heldout_instances": {
+      "motorcycle": 1240,
+      "car": 558,
+      "bus": 131,
+      "truck": 154
+    },
+    "acquired_at": "2026-10-14T12:56:05.016412"
+  },
+  "visdrone": {
+    "source": "VisDrone2019-DET (Tianjin University)",
+    "images": 345,
+    "instances": {
+      "car": 9182,
+      "motorcycle": 3109,
+      "truck": 592,
+      "bus": 123
+    },
+    "archive_sha256": "abeea063037e5d20398837deb11084e652402a34ddf4f207bdf541a6f2a35ef9",
+    "acquired_at": "2026-10-14T12:56:05.016412"
   }
 }

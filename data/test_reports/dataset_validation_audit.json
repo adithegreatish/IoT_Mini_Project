@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-10-14T00:12:23.436730",
+  "dataset_yaml": "C:\\Users\\adity\\Downloads\\IoT\\data\\vehicles.yaml",
+  "classes": [
+    "car",
+    "motorcycle",
+    "bus",
+    "truck"
+  ],
+  "splits": {
+    "train": {
+      "total_images": 1657,
+      "usable_images": 1657,
+      "corrupt_images": 0,
+      "missing_labels": 0,
+      "empty_label_files": 1,
+      "invalid_boxes_count": 0,
+      "out_of_bounds_count": 0,
+      "small_objects_count": 3541,
+      "exact_duplicates": 0,
+      "near_duplicates": 0,
+      "class_counts": {
+        "car": 3580,
+        "motorcycle": 1240,
+        "bus": 766,
+        "truck": 1284
+      },
+      "invalid_details_sample": [],
+      "contact_sheet_path": "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\contact_sheet_train.jpg"
+    },
+    "val": {
+      "total_images": 119,
+      "usable_images": 119,
+      "corrupt_images": 0,
+      "missing_labels": 0,
+      "empty_label_files": 0,
+      "invalid_boxes_count": 0,
+      "out_of_bounds_count": 0,
+      "small_objects_count": 249,
+      "exact_duplicates": 0,
+      "near_duplicates": 0,
+      "class_counts": {
+        "car": 286,
+        "motorcycle": 38,
+        "bus": 33,
+        "truck": 79
+      },
+      "invalid_details_sample": [],
+      "contact_sheet_path": "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\contact_sheet_val.jpg"
+    },
+    "test": {
+      "total_images": 120,
+      "usable_images": 120,
+      "corrupt_images": 0,
+      "missing_labels": 0,
+      "empty_label_files": 0,
+      "invalid_boxes_count": 0,
+      "out_of_bounds_count": 0,
+      "small_objects_count": 295,
+      "exact_duplicates": 0,
+      "near_duplicates": 0,
+      "class_counts": {
+        "car": 335,
+        "motorcycle": 59,
+        "bus": 55,
+        "truck": 60
+      },
+      "invalid_details_sample": [],
+      "contact_sheet_path": "C:\\Users\\adity\\Downloads\\IoT\\data\\test_reports\\contact_sheet_test.jpg"
+    }
+  },
+  "dataset_fingerprint": "85d62ce73c7aa70cc2dd76e246cd14cd0a41413ba4411ffc2451acc455c011c1",
+  "overall_valid": true
+}

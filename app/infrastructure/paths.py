@@ -148,6 +148,10 @@ class PathManager:
         return self.resolve("logs")
 
     @property
+    def docs_dir(self) -> Path:
+        return self.resolve("docs")
+
+    @property
     def cache_dir(self) -> Path:
         return self.resolve("data/.cache")
 

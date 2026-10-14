@@ -466,3 +466,217 @@ def sync_calibrated_slots():
     count = allocation_service.sync_slots_from_calibration(calib.get("slots", []))
     return {"success": True, "synchronized_slots": count}
 
+
+# =========================================================================
+# AI Model Lab & Continuous Improvement Endpoints (Section 13)
+# =========================================================================
+
+class ReviewCandidateRequest(BaseModel):
+    frame_id: str
+    action: str  # ACCEPT, REJECT, CORRECT
+    corrected_class: Optional[str] = None
+
+
+class PromoteCandidateRequest(BaseModel):
+    experiment_id: str
+    force: bool = False
+    min_mAP50_improvement: float = 0.0
+
+
+@router.get("/lab/overview")
+def get_ai_lab_overview():
+    """Returns authoritative AI Model Lab overview including active model, checksum integrity, and candidates."""
+    from app.models.registry import model_registry
+
+    active = model_registry.get_active_model()
+    reg = model_registry.load_registry()
+    candidates = reg.get("candidates", [])
+    prev_stable = reg.get("previous_stable_model")
+
+    # Load latest benchmark if exists
+    bench_p = paths.data_dir / "test_reports" / "vehicle_edge_benchmark.json"
+    latest_bench = None
+    if bench_p.exists():
+        try:
+            b_data = json.loads(bench_p.read_text(encoding="utf-8"))
+            latest_bench = b_data.get("benchmarks", [{}])[-1]
+        except Exception:
+            pass
+
+    return {
+        "active_model": active,
+        "previous_stable_model": prev_stable,
+        "total_candidates": len(candidates),
+        "latest_candidate": candidates[-1] if candidates else None,
+        "latest_benchmark": latest_bench,
+        "rollback_available": prev_stable is not None,
+    }
+
+
+@router.get("/lab/experiments")
+def get_lab_experiments():
+    """Returns registered candidate training experiments and history."""
+    from app.models.registry import model_registry
+
+    reg = model_registry.load_registry()
+    return {
+        "active_model": reg.get("active_model"),
+        "candidates": reg.get("candidates", []),
+        "history": reg.get("history", []),
+    }
+
+
+@router.get("/lab/comparison")
+def get_lab_model_comparison(candidate_id: Optional[str] = None):
+    """Returns side-by-side metric comparison between active production baseline and selected candidate."""
+    from app.models.registry import model_registry
+    from scripts.compare_vehicle_models import compare_metrics
+
+    reg = model_registry.load_registry()
+    candidates = reg.get("candidates", [])
+    if not candidates:
+        return {"error": "No experimental candidates registered."}
+
+    cand = next((c for c in candidates if c.get("experiment_id") == candidate_id), candidates[-1])
+    active = reg.get("active_model", {})
+
+    base_m = active.get("metrics", {})
+    cand_m = cand.get("test_metrics") or cand.get("validation_metrics", {})
+
+    comparison = compare_metrics(base_m, cand_m)
+    return {
+        "candidate_id": cand.get("experiment_id"),
+        "candidate_status": cand.get("status"),
+        "comparison": comparison,
+    }
+
+
+@router.get("/lab/error_gallery")
+def get_lab_error_gallery():
+    """Lists reviewed false positives and false negatives from latest evaluation error gallery."""
+    gallery_dir = paths.data_dir / "test_reports" / "error_gallery"
+    fp_dir = gallery_dir / "false_positives"
+    fn_dir = gallery_dir / "false_negatives"
+
+    fp_files = [{"filename": f.name, "url": f"/api/lab/gallery_image/false_positives/{f.name}"} for f in sorted(fp_dir.glob("*.jpg"))[:20]] if fp_dir.exists() else []
+    fn_files = [{"filename": f.name, "url": f"/api/lab/gallery_image/false_negatives/{f.name}"} for f in sorted(fn_dir.glob("*.jpg"))[:20]] if fn_dir.exists() else []
+
+    return {
+        "total_false_positives": len(fp_files),
+        "total_false_negatives": len(fn_files),
+        "false_positives": fp_files,
+        "false_negatives": fn_files,
+    }
+
+
+@router.get("/lab/gallery_image/{category}/{filename}")
+def get_gallery_image(category: str, filename: str):
+    """Serves error gallery visual crops securely."""
+    if category not in ["false_positives", "false_negatives"]:
+        raise HTTPException(status_code=400, detail="Invalid gallery category.")
+    img_p = paths.data_dir / "test_reports" / "error_gallery" / category / filename
+    if not img_p.exists():
+        raise HTTPException(status_code=404, detail="Gallery crop not found.")
+    return FileResponse(str(img_p), media_type="image/jpeg")
+
+
+@router.get("/lab/candidate_image/{filename}")
+def get_candidate_image(filename: str):
+    """Serves mined candidate image securely."""
+    img_p = paths.data_dir / "active_learning" / "candidates" / "images" / filename
+    if not img_p.exists():
+        raise HTTPException(status_code=404, detail="Candidate image not found.")
+    return FileResponse(str(img_p), media_type="image/jpeg")
+
+
+@router.get("/lab/dataset_health")
+def get_lab_dataset_health():
+    """Returns dataset health metrics, class distribution, and validation status."""
+    audit_p = paths.data_dir / "test_reports" / "dataset_validation_audit.json"
+    if audit_p.exists():
+        try:
+            return json.loads(audit_p.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    from scripts.inspect_vehicle_dataset import inspect_dataset_statistics
+    yaml_p = paths.resolve("data/vehicles.yaml")
+    return inspect_dataset_statistics(yaml_p)
+
+
+@router.post("/lab/capture_frame")
+def trigger_manual_frame_capture(reason: str = "MANUAL_OPERATOR_CAPTURE"):
+    """Captures current camera frame into the active learning review queue."""
+    if not camera_service:
+        raise HTTPException(status_code=503, detail="Camera service unavailable.")
+    frame, _ = camera_service.get_latest_frame()
+    if frame is None:
+        raise HTTPException(status_code=503, detail="No active camera frame available.")
+
+    from app.detection.data_capture import data_capture_manager
+    success, fid = data_capture_manager.capture_candidate_frame(frame=frame, reason=reason, force=True)
+    if not success:
+        raise HTTPException(status_code=400, detail=f"Capture failed: {fid}")
+    return {"success": True, "frame_id": fid}
+
+
+@router.get("/lab/candidates")
+def get_lab_candidates(limit: int = 50, status: Optional[str] = None):
+    """Returns pending or reviewed candidate frames in active learning queue."""
+    from app.detection.data_capture import data_capture_manager
+    return {"candidates": data_capture_manager.get_candidate_queue(limit=limit, status=status)}
+
+
+@router.post("/lab/review_candidate")
+def review_lab_candidate(req: ReviewCandidateRequest):
+    """Human-in-the-loop review of candidate frames (ACCEPT, REJECT, CORRECT)."""
+    from app.detection.data_capture import data_capture_manager
+    success = data_capture_manager.review_candidate(
+        frame_id=req.frame_id,
+        action=req.action,
+        corrected_class=req.corrected_class,
+    )
+    if not success:
+        raise HTTPException(status_code=404, detail="Candidate frame not found.")
+    return {"success": True, "frame_id": req.frame_id, "action": req.action}
+
+
+@router.post("/lab/promote")
+def promote_candidate_endpoint(req: PromoteCandidateRequest):
+    """Promotes candidate model to production with gate verification."""
+    from app.models.registry import model_registry
+    success, msg = model_registry.promote_candidate(
+        experiment_id=req.experiment_id,
+        force=req.force,
+        min_mAP50_improvement=req.min_mAP50_improvement,
+    )
+    if not success:
+        raise HTTPException(status_code=400, detail=msg)
+    return {"success": True, "message": msg}
+
+
+@router.post("/lab/rollback")
+def rollback_model_endpoint():
+    """Rolls back production model to previous stable version."""
+    from app.models.registry import model_registry
+    success, msg = model_registry.rollback_model()
+    if not success:
+        raise HTTPException(status_code=400, detail=msg)
+    return {"success": True, "message": msg}
+
+
+@router.get("/lab/report/{report_name}")
+def get_lab_markdown_report(report_name: str):
+    """Returns formatted markdown research reports (baseline, splits, readiness)."""
+    valid_reports = {
+        "baseline": paths.docs_dir / "vehicle_detection" / "BASELINE_AUDIT.md",
+        "splits": paths.docs_dir / "vehicle_detection" / "DATASET_AND_SPLIT_AUDIT.md",
+        "readiness": paths.docs_dir / "vehicle_detection" / "DEPLOYMENT_READINESS.md",
+    }
+    if report_name not in valid_reports:
+        raise HTTPException(status_code=404, detail="Report not found.")
+    target_p = valid_reports[report_name]
+    if not target_p.exists():
+        raise HTTPException(status_code=404, detail="Report file not generated yet.")
+    return {"report_name": report_name, "content": target_p.read_text(encoding="utf-8")}
+

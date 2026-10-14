@@ -31,16 +31,42 @@
         "truck"
       ],
       "metrics": {
-        "mAP50": 0.5611,
+        "mAP50": 0.595,
         "latency_pi5_ms": 78.4,
         "latency_windows_ms": 29.28,
-        "mAP50_95": 0.3938,
-        "precision": 0.6854,
-        "recall": 0.5145,
-        "training_duration_sec": 974.54
+        "mAP50_95": 0.3797,
+        "precision": 0.6224,
+        "recall": 0.5459,
+        "training_duration_sec": 974.54,
+        "per_class": {
+          "car": {
+            "precision": 0.698,
+            "recall": 0.5552,
+            "ap50": 0.6038,
+            "ap50_95": 0.3717
+          },
+          "motorcycle": {
+            "precision": 0.7648,
+            "recall": 0.5932,
+            "ap50": 0.6698,
+            "ap50_95": 0.3585
+          },
+          "bus": {
+            "precision": 0.6797,
+            "recall": 0.6182,
+            "ap50": 0.7192,
+            "ap50_95": 0.5449
+          },
+          "truck": {
+            "precision": 0.3473,
+            "recall": 0.4168,
+            "ap50": 0.3873,
+            "ap50_95": 0.2438
+          }
+        }
       },
       "limitations": "Accuracy degrades in heavy rain, extreme glare, and severe lens distortion at boundary parking bays.",
-      "updated_at": "2026-10-12T22:00:19.392381"
+      "updated_at": "2026-10-14T14:12:30.864941"
     },
     {
       "model_id": "plate-detector-tiny",
@@ -153,7 +179,7 @@
       ],
       "metrics": {
         "cnrpark_test_accuracy": 0.9849,
-        "cnrpark_test_macro_f1": 0.9830,
+        "cnrpark_test_macro_f1": 0.983,
         "latency_windows_ms": 0.355
       },
       "limitations": "Trained solely on CNRPark; subject to domain shift on PKLot.",

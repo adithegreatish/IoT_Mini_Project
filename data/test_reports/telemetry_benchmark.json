@@ -1,5 +1,5 @@
 {
-  "uptime_seconds": 1.6,
+  "uptime_seconds": 1.5,
   "core_metrics": {
     "1_camera_capture_fps": 0.0,
     "2_live_video_delivery_fps": 0.0,
@@ -13,7 +13,7 @@
       "p95_ms": 0.0
     },
     "7_dropped_frames_count": 0,
-    "7_stale_frames_count": 21
+    "7_stale_frames_count": 20
   },
   "stage_latencies_ms": {
     "camera_capture": {
@@ -90,7 +90,7 @@
     }
   },
   "system_footprint": {
-    "process_rss_mb": 492.4,
+    "process_rss_mb": 492.9,
     "process_cpu_pct": 0.0,
     "active_threads": 39,
     "total_frames_captured": 0

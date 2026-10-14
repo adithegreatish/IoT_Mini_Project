@@ -1,0 +1,1416 @@
+{
+  "view_name": "indian_urban_traffic_cctv_heldout",
+  "description": "Genuinely untouched held-out Indian urban CCTV benchmark from UVH-26-MV-Val.json, strictly disjoint from training and previous validation frames with min frame distance > 100",
+  "created_at": "2026-10-14T13:46:02.711029",
+  "sample_count": 200,
+  "class_tally": {
+    "motorcycle": 1214,
+    "truck": 161,
+    "car": 586,
+    "bus": 141
+  },
+  "total_instances": 2102,
+  "near_duplicate_warnings": 0,
+  "samples": [
+    {
+      "image": "data/processed/uvh26_heldout_test/images/932288.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/932288.txt",
+      "sha256": "3179cba656b961119ac619a3f2a4ff7d87406de719dc96a13b20fec734f6e6f2",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 932288
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/123465.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/123465.txt",
+      "sha256": "28fe60982f9801411f8aeedd0a5e7baf78a263b9a8a9ca53e1b38bc2a6376aa1",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 123465
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/880997.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/880997.txt",
+      "sha256": "036bf1206adf118825359b1df435c1e69c13a0f979d8e40293b9751434e34101",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 880997
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/283589.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/283589.txt",
+      "sha256": "b8228ad19d940de932d3decac976f630e17a7f0d5cb28a6ad534575784b1d950",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 283589
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/293058.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/293058.txt",
+      "sha256": "1f7d6352dba7dac7388ccfad5bfb579b229c732a6d37fe06cc97c120c2d18808",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 293058
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/478863.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/478863.txt",
+      "sha256": "f92dd501be9969733db31b80c2ce9b165bfab8077107090463bcc0e62dc7edf3",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 478863
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/535994.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/535994.txt",
+      "sha256": "7246989eaf90442cbffd8e1aac50f12bd3e933b50da2aba3a8bf44b424a054c0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 535994
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/975750.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/975750.txt",
+      "sha256": "4ddfabae74e47e19abc259156aae99ccc6a92207cb390a78b98dada3ef25c104",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 975750
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/305125.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/305125.txt",
+      "sha256": "64dd34b68ae853de97bccacafb85c0aa91ec46ba23d83395ae53ef335c06b4d9",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 305125
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/216951.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/216951.txt",
+      "sha256": "638bb59eacc4f76a0c92497783c03cda2e1206125c40a39e4a3962c3d05aff21",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 216951
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/201161.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/201161.txt",
+      "sha256": "dd6cb882e10c47d26ad2dddf79e5b11d5fa382298489662e4964c68296d854dd",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 201161
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/432187.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/432187.txt",
+      "sha256": "2ae058e8c2ca8d85dd77633e270a8195b9b27d0c113b8c40aaad6b2c033b6f04",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 432187
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/345645.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/345645.txt",
+      "sha256": "b77e44fa733a940e295927bc7d7d82d80512a4c9e50b96ff433cda8db562d8b7",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 345645
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/134425.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/134425.txt",
+      "sha256": "0998cb4092070caf115c125e509ca52b906658fb76a6f6858848756110bc040a",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 134425
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/946425.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/946425.txt",
+      "sha256": "1f1725b5fd470e56623ac31f087b48a5e2b32ce788dee0564886cd9342f30b9a",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 946425
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/104515.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/104515.txt",
+      "sha256": "9e2a8eb6441d6ddc80b55fc47a2595d64e94ddc74fa47c727a333410167d2e32",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 104515
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/964132.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/964132.txt",
+      "sha256": "726da134f67451d6aff996cc268a30ec591bc4dddfef975e171e0d228c18724e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 964132
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/526325.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/526325.txt",
+      "sha256": "796d9a4527ed6a1b7d8bf258927a4fef6250d3247b414fad38dd413737563730",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 526325
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/384901.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/384901.txt",
+      "sha256": "de74c525395dd23024105afbd00d0e2827437f64083db95a44023fff66f89de9",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 384901
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/258217.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/258217.txt",
+      "sha256": "7ff5192f823351460c439741cbda8e3fb0746e1c4f8006596de975403ab7a1c9",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 258217
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/802334.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/802334.txt",
+      "sha256": "594c0ce2b9ce1e80634f17bb160cb603e4335b68e7b0de016a11803ea134f5df",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 802334
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/424586.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/424586.txt",
+      "sha256": "63a2a1184bbe952ff64e146fb3e98189dec3cd085d1c1b0b6726ce455b179741",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 424586
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/64423.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/64423.txt",
+      "sha256": "7f7052d908bd2c5804aaf8a168cff1a37fb02da9a5bb1229b2337cc2a9aca2d9",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 64423
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/683508.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/683508.txt",
+      "sha256": "ba7b6966b1c473952e5c140c804989164cf410e4302d89f2c7ab174b3e1ed273",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 683508
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/531920.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/531920.txt",
+      "sha256": "f94c5390a5a4f9d4ddaed9da5f28292610b6700035545d9ccba489bac37713ea",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 531920
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/485495.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/485495.txt",
+      "sha256": "92fafcd5ac1e27efd9c85f58166926fd6f11192543f37be5ba45995fd9e93c0d",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 485495
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/915602.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/915602.txt",
+      "sha256": "791bc68f1b8f5237a5d5b1c620da51df009423b5ee5a622fe43662815b3174ec",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 915602
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/518747.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/518747.txt",
+      "sha256": "5c5ea545636617cc260fdd529e0ba9a055b4a2c4166573bae4a6ef02f56bb23b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 518747
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/683971.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/683971.txt",
+      "sha256": "9ac2547d27d6325c52376c4f9107fa3353fe252730b672244a83b6f3cd1f957e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 683971
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/646281.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/646281.txt",
+      "sha256": "19e6f0739deadf1741ce2e4112a63e00bf47d959e48c0e35bc21dc7ef388cd5b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 646281
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/35776.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/35776.txt",
+      "sha256": "6166422a3d1ba22c05b2ae1fb9e9b938e4eca94f850199047d191a2cd54576a0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 35776
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/654882.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/654882.txt",
+      "sha256": "ab84ee89cb25ef794c99f66a3f42713830a17fcfa451bb0d323bb736778bd775",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 654882
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/495064.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/495064.txt",
+      "sha256": "31185d774840f57f45eb838cf71c10f52f052fad274eab4b2a930c2f82a766ee",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 495064
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/546190.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/546190.txt",
+      "sha256": "b56f390e105aa42aee00468470eddc8fd469277f60ef54911a145a8f7fdf401f",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 546190
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/685680.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/685680.txt",
+      "sha256": "06cfa02bffba806c19ff2b56b4691fdc6636a7b1c31b3112a979a85dfd0957b5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 685680
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/556446.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/556446.txt",
+      "sha256": "c0ad2915c065c9b3e18706a8d9643bf0187773f88d30fd42400350c0fdf3ff65",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 556446
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/250559.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/250559.txt",
+      "sha256": "bd6f75a57cece57dfe683812c2a0d35964cab47918b4c4f290adb88a0fb740fd",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 250559
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/23679.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/23679.txt",
+      "sha256": "e521abad9052cf9e9dba69a756ed650a2139c6819f9152ee0ed21213b094434b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 23679
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/270796.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/270796.txt",
+      "sha256": "239926be7c44fc242b7bab1bb86af155ad3274d954b3834fa178a111a1690219",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 270796
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/222104.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/222104.txt",
+      "sha256": "c9a4a589a5d35fe51981b5f58359948143c9df9d3ec7462b7afcc568c5a27b49",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 222104
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/167276.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/167276.txt",
+      "sha256": "4387e6c6ffd69ebf576dd930ba338abb675191699a312c6b7215685c7367b964",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 167276
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/290397.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/290397.txt",
+      "sha256": "92679a173b18509692c16183dd39032c529d9a4bc5d2a8d377cd62fa999b67c3",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 290397
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/557541.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/557541.txt",
+      "sha256": "33f156215e2ae2255eee503b98fa1e56341436362b6afcb4b795d51f59e8ce6b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 557541
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/901126.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/901126.txt",
+      "sha256": "d8b04c554b697c60e20b93084b07a54df32d14571ee29a506dbc427e77325f72",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 901126
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/707836.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/707836.txt",
+      "sha256": "41e1078f93db8c349990cc0416f711d88afd5333a0d8089492ce56537b22e707",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 707836
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/660525.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/660525.txt",
+      "sha256": "266316a3325f8919d51bdfd7dc73d79e4492daeccce40b5d8bf9165435314bb4",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 660525
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/288934.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/288934.txt",
+      "sha256": "d18ec5c96d920516627bec8fe9504041cd4b182c3d4b7af2098881ba63a796f8",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 288934
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/97798.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/97798.txt",
+      "sha256": "f45c21c85552d585cf2d7833f1c58d9d3f5ad396a138894b686675ecb4f6bf51",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 97798
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/885462.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/885462.txt",
+      "sha256": "a583650decd532aa684aadc486ed2d2ecb1d646078f8928e2b00f34aa0629244",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 885462
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/294882.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/294882.txt",
+      "sha256": "31787b956e5d6c177931a5e0eee52f978d51c1e13f317a5442943cf41afded92",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 294882
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/540234.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/540234.txt",
+      "sha256": "64d2112b24716a1d6af46b6711f8b00d510f8329b8fb09f1ddf5e66fb3a625f0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 540234
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/770743.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/770743.txt",
+      "sha256": "ed12dc5df16710737e5f744afff2d373d6e90081d20966d663e8425615739632",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 770743
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/1100.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/1100.txt",
+      "sha256": "6715a4129bfdb7c4cb170e9723fd13ac9bd1dd202847215cb830b27979e76642",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 1100
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/681175.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/681175.txt",
+      "sha256": "36b6595e04c5b07786f8a1cf9d3e37cb75012b7643c2436fd9c3ae26410b7d5c",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 681175
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/237203.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/237203.txt",
+      "sha256": "a8108aee2e1e417b0b04154a5f491186c3a96c03a64c0ef5d193ad266b0e4875",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 237203
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/963250.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/963250.txt",
+      "sha256": "d82b4b06d7673c561a3508e9180d5a2471bd9be3ac7c571ba449fd103c6246b3",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 963250
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/117038.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/117038.txt",
+      "sha256": "f0794038532a21bb8e082387e6e452f68191761e4d028b925250df70d57d9f8c",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 117038
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/95657.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/95657.txt",
+      "sha256": "aef47ffdf2bc7f176512ae53bf4296481bee1c35882d2147ed8856cbdba08a95",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 95657
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/159579.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/159579.txt",
+      "sha256": "37506340bb0f14c92af16dfef8f0ca58ca4f840c53b53807cce66971d96b4d66",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 159579
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/133551.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/133551.txt",
+      "sha256": "e5a41d64b51c6a2861728d2e673c09e7510b5f981a192307098651a15f5772b3",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 133551
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/600994.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/600994.txt",
+      "sha256": "15bbf6cee841711cf270cc19b71c33468f41609577fac1a0a353756ea4d27ab0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 600994
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/906557.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/906557.txt",
+      "sha256": "115d653120d5ec82fa96008d56052533268ea33f25b6ed2c0bd3fa5385b6dbe8",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 906557
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/721216.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/721216.txt",
+      "sha256": "4c6a99bf0554ec97ca2953d09c22e706d63e117edcedae68663bf6aac5c98979",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 721216
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/480957.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/480957.txt",
+      "sha256": "1d7071bae373fe1c8f5e0c987176bb8758ca6a18604893bb55e10fd4f3227438",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 480957
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/924912.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/924912.txt",
+      "sha256": "7ecf94b0c15543bcf1d2fce66415abcffbc9fb3eec569b4a13735b797ebaa796",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 924912
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/400272.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/400272.txt",
+      "sha256": "90712baa23bbe185dcb87390a28400b40780111de3a57c36f9737928f1611a76",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 400272
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/732571.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/732571.txt",
+      "sha256": "186a9e84751b32cd0476a3b311153f0b4dbe9038b2e4da4e65554b952ed19bb5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 732571
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/11682.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/11682.txt",
+      "sha256": "2b0b336bb3471685b2455f464be1d7d94a2b0f884a3fd8fdbe060b5d11610c11",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 11682
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/240953.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/240953.txt",
+      "sha256": "c6b45bd7cf1d3c7e2d7ea682c5e1b29bfdc0f556573a18e83b87303859fda3f2",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 240953
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/925153.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/925153.txt",
+      "sha256": "c1691e6235f6ec577c0cfccc6be05af5ad315e52e719c9207f84d9f537d3927b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 925153
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/872968.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/872968.txt",
+      "sha256": "55386e9d302f75dd3852ecd7c78e4407a2945d0f4d78f106ba9cd44589bd1d9f",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 872968
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/383042.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/383042.txt",
+      "sha256": "caa297b7f62229b5e5129614910b2013c06a4952c9b7c5d76fc3ee275903b726",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 383042
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/865390.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/865390.txt",
+      "sha256": "c837238c184144e4d6c2961244a07bdf671ab9ed2a7f0d01e1a963d094c459ee",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 865390
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/142934.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/142934.txt",
+      "sha256": "7e806876f342593f452e67790bd5c6755d0f4fbeb3f63ace6eab8365459c9c28",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 142934
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/693927.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/693927.txt",
+      "sha256": "186e2dfec6c8cf18902f50b5e143c8ffe6e409866a5d13efff18d1dbbfd07153",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 693927
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/690017.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/690017.txt",
+      "sha256": "af70ca6b82a74161f525aae4c7ecf53c57c5d2016d2ecffbfc530bdbc08880b0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 690017
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/712367.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/712367.txt",
+      "sha256": "9e12fa44d0b95b2c778c564a41ac68049ab5c665fb8eee493e0f8de357b8d6cf",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 712367
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/251597.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/251597.txt",
+      "sha256": "ed9a823a9b67a752c4f16a7ea2e7237ae02990d5e88d72622de0eb64f3936c84",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 251597
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/67209.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/67209.txt",
+      "sha256": "3a458c03263f8fcd32a9bee6ad19998c1f2dc26be9787e40438ab11408679e62",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 67209
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/566670.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/566670.txt",
+      "sha256": "daf73178f187dea3d10b8708c836c3e6161f3004b40b709b43f8bc00337f3a11",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 566670
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/147444.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/147444.txt",
+      "sha256": "6bb85c2dea2dc5d15c0872effdbe45c40cb30768aa51d83e4eaa1e36917ede14",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 147444
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/139848.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/139848.txt",
+      "sha256": "8550438caad242f2b011097a6aeee3e403745bc354914e4fc20c8a18d1f4a8e8",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 139848
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/521123.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/521123.txt",
+      "sha256": "b72bbf1692e1b0512266971eb8dfde65f66789220e91a95149760bd6ce36108e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 521123
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/498522.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/498522.txt",
+      "sha256": "af19cc11795fea18ba0964338d5866661ff8115e5fc48a0fdf2fd184b41b9b96",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 498522
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/522833.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/522833.txt",
+      "sha256": "68b582ab046498a35baa20eea09a741b742f410542f720e68c0ecca97c9a9847",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 522833
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/206322.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/206322.txt",
+      "sha256": "9953baa6b03b70006cbdb3a919fc80fd145ae2f626e4fb6bf47b4237d8388cf1",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 206322
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/339443.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/339443.txt",
+      "sha256": "a7d5312f830e16d4819a00fdf757bb5e3871c384f0e668acf25630abdede5540",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 339443
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/370071.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/370071.txt",
+      "sha256": "4cd726eca63f44774743fa13a2d2b084dfdfca160f36708a3552a6b0581e3ce9",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 370071
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/117701.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/117701.txt",
+      "sha256": "a5ffbeb8da7b3c34f9ca90b5211bd0b46e6565ae970d066c944e10e8750e47d5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 117701
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/223100.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/223100.txt",
+      "sha256": "fea00d289abd193265559f83d740e6bdbf33fed587c12e39fa42feb12ad789e6",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 223100
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/169134.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/169134.txt",
+      "sha256": "201c1d5075b3abbe47436c4436319b0b47f43f72b1ca16e6b7d0ef2797c4e4c0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 169134
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/629029.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/629029.txt",
+      "sha256": "4bdc573fe63260bcabb01bfdfa5a8307f50a5765892ce1dccb55095ecdc060aa",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 629029
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/642574.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/642574.txt",
+      "sha256": "f66b0bdf93fb4d3d475c3710c254a18c686fa8d81f9e51c6ac7eabb2b4efc973",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 642574
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/954337.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/954337.txt",
+      "sha256": "0dfa0c979994283707456b8ab12d906d10c17b22d1b02608fa94dfa0851f90ad",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 954337
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/67051.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/67051.txt",
+      "sha256": "41f8f13c7e425333bec86cebced95cd166ad3a6f8229ab4b4eba3ca44da37173",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 67051
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/801726.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/801726.txt",
+      "sha256": "dcd09c6d523896a8fc211dd6d36b2bb26dbb3438b21a87fb98a325a842f001c5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 801726
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/491228.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/491228.txt",
+      "sha256": "684960fd15620ed518457ec2ace0e438b39c3805f89afe2506c705d316dcbea1",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 491228
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/314634.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/314634.txt",
+      "sha256": "fdd5568d94c4063dedd839b83c685292d09464df38ff719c8a0f90924665eaad",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 314634
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/59192.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/59192.txt",
+      "sha256": "7c5878298ce11c43562cd04a088dcd69873ef4afb05d329340ffdddc77840b84",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 59192
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/412483.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/412483.txt",
+      "sha256": "8c8c28123e3b16a744960a8fc6b0f512f9d5ca10371d8a9ce30fc17874da1f5b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 412483
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/547303.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/547303.txt",
+      "sha256": "49c211350c534b7d8e839abea0d4d24e07b1e58e0c3478ac8210b119e4955a8c",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 547303
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/300651.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/300651.txt",
+      "sha256": "c29f35e314cb1edbdc315fb14dc211751dbf2af319602bb7a43c8b94cdcb6ec4",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 300651
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/73119.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/73119.txt",
+      "sha256": "5db7b5a205bf7f879af7e3cdafed4b96986c0855e0a83c4a30fef4efafcb4a67",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 73119
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/918918.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/918918.txt",
+      "sha256": "c747e9114a77d22dd56aed676fce3bc12a638b9313ccd2165b240c89ea0454a7",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 918918
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/777487.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/777487.txt",
+      "sha256": "4f444f481f97f8b082329aae9ff0845608c2a406db36e70b1d4160a6b456eadb",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 777487
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/285202.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/285202.txt",
+      "sha256": "621e97fbcb95e8ef892e7dfc7407298944b2cad85613849f2bd7857a33a199e5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 285202
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/310411.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/310411.txt",
+      "sha256": "813e7bfd8c08d33c045207bfbda8d77b6d43d2cf315b9c051f4c6831e7af7f31",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 310411
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/971567.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/971567.txt",
+      "sha256": "9c325bd1e274d0e8fce699bb614e4bc2c7053a0b83b2b351cd74b5db5ae57570",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 971567
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/911442.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/911442.txt",
+      "sha256": "c0915f7f84727154eebc5cb96e137c1fd3bc25274e1b79f26ec0a12629b05bbd",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 911442
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/923350.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/923350.txt",
+      "sha256": "ab74d88aa57168c06c6efc4943961cc407a1fa2a24052021f04ec411bd156101",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 923350
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/347445.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/347445.txt",
+      "sha256": "0a65ee1e76d666c71dda775a05d70542ff6b328e06f7b5ee7e12e7042f9418a1",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 347445
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/385827.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/385827.txt",
+      "sha256": "e3ab0f42932e083aa1818ace5ff985cbb4c0f26e5875801b077a4e587bb323d6",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 385827
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/657056.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/657056.txt",
+      "sha256": "51941510a521aca125cb85feef057d3d03f56e75e367157fb57d8278772e5da0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 657056
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/838106.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/838106.txt",
+      "sha256": "29777ab3057905d6f7e39ac128a66b62dd1840d4b2a76fdc28cb051ea3ef9227",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 838106
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/397373.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/397373.txt",
+      "sha256": "6ce62f9119432fb55a99a536c5e0f2976cf8d344a6ceef69d3c97d9078901de3",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 397373
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/76927.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/76927.txt",
+      "sha256": "3b688f19644bb88c31db0ce4498952f66aca6fa3cb41b9733198205b60c6b258",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 76927
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/317570.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/317570.txt",
+      "sha256": "c56b01db1690ad683072195f34328bfad4a43239b3127bcaeee2c892836ddd1d",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 317570
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/876812.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/876812.txt",
+      "sha256": "1adbf9b71e3761fa951c80215d3b0aed799e0e8eed0ba983b0167601348a58a1",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 876812
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/789205.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/789205.txt",
+      "sha256": "13018949da7fb9ffc26549d0ba0c88fdc4964265050715969eeda9d540ea6098",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 789205
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/303272.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/303272.txt",
+      "sha256": "6ae2b8e69c4db41e62151e6a706e40cbdf82d74f543f86cf0b265fc414bf44dc",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 303272
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/807222.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/807222.txt",
+      "sha256": "25bb953c1b1f1cd7ab9c14d9ac69ab6d3e0c80e49ba1afa00bfcd95d32b26da9",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 807222
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/163011.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/163011.txt",
+      "sha256": "0187ce62b4935fb8ecab79af73009b17eec82274d68ed816b571f9b774f3ebfc",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 163011
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/46365.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/46365.txt",
+      "sha256": "f4c840db7a35b3cb3050241c13c67df991307381f5cfc2e6c5e27fdce431d458",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 46365
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/706047.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/706047.txt",
+      "sha256": "e96235c89d7c0bbebe845173743fcd01dae606e0d5a0075762d2587d267539f1",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 706047
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/39125.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/39125.txt",
+      "sha256": "f7fe487def7822d44e9ff1ec05378d621180a7fe3dc7a069380931f85124fc5e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 39125
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/694690.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/694690.txt",
+      "sha256": "2711005eedf69e718ef3c48a8ded28a236a263ff8cd184cf2f96a89028be2634",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 694690
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/236259.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/236259.txt",
+      "sha256": "8ea39620a73a32732ad1cdd23da2bdb899a22b5bf1a2d8a954d51171da7ea6d5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 236259
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/355638.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/355638.txt",
+      "sha256": "2cc908d1704859e67b0aa131e8fc1de34fa30e60aaaa9d962756aa13918ee169",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 355638
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/135690.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/135690.txt",
+      "sha256": "40931567171fae12e055d1d079566f14e0bd5f0d6095d19135fe3406d53fbca5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 135690
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/132078.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/132078.txt",
+      "sha256": "2c16a4d44e57f3fe78b86ec1a7f6e1ccbca89e1c8138de95d26034ed7e818a16",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 132078
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/468225.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/468225.txt",
+      "sha256": "b29156570cf096c78660a9cc863c492499569859e7c324aaf779ceb0196ce631",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 468225
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/136595.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/136595.txt",
+      "sha256": "643df61f447e738360b99c881f57b00184617a48d5bb06e573664bbe8cba755c",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 136595
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/198635.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/198635.txt",
+      "sha256": "9c71edce54dba80340b230844c3e18dc034759ef36de66c0982f30a97d794a93",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 198635
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/315567.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/315567.txt",
+      "sha256": "00506f517af23bfbf460094805a1c8ad459ef0f44bd2bd24fdef22b20dadfa7d",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 315567
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/143205.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/143205.txt",
+      "sha256": "397800ecee0537d5c430a61c2dcf89ab59d400c4ed30dfa5645a122aa6071288",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 143205
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/738447.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/738447.txt",
+      "sha256": "583f77bc776b328bbbf9c56a843513d0f8d48e65100e6041bf84ba46dcb46dfc",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 738447
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/619351.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/619351.txt",
+      "sha256": "59ed1f5be7a3c97d741acf76aa105187154330ad100bad3565cf3950909a0bdf",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 619351
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/22408.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/22408.txt",
+      "sha256": "ab833aadf12237d544b8fa29e552647c820c8f50d1263604e9da0b3c582c1fac",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 22408
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/647955.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/647955.txt",
+      "sha256": "91d189fbdaa5692e8d94d61e919ec3e50c38ce1b1930b6dd10c1876312e11207",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 647955
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/614980.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/614980.txt",
+      "sha256": "ad874ac7d3d7f6906efa7424e5559c45eda6c4c004a2b11daaeeaf0b4ba7adca",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 614980
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/861919.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/861919.txt",
+      "sha256": "8b8d887b30b833dcc3f0dedaf67b1a2c04fefc5df3a22f191499c6335e813d3e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 861919
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/86340.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/86340.txt",
+      "sha256": "debd57bdeb2183b781b311044ec26a4af8b2917b461a18265266698f1105bd77",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 86340
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/193327.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/193327.txt",
+      "sha256": "146a0cf52bdc96e5474df969ecc7e95ad50367c45575f1f7ca3abece6d444a9c",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 193327
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/866989.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/866989.txt",
+      "sha256": "b5190d1f7d610325aac6177c63f5e601c584e64557acf0c768f4c25ec1a1ebac",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 866989
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/960283.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/960283.txt",
+      "sha256": "1430f9026ba0c03b0e6c2dc8cced80a55e3314579bd14ff059ba647562ac7c26",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 960283
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/463342.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/463342.txt",
+      "sha256": "ae36d104548d7ca271641e8593fe99fe9252c8440db9f2748be756b44b7873fe",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 463342
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/190976.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/190976.txt",
+      "sha256": "be0ff3297561fac897e03e93080432504f2663856ef616f1e3ea08f55a1b135e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 190976
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/188645.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/188645.txt",
+      "sha256": "707d5dd36aa02bceb12b00e42ee302ef39b6182730d9acd94458c778c1d6098e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 188645
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/153035.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/153035.txt",
+      "sha256": "98b4690354a9c9517d5a4b189c18b20f56cc03b56d79b402118c41bd617d97b4",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 153035
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/697168.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/697168.txt",
+      "sha256": "bcd439dd6533d55ebb26011e02b61780b8c76b899bc3fb7f6367bd5d010a81d0",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 697168
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/127610.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/127610.txt",
+      "sha256": "05ccbac134f6dd939f6db160b51c631bfd4721d5942eee43834209b91e63a527",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 127610
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/525431.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/525431.txt",
+      "sha256": "e316d839f6f17d84c4699d7f2b4d79ce2e38809efd5d36f246b0f687266c2c57",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 525431
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/148632.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/148632.txt",
+      "sha256": "9743144e2dec6c7aebb852a7209587f680140ac5d99bc12bf33d397df9ed215d",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 148632
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/767429.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/767429.txt",
+      "sha256": "83a1da1dd4368adb1266a6934d31f83fb6a3fd409e7884bd57ac23e69d224eda",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 767429
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/660845.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/660845.txt",
+      "sha256": "49bdb380b767709d63aeeb06246ee10624bba23dfd01d52b8a0f5fc1832266a7",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 660845
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/682527.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/682527.txt",
+      "sha256": "4b53ecaf5a6083578a02291a300b2bf1c9f5e47a3a2e540150ece62b2ec8a42d",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 682527
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/709167.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/709167.txt",
+      "sha256": "548cbf86ce7a91ceedb6eb101589b79127d7b42337fe548de1241ceecfc4c628",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 709167
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/516554.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/516554.txt",
+      "sha256": "3c3ef96400abf83a24b86970c1acaca1dde84e0de3df00d612d7fe42a3cb875f",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 516554
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/76834.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/76834.txt",
+      "sha256": "90e4f79ff4c905ee6486aa105fc3ec3c9d76e93abd9d2168b036f990ee4a451b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 76834
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/972582.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/972582.txt",
+      "sha256": "fdfe6cb86e803b8cd44224493f3f68cffcebd82f57ba0cb708c95b1a9a013897",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 972582
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/585939.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/585939.txt",
+      "sha256": "c2387902b93f8de9dba4cd4a5a6ee2d7e5c7c891a7c8fc6cd752538cbcfce249",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 585939
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/39347.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/39347.txt",
+      "sha256": "4947c72f405233f15588da4ea55d8dfccfc86203630222a13d7d895e0733c030",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 39347
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/594693.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/594693.txt",
+      "sha256": "6c3c87c6cba0c292d0af5492030cc4c00543be612e4e361432974a16edbc3a58",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 594693
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/244916.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/244916.txt",
+      "sha256": "555388575dbc249b553f2ea65d1f76c7ea63151f8ee77559bbd358815fd8760d",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 244916
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/940409.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/940409.txt",
+      "sha256": "12464633d14e61a1ab0e57373204ffc15a5a315190a5349cb76e128210ffc994",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 940409
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/521908.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/521908.txt",
+      "sha256": "0a57d041fd30475af7ed49c84ec7b1576b92618f2b3967e9ffbc9d07c700476a",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 521908
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/956475.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/956475.txt",
+      "sha256": "40d4c8d5fd2494f568420ae95b7925bb39dfb81cbb81640cca3414a9dc632456",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 956475
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/277002.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/277002.txt",
+      "sha256": "65478cf706a267b1e1e9ea5cd8e0ead6f20076f525e484efbba6b5e0e3769a89",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 277002
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/591216.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/591216.txt",
+      "sha256": "ce90d38a0473acbf39627019f8647ffc75fb13afef3305fba71735ae19d610e9",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 591216
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/344458.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/344458.txt",
+      "sha256": "6ac8a8470bade3e708084ba7602a6087916950bb2d392a1cc3f300d0ada001ef",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 344458
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/418878.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/418878.txt",
+      "sha256": "b311411f28eb1c033597c06c5a543e6aa4da5a5a64fa6892836eeef3e6ea7149",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 418878
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/979936.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/979936.txt",
+      "sha256": "ce11e65f05b210509563cce665d0209b83e3a442e1238ec61a3a19a88b7dd606",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 979936
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/152987.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/152987.txt",
+      "sha256": "57d3acbd6a0450f2d2d7209c74e19ea15a425dc9efbd67715ec5aaad2acdfebc",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 152987
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/716452.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/716452.txt",
+      "sha256": "224cbad7d14b01118cf16b14b4b661e0d025a97a77398af6c1f13f82ecca8623",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 716452
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/475194.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/475194.txt",
+      "sha256": "d7050c908d1a5d6936c404e4802702da7fc6b2c9ff71490b58290bde815ae904",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 475194
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/161715.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/161715.txt",
+      "sha256": "41f16c58eaee453ed12441ab5165e57431b3f590cff33df8e7f10ad0a24a9441",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 161715
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/599290.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/599290.txt",
+      "sha256": "5986c2c0c6359c5767048e2a39493876dc7c67a2203c9647fec01a1c2f5f0a0c",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 599290
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/422219.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/422219.txt",
+      "sha256": "303c061e5a8d11d19df6c585f0565f838116dd284c649fc1ef0c692274140363",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 422219
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/915648.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/915648.txt",
+      "sha256": "1ddc66974548f70d2781a881c8659c8bee7a5c02fe07d34d6f9a72f71a9e52df",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 915648
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/742747.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/742747.txt",
+      "sha256": "1ebdf1921440b0a99081b35deaace044c29fe96a08a73d32ae2f757525a9797f",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 742747
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/378980.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/378980.txt",
+      "sha256": "6e25167570ddd30b00b4d8b6ba1ce9b7e35cc691f8611f98679c25e8641e2c09",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 378980
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/580299.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/580299.txt",
+      "sha256": "14d326a5f078b745c5ed7c4a249ff5f7b16ea115ee6454fb92ee7ceec0dbb2cf",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 580299
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/295298.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/295298.txt",
+      "sha256": "079a13f499037127f9af8542ea92279f5531293eef944dc3f5c36fbf1b611c32",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 295298
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/363504.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/363504.txt",
+      "sha256": "0e92acdd66fd31d8a7a68c277e3c7f52e62656fb007e3ea29e619b90da1f15c3",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 363504
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/451326.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/451326.txt",
+      "sha256": "6bcbd86a289cee7d6525d50b1f254f44606677adfb061c119fd064d891f17f19",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 451326
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/916231.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/916231.txt",
+      "sha256": "56f30ba46bd27e13293e5fae1e9c342c35b9e0e3472b0328ac9a4f274ba735c4",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 916231
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/27946.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/27946.txt",
+      "sha256": "2072a67ebdf714433412768a3a4bfa3d7aa3961e04801c65b928b60122092c7c",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 27946
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/845414.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/845414.txt",
+      "sha256": "d4ec139b12ae5b75e29cb2806d917dff669a0564448b02af3744af17c2f80470",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 845414
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/374566.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/374566.txt",
+      "sha256": "0f26beaebd0f9338cf1dfb7b065241c6943481ae6e18d8f36b94984247dc16fd",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 374566
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/252091.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/252091.txt",
+      "sha256": "968425b24b3f548d56feaa5018c936f572edcb37d98e59c84d79b9cd9e1ebb32",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 252091
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/490031.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/490031.txt",
+      "sha256": "619fb342d09e66b5f1911eab8bb4e80caa36d34e6dab0afa1c5d197e7f5ea1a5",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 490031
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/471720.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/471720.txt",
+      "sha256": "e597ada08a962bd0ab2baffd6f5d5e3639ecb7dfb0918cef206e9de5cf145af2",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 471720
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/502537.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/502537.txt",
+      "sha256": "b10e79531eb90ca0e5e294ab653363a892a7b1a2bb6637669cc914232545bc2e",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 502537
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/208057.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/208057.txt",
+      "sha256": "ca9a0f7c231f9d534fb48dd8f6e5176719ef7288014afed49b8b7beec234f15b",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 208057
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/751143.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/751143.txt",
+      "sha256": "488628c6e6b587b50f7072dc2f616573e76b92e359011e67f5da4eefdb23bbbd",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 751143
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/570229.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/570229.txt",
+      "sha256": "ffff7500baa2ea229a8e9846b5ec9dcdd7ee4e3e2f56c6d97554b11cdcb79098",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 570229
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/847314.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/847314.txt",
+      "sha256": "c45f0ad24b1cc623f58d62a123486ab71fbdf1cc0031eb78239d9797f37d6653",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 847314
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/128408.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/128408.txt",
+      "sha256": "21d0a85decd0543bcdb0d8293aa3ae4023f61c3337444ca174a3d8ee6605e208",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 128408
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/607231.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/607231.txt",
+      "sha256": "32254bf2b6c05f26dd276741fecd529d80879e930e80a35bb076f1bbb7e59cc8",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 607231
+    },
+    {
+      "image": "data/processed/uvh26_heldout_test/images/48845.jpg",
+      "label": "data/processed/uvh26_heldout_test/labels/48845.txt",
+      "sha256": "7d996e35fe042c0862bda48d3d7cbe63d1081643f12551fcc012da69559669b8",
+      "source": "UVH-26 Independent Held-Out Test (IISc AIM)",
+      "frame_id": 48845
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-10-14T00:16:53.007819",
+  "model_path": "models/vehicle_detector.onnx",
+  "model_sha256": "8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc",
+  "platform": {
+    "os": "Windows",
+    "platform_release": "11",
+    "architecture": "amd64",
+    "is_raspberry_pi": false,
+    "device_model": "Windows PC (10.0.26300)",
+    "python_version": "3.12.10",
+    "python_executable": "C:\\Users\\adity\\Downloads\\IoT\\.venv\\Scripts\\python.exe",
+    "cpu_count": 20,
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+  },
+  "benchmarks": [
+    {
+      "resolution": "640x640",
+      "threads": 1,
+      "iterations": 15,
+      "mean_latency_ms": 98.79,
+      "median_latency_ms": 98.65,
+      "p95_latency_ms": 101.2,
+      "min_latency_ms": 96.39,
+      "max_latency_ms": 104.16,
+      "fps": 10.12,
+      "stage_breakdown": {
+        "preprocess_mean_ms": 3.41,
+        "inference_mean_ms": 83.89,
+        "postprocess_mean_ms": 11.5
+      },
+      "memory_rss_mb": 159.3
+    },
+    {
+      "resolution": "640x640",
+      "threads": 2,
+      "iterations": 15,
+      "mean_latency_ms": 60.21,
+      "median_latency_ms": 60.39,
+      "p95_latency_ms": 61.82,
+      "min_latency_ms": 58.46,
+      "max_latency_ms": 61.99,
+      "fps": 16.61,
+      "stage_breakdown": {
+        "preprocess_mean_ms": 3.21,
+        "inference_mean_ms": 45.86,
+        "postprocess_mean_ms": 11.14
+      },
+      "memory_rss_mb": 161.1
+    },
+    {
+      "resolution": "640x640",
+      "threads": 4,
+      "iterations": 15,
+      "mean_latency_ms": 42.53,
+      "median_latency_ms": 42.29,
+      "p95_latency_ms": 45.41,
+      "min_latency_ms": 40.55,
+      "max_latency_ms": 45.79,
+      "fps": 23.51,
+      "stage_breakdown": {
+        "preprocess_mean_ms": 3.16,
+        "inference_mean_ms": 27.44,
+        "postprocess_mean_ms": 11.94
+      },
+      "memory_rss_mb": 161.8
+    }
+  ]
+}

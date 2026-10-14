@@ -1,0 +1,54 @@
+{
+  "experiment_id": "exp_balanced_multisource_10ep",
+  "timestamp": "2026-10-14T14:07:18.888938",
+  "preset": "accuracy_focused",
+  "training_config": {
+    "epochs": 10,
+    "batch_size": 16,
+    "imgsz": 640,
+    "device": "0",
+    "gpu_name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "duration_sec": 477.13,
+    "weights": "models/vehicle_detector.pt"
+  },
+  "weights": {
+    "checkpoint_pt": "models/experiments/exp_balanced_multisource_10ep/weights/best.pt",
+    "checkpoint_sha256": "e84030919bfa1aa0bc2ff236a157a93bc36ca43c02259af132d098782d2ca087",
+    "onnx": "models/experiments/exp_balanced_multisource_10ep/weights/best.onnx",
+    "onnx_sha256": "219fa4ed7e118a576026aaddc82ad6e9e46babe1024fec77fbf09d6dd44f3fdb"
+  },
+  "validation_metrics": {
+    "precision": 0.5573,
+    "recall": 0.5111,
+    "mAP50": 0.5312,
+    "mAP50_95": 0.3706,
+    "training_duration_sec": 477.13,
+    "per_class": {
+      "car": {
+        "precision": 0.7001,
+        "recall": 0.6078,
+        "ap50": 0.6665,
+        "ap50_95": 0.4902
+      },
+      "motorcycle": {
+        "precision": 0.6568,
+        "recall": 0.6322,
+        "ap50": 0.6973,
+        "ap50_95": 0.4311
+      },
+      "bus": {
+        "precision": 0.4379,
+        "recall": 0.4695,
+        "ap50": 0.4633,
+        "ap50_95": 0.3679
+      },
+      "truck": {
+        "precision": 0.4345,
+        "recall": 0.3348,
+        "ap50": 0.2976,
+        "ap50_95": 0.1932
+      }
+    }
+  },
+  "notes": "Maximum precision & mAP with extended learning and cosine schedule"
+}

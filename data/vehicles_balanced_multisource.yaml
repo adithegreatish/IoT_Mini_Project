@@ -1,0 +1,14 @@
+# Balanced Multi-Source Training Configuration (Arm C)
+# Sources: COCO-derived (horizontal anchors) + UVH-26 (Indian CCTV stratified) + VisDrone (small/distant)
+# Strict Invariant: Zero overlap with independent held-out test benchmarks.
+
+path: C:/Users/adity/Downloads/IoT
+train: data/splits/train_balanced_multisource.txt
+val: data/splits/val_balanced_multisource.txt
+test: data/processed/vehicles/images/test
+
+names:
+  0: car
+  1: motorcycle
+  2: bus
+  3: truck

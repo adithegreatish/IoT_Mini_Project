@@ -1,0 +1,1208 @@
+{
+  "view_name": "indian_urban_traffic_cctv",
+  "description": "Held-out Indian urban CCTV camera frames from UVH-26 validation split",
+  "created_at": "2026-10-14T12:58:00.564372",
+  "sample_count": 200,
+  "samples": [
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_103646.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_103646.txt",
+      "sha256": "c44acdf83e65e00d95dbb6030ef27160d58b96b27d30893eadeb17610b8d2427",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_128657.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_128657.txt",
+      "sha256": "c0ea4d304b9a7bbdb18f088a66d3e5bb2ab26442af6fd11418ec3425d2df95c8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_133136.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_133136.txt",
+      "sha256": "a112ecc5edc20f17eb0939c7b3fb1d27086df4deeb1fe8226d174188635c99bc",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_144314.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_144314.txt",
+      "sha256": "12198a9d9eeaeab0b2b48ec0c25be81b074a25b13966c688293cc0eada5d753e",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_150900.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_150900.txt",
+      "sha256": "2d7e77d386767618455fd23bfcb0b54f81287b4ba8098c94d8952bcd6ff57bff",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_158964.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_158964.txt",
+      "sha256": "bcf5a4c6420ea09b13045c02c39727a853bdb86597cea9b765900f7aa1d6682b",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_159347.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_159347.txt",
+      "sha256": "bf8fb8c8b8b246539a29f82e0ce98435b37616d3443c0bf885d042b878de50f8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_161359.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_161359.txt",
+      "sha256": "19bd901a6422c8ed8f6caabc39b84339d5646d80c92ffd855aa7386bf4e60cce",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_168195.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_168195.txt",
+      "sha256": "084f1a02b1bf4c08990a93346da375c876171bbd406d858d999bfa072d2dafb7",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_171230.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_171230.txt",
+      "sha256": "6bebd70b6024c69f8df8d61dec681df2bd566affbd21efe4f5cd0ae75097fb16",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_176386.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_176386.txt",
+      "sha256": "2eb549adf875c8f5c9eb02ed9950caad17b46b72790cdf9200db65ff02e30a07",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_178557.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_178557.txt",
+      "sha256": "e51ff5332b345dca506fdec51f038c3da135d2ac9b6b25c6f482e083b3191ea9",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_180182.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_180182.txt",
+      "sha256": "0f9789bed70a8d8dfb9739efd3615cbbb75f708d77956dc058d4f7f52ce00eba",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_19657.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_19657.txt",
+      "sha256": "ddbdae32895b5dedad4b6ce2b84fa00574735505f8eff9269acf47817c812515",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_202074.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_202074.txt",
+      "sha256": "552fc5c34a9d062bb7335a5a238e7d1e24b71e17175e4a703cac2bb825825266",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_203956.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_203956.txt",
+      "sha256": "8cbdd0395d9c10d2ef550922099135d973241c6014f4581f984f70b4bdede9c0",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_205586.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_205586.txt",
+      "sha256": "ad4417368f55d01dfc2004e6ac733db5b97f123cd5db8aebf6f4ca7ef414c1f8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_205653.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_205653.txt",
+      "sha256": "30792e2e94b7206ea32ff3230a1c65821a611f8074bf620d9cee253fa729b3f7",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_22155.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_22155.txt",
+      "sha256": "684773ab9694854a7cf3acdd9c61075311048c2f4874747f2176d87e15035ef8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_22182.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_22182.txt",
+      "sha256": "813cf625a01dd20c366e7bb6f60e70d209aabeea83b5c13aa0b4fe42aaeff1c4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_225534.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_225534.txt",
+      "sha256": "30d74b75b46673401f54f7cafefd61f62cf36fa224c2dccd13ab8ac8572b5303",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_227247.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_227247.txt",
+      "sha256": "3667541f61c26418d32b60d05e81a3df61b4727350614c2f05e0edf5665093a0",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_233640.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_233640.txt",
+      "sha256": "e530e158d3fc182852f1c0d8482581b668c8e97c60eb3779371762d927fbae2b",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_240606.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_240606.txt",
+      "sha256": "fafcaf56be404abb2edc0d586f43630514884af8a8ef82d5938571569c0655e4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_24157.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_24157.txt",
+      "sha256": "fb6d3c8be57dfb4b13d0dcedd995ea16e7a4e5ce62f42bd8d808f00484e5485f",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_246458.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_246458.txt",
+      "sha256": "425b51c968e26bddfd4922da165d36a5715ac4a29ef40dc3e3a13ca0b4bfa5d4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_251223.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_251223.txt",
+      "sha256": "cd64671bbb7a87bf7289bd41ad7ad1cfc294656ed8cabc225ce4b06764d1fe8d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_260438.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_260438.txt",
+      "sha256": "c89a6b5f62c23a649694ae36153745780708794f9fb44300f8a480c8d83ec7f3",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_262577.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_262577.txt",
+      "sha256": "1925ef789df3012246dd28657b89583faa47c357c9c26e3945e04455f9e9aede",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_263645.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_263645.txt",
+      "sha256": "33c400187f4ca93c9fc46130b33d1e017c0a2dc65d5c682ab00eb58cf3787c34",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_266047.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_266047.txt",
+      "sha256": "d269af3b00f76c48c3ac6785ed0f5f88cf458e2339879a2fcbfc4dd120dd47e2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_266082.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_266082.txt",
+      "sha256": "df9ee432a9abb99d2cd7d02751e672ae534098fb9ea6457b83a2cc8e18495bdf",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_266276.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_266276.txt",
+      "sha256": "64e3958f1053beb96f5eaec03ed7e4c3ffbcec58a74156f1f3500a6d094075a4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_267916.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_267916.txt",
+      "sha256": "f9ecbdd604efb439625313c7ad17a3b22b3df1a5c4d21906a89c099f585630c9",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_270064.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_270064.txt",
+      "sha256": "810a6b33cb8539055729bdab77243695593728dd1cb2bef4ebbce7142fa7fbe8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_275197.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_275197.txt",
+      "sha256": "f89c200ff6628cb0c9a9c51117511dcb4f15ca553c187d568a13b6f7de772e53",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_278997.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_278997.txt",
+      "sha256": "91df5cc123aa19ac08dc3edb0241ea9dc13c8c968f3623075d551d717173af55",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_294590.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_294590.txt",
+      "sha256": "be1880ae4ecf17db7ca183f324bd65817050e3009a8338e5f6e630c5d6cc0d09",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_300394.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_300394.txt",
+      "sha256": "039db617d1feffb55c008ded82a7e8708bf1ee8f027ebde511e4005379e9e227",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_304171.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_304171.txt",
+      "sha256": "7e0217b8eec0d3ef41a5dad5d6f95c9c7a2d17ab3f7107872175589ea680713a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_322009.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_322009.txt",
+      "sha256": "041a606e639b0d87c507761e61afc33e8afc1fb40aff5a76b6a9d2ad65a5e143",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_330626.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_330626.txt",
+      "sha256": "8a6adcc97863871d50c72a2ab7a8b283ff130cf97cf01cd052429e2e696771c3",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_334783.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_334783.txt",
+      "sha256": "f2c2ad52ed69388b2671bae1b4dd9f7b7cd6c8b2cc3a7bc3603d64deb0f037cb",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_335224.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_335224.txt",
+      "sha256": "e9c091c887b8a31200423e6dce53021f4fb1b7f578569c977f09eae6a3be6729",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_343159.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_343159.txt",
+      "sha256": "a6b74dfb079f2f240d533462d04a6ea839cdf267395076df971f5d5cf42e1953",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_353606.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_353606.txt",
+      "sha256": "f2685cec63cdf8b1ce0289b2d1c9e98848f7681d6360c603689ae842d984953e",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_357774.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_357774.txt",
+      "sha256": "79f7f3508b6ee7055dec43cb43f59b22050b8427223fcc0b783f5bb532107dc0",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_361327.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_361327.txt",
+      "sha256": "ac0a6233c1b1f56e5bfb73458cf52d695b99919ed281c8f6f1300acdca77a920",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_36745.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_36745.txt",
+      "sha256": "54f3a4b729dfb6d6a912b6e72a7c442bbbf8350a99b0c0d4a5fd268997615d93",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_37097.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_37097.txt",
+      "sha256": "7561c825d362613c3f5d74d753e75a43286320cae383dbe8979255f3eaae1e2d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_377369.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_377369.txt",
+      "sha256": "bb1ab6bd8e0c3d211c8aebaf7e603d023d80785ca94b277bc621176414c7046a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_386197.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_386197.txt",
+      "sha256": "a6f0e2e3a0fbfb63d85a1fc4cfcbc8b0268510037d1674d59c55f1a922008aa6",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_389807.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_389807.txt",
+      "sha256": "9609621ac53b839d2576bd29071f3ea6b048cfd2dfa37403ff250c535ec5e58f",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_391724.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_391724.txt",
+      "sha256": "8486729c58e02d9274ca148befe118aa12b3ec3b9dcc29cef98f1c051cb614b1",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_393950.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_393950.txt",
+      "sha256": "2f5f58d7a17ea7f0c73c6d7ac8d0345038582fc7ca875fd425bc181646dad506",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_419762.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_419762.txt",
+      "sha256": "5e1ae0d7e57e1507f3d03d2f16a2aad41c9373f5f56478574183e213425eec1a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_420447.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_420447.txt",
+      "sha256": "0043e847a9cc50c0fce3f2e53242dd681fbb5f525ddb478deca904f7eea202ff",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_422655.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_422655.txt",
+      "sha256": "698490d8081d994594970b0862dd4978fb0c00a420b6e9c1756fcf2bf319b3d9",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_426878.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_426878.txt",
+      "sha256": "925a1595d85436e6b89d1b6a5735343565b223f1ae80e5b326870e53b9beada5",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_434471.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_434471.txt",
+      "sha256": "f468d001f8722746de30514f4218054df41716302774fbfca12d6651d5a98634",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_44015.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_44015.txt",
+      "sha256": "ad7946af3c6f69b4545ef31fa656b7d7caed9fa177cfb6963cafdba2fa849f59",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_445594.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_445594.txt",
+      "sha256": "191b640baa0283e441218a137c7b859a57508271028e3f288ee65c1939220697",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_458982.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_458982.txt",
+      "sha256": "a438b183c1c9a6ae165d5d7472c44467b9a39b2d2e3b42a7b770e938d264e4f3",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_46695.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_46695.txt",
+      "sha256": "75cae1cab5212eea23f0e01fd1dfc0b7f57c7dcf210a9b0e359c7e8b20be0447",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_474491.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_474491.txt",
+      "sha256": "8ad25f1dd1b95b7d69bc8c08e923f9fd3d2e3bcd0cec6f462a0b914c181e39d5",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_480006.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_480006.txt",
+      "sha256": "bd0c0e5f483a6aaf061c3ca2b85f7a710917af15622ee9c719f1459d104a7bc8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_482731.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_482731.txt",
+      "sha256": "a125c59ae201047cb35ee82bd3221ed5bb5faebfda106be16d5ca120704668c8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_484941.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_484941.txt",
+      "sha256": "4d298e11de4e93dda2675a8b945cb0234c464c7c13917ed5f262fbbc9a9817a4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_488093.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_488093.txt",
+      "sha256": "4893a31468fc0a6f8c6de87113e1c5b6bfdf4210667006838aa2a04baddbb590",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_496428.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_496428.txt",
+      "sha256": "12632083114ae66b8b8cb2c9e671956923862af0498e60cce4bd46d5d44004cb",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_499713.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_499713.txt",
+      "sha256": "3c4ef759c4f9c281f4fafc17fe927ab988cba3181ef283aae82809a40a79d305",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_508733.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_508733.txt",
+      "sha256": "d45a96e7bdef394f221c973d5b11784a6957f605d1b4ad87f46e82ed49f79597",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_513202.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_513202.txt",
+      "sha256": "6c9556e855a37a14022bd2f5f2cefcbecdb849736e9fb2417c500d00172aff88",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_514417.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_514417.txt",
+      "sha256": "ed66e614b13f02eb31f889e18281bf5bc6bc87af14a734f6525a65f67a502bb9",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_514733.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_514733.txt",
+      "sha256": "41ffa87eaab7bd03bf323f9ca3bd5b1065a57141ef313e4591c165dcaa04f67c",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_518961.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_518961.txt",
+      "sha256": "eb54118d527b0b3650c8c001d86f9bc70691f3b8005193742ff9c8d13ef3682f",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_534654.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_534654.txt",
+      "sha256": "014b7767aaca825801f46ed29f7f467dd74a3a804d0bb5ceb393495dbb7a8325",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_54080.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_54080.txt",
+      "sha256": "853135eda32888144073a1d49562ba3b09d4e319bc14e4d2543a7ff8cf344510",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_541932.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_541932.txt",
+      "sha256": "c1b7844768ccf847cf9e74b4122785e5ec777a1fd136fb2b408ac99d6ce13ad2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_54663.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_54663.txt",
+      "sha256": "be90dd4c072a8d8f7d88a9b19c93a01d10d880f1087d8d0e23fb4fe24706ad3d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_553309.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_553309.txt",
+      "sha256": "5b160cc0eda0ed9263b3ece21cf8a2bba961fccf368a6db681b53bee73e3b08c",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_554431.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_554431.txt",
+      "sha256": "c66759763f27a9cd7d833fc0f3aec4d6be096945dec0a4ae6fe106191b6a19cd",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_554930.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_554930.txt",
+      "sha256": "1794525d3e962767a5bf8fe2b705a39beceeb8255b4f58505ba5dbc9b3c3701c",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_558388.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_558388.txt",
+      "sha256": "062ef0a862c2b77dc41b08df25d0ab5913c669c021bb020cf04433ebca695148",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_56014.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_56014.txt",
+      "sha256": "0c75451b7368fd6e6f743952dec4f77abeae2914be60423cb7a92c09840c7a55",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_564995.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_564995.txt",
+      "sha256": "3bc55f3ba9bb30f60fb119b52fa7ee1c7db01885786aa019b357a31b9e0714eb",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_565641.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_565641.txt",
+      "sha256": "7e7bb79623feda42ae2a75fe62b670ba10e8c6369b30bb9e6e0cb7c11966f08e",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_569253.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_569253.txt",
+      "sha256": "10bc459153639aa9e194bf260ff3091a31328530e61f3ac1a8d4e252fe67aacc",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_572809.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_572809.txt",
+      "sha256": "b31904cb455cc65564e77cbf5c10a6abd5e3ba99900c0dc1e61f4142c95f81e6",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_573617.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_573617.txt",
+      "sha256": "e987fc66411f65901f83500d14484064225f2f573b3a07e6da3a9898446c3312",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_57558.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_57558.txt",
+      "sha256": "0dd6ceb0fc7764b5cf16680c7b95c0137d0223bbd9bb105beb4ac7ea1757075e",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_578182.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_578182.txt",
+      "sha256": "421254faa7d0a0b22ad097a9616b1970f7108bbef6b7f2f15b710aac17f40db7",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_580873.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_580873.txt",
+      "sha256": "7e623e0f3f041788b186c2cb07d040c025ef194ad7edd62b7925405e08ea3b2b",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_583047.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_583047.txt",
+      "sha256": "5a94299fef2060b250ab03c1e0fa83aefd0ca495a75309d33a18657b52e78928",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_584719.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_584719.txt",
+      "sha256": "9c939a1b4e608c082dc7123363595218301bfa740bfda15c2676a5671f726af2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_588231.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_588231.txt",
+      "sha256": "dad8e97c24aaf3c2c6bd6d3115f7d5ab0e05e406194c21cb79e34871fd79174d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_59020.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_59020.txt",
+      "sha256": "9e5772711843365e475db579e66f00607444866ab0f7b3dc14184b805cf065a7",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_599581.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_599581.txt",
+      "sha256": "e0ad85d2dfcc96ed64341957309674a135f0869637b0875875c78f39f7beacb1",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_600627.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_600627.txt",
+      "sha256": "80ca02d7f54f6de758db95b732e5a0dcaef41fe77068a25135092fab2d2cddba",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_605379.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_605379.txt",
+      "sha256": "60cde4b3d66da941674277d27d630f3b04a2cde13b5ef6c3d22f2dd4d82be7ce",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_60749.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_60749.txt",
+      "sha256": "0d8f984e33969c839a49fc7721df4e5b9a22cb638bdbde499396725f84fbcdfd",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_608241.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_608241.txt",
+      "sha256": "f427893a97168e176d10795f8bff7a294ed478fd4e4869cbbef6945ce0018e7a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_610166.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_610166.txt",
+      "sha256": "f8ffe7417961141991f95fa26efea873884322e1b558480238a2f1456aa2248d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_610343.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_610343.txt",
+      "sha256": "dedcb5a165892afcfe8b19718d5d3707668d0043385a77f09a34402c66486fa9",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_611235.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_611235.txt",
+      "sha256": "f7455d5e3c3c29f62d1704eb790854e8907aa5717a9b8902cad187df13d749d4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_617722.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_617722.txt",
+      "sha256": "4efc842e10fb6c0aef34b06777e64dfa16a24dd513c402b4ffb6d0718858a88a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_618754.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_618754.txt",
+      "sha256": "e4b31c4565764966b87f01bd98e33c7f325a1ead7cf823316c0f98e6ceadf3be",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_628925.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_628925.txt",
+      "sha256": "b151984e0738f9ced2ddead1e8416bf4fd2720c487c759cd88b08c74eec1138a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_63583.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_63583.txt",
+      "sha256": "6bcd3fbf12ac0e7cd925334447da864c19d45083be228ec55dd81ed1faa6c45a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_642411.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_642411.txt",
+      "sha256": "0e6338bfde6c25b4a6d76b46cc2bdf1a8af8cb82e65b5da1da3f32dfcaf2afa0",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_64637.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_64637.txt",
+      "sha256": "9ede3a7a25e349aff69477e248afc0453676b165418a765b7d0b75d9d3d3888d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_649216.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_649216.txt",
+      "sha256": "166342348da0993da4dae2f2ad05f9bfce31768dcd072445b4e2b36cf381d520",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_658459.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_658459.txt",
+      "sha256": "9615a4da965d2b633fc9a79f6337922a5b424dc154183dfa4aee9029c74a41fb",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_661365.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_661365.txt",
+      "sha256": "21c057cee6d14302ae87c65a9bafc55119226e90247b11a34d52186e00760496",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_662343.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_662343.txt",
+      "sha256": "b7f5c6e38e583c9cdc9a4e2b0c40e16a7b8b5e39c1391c3fafc1ef21a0779dc2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_667543.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_667543.txt",
+      "sha256": "6e823270055ab63a5aec12fe0fac25a5de45853c5e5d5bd035a16226f2c9689a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_667629.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_667629.txt",
+      "sha256": "03a6576aac3a3ed72e4ba04c07dac8d17d1af9c7e4909a20b35ce4c97b391570",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_675551.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_675551.txt",
+      "sha256": "0d6d742e4ce7032684aabf00a9152db6a1559ea1dd73c115856531a302e2b11d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_698252.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_698252.txt",
+      "sha256": "1e70f630a4f9f78341ae09e841ef8ad747f97ce8d48e7c3f7a624f6deb1e6849",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_700739.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_700739.txt",
+      "sha256": "866d87f29fe4b684df210bd459e6144f656d630886887c2d5ef0423b0448ed1d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_717211.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_717211.txt",
+      "sha256": "675645f148eda8bba2460b4c5f32a90c4fbad9b354954dd033ba865a03e07797",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_71748.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_71748.txt",
+      "sha256": "959f2566ba35c3c7d4dff7f757d457db07576155207c90bfa7364242ba245421",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_720055.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_720055.txt",
+      "sha256": "bb224bdd89c478455cf1329f3e612441e6c446a318ab5a706dbde937caabb7db",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_727269.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_727269.txt",
+      "sha256": "ec821e09a3152d31c890048efcc64e712a674615b950c4b4197e82efa0de1ff7",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_732728.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_732728.txt",
+      "sha256": "91785cdd3ab1b60eabf03e7013e2796799a24b0cb4a62af6ab1309479d7d0997",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_733627.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_733627.txt",
+      "sha256": "f00e523212f8a300839fba555d787c1eb8a9e86a4f9bddb855d6fd61f2f2ee97",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_738773.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_738773.txt",
+      "sha256": "262fd78044b32fd0d6d1ecd33a5a13caab907e950a538d08c5e1451f63a12f34",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_740137.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_740137.txt",
+      "sha256": "80582a746394a29142b6ac8b969d07e5d714a31fb02841e1498224c790814bd3",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_740613.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_740613.txt",
+      "sha256": "603873d45f27af71ee5d748876af86a2fc0257c4aa1509e7fefe5dd8d22d3499",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_743612.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_743612.txt",
+      "sha256": "346e8eefc7169e75a4654b6b9e9690587702142d7e8ecaa7ea40f70099a02df5",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_751502.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_751502.txt",
+      "sha256": "e67abfe61b9b4b88a411eff1b2a75a80a1d9f0f1891d3b3f7a3a97b755fbf19d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_75828.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_75828.txt",
+      "sha256": "5ef4966dcd058cb8d4b8eeabfa0a9894d5117b6a26028b9800d564cd33ca0ecd",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_759069.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_759069.txt",
+      "sha256": "923c149075f3dc9bcdae5af05623d07ad8ec36577ebc8840cb0b44b68229ea24",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_759517.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_759517.txt",
+      "sha256": "d6f64e2725d730b2e96f901e7ecc027941a7dad3bb45d2c652fbbb7602a56eb6",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_761596.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_761596.txt",
+      "sha256": "6f5a79c5d9c4d7070b171628e687980d412360d50174f3e26baa441b6d0a33d7",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_761715.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_761715.txt",
+      "sha256": "add32138ff0b63eb837c9bc424e2d0bbe4dcea026fa042fe9301638f548f9cd4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_7645.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_7645.txt",
+      "sha256": "5359e0d15adf4a36cb7732c7f23766a2c25267fe9445c2f5ab19da8c8fbbd31c",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_770844.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_770844.txt",
+      "sha256": "9d5af578a6ef8c18647e6fedad65ada3655fd017c297a28cdc05fd77737bfee2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_772045.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_772045.txt",
+      "sha256": "62529606b26fe53b6a4b1a9a315c34e1e14e9bb8d0e590de7537da0511165c03",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_772458.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_772458.txt",
+      "sha256": "7b4320655e66788225f2cab38c9beecde06da4ae26160aac4435023e5ffb56be",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_774195.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_774195.txt",
+      "sha256": "720b37b851e3ace64ec61111ff73deb9a3f964eb957a6bb2c257c6995aaeb37e",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_778641.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_778641.txt",
+      "sha256": "dd5a3a86e82ce5b2da6ff71b34c0481a70b3153ee7444ea7be29062be8a41d2e",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_780292.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_780292.txt",
+      "sha256": "f6b4f6d874b438c0a46f0c0512c7aca3c9fefca34ae9cd4755c2d7f43e683ee4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_782293.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_782293.txt",
+      "sha256": "040db33161c91df020e4c090e56f1e58979e92de1afa22124f3cc955f0e25489",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_790377.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_790377.txt",
+      "sha256": "0d622795db73dfa36c106e1a7d25a8ab216cef1bb02c40dbfbd64d9b0683cede",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_792318.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_792318.txt",
+      "sha256": "7228a71e0594bd3d6ebb92afd7e8b5e0d9c4b3f68bfe566be3a26a71ebd7d61d",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_806173.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_806173.txt",
+      "sha256": "034b4e34442de3cdb4aea5c005ae017de486fec1d59f1f9809169d7d579d5e77",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_810067.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_810067.txt",
+      "sha256": "1278b3404e3383bce04d07d71eaf6e5edb5cbf22b6ce7283f9afc10b7aa370f2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_817160.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_817160.txt",
+      "sha256": "025c0f954104b67910c9bbacb7042db721cbb57f6d87dcaa105ecef5ee9bcd2f",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_818960.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_818960.txt",
+      "sha256": "c3bda0ab0abb25ddfc42af289b13a6958bbdc4d6c3151df9788e6bd0a32c23f8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_821013.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_821013.txt",
+      "sha256": "0987b728af7cbaa4e0e021ee0d3f045f8390432dbe7cc0404214114f55cb2451",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_823494.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_823494.txt",
+      "sha256": "03075b830fde0d49e3d9539fba3442eeabac59defbc35a880f59edc28a915cb8",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_825750.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_825750.txt",
+      "sha256": "be243c52a2d9b91dd4c168fed74238dd3e78a6cbde3839abffed61c780d85217",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_836847.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_836847.txt",
+      "sha256": "434ba6d8547d5a482c915e73d818322f5763efabc29112d192e93c25cd9d9719",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_837008.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_837008.txt",
+      "sha256": "654c756ca0bd8d7e77296ad7b5899604d976967f22045c10a74120758c3c38e3",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_839058.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_839058.txt",
+      "sha256": "3553041b9e2f9fb9dbe00d185e2c5c3424ee333ffd74efd2eb45de7d58679cf4",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_840165.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_840165.txt",
+      "sha256": "f6328d24190b954a0050f758bd04e37b54d6c0867129c05041619940c0763b61",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_84152.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_84152.txt",
+      "sha256": "6ec628b2b5d59a4be8e474e0c94406882745ef9f42e9d56fde3f27f0716834ce",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_845210.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_845210.txt",
+      "sha256": "ea12d69e0493030365f73375a3231aaf91190cb4cea3d72ac26b2fec01ba79bc",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_848872.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_848872.txt",
+      "sha256": "577a27f6090902e126bbd607f39581b3a788df56e393663f840e73d914044f0c",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_849738.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_849738.txt",
+      "sha256": "e364377d678b84566c65f8a560a69ed7c8c9c0c7bde221bf61a777424b09d545",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_852799.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_852799.txt",
+      "sha256": "4e836e66cd53f7546303ff628fbd44fc6d8221237f661be14f94137d99132251",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_854969.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_854969.txt",
+      "sha256": "71e6564f5827f510406b4cccc27001d96de85a771d6f54873aed92cc7c818b83",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_859391.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_859391.txt",
+      "sha256": "5c1fd8aa39417e7e52d5663c14ed406eda9227efbdadcf64f4398e8f81047c66",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_863508.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_863508.txt",
+      "sha256": "86bd23818064c093c61d9e420de130874bbaec6e3a9d59cd7824f79b1301ad24",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_870317.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_870317.txt",
+      "sha256": "ae7311ba2bcd157cbff7e578349e27eccec7bbf6fd8e07d7390b19f0ffd14956",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_87237.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_87237.txt",
+      "sha256": "e59c5a20b5e0fb6a93255f73353e2072054134ba07ed02c75076c9a8834d3171",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_87385.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_87385.txt",
+      "sha256": "394a7ec6718e32815498e878b1db8b3c3f506460c3c2a7a9ad96c1e84a66c54b",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_877602.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_877602.txt",
+      "sha256": "2fa4d6a964fb4a75ec71a824184173fd9742970341d2713d49404c4b2f769db3",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_87795.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_87795.txt",
+      "sha256": "0eeabfa3ca7b707bd4eeb1b82321cf86340661dc3671c802b5f1f162d6002d91",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_877982.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_877982.txt",
+      "sha256": "c8591e06cceb5419ddfae412271f688ab62680ffeeec4215eb3fe44a939aa01b",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_892387.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_892387.txt",
+      "sha256": "ee7402f0b784a7c3d367dcaf0517afd3442c818952bde114d20f8b2ff7832afc",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_894289.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_894289.txt",
+      "sha256": "fe7ec08576b3b93df648450d7f09e7e477d27befb21cc250bcde5ad0c6a72b16",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_894961.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_894961.txt",
+      "sha256": "a6264b48a66d5ce52a1ebed4a2605474df52ea0ccab658428777ecad6da59311",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_897364.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_897364.txt",
+      "sha256": "5c1b90b3eb996bfaf20f87be8b9a3f3444133085dd47ad8504e8f8241e614ede",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_899270.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_899270.txt",
+      "sha256": "acd190c08fb8770bb43b0fd96c64d8d41dd70800ffcf7a4947957d9b5fa7d4f2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_91216.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_91216.txt",
+      "sha256": "7d85d6a52b2e60effd703eac9c55214299785a933e7e976c80d253b3b067eba7",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_912289.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_912289.txt",
+      "sha256": "56dd5e565e538c90755c71cd83a2656d54aa091f1b11ebc8ea5514cb8281382a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_917335.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_917335.txt",
+      "sha256": "866a5714c6f6887f46a8bc64716a44023754f7d7f860e9dc52afeabf10cc2e58",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_919560.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_919560.txt",
+      "sha256": "0427e1bc2111ee2c616ad4552c330b4cb808200330aef590b8286d6ee36ed86a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_925449.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_925449.txt",
+      "sha256": "08184147fe4c8063a37063ce0321e1a1279ba5eebc504a4d75af8cf4f22264d2",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_925765.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_925765.txt",
+      "sha256": "ec0dc0949c585c24fac598c06966df4f0fac05ec3bdb58d7f25647dc93a70fe1",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_926569.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_926569.txt",
+      "sha256": "e2dc4767f35d8bf3d690c75ebc2f6a8f2634d9dbfe89a97c829c10068c5ac12c",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_938473.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_938473.txt",
+      "sha256": "e85bcb0a221f2ef9c43bceabdf11ca6f2ebd55085f0a3a3b55063bfd9c87492b",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_942845.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_942845.txt",
+      "sha256": "4e30f5c26dd6c6dd7411dd87f31da0fc9656d55f49c890cdadf6baaf9a0e92bb",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_943670.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_943670.txt",
+      "sha256": "9fd58818c2304821b74c24747d857733931734949d00cdd11ce3f49d036178fd",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_954057.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_954057.txt",
+      "sha256": "73950271cc2c02caa2093134b933868409ce51f6cf6769d6bfdbe52d14916013",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_957945.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_957945.txt",
+      "sha256": "725fc22c861e937061fd95fd0a80ceb84169d838076674fd4713afb0d81f308f",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_958921.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_958921.txt",
+      "sha256": "cbf556d2e88a882f6d38887883b79a10844986471c67c9f596e095da7ed2b55a",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_96026.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_96026.txt",
+      "sha256": "6c70fa918e6ef2af86a4ee197f8bbb9dbdf998363918da9febe0acb3626c2046",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_960802.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_960802.txt",
+      "sha256": "c902d5a7919db567ef5ada4933401d579d7a5b03fcbfa74978adb05894cc70fe",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_963485.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_963485.txt",
+      "sha256": "0c602ecfc8e1a238237e70ffa05c15b1ebe5fda5f40f54001ff18735ab8d2c07",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_973197.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_973197.txt",
+      "sha256": "bb0ab91bf362ec20e9808af7cc9e6766eb56de1f08fe0a18d7b8a6a0a2101669",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_974879.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_974879.txt",
+      "sha256": "41cc22a5d57e7c567e0f8fea50924a38194f5cb9bbfc2721440008472d669bcb",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_976257.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_976257.txt",
+      "sha256": "b57a733f2939a98132736d9d2fb306b5ab9380727b3fbe0007db16f6746b7b05",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_981657.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_981657.txt",
+      "sha256": "35e4c99966c578b357ee8b2157ae3ecce1966713e732edbc391bf5449b5ea450",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_983638.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_983638.txt",
+      "sha256": "da2f43d8a9957977383646e2365181ce501ee1a35c1a6b5684736fa67e4c5129",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_989259.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_989259.txt",
+      "sha256": "cb26deed6cda5dbc6a91fe0156a5066e51879e3e51abd8d12763accbf0c48917",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_99825.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_99825.txt",
+      "sha256": "e3e959e7435493add34db5c602ae5c850bdb2f59b81e9c0ac9706c207ab7cf49",
+      "source": "UVH-26 Val (IISc AIM)"
+    },
+    {
+      "image": "data/processed/multidataset/images/val/uvh_val_998876.jpg",
+      "label": "data/processed/multidataset/labels/val/uvh_val_998876.txt",
+      "sha256": "193de32013383d54a230751de8db3f344319b529a585138c76fd12b56e815221",
+      "source": "UVH-26 Val (IISc AIM)"
+    }
+  ]
+}

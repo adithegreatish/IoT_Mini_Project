@@ -1,0 +1,188 @@
+{
+  "view_name": "real_parking_camera",
+  "description": "High-angle overhead parking surveillance camera frames",
+  "created_at": "2026-10-14T00:17:36.907946",
+  "sample_count": 30,
+  "samples": [
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_15_16_58.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "2163d73485dbfbaf53fedb1eac7f4eb749ed5731fff00223a4b799eec0a03c0e"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_15_31_50.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "5c086c8b8c5c416a05f24a9926ae3182882a41082270d18fda10755d58b1a228"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_15_43_35.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "95d6cb71b62ba941212440fe896813a4e5cf629d954997d8f478128056d5def8"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_15_55_21.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "fc5991fbf57f2158590b0f1a34e8e0165e5d5ba30709647eb06df6fbe366f4d2"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_16_15_24.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "45801658ffbef551f2874a64fab4c0dadaba659d0680ab298c5029792ff053ce"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_16_29_30.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "f3f319748e66b5c51cc5f24f206026aad337e66bd0acd27dd4490f09ff1c9119"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_16_43_43.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "e4aa7255f37e4806f97e555937d6f389efc164af9b4a7695ca5796e3de3a65c1"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_17_02_42.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "26942984351f57aa917b69d76eb7b9dd4026d995a790ff588fbb036e9a1f207a"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_17_16_54.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "f3577be0593fd1713996845a83bec98d1cd95e691b718468c28afe8491d7d2b9"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-11_17_35_44.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "9409938a66d449db35bec3313877895a424beae91bc2bba98877e350c7856032"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_06_05_16.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "cb8f127ebb81a5edc5046aee6d1939ae6fb6e68c28126bdb1306bd273c7e5757"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_07_18_22.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "003dd3f5c4a2e03aaea685820a359cc6c92d7dd415de1104e7ed478086b74e3c"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_08_31_36.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "53540b5c325f871d9167ae8269428455f112af03efff22c63ed6d3b4dc9fab12"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_09_44_59.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "f0dbc2283a7a0a60b400bdde0025e70310972680fd2338bb53ae904d126a7d64"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_10_58_24.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "d523e648beede6e6f3d277dcc099213e15e841315fa0677136416a4223a39302"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_12_11_42.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "8adbf82060f5b21e824440468311674dbe513d35d4fefc251b76b1425ea2a2aa"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_13_24_58.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "55bfcc92f7e4fab72f943c4dd692bcd8038d614ebb4b26eaafbcb72d109b413a"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_14_38_20.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "7e3552c9505009c78b4cec04bbf278a0615a4639472860d689666e69d1121312"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_15_51_40.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "6f73b955a49291271c98daef2dd3ec48f75a09560025132567890ca9ad5884f6"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-12_17_04_49.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "538e8cf41f9a8018d3115a788730be5a98b62260dbf3cea0c379126116e6aab3"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_05_56_59.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "2352de7a5770dd20c5c4ed6c44e9caab673f855d386cb3018d10ff93617ded41"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_07_07_02.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "7a792f692135687c8220f48c6c38f9f59480c102a2462c2215ad4d18e965c8db"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_08_17_04.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "0fb61033cac4a1651bde288590b47d53ebad486920455fba450f36161ae82713"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_09_27_07.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "c7baca2eb19c23fbbf0b3e4a0f56b2eaba2f8859a39a4b2f14c13a8f31dd76f8"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_10_37_10.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "3b3edc1726d5dde338de78094ecee0ae397abc89036d48ccce01c78519dbf86e"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_11_47_13.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "175b141201e0f63604a1760a874ef2582ef02e666d4839ee248ce23f5c57dc85"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_12_57_16.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "301fb8a8ed298cca611f1f020e4b6e5c77a83c29c287420a349cee6629ef44e3"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_14_07_19.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "b3b91fff7950e3f2c10bc31399846b6c3c410ffd533e7cc28f5de6157bebc3ca"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_15_17_22.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "9a782355677e331c49530a3d904ea8296c405333ad8a2813a19298e604b7e11f"
+    },
+    {
+      "image": "data/raw/pklot/images/PUCPR_2012-09-15_16_27_25.jpg",
+      "source": "PKLot_PUCPR_CCTV",
+      "perspective": "high_angle_overhead_cctv",
+      "sha256": "90a04f38270e7648c9cf0235bac2066d255e53ca02167ecfb405fade96e0b093"
+    }
+  ]
+}

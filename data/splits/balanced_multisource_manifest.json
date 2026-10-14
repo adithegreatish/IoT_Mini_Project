@@ -1,0 +1,41 @@
+{
+  "dataset_name": "balanced_multisource_training_mix",
+  "description": "Arm C balanced multi-source training mix preserving horizontal street motorcycles while boosting Indian CCTV and small truck detection",
+  "total_samples": 3199,
+  "source_breakdown": {
+    "coco_general": {
+      "count": 1657,
+      "percentage": 51.8
+    },
+    "coco_motorcycle_reinforcement": {
+      "count": 497,
+      "percentage": 15.54
+    },
+    "uvh26_indian_cctv": {
+      "count": 700,
+      "percentage": 21.88
+    },
+    "visdrone_aerial": {
+      "count": 345,
+      "percentage": 10.78
+    }
+  },
+  "class_instance_counts": {
+    "car": 15702,
+    "motorcycle": 10171,
+    "bus": 1621,
+    "truck": 2831
+  },
+  "sampling_policy": {
+    "coco_general": "100% of COCO training images (1,657) to anchor horizontal street perspective",
+    "coco_motorcycle_reinforcement": "1x duplication of 497 motorcycle-containing COCO images to prevent overhead CCTV bias",
+    "uvh26_indian_cctv": "Stratified selection of 700 images (566 truck-focused + 134 bus-focused) to improve commercial vehicle recall",
+    "visdrone_aerial": "100% of VisDrone supplement images (345) to train small/distant vehicle detection"
+  },
+  "leakage_audit": {
+    "held_out_indian_cctv_leakage": 0,
+    "held_out_coco_test_leakage": 0,
+    "verification_status": "PASSED_STRICT_DISJOINT"
+  },
+  "yaml_config": "C:\\Users\\adity\\Downloads\\IoT\\data\\vehicles_balanced_multisource.yaml"
+}

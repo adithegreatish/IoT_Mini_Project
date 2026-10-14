@@ -10,6 +10,55 @@ training:
     seed: 42
     save_dir: "models/training_runs/vehicle"
 
+  presets:
+    balanced:
+      description: "Standard balanced vehicle detector training matching production baseline"
+      architecture: "yolov8n"
+      epochs: 35
+      batch_size: 16
+      imgsz: 640
+      lr0: 0.002
+      optimizer: "auto"
+      close_mosaic: 10
+      augment: true
+
+    accuracy_focused:
+      description: "Accuracy-focused training with cosine learning rate schedule, extended epochs, and regularization"
+      architecture: "yolov8n"
+      epochs: 45
+      batch_size: 16
+      imgsz: 640
+      lr0: 0.002
+      cos_lr: true
+      optimizer: "AdamW"
+      weight_decay: 0.0005
+      close_mosaic: 15
+      augment: true
+
+    small_object_truck_focus:
+      description: "Targeted class-aware tuning for truck recall, delivery vans, and distant small vehicles"
+      architecture: "yolov8n"
+      epochs: 35
+      batch_size: 16
+      imgsz: 640
+      scale: 0.6
+      degrees: 5.0
+      translate: 0.15
+      close_mosaic: 10
+      optimizer: "auto"
+      augment: true
+
+    pi_latency_optimized:
+      description: "Latency-optimized configuration at 480x480 resolution for maximum Raspberry Pi CPU throughput"
+      architecture: "yolov8n"
+      epochs: 30
+      batch_size: 16
+      imgsz: 480
+      lr0: 0.002
+      optimizer: "auto"
+      close_mosaic: 8
+      augment: true
+
   plate_detector:
     architecture: "yolov8n"
     pretrained_weights: "yolov8n.pt"
@@ -39,4 +88,3 @@ training:
     imgsz: 224
     learning_rate: 0.001
     save_dir: "models/training_runs/hsrp"
-

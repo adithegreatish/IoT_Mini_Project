@@ -1,10 +1,18 @@
-"""Orchestrates genuine vehicle detector training, validation, checkpointing, and ONNX export."""
+"""
+Vehicle Detector Training Pipeline & Candidate Experiment Manager.
+Orchestrates training with GPU acceleration (RTX 4070), validation checkpointing,
+and ONNX candidate export.
+STRICT SAFETY INVARIANT: Never overwrites the active production model!
+Saves each run to an isolated experiment directory (models/experiments/<exp_id>/)
+and registers the model as a CANDIDATE awaiting independent gate evaluation.
+"""
 
 import argparse
 from datetime import datetime
 import hashlib
 import json
 import logging
+import os
 from pathlib import Path
 import shutil
 import sys
@@ -13,241 +21,255 @@ from typing import Any, Dict, Optional
 
 import yaml
 
-# Ensure workspace root is in sys.path
 root_dir = Path(__file__).resolve().parent.parent
 if str(root_dir) not in sys.path:
     sys.path.insert(0, str(root_dir))
 
 from app.infrastructure.paths import paths
 from app.infrastructure.platform_info import get_platform_info
+from app.models.registry import calculate_sha256, model_registry
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("train_vehicle_detector")
 
-
-def calculate_sha256(filepath: Path) -> str:
-    """Calculates SHA-256 hash of a file."""
-    h = hashlib.sha256()
-    with open(filepath, "rb") as f:
-        while chunk := f.read(65536):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def update_model_manifest(
-    model_id: str,
-    onnx_path: Path,
-    onnx_sha256: str,
-    metrics: Dict[str, Any],
-) -> None:
-    """Updates models/manifest.json with genuine artifact hashes and benchmark metrics."""
-    manifest_path = paths.models_manifest_file
-    if not manifest_path.exists():
-        logger.warning(f"Manifest not found at {manifest_path}")
-        return
-
-    try:
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        for m in manifest.get("models", []):
-            if m.get("model_id") == model_id:
-                m["sha256"] = onnx_sha256
-                m["updated_at"] = datetime.now().isoformat()
-                m["file_path"] = str(onnx_path.relative_to(paths.root)).replace("\\", "/")
-                m.setdefault("metrics", {}).update(metrics)
-                logger.info(f"Updated manifest entry for {model_id}: SHA-256={onnx_sha256[:16]}...")
-                break
-        manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    except Exception as e:
-        logger.error(f"Failed to update manifest: {e}")
+PRESETS = {
+    "balanced": {
+        "description": "Standard balanced training matching project baseline",
+        "epochs": 35,
+        "batch_size": 16,
+        "imgsz": 640,
+        "lr0": 0.002,
+        "optimizer": "auto",
+        "close_mosaic": 10,
+        "augment": True,
+    },
+    "accuracy_focused": {
+        "description": "Maximum precision & mAP with extended learning and cosine schedule",
+        "epochs": 45,
+        "batch_size": 16,
+        "imgsz": 640,
+        "lr0": 0.002,
+        "cos_lr": True,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0005,
+        "close_mosaic": 15,
+        "augment": True,
+    },
+    "small_object_truck_focus": {
+        "description": "Targeted truck recall and small distant vehicle detection",
+        "epochs": 35,
+        "batch_size": 16,
+        "imgsz": 640,
+        "scale": 0.6,
+        "degrees": 5.0,
+        "translate": 0.15,
+        "close_mosaic": 10,
+        "optimizer": "auto",
+        "augment": True,
+    },
+    "pi_latency_optimized": {
+        "description": "Compact 480x480 resolution designed for maximum Raspberry Pi CPU throughput",
+        "epochs": 30,
+        "batch_size": 16,
+        "imgsz": 480,
+        "lr0": 0.002,
+        "optimizer": "auto",
+        "close_mosaic": 8,
+        "augment": True,
+    },
+}
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Train or fine-tune YOLO vehicle detector")
-    parser.add_argument("--config", type=str, default="configs/training.yaml", help="Path to training.yaml")
-    parser.add_argument("--epochs", type=int, default=None, help="Override number of training epochs")
+    parser = argparse.ArgumentParser(description="Train vehicle detector candidate model")
+    parser.add_argument("--preset", type=str, default="balanced", choices=list(PRESETS.keys()), help="Training configuration preset")
+    parser.add_argument("--experiment-name", type=str, default=None, help="Custom identifier for experiment")
+    parser.add_argument("--epochs", type=int, default=None, help="Override epoch count")
     parser.add_argument("--batch-size", type=int, default=None, help="Override batch size")
-    parser.add_argument("--imgsz", type=int, default=None, help="Override image size")
-    parser.add_argument("--device", type=str, default=None, help="Device ('0', 'cpu', etc.)")
-    parser.add_argument("--smoke-test", action="store_true", help="Run rapid 1-epoch smoke test")
-    parser.add_argument("--resume", action="store_true", help="Resume from last checkpoint")
+    parser.add_argument("--imgsz", type=int, default=None, help="Override image resolution")
+    parser.add_argument("--device", type=str, default=None, help="Device ('0', 'cpu')")
+    parser.add_argument("--data-yaml", type=str, default="data/vehicles.yaml", help="Dataset configuration")
+    parser.add_argument("--weights", type=str, default="yolov8n.pt", help="Initial pretrained weights")
+    parser.add_argument("--smoke-test", action="store_true", help="1-epoch sanity test")
+    parser.add_argument("--experiment-id", type=str, default=None, help="Explicit experiment identifier")
+    parser.add_argument("--notes", type=str, default="", help="Experimental notes")
     args = parser.parse_args()
 
-    paths.ensure_directories()
-    cfg_path = paths.resolve(args.config)
-    if not cfg_path.exists():
-        logger.error(f"Training configuration not found at {cfg_path}")
-        sys.exit(1)
-
-    with open(cfg_path, "r", encoding="utf-8") as f:
-        cfg = yaml.safe_load(f)
-
-    v_cfg = cfg.get("training", {}).get("vehicle_detector", {})
-    architecture = v_cfg.get("architecture", "yolov8n")
-    pretrained_weights = v_cfg.get("pretrained_weights", "yolov8n.pt")
-    epochs = 1 if args.smoke_test else (args.epochs or v_cfg.get("epochs", 25))
-    batch_size = 4 if args.smoke_test else (args.batch_size or v_cfg.get("batch_size", 16))
-    imgsz = args.imgsz or v_cfg.get("imgsz", 640)
-    workers = 0 if sys.platform == "win32" else v_cfg.get("workers", 2)  # Avoid Windows multiprocessing worker issues
-    seed = v_cfg.get("seed", 42)
-
-    save_dir = paths.resolve(v_cfg.get("save_dir", "models/training_runs/vehicle"))
-    save_dir.mkdir(parents=True, exist_ok=True)
-
-    # Validate dataset config
-    dataset_yaml = paths.resolve("data/vehicles.yaml")
-    if not dataset_yaml.exists():
-        logger.error(f"Vehicle dataset YAML not found at {dataset_yaml}. Run scripts/acquire_datasets.py first!")
-        sys.exit(1)
-
-    # Detect hardware
-    try:
-        import torch
-        cuda_avail = torch.cuda.is_available()
-        gpu_name = torch.cuda.get_device_name(0) if cuda_avail else "None"
-    except ImportError:
-        logger.error("PyTorch is not installed in current environment.")
-        sys.exit(1)
-
+    # Hardware detection
+    import torch
+    cuda_avail = torch.cuda.is_available()
+    gpu_name = torch.cuda.get_device_name(0) if cuda_avail else "CPU"
     device = args.device or ("0" if cuda_avail else "cpu")
-    if device != "cpu" and not cuda_avail:
-        logger.warning("CUDA requested but not available. Falling back to CPU.")
-        device = "cpu"
 
-    print("\n" + "=" * 65)
-    print("VEHICLE DETECTOR TRAINING PIPELINE")
-    print("=" * 65)
-    print(f"Architecture:       {architecture}")
-    print(f"Pretrained Weights: {pretrained_weights}")
-    print(f"Dataset Config:     {dataset_yaml}")
-    print(f"Epochs:             {epochs} {'(SMOKE TEST)' if args.smoke_test else ''}")
-    print(f"Batch Size:         {batch_size}")
-    print(f"Image Size:         {imgsz}")
-    print(f"Device:             {device} (CUDA: {cuda_avail}, GPU: {gpu_name})")
-    print(f"Save Path:          {save_dir}")
-    print("=" * 65 + "\n")
+    # Resolve settings from preset
+    preset_cfg = PRESETS[args.preset].copy()
+    epochs = 1 if args.smoke_test else (args.epochs or preset_cfg.get("epochs", 35))
+    batch_size = 4 if args.smoke_test else (args.batch_size or preset_cfg.get("batch_size", 16))
+    imgsz = args.imgsz or preset_cfg.get("imgsz", 640)
 
-    try:
-        from ultralytics import YOLO
-    except ImportError:
-        logger.error("Ultralytics library not found. Run: pip install ultralytics")
+    # Unique experiment directory
+    if args.experiment_id:
+        experiment_id = args.experiment_id
+    else:
+        exp_suffix = f"_{args.experiment_name}" if args.experiment_name else f"_{args.preset}"
+        if args.smoke_test:
+            exp_suffix += "_smoke"
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        experiment_id = f"exp_{timestamp}{exp_suffix}"
+
+    exp_dir = paths.models_dir / "experiments" / experiment_id
+    exp_dir.mkdir(parents=True, exist_ok=True)
+
+    data_yaml_p = paths.resolve(args.data_yaml)
+    if not data_yaml_p.exists():
+        logger.error(f"Dataset YAML not found at: {data_yaml_p}")
         sys.exit(1)
 
-    # Initialize model
-    model = YOLO(pretrained_weights)
+    print("\n" + "=" * 70)
+    print(" VEHICLE DETECTOR EXPERIMENTAL TRAINING PIPELINE")
+    print("=" * 70)
+    print(f"Experiment ID:       {experiment_id}")
+    print(f"Preset:              {args.preset} ({preset_cfg.get('description')})")
+    print(f"Pretrained Weights:  {args.weights}")
+    print(f"Dataset YAML:        {data_yaml_p}")
+    print(f"Epochs:              {epochs} {'(SMOKE TEST)' if args.smoke_test else ''}")
+    print(f"Batch Size:          {batch_size}")
+    print(f"Input Size:          {imgsz}x{imgsz}")
+    print(f"Compute Device:      {device} ({gpu_name})")
+    print(f"Output Directory:    {exp_dir}")
+    print("=" * 70 + "\n")
 
-    # Execute training
+    from ultralytics import YOLO
+
+    model = YOLO(args.weights)
+
+    train_kwargs = {
+        "data": str(data_yaml_p),
+        "epochs": epochs,
+        "batch": batch_size,
+        "imgsz": imgsz,
+        "device": device,
+        "workers": 0 if sys.platform == "win32" else 2,
+        "project": str(exp_dir.parent),
+        "name": exp_dir.name,
+        "seed": 42,
+        "exist_ok": True,
+        "verbose": True,
+    }
+
+    if preset_cfg.get("optimizer"):
+        train_kwargs["optimizer"] = preset_cfg["optimizer"]
+    if preset_cfg.get("close_mosaic"):
+        train_kwargs["close_mosaic"] = preset_cfg["close_mosaic"]
+    if preset_cfg.get("cos_lr"):
+        train_kwargs["cos_lr"] = True
+    if preset_cfg.get("scale"):
+        train_kwargs["scale"] = preset_cfg["scale"]
+
     start_time = time.time()
-    logger.info("Starting model training...")
+    logger.info("Starting candidate model training...")
 
-    results = model.train(
-        data=str(dataset_yaml),
-        epochs=epochs,
-        batch=batch_size,
-        imgsz=imgsz,
-        device=device,
-        workers=workers,
-        project=str(save_dir.parent),
-        name=save_dir.name,
-        seed=seed,
-        exist_ok=True,
-        resume=args.resume,
-        verbose=True,
-    )
-
-    elapsed_sec = round(time.time() - start_time, 2)
-    logger.info(f"Training completed in {elapsed_sec}s.")
+    results = model.train(**train_kwargs)
+    train_duration = round(time.time() - start_time, 2)
+    logger.info(f"Training completed in {train_duration}s.")
 
     # Locate generated checkpoints
-    weights_dir = save_dir / "weights"
+    weights_dir = exp_dir / "weights"
     best_pt = weights_dir / "best.pt"
     last_pt = weights_dir / "last.pt"
 
-    if not best_pt.exists():
-        logger.warning(f"best.pt not found at {best_pt}. Looking for last.pt...")
-        best_pt = last_pt
-
-    if not best_pt.exists():
-        logger.error("Training did not produce expected weight checkpoints.")
+    candidate_pt = best_pt if best_pt.exists() else last_pt
+    if not candidate_pt.exists():
+        logger.error(f"Training failed to produce weight checkpoints in {weights_dir}")
         sys.exit(1)
 
-    best_sha256 = calculate_sha256(best_pt)
-    logger.info(f"Trained checkpoint: {best_pt} (SHA-256: {best_sha256[:16]}...)")
+    pt_sha256 = calculate_sha256(candidate_pt)
+    logger.info(f"Candidate checkpoint: {candidate_pt} (SHA-256: {pt_sha256[:16]}...)")
 
-    # Copy to canonical model path
-    canonical_pt = paths.models_dir / "vehicle_detector.pt"
-    shutil.copy2(best_pt, canonical_pt)
+    # Run validation on val split
+    logger.info("Evaluating candidate on validation split...")
+    val_res = model.val(data=str(data_yaml_p), split="val", imgsz=imgsz, device=device, verbose=False)
 
-    # Validate trained model on validation set
-    logger.info("Validating trained model metrics...")
-    val_metrics = model.val(data=str(dataset_yaml), split="val", imgsz=imgsz, device=device)
-
-    mAP50 = float(val_metrics.box.map50) if hasattr(val_metrics.box, "map50") else 0.0
-    mAP50_95 = float(val_metrics.box.map) if hasattr(val_metrics.box, "map") else 0.0
-    precision = float(val_metrics.box.mp) if hasattr(val_metrics.box, "mp") else 0.0
-    recall = float(val_metrics.box.mr) if hasattr(val_metrics.box, "mr") else 0.0
-
-    print("\n" + "=" * 65)
-    print("VALIDATION METRICS SUMMARY")
-    print("=" * 65)
-    print(f"mAP@50:      {mAP50:.4f}")
-    print(f"mAP@50-95:   {mAP50_95:.4f}")
-    print(f"Precision:   {precision:.4f}")
-    print(f"Recall:      {recall:.4f}")
-    print("=" * 65 + "\n")
-
-    # Export to ONNX format
-    logger.info("Exporting trained model to deployment ONNX format...")
-    onnx_exported_file = model.export(format="onnx", imgsz=imgsz, dynamic=False, opset=12)
-    canonical_onnx = paths.vehicle_model_onnx
-
-    if Path(onnx_exported_file).exists():
-        shutil.copy2(onnx_exported_file, canonical_onnx)
-        onnx_sha256 = calculate_sha256(canonical_onnx)
-        logger.info(f"Canonical ONNX model saved to: {canonical_onnx} (SHA-256: {onnx_sha256[:16]}...)")
-    else:
-        logger.error(f"ONNX export file {onnx_exported_file} not found.")
-        sys.exit(1)
-
-    # Update manifest with real metrics and hash
-    metrics_dict = {
-        "mAP50": round(mAP50, 4),
-        "mAP50_95": round(mAP50_95, 4),
-        "precision": round(precision, 4),
-        "recall": round(recall, 4),
-        "training_duration_sec": elapsed_sec,
+    val_metrics = {
+        "precision": round(float(val_res.results_dict.get("metrics/precision(B)", 0.0)), 4),
+        "recall": round(float(val_res.results_dict.get("metrics/recall(B)", 0.0)), 4),
+        "mAP50": round(float(val_res.results_dict.get("metrics/mAP50(B)", 0.0)), 4),
+        "mAP50_95": round(float(val_res.results_dict.get("metrics/mAP50-95(B)", 0.0)), 4),
+        "training_duration_sec": train_duration,
     }
-    update_model_manifest("vehicle-yolo-v8n", canonical_onnx, onnx_sha256, metrics_dict)
 
-    # Write training run report
-    run_report = {
+    # Extract per-class
+    per_class = {}
+    if hasattr(val_res.box, "r") and len(val_res.box.r) > 0:
+        names = getattr(val_res, "names", {0: "car", 1: "motorcycle", 2: "bus", 3: "truck"})
+        for idx, name in names.items():
+            if idx < len(val_res.box.r):
+                per_class[name] = {
+                    "precision": round(float(val_res.box.p[idx]), 4) if idx < len(val_res.box.p) else 0.0,
+                    "recall": round(float(val_res.box.r[idx]), 4),
+                    "ap50": round(float(val_res.box.ap50[idx]), 4) if hasattr(val_res.box, "ap50") and idx < len(val_res.box.ap50) else 0.0,
+                    "ap50_95": round(float(val_res.box.ap[idx]), 4) if hasattr(val_res.box, "ap") and idx < len(val_res.box.ap) else 0.0,
+                }
+    val_metrics["per_class"] = per_class
+
+    print("\n" + "-" * 70)
+    print(" CANDIDATE VALIDATION METRICS")
+    print("-" * 70)
+    print(f"Precision: {val_metrics['precision']:.4f} | Recall: {val_metrics['recall']:.4f}")
+    print(f"mAP@50:    {val_metrics['mAP50']:.4f} | mAP@50-95: {val_metrics['mAP50_95']:.4f}")
+    for cname, cm in per_class.items():
+        print(f"  Class {cname:10s}: AP50={cm['ap50']:.4f}, AP50-95={cm['ap50_95']:.4f}, P={cm['precision']:.4f}, R={cm['recall']:.4f}")
+    print("-" * 70 + "\n")
+
+    # Export candidate to ONNX
+    logger.info("Exporting candidate ONNX artifact...")
+    onnx_file = model.export(format="onnx", imgsz=imgsz, dynamic=False, opset=12)
+    candidate_onnx = Path(onnx_file)
+    onnx_sha256 = calculate_sha256(candidate_onnx)
+    logger.info(f"Exported ONNX: {candidate_onnx} (SHA-256: {onnx_sha256[:16]}...)")
+
+    # Save experiment metadata in experiment directory
+    exp_meta = {
+        "experiment_id": experiment_id,
         "timestamp": datetime.now().isoformat(),
-        "model_id": "vehicle-yolo-v8n",
-        "architecture": architecture,
-        "epochs": epochs,
-        "batch_size": batch_size,
-        "imgsz": imgsz,
-        "device": device,
-        "duration_sec": elapsed_sec,
+        "preset": args.preset,
+        "training_config": {
+            "epochs": epochs,
+            "batch_size": batch_size,
+            "imgsz": imgsz,
+            "device": device,
+            "gpu_name": gpu_name,
+            "duration_sec": train_duration,
+            "weights": args.weights,
+        },
         "weights": {
-            "checkpoint_pt": paths.to_relative_str(canonical_pt),
-            "checkpoint_sha256": best_sha256,
-            "onnx": paths.to_relative_str(canonical_onnx),
+            "checkpoint_pt": str(candidate_pt.relative_to(paths.root)).replace("\\", "/"),
+            "checkpoint_sha256": pt_sha256,
+            "onnx": str(candidate_onnx.relative_to(paths.root)).replace("\\", "/"),
             "onnx_sha256": onnx_sha256,
         },
-        "metrics": metrics_dict,
+        "validation_metrics": val_metrics,
+        "notes": args.notes or preset_cfg.get("description", ""),
     }
-    run_meta_path = save_dir / "training_run_metadata.json"
-    run_meta_path.write_text(json.dumps(run_report, indent=2), encoding="utf-8")
-    logger.info(f"Training run metadata saved to: {run_meta_path}")
+    (exp_dir / "experiment_metadata.json").write_text(json.dumps(exp_meta, indent=2), encoding="utf-8")
 
-    print("\n" + "=" * 65)
-    print("VEHICLE DETECTOR TRAINING & EXPORT COMPLETED SUCCESSFULLY")
-    print(f"PyTorch Checkpoint: {canonical_pt}")
-    print(f"ONNX Model:         {canonical_onnx}")
-    print(f"Manifest Updated:   {paths.models_manifest_file}")
-    print("=" * 65 + "\n")
+    # Register candidate in ModelRegistry
+    model_registry.register_candidate(
+        experiment_id=experiment_id,
+        pt_path=candidate_pt,
+        onnx_path=candidate_onnx,
+        training_config=exp_meta["training_config"],
+        validation_metrics=val_metrics,
+        notes=args.notes or preset_cfg.get("description", ""),
+    )
+
+    print("\n" + "=" * 70)
+    print(f"[+] CANDIDATE REGISTRATION COMPLETE: {experiment_id}")
+    print(f"[+] Isolated Directory: {exp_dir}")
+    print(f"[+] Status: REGISTERED AS CANDIDATE (Awaiting evaluation & promotion gate)")
+    print(f"[!] Production models were NOT touched.")
+    print("=" * 70 + "\n")
 
 
 if __name__ == "__main__":
     main()
-

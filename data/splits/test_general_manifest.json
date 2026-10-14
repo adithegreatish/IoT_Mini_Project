@@ -1,0 +1,728 @@
+{
+  "view_name": "general_object_detection",
+  "description": "Held-out COCO 2017 street photography vehicle test benchmark",
+  "created_at": "2026-10-14T00:17:36.895443",
+  "sample_count": 120,
+  "samples": [
+    {
+      "image": "data/processed/vehicles/images/test/000000006723.jpg",
+      "label": "data/processed/vehicles/labels/test/000000006723.txt",
+      "box_count": 6,
+      "sha256": "1d3ba71e9002721a2bc18791f3c86578d6de38fb61640803657276d53e73663f"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000017029.jpg",
+      "label": "data/processed/vehicles/labels/test/000000017029.txt",
+      "box_count": 2,
+      "sha256": "d619327903c6b05520f0d6768807c067cce2d6d908d2d83da018a1da3b1792cf"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000017207.jpg",
+      "label": "data/processed/vehicles/labels/test/000000017207.txt",
+      "box_count": 4,
+      "sha256": "fd477a26cf3682083ae6633c3778fcce9e53fdfbb0670232d608865ddb606884"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000018837.jpg",
+      "label": "data/processed/vehicles/labels/test/000000018837.txt",
+      "box_count": 2,
+      "sha256": "70f986167a5f1ea723ee2a25273f39ee1d1d7a3bf8b2fa3a37eca946111f1d93"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000019109.jpg",
+      "label": "data/processed/vehicles/labels/test/000000019109.txt",
+      "box_count": 14,
+      "sha256": "5469f123ab838c9fdcc567c13148399dcb4cfa4eeee80e6e56a13627808a6d54"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000032941.jpg",
+      "label": "data/processed/vehicles/labels/test/000000032941.txt",
+      "box_count": 8,
+      "sha256": "2b881cc082e3d79f6685320ddf02e04ec534e7f904a090a4e627eb445cb26ebc"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000033221.jpg",
+      "label": "data/processed/vehicles/labels/test/000000033221.txt",
+      "box_count": 3,
+      "sha256": "b7031fe2396f64142e19ba4f143687112bf555995233a7e48bfc9a57ab4ee4ea"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000044590.jpg",
+      "label": "data/processed/vehicles/labels/test/000000044590.txt",
+      "box_count": 13,
+      "sha256": "5ef55da25c21159d1aeaf61eee0c81b2127dc626eac012c68d2e9a81d2bd7789"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000054593.jpg",
+      "label": "data/processed/vehicles/labels/test/000000054593.txt",
+      "box_count": 4,
+      "sha256": "2927085bfe4c7b09fc4cea90216f71beedcaed0ec501cdb06630bf40b126ec25"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000057149.jpg",
+      "label": "data/processed/vehicles/labels/test/000000057149.txt",
+      "box_count": 3,
+      "sha256": "4e57fdaa7e50f2f384087931a026ad14252f976289b636213d24b2f61f64f544"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000057672.jpg",
+      "label": "data/processed/vehicles/labels/test/000000057672.txt",
+      "box_count": 4,
+      "sha256": "7f497377f9ad39d7b90752d4faf5cd7605329652d511f5009430d39231512334"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000067213.jpg",
+      "label": "data/processed/vehicles/labels/test/000000067213.txt",
+      "box_count": 5,
+      "sha256": "7c456c6e20d11fa40248d67b7d816d0aaf8106b1635243bdd1ba044245f05f8e"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000067616.jpg",
+      "label": "data/processed/vehicles/labels/test/000000067616.txt",
+      "box_count": 4,
+      "sha256": "824b722f5251918066fa4e2689167145918aa77cb8094a9fb2f2d70fd85d1ca1"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000076416.jpg",
+      "label": "data/processed/vehicles/labels/test/000000076416.txt",
+      "box_count": 1,
+      "sha256": "f21eb87831efba38ef9ccea8a5699b222b614fddf716e1486653ce79ffaef463"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000081394.jpg",
+      "label": "data/processed/vehicles/labels/test/000000081394.txt",
+      "box_count": 5,
+      "sha256": "0ece3434b584ed5deb58f902633b449bd79bf464ce5fd9859d74dbe908e78325"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000082821.jpg",
+      "label": "data/processed/vehicles/labels/test/000000082821.txt",
+      "box_count": 5,
+      "sha256": "1b37954bebee5b6bf285d5bb47e47f7bf99fa7ef9e7c57d70638bc3332b9eb99"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000084492.jpg",
+      "label": "data/processed/vehicles/labels/test/000000084492.txt",
+      "box_count": 3,
+      "sha256": "42cb1fddaf42db3203c1cc1273278c62c273a4017e06fa4e7156400db7cca321"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000086483.jpg",
+      "label": "data/processed/vehicles/labels/test/000000086483.txt",
+      "box_count": 2,
+      "sha256": "ab17c10220fca3e893e48673b0eacaf9d206999ab17279560c982d16fb8798a9"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000087144.jpg",
+      "label": "data/processed/vehicles/labels/test/000000087144.txt",
+      "box_count": 2,
+      "sha256": "3d3d624580aa9ac8a5894d08379d203bc5476f688095f4d264672091e996f3c4"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000098392.jpg",
+      "label": "data/processed/vehicles/labels/test/000000098392.txt",
+      "box_count": 7,
+      "sha256": "c976adf7599725c1bab7fbae692611501e7a33fb5e182c3e301f985205340ecf"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000105923.jpg",
+      "label": "data/processed/vehicles/labels/test/000000105923.txt",
+      "box_count": 1,
+      "sha256": "d118f309dc5e3a8b2d5702b927fce9222d6edd86425730c818902e496bc8a80c"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000119911.jpg",
+      "label": "data/processed/vehicles/labels/test/000000119911.txt",
+      "box_count": 5,
+      "sha256": "1b5bac3644319f23c90ad7baaa952666c6a2625fe44ef4735548b4b44b017185"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000122606.jpg",
+      "label": "data/processed/vehicles/labels/test/000000122606.txt",
+      "box_count": 1,
+      "sha256": "0a52f0b754a2d186b8c4a46e7f1105ebe61f18f1494d500ee6f39c75f6ce7c3a"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000130699.jpg",
+      "label": "data/processed/vehicles/labels/test/000000130699.txt",
+      "box_count": 9,
+      "sha256": "d03e2319292a5fbaca1008059647103325ead81a3088dafabf4665cf9e79c48d"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000135410.jpg",
+      "label": "data/processed/vehicles/labels/test/000000135410.txt",
+      "box_count": 7,
+      "sha256": "603013773e6bca16d1e4af56e76b38b3f7510c62d41e6089072905419ef4373f"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000137727.jpg",
+      "label": "data/processed/vehicles/labels/test/000000137727.txt",
+      "box_count": 2,
+      "sha256": "791f023a721a8a8bee875d7a41366d0fe284498c9f7c84f673896b9dca8a90d7"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000138639.jpg",
+      "label": "data/processed/vehicles/labels/test/000000138639.txt",
+      "box_count": 2,
+      "sha256": "911f7d2dffde2ed3fbd5a81e94ff62ab027a967fff663fbdd97ed9abdfccb712"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000141597.jpg",
+      "label": "data/processed/vehicles/labels/test/000000141597.txt",
+      "box_count": 3,
+      "sha256": "25c14df824e33813379628baba9adad6a93ebc5003667a88ef3c113d74689c05"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000149406.jpg",
+      "label": "data/processed/vehicles/labels/test/000000149406.txt",
+      "box_count": 1,
+      "sha256": "bb5adc5c3916aec1e6024432e428c6f6b216ab97c02c58590bbf80a5f6fe24bb"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000155341.jpg",
+      "label": "data/processed/vehicles/labels/test/000000155341.txt",
+      "box_count": 3,
+      "sha256": "319c8d33adbc7718891fd134d321002121466e32ff4c877ef0014d2e1f1da026"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000162858.jpg",
+      "label": "data/processed/vehicles/labels/test/000000162858.txt",
+      "box_count": 13,
+      "sha256": "3850ddaa772d9b9532537097527759d3ce05c0583f05e5b77561f654f8631193"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000165039.jpg",
+      "label": "data/processed/vehicles/labels/test/000000165039.txt",
+      "box_count": 9,
+      "sha256": "e33ff0c52506ec5f5eea55ca9a3306f3bdc2ba6596ceedefcadf3b59541c1458"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000165518.jpg",
+      "label": "data/processed/vehicles/labels/test/000000165518.txt",
+      "box_count": 1,
+      "sha256": "733bdae7be5bccea44a0e4b6e6f079d9da9439f94d721db53694e3c01eb70f47"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000166664.jpg",
+      "label": "data/processed/vehicles/labels/test/000000166664.txt",
+      "box_count": 1,
+      "sha256": "36f607358c9e9dcd1a9c50a0cef18356d6b04d6d4924a22114b8ca1613219bdd"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000168330.jpg",
+      "label": "data/processed/vehicles/labels/test/000000168330.txt",
+      "box_count": 4,
+      "sha256": "704ded862e1cdf5132739e4564d433bf7cfd55a2c044fb9da2afcfec39aa64a8"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000169169.jpg",
+      "label": "data/processed/vehicles/labels/test/000000169169.txt",
+      "box_count": 1,
+      "sha256": "d267375dc1802876eeafb14a9da413bf1f2f9bd802a1645ebbf3c58a41520cf5"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000169996.jpg",
+      "label": "data/processed/vehicles/labels/test/000000169996.txt",
+      "box_count": 4,
+      "sha256": "611bac47a27ce814dffb589dd2ed663f447b22aed5365b95fce142dbc6ddcc08"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000171382.jpg",
+      "label": "data/processed/vehicles/labels/test/000000171382.txt",
+      "box_count": 6,
+      "sha256": "f96faf8870853b0f11e2746eb86cb0dbc7e34c1b4903e3d912aa857002ef9bf3"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000175438.jpg",
+      "label": "data/processed/vehicles/labels/test/000000175438.txt",
+      "box_count": 14,
+      "sha256": "caebcf4ace0859fe109f89e8d9ec8a474a48ef303a6d20325c562403a0b8a648"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000176037.jpg",
+      "label": "data/processed/vehicles/labels/test/000000176037.txt",
+      "box_count": 6,
+      "sha256": "64001499037f4314e4deb5cf0f85e9f0b06331370f1e8901bd1057b47c5ddf42"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000177934.jpg",
+      "label": "data/processed/vehicles/labels/test/000000177934.txt",
+      "box_count": 11,
+      "sha256": "81c836a2c877b44c79b0dbab615b3d07f6c7b2a98455e78554d57a6c9ed7e6ff"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000187144.jpg",
+      "label": "data/processed/vehicles/labels/test/000000187144.txt",
+      "box_count": 3,
+      "sha256": "ecda88adbae1ca905ecf37007ef2ce11013109523964dca9bf1ed856f26cbcfb"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000198928.jpg",
+      "label": "data/processed/vehicles/labels/test/000000198928.txt",
+      "box_count": 3,
+      "sha256": "9c981890805bdd497f2524632dc68158080a0d3b2da3c134cff7f2b2c7d87217"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000200839.jpg",
+      "label": "data/processed/vehicles/labels/test/000000200839.txt",
+      "box_count": 1,
+      "sha256": "154ccc80280800738f0c67dd2c1aeb1622079408d311327d18314b96cbadd67c"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000201934.jpg",
+      "label": "data/processed/vehicles/labels/test/000000201934.txt",
+      "box_count": 6,
+      "sha256": "a5702ac025e235ee3de6205238323c50ef6792142b53e8b379a41e57f037a2cf"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000202339.jpg",
+      "label": "data/processed/vehicles/labels/test/000000202339.txt",
+      "box_count": 2,
+      "sha256": "9b1d63dff953ffb99953a9c7073ba01772810928f3b22a205b267f9ae0fa7ed5"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000203389.jpg",
+      "label": "data/processed/vehicles/labels/test/000000203389.txt",
+      "box_count": 2,
+      "sha256": "eb7fba75eaa1e49014f1fe81dfef9561478502347d8fc60c90a131d0cb8815bc"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000206487.jpg",
+      "label": "data/processed/vehicles/labels/test/000000206487.txt",
+      "box_count": 6,
+      "sha256": "3df6eaf2b80be894a9909549b5177958ab932776d4e8a5843c51464710284b5f"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000210273.jpg",
+      "label": "data/processed/vehicles/labels/test/000000210273.txt",
+      "box_count": 28,
+      "sha256": "3ec23de63592c1eef86740fd46fed2cb66170fca02b695d37e6ae379dcee4355"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000215723.jpg",
+      "label": "data/processed/vehicles/labels/test/000000215723.txt",
+      "box_count": 2,
+      "sha256": "20e15853e22f5d69312b821e846671af204a12dc24631bc46f4ef8e72da19be7"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000222094.jpg",
+      "label": "data/processed/vehicles/labels/test/000000222094.txt",
+      "box_count": 10,
+      "sha256": "1d9bcba769c81d9703d4d5cf3502e8997916347c91648104f888866634b2de8b"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000236845.jpg",
+      "label": "data/processed/vehicles/labels/test/000000236845.txt",
+      "box_count": 1,
+      "sha256": "fac9633f1a2667d635c668fe7481db95032a4838df255844cfec143c11ddb3a8"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000240940.jpg",
+      "label": "data/processed/vehicles/labels/test/000000240940.txt",
+      "box_count": 1,
+      "sha256": "6e339df9c9ee33f5cb0217348ff1421b253caf8b32fc2d27cf758f31a06a8e7c"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000253002.jpg",
+      "label": "data/processed/vehicles/labels/test/000000253002.txt",
+      "box_count": 1,
+      "sha256": "a8fa4e0fa0d88819f851e0f4252248312cc932b93bf7124ef213a661ea5355b0"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000260266.jpg",
+      "label": "data/processed/vehicles/labels/test/000000260266.txt",
+      "box_count": 4,
+      "sha256": "a5193e5cc5a14ee137092638d926fe3de0132243aede2e40d54aaa2a7d3d344b"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000263463.jpg",
+      "label": "data/processed/vehicles/labels/test/000000263463.txt",
+      "box_count": 2,
+      "sha256": "0f712edce4e14d4b04548a148a36cbb69954c7c001da7406b704d299c91e6eaa"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000269632.jpg",
+      "label": "data/processed/vehicles/labels/test/000000269632.txt",
+      "box_count": 4,
+      "sha256": "eacd77dd985fd0c0ea4a761c6087956a885394240033649296cb015e4469485e"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000276720.jpg",
+      "label": "data/processed/vehicles/labels/test/000000276720.txt",
+      "box_count": 5,
+      "sha256": "9dcd1f0112ea7eb4d389150b940d0d4c0c9738703ad9af443b267f05228b87b5"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000278848.jpg",
+      "label": "data/processed/vehicles/labels/test/000000278848.txt",
+      "box_count": 3,
+      "sha256": "a306321447aa9c6ade4dc28a173f2cba38e1decee4941c89f0749b17fe24fed0"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000280710.jpg",
+      "label": "data/processed/vehicles/labels/test/000000280710.txt",
+      "box_count": 4,
+      "sha256": "1a76947fe2c8d39ae21d346118c413bfe06817dda5424e3451ef870db487fe49"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000281759.jpg",
+      "label": "data/processed/vehicles/labels/test/000000281759.txt",
+      "box_count": 1,
+      "sha256": "5b5861ca8955f8ff906abe78f2b32bc49deee2832f4518ffe4bb584653f3c9e9"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000284725.jpg",
+      "label": "data/processed/vehicles/labels/test/000000284725.txt",
+      "box_count": 7,
+      "sha256": "10ab8075df3cd9e3344d12fbb764a3c977e809bd06726649b686dd68abcbdf07"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000291634.jpg",
+      "label": "data/processed/vehicles/labels/test/000000291634.txt",
+      "box_count": 6,
+      "sha256": "6ae78cd80b51f27f47479e0fb46603270c6fa874ce71bf0bac79ba00c377804f"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000291791.jpg",
+      "label": "data/processed/vehicles/labels/test/000000291791.txt",
+      "box_count": 1,
+      "sha256": "b6d82fb6e1594d9c22bb2c045e2ea3611158cdaf11a3ab41ec8874198c206f8e"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000292456.jpg",
+      "label": "data/processed/vehicles/labels/test/000000292456.txt",
+      "box_count": 1,
+      "sha256": "6c8207a06044306b0d271488a22e1a174af5a22e951a710e25a556cf5d212d5c"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000301061.jpg",
+      "label": "data/processed/vehicles/labels/test/000000301061.txt",
+      "box_count": 1,
+      "sha256": "18a31a6894a29b529e50b472d359bb59417767b43b138d12a01454ebda3f1eb5"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000303566.jpg",
+      "label": "data/processed/vehicles/labels/test/000000303566.txt",
+      "box_count": 8,
+      "sha256": "ca7de33d4784740725c0c5831d1ebe5d602d49442f8a0eb38c83d76360c34172"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000315187.jpg",
+      "label": "data/processed/vehicles/labels/test/000000315187.txt",
+      "box_count": 3,
+      "sha256": "29fcdb959434fddb1f1d11716cf3fd57d3d73310567b9be43046533a00fbd235"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000319534.jpg",
+      "label": "data/processed/vehicles/labels/test/000000319534.txt",
+      "box_count": 1,
+      "sha256": "cb018144e2a6a2b66f620f12df0e2ac05f5e2daea8923aeb0000e94a55a3ea58"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000338624.jpg",
+      "label": "data/processed/vehicles/labels/test/000000338624.txt",
+      "box_count": 3,
+      "sha256": "4c5c6043189c6a5d4c880a0a311b874873edcdb404054cc21f499280e38638ba"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000339870.jpg",
+      "label": "data/processed/vehicles/labels/test/000000339870.txt",
+      "box_count": 1,
+      "sha256": "78b0b34c63d00024b8d7d56e672ed7484dd2ad38dcfccf33e1bdbc14630bf409"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000343934.jpg",
+      "label": "data/processed/vehicles/labels/test/000000343934.txt",
+      "box_count": 1,
+      "sha256": "98a658b99162f68d6c427253b4564914dc1e62e458ff4dae03cd7d29d1e9d245"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000343976.jpg",
+      "label": "data/processed/vehicles/labels/test/000000343976.txt",
+      "box_count": 6,
+      "sha256": "3485f9355b88cddf7a0a0f8a3aa1ea6301cd613a80731323c3cb83253459bdea"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000344909.jpg",
+      "label": "data/processed/vehicles/labels/test/000000344909.txt",
+      "box_count": 3,
+      "sha256": "963758fe1359544f537414afa68230ac2a6043ceb37347f157d95416beef18d4"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000369812.jpg",
+      "label": "data/processed/vehicles/labels/test/000000369812.txt",
+      "box_count": 9,
+      "sha256": "36900b1e1c06b097382afab38134ff4d655634f23287c47d7b6aaaee016cca4e"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000377723.jpg",
+      "label": "data/processed/vehicles/labels/test/000000377723.txt",
+      "box_count": 1,
+      "sha256": "47a58184ee83f6c0c483a2ca1f2ce4550b08170a9576c8e78bda16693a591786"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000400367.jpg",
+      "label": "data/processed/vehicles/labels/test/000000400367.txt",
+      "box_count": 14,
+      "sha256": "07cc425f17ed9a547c70c2140458d6eb5f11827f3620c0b3c61724f043148311"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000402433.jpg",
+      "label": "data/processed/vehicles/labels/test/000000402433.txt",
+      "box_count": 1,
+      "sha256": "c15957d6f41d5a02ecf30c6aa10c146ce6982abf540ef8493523336f0f26b659"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000410880.jpg",
+      "label": "data/processed/vehicles/labels/test/000000410880.txt",
+      "box_count": 3,
+      "sha256": "c3f1e039b14bec40394cec0cdcaf31f06c71cbe2723276731b209a16d0d39f11"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000415536.jpg",
+      "label": "data/processed/vehicles/labels/test/000000415536.txt",
+      "box_count": 1,
+      "sha256": "a02be69d9dbaf2ebb1e21950d1a0c54238ea6b479b8200c46fd3330de5863236"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000421455.jpg",
+      "label": "data/processed/vehicles/labels/test/000000421455.txt",
+      "box_count": 2,
+      "sha256": "c9262daf96f9a989413d418a565e62acf670f51ac5984c69159451b067ba5c50"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000424975.jpg",
+      "label": "data/processed/vehicles/labels/test/000000424975.txt",
+      "box_count": 1,
+      "sha256": "c7e309a8b5fa02515556afacf38c9080013a0aed5370acfa1fcd239357bd0965"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000427338.jpg",
+      "label": "data/processed/vehicles/labels/test/000000427338.txt",
+      "box_count": 2,
+      "sha256": "0baa268f0cb8f0a68b88889a1f687f6f8c95e0540e3b1196cd3f25f02a707d24"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000433774.jpg",
+      "label": "data/processed/vehicles/labels/test/000000433774.txt",
+      "box_count": 2,
+      "sha256": "7b22757133efa13a919d8e212ce57526a84748addfec32714b8ad06e4c97a463"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000443498.jpg",
+      "label": "data/processed/vehicles/labels/test/000000443498.txt",
+      "box_count": 1,
+      "sha256": "11b784ab178c8d7daa33e74c9713f1c7fc9ce8896ae9e224ee8716bb2063e47a"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000445834.jpg",
+      "label": "data/processed/vehicles/labels/test/000000445834.txt",
+      "box_count": 1,
+      "sha256": "b054ec7280c2da3a51643e2aceb32fe81cb9d78535ad5d8e01b0caa8a3110007"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000454978.jpg",
+      "label": "data/processed/vehicles/labels/test/000000454978.txt",
+      "box_count": 1,
+      "sha256": "6b2614bab34a31ada0b112c2ed29af589929aa7cf02978ad1ab41c9b1b6c512b"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000455624.jpg",
+      "label": "data/processed/vehicles/labels/test/000000455624.txt",
+      "box_count": 1,
+      "sha256": "b896f9d8d31a98765a0e15dfec38f7f036ba71b2af8330b4f7a600fb5294aa98"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000458325.jpg",
+      "label": "data/processed/vehicles/labels/test/000000458325.txt",
+      "box_count": 14,
+      "sha256": "cc9d8a2d6fdd06220bb2e63d0e41b13cddd7a83758c74b2aa0161e56c8aa18a9"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000463037.jpg",
+      "label": "data/processed/vehicles/labels/test/000000463037.txt",
+      "box_count": 1,
+      "sha256": "7223596aa1f6d0e1cf2c2634a23671809975105dd03e59390474946b4f1eb914"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000467848.jpg",
+      "label": "data/processed/vehicles/labels/test/000000467848.txt",
+      "box_count": 2,
+      "sha256": "8043630d9033bd8c58b57cf4faad1b2459c5341bfa487112479128f3ac80e4cd"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000474452.jpg",
+      "label": "data/processed/vehicles/labels/test/000000474452.txt",
+      "box_count": 15,
+      "sha256": "eda162d06297bcc467a8da4cc0d3d52cb3f2e1896073ddad72f57f89e6b156cb"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000477227.jpg",
+      "label": "data/processed/vehicles/labels/test/000000477227.txt",
+      "box_count": 5,
+      "sha256": "98c0f1246858b67ac269275596311bd8b04007606fa759530af7d20bfd59ecf6"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000478474.jpg",
+      "label": "data/processed/vehicles/labels/test/000000478474.txt",
+      "box_count": 8,
+      "sha256": "c42290624ebf62118f2ca3ccee1ccaf905c3ba2468db26961f23b9a370d9f552"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000479912.jpg",
+      "label": "data/processed/vehicles/labels/test/000000479912.txt",
+      "box_count": 2,
+      "sha256": "8a7876a0b0369040842be51c1fcab027deaeec0183add371d752760232cd2300"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000484029.jpg",
+      "label": "data/processed/vehicles/labels/test/000000484029.txt",
+      "box_count": 6,
+      "sha256": "dd975fde5daf4fbe027ff31bac7a0c9d05c37f655bd8e9eb0baca0a74aa2885e"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000485237.jpg",
+      "label": "data/processed/vehicles/labels/test/000000485237.txt",
+      "box_count": 6,
+      "sha256": "981ddf60fe010dd308d1f813febf81cca921b38fc0c7eb0b568e0b30b15406cb"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000491090.jpg",
+      "label": "data/processed/vehicles/labels/test/000000491090.txt",
+      "box_count": 5,
+      "sha256": "4ba267554825ed78b348a4e6fefaa11e6142c41d09695be553fe4083fa9a9eee"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000495146.jpg",
+      "label": "data/processed/vehicles/labels/test/000000495146.txt",
+      "box_count": 2,
+      "sha256": "cc4814681163a70e29c6aa2bb463b4d6a3c52a3c23f77b38357498c5ffee2d38"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000499775.jpg",
+      "label": "data/processed/vehicles/labels/test/000000499775.txt",
+      "box_count": 2,
+      "sha256": "b6632812f7b534dc1b61cf0ab8a248fb6fd805371acf1a3ddb61e342652c7aa1"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000507667.jpg",
+      "label": "data/processed/vehicles/labels/test/000000507667.txt",
+      "box_count": 2,
+      "sha256": "9ed5fcf0028572ff5fbbc8fe4bcb46e1c2b5b951520d5fd44d8e12de2f7dc0ca"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000511760.jpg",
+      "label": "data/processed/vehicles/labels/test/000000511760.txt",
+      "box_count": 3,
+      "sha256": "adf1871fd76b45ee79813e3cac2689e64969b93c1567f9618389b46a2eebb4ad"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000521052.jpg",
+      "label": "data/processed/vehicles/labels/test/000000521052.txt",
+      "box_count": 2,
+      "sha256": "3aa389e1258ce12da6b3aab20489a1c2fd6e9da8495badaaef394a09730691cb"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000523241.jpg",
+      "label": "data/processed/vehicles/labels/test/000000523241.txt",
+      "box_count": 7,
+      "sha256": "f0056cc384a0a2bb0a44c8d7cacb989917ea1397de562b970b6fb60159cb36ea"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000524850.jpg",
+      "label": "data/processed/vehicles/labels/test/000000524850.txt",
+      "box_count": 4,
+      "sha256": "046a91829775a23d9b7429918615fb1879ebc9000335dd321f174aa67057bda0"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000534673.jpg",
+      "label": "data/processed/vehicles/labels/test/000000534673.txt",
+      "box_count": 1,
+      "sha256": "e3596c112886930b23b8e698ad5f637a1fe7522f45acc7f7a927b4a7e294757a"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000549738.jpg",
+      "label": "data/processed/vehicles/labels/test/000000549738.txt",
+      "box_count": 9,
+      "sha256": "85083d6ecfa1a80e5cde5c0eae4a7efe7c319fc112f0dda986cc9e20a04e6262"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000553339.jpg",
+      "label": "data/processed/vehicles/labels/test/000000553339.txt",
+      "box_count": 1,
+      "sha256": "d0d0281cbc1de4973486173f0c36fdbed7cde3e43d5c9b7728101922ecaa7848"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000553511.jpg",
+      "label": "data/processed/vehicles/labels/test/000000553511.txt",
+      "box_count": 5,
+      "sha256": "0f71120e00e049ac2e39e5dd3b6f27bf695e9a62309baad12b90b27b964c00c2"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000555050.jpg",
+      "label": "data/processed/vehicles/labels/test/000000555050.txt",
+      "box_count": 2,
+      "sha256": "ed39786969f33646d5cafcca041df8c684dbdc17359fc7244a833d8738baa8f8"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000555597.jpg",
+      "label": "data/processed/vehicles/labels/test/000000555597.txt",
+      "box_count": 13,
+      "sha256": "6965bf5b54dbee29ac11ac1b7ea7c2741514ea7e0bc9ad118c32b6a533f94c3e"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000560474.jpg",
+      "label": "data/processed/vehicles/labels/test/000000560474.txt",
+      "box_count": 1,
+      "sha256": "6c04067b47b2bb2cd73f043f845d08d923e42ad8c08c6917ed5602f880b6d1d2"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000564336.jpg",
+      "label": "data/processed/vehicles/labels/test/000000564336.txt",
+      "box_count": 4,
+      "sha256": "259fb73d152522fb39114a5f861e97a8bebae0c0c4811f37efa233dd276b4d4f"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000568147.jpg",
+      "label": "data/processed/vehicles/labels/test/000000568147.txt",
+      "box_count": 2,
+      "sha256": "a43a30c8c1fa592eb76b7205a2764642240f2b29c76d06543a9197bdc8b95a8a"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000569565.jpg",
+      "label": "data/processed/vehicles/labels/test/000000569565.txt",
+      "box_count": 2,
+      "sha256": "4a41348021140c4a9d58ce601e3c4f8ae1116c71aac77531c336e6d2d549de48"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000570539.jpg",
+      "label": "data/processed/vehicles/labels/test/000000570539.txt",
+      "box_count": 1,
+      "sha256": "adebfe6c709de875533fe7e9c8b94eb0b71b62f7cc2216e1aef5d21287dcab6f"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000572303.jpg",
+      "label": "data/processed/vehicles/labels/test/000000572303.txt",
+      "box_count": 1,
+      "sha256": "60ccbfe5af2b8b57a27a62a43d2c61da89f4935b449ffa322ff060fbf7891971"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000574425.jpg",
+      "label": "data/processed/vehicles/labels/test/000000574425.txt",
+      "box_count": 2,
+      "sha256": "136a4dfe1cd5e9e897bd82f9a82568312a75b21affbb7edc98a90a467876b5a1"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000575243.jpg",
+      "label": "data/processed/vehicles/labels/test/000000575243.txt",
+      "box_count": 3,
+      "sha256": "b2130d3995cec29cba8e38bc79c6a835406aa4906758ee90059e615f00079367"
+    },
+    {
+      "image": "data/processed/vehicles/images/test/000000577976.jpg",
+      "label": "data/processed/vehicles/labels/test/000000577976.txt",
+      "box_count": 4,
+      "sha256": "f4a69620b9c578112bdac7b7007aaa75d79e4b77e6b96318aa8b1a7defb3d4e5"
+    }
+  ]
+}
