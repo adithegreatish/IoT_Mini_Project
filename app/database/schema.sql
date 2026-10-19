@@ -86,6 +86,9 @@ CREATE TABLE IF NOT EXISTS slot_reservations (
 
 CREATE INDEX IF NOT EXISTS idx_reservations_slot ON slot_reservations(slot_id, status);
 CREATE INDEX IF NOT EXISTS idx_reservations_code ON slot_reservations(reservation_code);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_active_slot_reservation ON slot_reservations(slot_id) WHERE status = 'ACTIVE';
+CREATE UNIQUE INDEX IF NOT EXISTS uq_active_plate_reservation ON slot_reservations(vehicle_plate) WHERE status = 'ACTIVE' AND vehicle_plate IS NOT NULL AND vehicle_plate != '';
+
 
 CREATE TABLE IF NOT EXISTS allocation_audit_log (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -27,6 +27,7 @@ from app.parking.allocation_service import (
     AllocationService,
     SlotUnavailableError,
     ConcurrencyConflictError,
+    DuplicateAllocationError,
 )
 
 router = APIRouter()
@@ -217,9 +218,22 @@ def get_parking_slots():
     version = calib.get("version", 1)
 
     snap = occupancy_service.get_latest_snapshot() if occupancy_service else None
-    summary = snap.get("summary", {}) if snap else {}
     snap_slots = snap.get("slots", []) if snap else []
-    snap_map = {s["slot_id"]: s for s in snap_slots if "slot_id" in s}
+    snap_map = {(s.get("id") or s.get("slot_id")): s for s in snap_slots if (s.get("id") or s.get("slot_id"))}
+
+    # Fetch active reservations to enforce authoritative operational status
+    active_res_by_slot = {}
+    if allocation_service:
+        try:
+            with allocation_service.db.get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(
+                    "SELECT slot_id, reservation_code, vehicle_plate, status FROM slot_reservations WHERE status = 'ACTIVE';"
+                )
+                for r in cursor.fetchall():
+                    active_res_by_slot[r["slot_id"]] = dict(r)
+        except Exception:
+            pass
 
     merged_slots = []
     for s in calib_slots:
@@ -227,27 +241,49 @@ def get_parking_slots():
         sid = s.get("id")
         live_info = snap_map.get(sid)
         is_enabled = s.get("enabled", True)
+        res_info = active_res_by_slot.get(sid)
 
         if not is_enabled:
             slot_data["state"] = "DISABLED"
+            slot_data["physical_state"] = "DISABLED"
             slot_data["confidence"] = 1.0
             slot_data["occupied"] = False
+            slot_data["reservation_status"] = "OUT_OF_SERVICE"
         elif live_info:
-            slot_data["state"] = live_info.get("state", "FREE")
-            slot_data["confidence"] = live_info.get("confidence", 1.0)
-            slot_data["occupied"] = live_info.get("occupied", False)
+            phys_state = live_info.get("state", "UNKNOWN")
+            slot_data["physical_state"] = phys_state
+            slot_data["confidence"] = live_info.get("confidence", 0.0)
+            slot_data["occupied"] = (phys_state == "OCCUPIED")
+            slot_data["active_reservation"] = res_info.get("reservation_code") if res_info else None
+            if res_info:
+                slot_data["reservation_status"] = "OCCUPIED_AUTHORIZED" if phys_state == "OCCUPIED" else "RESERVED"
+                slot_data["state"] = "OCCUPIED" if phys_state == "OCCUPIED" else "RESERVED"
+            else:
+                slot_data["reservation_status"] = "OCCUPIED_UNAUTHORIZED" if phys_state == "OCCUPIED" else ("AVAILABLE" if phys_state == "FREE" else "UNKNOWN")
+                slot_data["state"] = phys_state
         else:
-            slot_data["state"] = "FREE"
-            slot_data["confidence"] = 1.0
+            # Safe fail-closed: missing live observations MUST be marked UNKNOWN, never assumed FREE
+            slot_data["state"] = "UNKNOWN"
+            slot_data["physical_state"] = "UNKNOWN"
+            slot_data["confidence"] = 0.0
             slot_data["occupied"] = False
+            slot_data["reservation_status"] = "UNKNOWN"
 
         merged_slots.append(slot_data)
+
+    merged_summary = {
+        "total": len(merged_slots),
+        "free": len([s for s in merged_slots if s["state"] == "FREE"]),
+        "occupied": len([s for s in merged_slots if s["state"] == "OCCUPIED"]),
+        "reserved": len([s for s in merged_slots if s["state"] == "RESERVED"]),
+        "unknown": len([s for s in merged_slots if s["state"] in ("UNKNOWN", "DISABLED")]),
+    }
 
     return {
         "version": version,
         "reference_width": ref_w,
         "reference_height": ref_h,
-        "summary": summary,
+        "summary": merged_summary,
         "slots": merged_slots,
     }
 
@@ -408,7 +444,7 @@ def allocate_parking_slot(req: AllocateSlotRequest):
         return receipt
     except SlotUnavailableError as sue:
         raise HTTPException(status_code=404, detail=str(sue))
-    except ConcurrencyConflictError as cce:
+    except (ConcurrencyConflictError, DuplicateAllocationError) as cce:
         raise HTTPException(status_code=409, detail=str(cce))
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Allocation error: {str(e)}")
@@ -574,8 +610,12 @@ def get_gallery_image(category: str, filename: str):
     """Serves error gallery visual crops securely."""
     if category not in ["false_positives", "false_negatives"]:
         raise HTTPException(status_code=400, detail="Invalid gallery category.")
-    img_p = paths.data_dir / "test_reports" / "error_gallery" / category / filename
-    if not img_p.exists():
+    safe_name = Path(filename).name
+    if not safe_name or safe_name != filename or not (safe_name.lower().endswith((".jpg", ".jpeg", ".png"))):
+        raise HTTPException(status_code=400, detail="Invalid filename format.")
+    base_dir = (paths.data_dir / "test_reports" / "error_gallery" / category).resolve()
+    img_p = (base_dir / safe_name).resolve()
+    if not img_p.is_relative_to(base_dir) or not img_p.exists():
         raise HTTPException(status_code=404, detail="Gallery crop not found.")
     return FileResponse(str(img_p), media_type="image/jpeg")
 
@@ -583,8 +623,12 @@ def get_gallery_image(category: str, filename: str):
 @router.get("/lab/candidate_image/{filename}")
 def get_candidate_image(filename: str):
     """Serves mined candidate image securely."""
-    img_p = paths.data_dir / "active_learning" / "candidates" / "images" / filename
-    if not img_p.exists():
+    safe_name = Path(filename).name
+    if not safe_name or safe_name != filename or not (safe_name.lower().endswith((".jpg", ".jpeg", ".png"))):
+        raise HTTPException(status_code=400, detail="Invalid filename format.")
+    base_dir = (paths.data_dir / "active_learning" / "candidates" / "images").resolve()
+    img_p = (base_dir / safe_name).resolve()
+    if not img_p.is_relative_to(base_dir) or not img_p.exists():
         raise HTTPException(status_code=404, detail="Candidate image not found.")
     return FileResponse(str(img_p), media_type="image/jpeg")
 

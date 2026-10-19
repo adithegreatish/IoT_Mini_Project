@@ -3,6 +3,7 @@
 import logging
 from pathlib import Path
 import sqlite3
+import os
 from typing import Optional
 from app.infrastructure.paths import paths
 
@@ -26,24 +27,46 @@ class DatabaseManager:
         self.mmap_size_mb = max(0, mmap_size_mb)
 
     def get_connection(self) -> sqlite3.Connection:
-        """Creates and configures a new SQLite connection with WAL journal mode and bounded memory."""
+        """Creates and configures a new SQLite connection.
+        Returns a wrapper that behaves like a Connection and also closes automatically
+        when used as a context manager (e.g., ``with self.get_connection() as conn:``).
+        """
         conn = sqlite3.connect(
             str(self.db_path),
             timeout=10.0,
             check_same_thread=False,
         )
         conn.row_factory = sqlite3.Row
-        # WAL mode provides concurrent read performance and crash resilience
-        conn.execute("PRAGMA journal_mode = WAL;")
+        # Set journal mode; default to WAL, allow override via env var for testing.
+        if os.getenv("SMART_PARKING_DB_JOURNAL_MODE") == "DELETE":
+            conn.execute("PRAGMA journal_mode = DELETE;")
+        else:
+            conn.execute("PRAGMA journal_mode = WAL;")
         conn.execute("PRAGMA synchronous = NORMAL;")
         conn.execute("PRAGMA busy_timeout = 5000;")
-        # Negative cache_size in SQLite requests approximate cache in KiB (-8192 = 8 MiB)
         cache_kib = self.cache_size_mb * 1024
         conn.execute(f"PRAGMA cache_size = -{cache_kib};")
         mmap_bytes = self.mmap_size_mb * 1024 * 1024
         conn.execute(f"PRAGMA mmap_size = {mmap_bytes};")
         conn.execute("PRAGMA temp_store = MEMORY;")
-        return conn
+
+        class _ConnWrapper:
+            def __init__(self, inner: sqlite3.Connection):
+                self._inner = inner
+
+            def __enter__(self):
+                return self._inner
+
+            def __exit__(self, exc_type, exc, tb):
+                try:
+                    self._inner.close()
+                finally:
+                    self._inner = None
+
+            def __getattr__(self, name):
+                return getattr(self._inner, name)
+
+        return _ConnWrapper(conn)
 
     def initialize_schema(self) -> None:
         """Applies schema migrations if not already up to date."""

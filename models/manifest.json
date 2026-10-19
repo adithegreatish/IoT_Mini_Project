@@ -66,7 +66,7 @@
         }
       },
       "limitations": "Accuracy degrades in heavy rain, extreme glare, and severe lens distortion at boundary parking bays.",
-      "updated_at": "2026-10-14T14:12:30.864941"
+      "updated_at": "2026-10-19T10:41:07.421024"
     },
     {
       "model_id": "plate-detector-tiny",

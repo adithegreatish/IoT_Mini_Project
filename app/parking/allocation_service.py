@@ -38,6 +38,12 @@ class ConcurrencyConflictError(SlotAllocationError):
     pass
 
 
+class DuplicateAllocationError(SlotAllocationError):
+    """Raised when an active reservation already exists for the vehicle or slot."""
+    pass
+
+
+
 @dataclass
 class SlotUnifiedState:
     slot_id: str
@@ -163,11 +169,35 @@ class AllocationService:
         # Default physical state lookup
         phys_map = current_physical_states or {}
 
+        # Normalize plate identifier (strip spaces, hyphens, and uppercase)
+        clean_plate = (
+            vehicle_plate.strip().upper().replace(" ", "").replace("-", "")
+            if vehicle_plate and vehicle_plate.strip()
+            else None
+        )
+
         conn = self.db.get_connection()
         try:
             # SQLite BEGIN IMMEDIATE acquires a reserved lock immediately, blocking other writes
             conn.execute("BEGIN IMMEDIATE;")
             cursor = conn.cursor()
+
+            # Pre-check: Enforce invariant that a vehicle cannot hold multiple active allocations
+            if clean_plate:
+                cursor.execute(
+                    """
+                    SELECT reservation_code, slot_id FROM slot_reservations 
+                    WHERE status = 'ACTIVE' 
+                      AND REPLACE(REPLACE(UPPER(vehicle_plate), ' ', ''), '-', '') = ?;
+                    """,
+                    (clean_plate,),
+                )
+                existing_res = cursor.fetchone()
+                if existing_res:
+                    conn.rollback()
+                    raise DuplicateAllocationError(
+                        f"Vehicle '{clean_plate}' already holds active reservation ({existing_res['reservation_code']}) in bay '{existing_res['slot_id']}'."
+                    )
 
             # 1. Query candidate slots
             query = """
@@ -231,7 +261,7 @@ class AllocationService:
                 )
                 VALUES (?, ?, ?, ?, ?, 'ACTIVE', ?, ?);
                 """,
-                (res_code, target_sid, user_id, vehicle_plate, vehicle_type, now.isoformat(), expires_at),
+                (res_code, target_sid, user_id, clean_plate, vehicle_type, now.isoformat(), expires_at),
             )
 
             # 4. Record audit log
@@ -263,6 +293,12 @@ class AllocationService:
             if "locked" in str(e).lower() or "busy" in str(e).lower():
                 raise ConcurrencyConflictError("Database locked by concurrent allocation request. Please retry.") from e
             raise
+        except sqlite3.IntegrityError as ie:
+            conn.rollback()
+            msg = str(ie).lower()
+            if "plate" in msg or "uq_active_plate" in msg:
+                raise DuplicateAllocationError("Active reservation already exists for this vehicle plate.") from ie
+            raise ConcurrencyConflictError(f"Concurrent allocation conflict: {ie}") from ie
         except Exception:
             conn.rollback()
             raise

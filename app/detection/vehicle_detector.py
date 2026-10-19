@@ -40,11 +40,25 @@ class VehicleDetector:
         self._session = None
         self._is_simulated = False
         self._model_status = "INITIALIZING"
+        self._last_error: Optional[str] = None
         self._init_session()
 
     @property
     def status(self) -> str:
         return self._model_status
+
+    @property
+    def is_healthy(self) -> bool:
+        """Returns True if the detector is operational and ready to process real or simulated frames."""
+        if not self.enabled:
+            return False
+        if self._is_simulated:
+            return True
+        return self._session is not None and self._model_status == "READY"
+
+    @property
+    def last_error(self) -> Optional[str]:
+        return self._last_error
 
     @property
     def is_simulated(self) -> bool:
@@ -106,12 +120,19 @@ class VehicleDetector:
         h, w = frame.shape[:2]
 
         if self._session is not None and not self._is_simulated:
-            return self._run_onnx_inference(frame, w, h)
+            try:
+                return self._run_onnx_inference(frame, w, h)
+            except Exception as e:
+                self._model_status = f"INFERENCE_ERROR: {e}"
+                self._last_error = str(e)
+                logger.error(f"Inference exception encountered in VehicleDetector: {e}", exc_info=True)
+                raise RuntimeError(f"ONNX inference failure: {e}") from e
         elif self._is_simulated:
             return self._run_heuristic_mock_detection(frame, w, h)
         else:
             logger.debug(f"Vehicle detector unavailable (status: {self._model_status}). Returning empty detections.")
             return []
+
 
     def _run_onnx_inference(self, frame: np.ndarray, w: int, h: int) -> List[DetectionResult]:
         """Runs genuine ONNX model inference with OpenCV Non-Maximum Suppression (NMS) and telemetry."""

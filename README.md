@@ -1,88 +1,75 @@
-# Smart Parking Management & Indian HSRP-Style Registration-Plate Recognition
+# Smart Parking Management & Indian HSRP-Style Recognition System
 
-A modular, robust, edge-friendly computer vision prototype designed for **Windows 10/11 development** and target deployment on a **Raspberry Pi 5 (8 GB RAM)** with a standard **Zebronics USB webcam** and HDMI local display.
-
----
-
-## Key Features
-
-1. **High-Reliability Occupancy Detection:** Real-time state machine classifying parking bays into `FREE`, `OCCUPIED`, or `UNKNOWN`. Plate detection and OCR are supplementary capabilities and **never** a single point of failure for occupancy.
-2. **Interactive Web-Based Calibration:** Visual GUI to capture camera reference frames, draw, edit, move, validate, and persist polygon parking slots with coordinate normalization across arbitrary camera resolutions.
-3. **Optional Plate Detection & HSRP-Style Cue Analysis:** Detects license plate crops, checks image quality, and inspects visible cues (blue IND strip, aspect ratio, fonts) providing cautious classifications (`HSRP_STYLE_CONSISTENT`, `NON_HSRP_OR_UNCERTAIN`, `INSUFFICIENT_IMAGE_QUALITY`).
-4. **Offline & Self-Contained:** Built with zero runtime cloud or CDN dependencies; bundled frontend assets, local SQLite persistence with audit logging, and full offline testing modes.
-5. **Multi-Level Automated Diagnostics:** Includes startup health checks, in-app one-click self-tests with automated JSON/Markdown reports, and a comprehensive pytest suite with synthetic camera mocks.
-6. **Cross-Platform Parity:** Clean separation of concerns with an ONNX-runtime backend optimized for both x86_64 Windows and ARM64 Raspberry Pi 5.
+**Release Status:** **FINAL RELEASE — READY FOR DEMONSTRATION (College Submission Freeze)**  
+**Target Environments:** Windows 10/11 (Development & Evaluation) and Raspberry Pi 4 / Debian Linux (Edge Deployment)  
+**Primary Detector:** Frozen Production ONNX YOLOv8-Nano Baseline (`models/vehicle_detector.onnx`, SHA-256: `8ea5414f0cf2bc4f81861fc19db26ece955cadc736dec8fa56ebe01a049244bc`)  
+**Automated Verification:** 114 Passed / 0 Failed (100% Pass Rate)
 
 ---
 
-## Quick Start (Windows Development)
+## Authoritative Documentation & Release Deliverables
 
-### 1. Prerequisites & Environment Setup
+- [Final Release & Verification Audit Report](docs/FINAL_RELEASE_REPORT.md) — Comprehensive release verdict, bug catalog, and model provenance.
+- [Production Deployment & Operation Guide](docs/DEPLOYMENT_GUIDE.md) — Step-by-step setup, startup, shutdown, backup, and live demonstration script.
+- [Security Audit & Vulnerability Mitigation](docs/SECURITY_AUDIT.md) — Access control, CORS, HTTP security headers, and path traversal defenses.
+- [Acceptance Test Matrix & Execution Results](docs/ACCEPTANCE_TEST_RESULTS.md) — Full test run results across all 114 test cases.
+- [Known Limitations & Operational Boundaries](docs/KNOWN_LIMITATIONS.md) — Transparent disclosure of AI, optical, and hardware boundaries.
+
+---
+
+## Core System Architecture
+
+1. **Fail-Closed Occupancy Engine:** Spatial polygon IoU + hybrid ground-contact containment with 3-frame temporal hysteresis. Stale camera signals or inference exceptions automatically transition bays to `UNKNOWN`, **never falsely to `FREE`**.
+2. **ACID Virtual Parking Allocation:** Transactional SQLite `BEGIN IMMEDIATE` locks preventing double-allocation and enforcing single-active-reservation per vehicle plate.
+3. **Interactive Web Calibration CAD:** Real-time polygon drawing, vertex dragging, Excel-style spreadsheet grid editing, and persistence with normalized coordinates.
+4. **Advisory Indian HSRP & OCR Analysis:** Visual cue inspection (aspect ratio, blue IND strip, contrast) and format-normalized Indian registration plate recognition with privacy masking.
+5. **Completely Local & Offline:** Zero external cloud dependencies; bundled vanilla frontend, local SQLite WAL database, and ONNX Runtime CPU execution.
+
+---
+
+## Quick Start (Windows Demonstration)
+
+### 1. Prerequisites & Virtual Environment
 Requires Python 3.10 to 3.12:
 ```powershell
 # Create and activate virtual environment
-py -3.12 -m venv .venv
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-# Optional: set project root (auto-discovered if omitted)
-$env:SMART_PARKING_ROOT = "C:\Users\adity\Downloads\IoT"
+# Install project dependencies
+pip install -r requirements.txt
 
-# Install Windows dependencies with GPU acceleration
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
-pip install -r requirements-windows.txt
+# Copy environment template
+Copy-Item .env.example .env
 ```
 
-### 2. Dataset Acquisition & Model Pipeline
+### 2. Run Release Acceptance Tests
 ```powershell
-# Acquire real COCO and Indian license plate datasets
-python scripts/acquire_datasets.py
-
-# Train vehicle detector (YOLOv8) & license plate detector
-python scripts/train_vehicle_detector.py --epochs 15
-python scripts/train_plate_detector.py --epochs 5
-
-# Export deployment ONNX models & verify numerical parity
-python scripts/export_deployment_models.py
-
-# Evaluate models on held-out test datasets
-python scripts/evaluate_models.py
+# Run the complete test suite (114 tests)
+python -m pytest tests/ -v
 ```
 
 ### 3. Launch the Application
 ```powershell
 python -m app.main --config configs/windows.yaml
 ```
-Open your browser at `http://127.0.0.1:8000` to access the technical dashboard.
 
-### 4. Run Developer Test Suite
-```powershell
-python -m pytest
-```
+Open your browser at `http://127.0.0.1:8000` to interact with the technical dashboard.
 
----
-
-## Raspberry Pi 5 Deployment
-
-For complete instructions regarding ARM64 setup, systemd services, and HDMI kiosk mode, see [`docs/RASPBERRY_PI_SETUP.md`](docs/RASPBERRY_PI_SETUP.md).
+### 4. Clean Shutdown
+Press `Ctrl+C` in the terminal to gracefully flush database write-ahead logs, stop camera threads, and exit.
 
 ---
 
-## Documentation Index
+## 5-Minute Live Demonstration Walkthrough
 
-- [Architecture & Layer Boundaries](docs/ARCHITECTURE.md)
-- [Camera Calibration & Slot Setup](docs/CAMERA_CALIBRATION.md)
-- [Testing & In-App Diagnostics](docs/TESTING_DIAGNOSTICS.md)
-- [Windows Setup Guide](docs/WINDOWS_SETUP.md)
-- [Raspberry Pi 5 Setup Guide](docs/RASPBERRY_PI_SETUP.md)
-- [Datasets & Annotation Schema](docs/DATASETS.md)
-- [Model Training & Evaluation](docs/TRAINING.md)
-- [Privacy & Data Retention](docs/PRIVACY.md)
-- [Security Considerations](docs/SECURITY.md)
-- [Acceptance Gates & Testing](docs/ACCEPTANCE_TESTS.md)
-- [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
+1. **Dashboard Overview:** Navigate to `http://localhost:8000`. Observe live video preview with detection overlays and real-time state counters.
+2. **Virtual Allocation:** Click the **Virtual Allocation** tab. Select an available bay, enter vehicle plate (e.g. `MH12AB1234`), and click **Allot Bay**. Observe instant state transition to `RESERVED`. Submit again to observe duplicate allocation rejection (HTTP 409).
+3. **Calibration CAD Editor:** Switch to **Parking Calibration**. Click a bay to highlight in the Excel grid. Drag vertices to recalibrate.
+4. **Vehicle & Plate Events:** Switch to **Vehicle & Plate Events**. Inspect arrival logs, masked plates (`MH12****34`), and advisory HSRP cue analysis reports.
+5. **System Diagnostics:** Switch to **System Diagnostics**. Run self-diagnostics to verify sub-20ms inference latency, CPU footprint, and WAL database health.
 
 ---
 
 ## Licence
-
-MIT License. See [`LICENSES.md`](LICENSES.md) for full details and third-party notices.
+MIT License. See [`LICENSES.md`](LICENSES.md) for full details.

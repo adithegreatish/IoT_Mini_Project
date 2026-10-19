@@ -13,7 +13,7 @@ from app.config.schema import ParkingConfig
 from app.database.repository import ParkingRepository
 from app.detection.vehicle_detector import DetectionResult, VehicleDetector
 from app.parking.calibration_service import CalibrationService
-from app.parking.geometry import calculate_overlap_ratio, denormalize_points
+from app.parking.geometry import calculate_overlap_ratio, calculate_spatial_association_score, denormalize_points
 from app.parking.state_machine import SlotState, SlotStateMachine
 
 logger = logging.getLogger("smart_parking.occupancy")
@@ -191,9 +191,57 @@ class OccupancyService:
             mode = getattr(self.config, "inference_mode", "detector")
 
             detections = []
+            inference_error = None
             if mode in ("detector", "hybrid") and self.detector and getattr(self.detector, "enabled", True):
-                detections = self.detector.detect(frame)
-            self._last_detections = detections
+                if hasattr(self.detector, "is_healthy") and not self.detector.is_healthy:
+                    inference_error = f"Vehicle detector unhealthy ({getattr(self.detector, 'status', 'UNKNOWN')})"
+                    logger.warning(f"Inference bypassed: {inference_error}")
+                else:
+                    try:
+                        detections = self.detector.detect(frame)
+                    except Exception as exc:
+                        inference_error = str(exc)
+                        logger.error(f"Inference failure encountered in OccupancyService: {exc}")
+
+            self._last_detections = detections if inference_error is None else []
+
+            # If detection subsystem failed, do NOT mark parking spaces FREE! Mark UNKNOWN.
+            if inference_error:
+                slot_views = []
+                for s in self._slots_def:
+                    sid = s["id"]
+                    is_enabled = s.get("enabled", True)
+                    sm = self._state_machines.get(sid)
+                    if sm and is_enabled:
+                        sm.mark_camera_stale_or_lost(f"Detector failure: {inference_error}")
+                    slot_views.append({
+                        "id": sid,
+                        "slot_id": sid,
+                        "label": s.get("label", sid),
+                        "zone": s.get("zone", "Zone-A"),
+                        "slot_type": s.get("slot_type", "car"),
+                        "enabled": is_enabled,
+                        "state": SlotState.UNKNOWN.value if is_enabled else "DISABLED",
+                        "confidence": 0.0,
+                        "reason": f"Detector error: {inference_error}" if is_enabled else "Slot disabled in calibration",
+                        "overlap_ratio": 0.0,
+                        "associated_vehicle": None,
+                        "points": s.get("points", []),
+                    })
+
+                self._latest_snapshot = {
+                    "timestamp": now_iso,
+                    "summary": {
+                        "total": len(slot_views),
+                        "free": 0,
+                        "occupied": 0,
+                        "unknown": len([v for v in slot_views if v["state"] == SlotState.UNKNOWN.value]),
+                    },
+                    "slots": slot_views,
+                    "is_camera_stale": False,
+                    "detector_error": inference_error,
+                }
+                return self._latest_snapshot
 
             slot_views = []
             occupied_count = 0
@@ -227,6 +275,7 @@ class OccupancyService:
                 if not is_enabled:
                     slot_views.append({
                         "id": sid,
+                        "slot_id": sid,
                         "label": s.get("label", sid),
                         "zone": s.get("zone", "Zone-A"),
                         "slot_type": s.get("slot_type", "car"),
@@ -248,24 +297,37 @@ class OccupancyService:
                 best_overlap = 0.0
                 associated_class = None
 
+                # Log each detection for diagnostics
                 for det in detections:
-                    overlap = calculate_overlap_ratio(pts, det.bbox)
-                    if overlap > best_overlap:
-                        best_overlap = overlap
+                    logger.info(
+                        f"Detection: class={det.class_name}, confidence={det.confidence:.3f}, bbox={det.bbox}, pixel_box={det.pixel_box}"
+                    )
+                    score, _ = calculate_spatial_association_score(pts, det.bbox, method="hybrid")
+                    if score > best_overlap:
+                        best_overlap = score
                         associated_class = det.class_name
 
+                # Determine occupancy based on overlap threshold
                 det_occupied = best_overlap >= self.config.occupancy_threshold
                 det_conf = round(best_overlap if det_occupied else (1.0 - best_overlap), 2)
 
+                # Bottom-center inside slot check
+                bottom_center_inside = False
+                if detections:
+                    best_det = max(detections, key=lambda d: calculate_spatial_association_score(pts, d.bbox, method="hybrid")[0])
+                    bc_x = (best_det.bbox[0] + best_det.bbox[2]) / 2.0
+                    bc_y = best_det.bbox[3]
+                    bottom_center_inside = is_point_in_slot(pts, (bc_x, bc_y))
+
+                # Combine results, enforcing bottom-center inside requirement
                 if mode == "classifier" and sid in patch_results:
                     is_occupied_obs, obs_conf = patch_results[sid]
                 elif mode == "hybrid" and sid in patch_results:
                     patch_occ, patch_conf = patch_results[sid]
-                    # In hybrid mode: bay is occupied if either patch classifier or vehicle detector detects a car
-                    is_occupied_obs = patch_occ or det_occupied
+                    is_occupied_obs = (patch_occ or det_occupied) and bottom_center_inside
                     obs_conf = max(patch_conf, det_conf) if is_occupied_obs else min(patch_conf, det_conf)
                 else:
-                    is_occupied_obs = det_occupied
+                    is_occupied_obs = det_occupied and bottom_center_inside
                     obs_conf = det_conf
 
                 prev_state = sm.stable_state
@@ -290,6 +352,7 @@ class OccupancyService:
 
                 slot_views.append({
                     "id": sid,
+                    "slot_id": sid,
                     "label": s.get("label", sid),
                     "zone": s.get("zone", "Zone-A"),
                     "slot_type": s.get("slot_type", "car"),

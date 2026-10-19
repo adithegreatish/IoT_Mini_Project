@@ -25,6 +25,8 @@ class HSRPAnalysisReport:
     crop_width: int
     crop_height: int
     notes: List[str] = field(default_factory=list)
+    disclaimer: str = "ADVISORY ONLY: Visual cue analysis does not constitute legal or certified authenticity verification."
+
 
 
 class HSRPCueAnalyzer:

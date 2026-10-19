@@ -1,9 +1,9 @@
 {
-  "version": 40,
+  "version": 49,
   "reference_width": 1280,
   "reference_height": 720,
   "camera_fingerprint": "zebronics_uvc",
-  "updated_at": "2026-10-14T14:12:24.310860",
+  "updated_at": "2026-10-19T10:40:52.753119",
   "slots": [
     {
       "id": "T01",
