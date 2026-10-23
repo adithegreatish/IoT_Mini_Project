@@ -23,7 +23,7 @@ parking:
   calibration_file: "data/calibration.json"
   occupancy_threshold: 0.35
   classifier_threshold: 0.65  # Approach D optimal validation threshold
-  inference_mode: "hybrid"  # "classifier", "detector", or "hybrid"
+  inference_mode: "detector"  # "classifier", "detector", or "hybrid"
   classifier_model_path: "models/occupancy_classifier.onnx"
   smoothing_window_frames: 6
   hysteresis_confirm_frames: 4

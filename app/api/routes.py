@@ -249,12 +249,18 @@ def get_parking_slots():
             slot_data["confidence"] = 1.0
             slot_data["occupied"] = False
             slot_data["reservation_status"] = "OUT_OF_SERVICE"
+            slot_data["associated_vehicle"] = None
+            slot_data["overlap_ratio"] = 0.0
+            slot_data["reason"] = "Slot disabled in calibration"
         elif live_info:
             phys_state = live_info.get("state", "UNKNOWN")
             slot_data["physical_state"] = phys_state
             slot_data["confidence"] = live_info.get("confidence", 0.0)
             slot_data["occupied"] = (phys_state == "OCCUPIED")
             slot_data["active_reservation"] = res_info.get("reservation_code") if res_info else None
+            slot_data["associated_vehicle"] = live_info.get("associated_vehicle")
+            slot_data["overlap_ratio"] = live_info.get("overlap_ratio", 0.0)
+            slot_data["reason"] = live_info.get("reason", "")
             if res_info:
                 slot_data["reservation_status"] = "OCCUPIED_AUTHORIZED" if phys_state == "OCCUPIED" else "RESERVED"
                 slot_data["state"] = "OCCUPIED" if phys_state == "OCCUPIED" else "RESERVED"
@@ -268,6 +274,9 @@ def get_parking_slots():
             slot_data["confidence"] = 0.0
             slot_data["occupied"] = False
             slot_data["reservation_status"] = "UNKNOWN"
+            slot_data["associated_vehicle"] = None
+            slot_data["overlap_ratio"] = 0.0
+            slot_data["reason"] = "No live observation"
 
         merged_slots.append(slot_data)
 

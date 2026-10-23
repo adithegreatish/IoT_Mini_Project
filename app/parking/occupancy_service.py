@@ -199,8 +199,11 @@ class OccupancyService:
 
             detections = []
             inference_error = None
-            if mode in ("detector", "hybrid") and self.detector and getattr(self.detector, "enabled", True):
-                if hasattr(self.detector, "is_healthy") and not self.detector.is_healthy:
+            if mode in ("detector", "hybrid") and self.detector:
+                if not getattr(self.detector, "enabled", True):
+                    inference_error = "Vehicle detector is disabled"
+                    logger.warning(f"Inference bypassed: {inference_error}")
+                elif hasattr(self.detector, "is_healthy") and not self.detector.is_healthy:
                     inference_error = f"Vehicle detector unhealthy ({getattr(self.detector, 'status', 'UNKNOWN')})"
                     logger.warning(f"Inference bypassed: {inference_error}")
                 else:
@@ -360,32 +363,51 @@ class OccupancyService:
 
                 if match:
                     best_overlap = match["score"]
-                    associated_class = match["det"].class_name
+                    matched_vehicle_class = match["det"].class_name
+                    matched_conf = match["det"].confidence
                     bottom_center_inside = True
                     det_occupied = True
                     det_conf = round(best_overlap, 2)
                 else:
                     best_overlap = 0.0
-                    associated_class = None
+                    matched_vehicle_class = None
+                    matched_conf = 0.0
                     bottom_center_inside = False
                     for det in detections:
                         score, _ = calculate_spatial_association_score(pts, det.bbox, method="hybrid")
                         if score > best_overlap:
                             best_overlap = score
-                            associated_class = det.class_name
                     det_occupied = False
                     det_conf = round(1.0 - best_overlap, 2)
 
                 # Combine results, supporting detector, hybrid, and patch classifier modes
                 if mode == "classifier" and sid in patch_results:
                     is_occupied_obs, obs_conf = patch_results[sid]
-                elif mode == "hybrid" and sid in patch_results:
-                    patch_occ, patch_conf = patch_results[sid]
-                    is_occupied_obs = det_occupied or (patch_occ and patch_conf >= getattr(self.config, "classifier_threshold", 0.65))
-                    obs_conf = max(patch_conf, det_conf) if is_occupied_obs else min(patch_conf, det_conf)
+                    slot_assoc_vehicle = "vehicle" if is_occupied_obs else None
+                elif mode == "hybrid":
+                    # Hybrid Mode: Occupancy is strictly grounded in valid vehicle detector observations.
+                    # A bay CANNOT be marked occupied without a valid matched vehicle detection.
+                    if det_occupied and match:
+                        is_occupied_obs = True
+                        slot_assoc_vehicle = matched_vehicle_class
+                        if sid in patch_results:
+                            patch_occ, patch_conf = patch_results[sid]
+                            obs_conf = max(det_conf, patch_conf) if patch_occ else round(det_conf * 0.9, 2)
+                        else:
+                            obs_conf = det_conf
+                    else:
+                        is_occupied_obs = False
+                        slot_assoc_vehicle = None
+                        if sid in patch_results:
+                            patch_occ, patch_conf = patch_results[sid]
+                            obs_conf = patch_conf if not patch_occ else det_conf
+                        else:
+                            obs_conf = det_conf
                 else:
+                    # Detector mode (standard)
                     is_occupied_obs = det_occupied
                     obs_conf = det_conf
+                    slot_assoc_vehicle = matched_vehicle_class if det_occupied else None
 
                 prev_state = sm.stable_state
                 curr_state, changed = sm.update(is_occupied_obs, obs_conf)
@@ -393,11 +415,11 @@ class OccupancyService:
                 if do_diag_log:
                     if match:
                         logger.info(
-                            f"  [Bay {sid}] MATCHED class={match['det'].class_name} conf={match['det'].confidence:.2f} score={best_overlap:.2f} -> obs={'OCCUPIED' if is_occupied_obs else 'FREE'} stable={curr_state.value}"
+                            f"  [Bay {sid}] MATCHED class={matched_vehicle_class} conf={matched_conf:.2f} score={best_overlap:.2f} -> obs={'OCCUPIED' if is_occupied_obs else 'FREE'} stable={curr_state.value}"
                         )
                     else:
                         logger.info(
-                            f"  [Bay {sid}] VACANT (best_overlap={best_overlap:.2f}) -> obs=FREE stable={curr_state.value}"
+                            f"  [Bay {sid}] VACANT (best_overlap={best_overlap:.2f}) -> obs={'OCCUPIED' if is_occupied_obs else 'FREE'} stable={curr_state.value}"
                         )
 
                 # Persist state transition to SQLite if state changed
@@ -407,7 +429,7 @@ class OccupancyService:
                         previous_state=prev_state.value,
                         new_state=curr_state.value,
                         confidence=obs_conf,
-                        track_id=associated_class,
+                        track_id=slot_assoc_vehicle,
                     )
 
                 if curr_state == SlotState.FREE:
@@ -416,6 +438,14 @@ class OccupancyService:
                     occupied_count += 1
                 else:
                     unknown_count += 1
+
+                # If slot is stable OCCUPIED, associate with the matched vehicle
+                effective_assoc_vehicle = None
+                if curr_state == SlotState.OCCUPIED:
+                    effective_assoc_vehicle = slot_assoc_vehicle or getattr(sm, "_last_vehicle_class", "car")
+                    sm._last_vehicle_class = effective_assoc_vehicle
+                else:
+                    sm._last_vehicle_class = None
 
                 slot_views.append({
                     "id": sid,
@@ -428,7 +458,7 @@ class OccupancyService:
                     "confidence": sm.confidence,
                     "reason": sm.reason,
                     "overlap_ratio": round(best_overlap, 3),
-                    "associated_vehicle": associated_class if is_occupied_obs else None,
+                    "associated_vehicle": effective_assoc_vehicle,
                     "points": pts,
                 })
 

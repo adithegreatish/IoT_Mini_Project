@@ -350,3 +350,379 @@ def test_displayed_counters_agree_with_backend_api_state(tmp_path: Path):
     assert api_summary["active"] == snap["summary"]["active"]
     assert api_summary["free"] == snap["summary"]["free"]
     assert api_summary["occupied"] == snap["summary"]["occupied"]
+
+
+def create_ten_bay_calibration(file_path: Path):
+    """Creates a canonical 10-bay parking calibration file (T01-T10, 5 cols x 2 rows)."""
+    marginX = 5.0
+    marginY = 12.0
+    gapX = 2.0
+    gapY = 4.0
+    cols = 5
+    rows = 2
+    availableW = 100.0 - (2 * marginX) - (gapX * (cols - 1))
+    availableH = 75.0 - (gapY * (rows - 1))
+    bayW = round((availableW / cols) * 10) / 10
+    bayH = round((availableH / rows) * 10) / 10
+
+    slots = []
+    count = 1
+    for r in range(rows):
+        for c in range(cols):
+            x = round((marginX + c * (bayW + gapX)) * 10) / 10
+            y = round((marginY + r * (bayH + gapY)) * 10) / 10
+            nx, ny, nw, nh = x / 100, y / 100, bayW / 100, bayH / 100
+            pts = [
+                [round(nx, 4), round(ny, 4)],
+                [round(nx + nw, 4), round(ny, 4)],
+                [round(nx + nw, 4), round(ny + nh, 4)],
+                [round(nx, 4), round(ny + nh, 4)],
+            ]
+            slots.append({
+                "id": f"T{count:02d}",
+                "label": f"Bay T{count:02d}",
+                "zone": "Zone-A",
+                "slot_type": "car",
+                "enabled": True,
+                "points": pts,
+            })
+            count += 1
+
+    calib_data = {
+        "version": 49,
+        "reference_width": 1280,
+        "reference_height": 720,
+        "camera_fingerprint": "zebronics_uvc",
+        "slots": slots,
+    }
+    file_path.write_text(json.dumps(calib_data, indent=2), encoding="utf-8")
+    return calib_data
+
+
+# --- Priority 4 Acceptance Tests: 10 Bays T01-T10 ---
+
+def test_acceptance_1_ten_valid_calibration_polygons_produce_ten_active_bays(tmp_path: Path):
+    """1. Proves ten valid calibration polygons produce ten active bays."""
+    calib_file = tmp_path / "calibration.json"
+    calib_data = create_ten_bay_calibration(calib_file)
+
+    calib_svc = CalibrationService(str(calib_file))
+    loaded = calib_svc.load_calibration()
+    assert len(loaded["slots"]) == 10
+
+    for s in loaded["slots"]:
+        valid, err = validate_slot_polygon(s["points"])
+        assert valid is True, f"Bay {s['id']} polygon invalid: {err}"
+        assert s["enabled"] is True
+
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+    occ_svc = OccupancyService(p_cfg, calib_svc)
+
+    assert len(occ_svc._state_machines) == 10
+    for i in range(1, 11):
+        sid = f"T{i:02d}"
+        assert sid in occ_svc._state_machines
+
+
+def test_acceptance_2_valid_vehicle_inside_bay_marks_that_bay_occupied(tmp_path: Path):
+    """2. Proves a valid vehicle inside a bay marks that bay occupied and keeps other bays free."""
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+    calib_svc = CalibrationService(str(calib_file))
+
+    # T02 polygon: x in [0.234, 0.398], y in [0.12, 0.475]
+    # Place a vehicle inside T02: bbox [0.25, 0.15, 0.38, 0.45] -> bc = (0.315, 0.45), inside T02
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+    mock_det.detect.return_value = [
+        DetectionResult(
+            bbox=(0.25, 0.15, 0.38, 0.45),
+            confidence=0.92,
+            class_name="car",
+            pixel_box=(160, 72, 243, 216),
+        )
+    ]
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+    snap = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    slot_states = {s["id"]: s["state"] for s in snap["slots"]}
+    assert slot_states["T02"] == "OCCUPIED"
+    assert snap["summary"]["occupied"] == 1
+    assert snap["summary"]["free"] == 9
+
+    # Verify associated_vehicle is recorded for T02 and None for vacant bays
+    for s in snap["slots"]:
+        if s["id"] == "T02":
+            assert s["associated_vehicle"] == "car"
+            assert s["overlap_ratio"] >= 0.35
+        else:
+            assert s["state"] == "FREE"
+            assert s["associated_vehicle"] is None
+
+
+def test_acceptance_3_vehicle_outside_all_bays_does_not_occupy_any_bay(tmp_path: Path):
+    """3. Proves a vehicle outside all bays does not occupy any bay."""
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+    calib_svc = CalibrationService(str(calib_file))
+
+    # Vehicle driving in the bottom corridor: y in [0.90, 0.98] (all bays end at y=0.87)
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+    mock_det.detect.return_value = [
+        DetectionResult(
+            bbox=(0.40, 0.90, 0.60, 0.98),
+            confidence=0.88,
+            class_name="truck",
+            pixel_box=(256, 432, 384, 470),
+        )
+    ]
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+    snap = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    assert snap["summary"]["occupied"] == 0
+    assert snap["summary"]["free"] == 10
+    for s in snap["slots"]:
+        assert s["state"] == "FREE"
+        assert s["associated_vehicle"] is None
+
+
+def test_acceptance_4_one_vehicle_cannot_occupy_multiple_bays_by_box_overlap(tmp_path: Path):
+    """4. Proves one vehicle cannot occupy multiple bays solely because its box overlaps them."""
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+    calib_svc = CalibrationService(str(calib_file))
+
+    # T01: x in [0.05, 0.214], y in [0.12, 0.475]
+    # T02: x in [0.234, 0.398], y in [0.12, 0.475]
+    # A wide SUV parked in T01 whose bounding box extends into T02 (x up to 0.26)
+    # Bottom-center is (0.13, 0.45) which is cleanly inside T01
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+    mock_det.detect.return_value = [
+        DetectionResult(
+            bbox=(0.06, 0.14, 0.26, 0.46),
+            confidence=0.94,
+            class_name="car",
+            pixel_box=(38, 67, 166, 220),
+        )
+    ]
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+    snap = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    slot_states = {s["id"]: s["state"] for s in snap["slots"]}
+    assert slot_states["T01"] == "OCCUPIED"
+    assert slot_states["T02"] == "FREE"  # T02 must remain FREE!
+    assert snap["summary"]["occupied"] == 1
+    assert snap["summary"]["free"] == 9
+
+
+def test_acceptance_5_vehicle_leaving_bay_transitions_state_to_free(tmp_path: Path):
+    """5. Proves a vehicle leaving a bay allows the state to transition to free after confirmation period."""
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    # 3 frames hysteresis confirmation
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=3)
+    calib_svc = CalibrationService(str(calib_file))
+
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+
+    # Vehicle in T01 for 3 frames -> establishes stable OCCUPIED
+    car_det = [
+        DetectionResult(
+            bbox=(0.06, 0.14, 0.20, 0.46),
+            confidence=0.95,
+            class_name="car",
+            pixel_box=(38, 67, 128, 220),
+        )
+    ]
+    mock_det.detect.return_value = car_det
+
+    for _ in range(3):
+        snap = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    assert snap["slots"][0]["state"] == "OCCUPIED"
+    assert snap["summary"]["occupied"] == 1
+
+    # Vehicle leaves: 0 detections
+    mock_det.detect.return_value = []
+
+    # Frame 1 after departure: hysteresis pending (remains OCCUPIED)
+    snap1 = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    assert snap1["slots"][0]["state"] == "OCCUPIED"
+
+    # Frame 2 after departure: hysteresis pending (remains OCCUPIED)
+    snap2 = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    assert snap2["slots"][0]["state"] == "OCCUPIED"
+
+    # Frame 3 after departure: hysteresis confirmed -> transitions to FREE!
+    snap3 = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    assert snap3["slots"][0]["state"] == "FREE"
+    assert snap3["slots"][0]["associated_vehicle"] is None
+    assert snap3["summary"]["occupied"] == 0
+    assert snap3["summary"]["free"] == 10
+
+
+def test_acceptance_6_detector_and_camera_failure_does_not_create_false_free(tmp_path: Path):
+    """6. Proves detector/camera failure does not create false free states, marking UNKNOWN."""
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+    calib_svc = CalibrationService(str(calib_file))
+
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+
+    # 1. Camera stream disconnects -> All 10 bays must become UNKNOWN, 0 FREE!
+    snap_cam_lost = occ_svc.process_frame(None, is_camera_healthy=False, is_camera_stale=False)
+    assert snap_cam_lost["summary"]["unknown"] == 10
+    assert snap_cam_lost["summary"]["free"] == 0
+    assert snap_cam_lost["summary"]["occupied"] == 0
+
+    # 2. Camera frame is stale -> All 10 bays must become UNKNOWN, 0 FREE!
+    snap_cam_stale = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=True)
+    assert snap_cam_stale["summary"]["unknown"] == 10
+    assert snap_cam_stale["summary"]["free"] == 0
+
+    # 3. Detector runtime failure -> All 10 bays must become UNKNOWN, 0 FREE!
+    mock_det.detect.side_effect = RuntimeError("V4L2 hardware pipeline timeout")
+    snap_det_err = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    assert snap_det_err["summary"]["unknown"] == 10
+    assert snap_det_err["summary"]["free"] == 0
+
+    # 4. Detector is unhealthy/unready -> All 10 bays must become UNKNOWN, 0 FREE!
+    mock_det.detect.side_effect = None
+    mock_det.detect.return_value = []
+    mock_det.is_healthy = False
+    mock_det.status = "MODEL_INIT_FAILED"
+    snap_unhealthy = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    assert snap_unhealthy["summary"]["unknown"] == 10
+    assert snap_unhealthy["summary"]["free"] == 0
+
+
+def test_acceptance_7_dashboard_counters_equal_backend_bay_states(tmp_path: Path):
+    """7. Proves dashboard counters equal the totals derived from backend bay states."""
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+    calib_svc = CalibrationService(str(calib_file))
+
+    # Two cars: in T01 and T05
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+    mock_det.detect.return_value = [
+        DetectionResult(
+            bbox=(0.06, 0.14, 0.20, 0.46),
+            confidence=0.95,
+            class_name="car",
+            pixel_box=(38, 67, 128, 220),
+        ),
+        DetectionResult(
+            bbox=(0.80, 0.14, 0.94, 0.46),
+            confidence=0.91,
+            class_name="car",
+            pixel_box=(512, 67, 601, 220),
+        ),
+    ]
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+    snap = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    from app.api import routes
+    routes.calibration_service = calib_svc
+    routes.occupancy_service = occ_svc
+    routes.allocation_service = None
+
+    api_resp = routes.get_parking_slots()
+    summary = api_resp["summary"]
+    slots = api_resp["slots"]
+
+    # Verify backend API mathematical consistency
+    assert summary["total"] == 10
+    assert summary["active"] == 10
+    assert summary["occupied"] == 2
+    assert summary["free"] == 8
+    assert summary["unknown"] == 0
+
+    # Simulate dashboard app.js updateOverviewCounters() logic
+    active_slots = [s for s in slots if s.get("enabled", True)]
+    dash_total = len(active_slots)
+    dash_occupied = sum(1 for s in active_slots if s["state"] == "OCCUPIED")
+    dash_free = sum(1 for s in active_slots if s["state"] == "FREE")
+    dash_unknown = sum(1 for s in active_slots if s["state"] not in ("OCCUPIED", "FREE"))
+
+    assert dash_total == summary["active"] == 10
+    assert dash_occupied == summary["occupied"] == 2
+    assert dash_free == summary["free"] == 8
+    assert dash_unknown == summary["unknown"] == 0
+
+
+def test_acceptance_hybrid_mode_prevents_false_occupancy_from_patch_classifier(tmp_path: Path):
+    """
+    Demonstrates the root cause fix:
+    In hybrid mode, a patch classifier reporting high probability (due to domain shift)
+    must NEVER mark vacant bays as occupied when the detector sees no vehicle.
+    """
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    p_cfg = ParkingConfig(
+        calibration_file=str(calib_file),
+        occupancy_threshold=0.35,
+        inference_mode="hybrid",
+        classifier_threshold=0.65,
+        hysteresis_confirm_frames=1,
+    )
+    calib_svc = CalibrationService(str(calib_file))
+
+    # Mock detector sees NO vehicle in any bay
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+    mock_det.detect.return_value = []
+
+    # Mock classifier reports domain-shifted false positives (0.95 conf for all patches)
+    mock_clf = MagicMock()
+    mock_clf.extract_patch_from_frame.return_value = np.ones((150, 150, 3), dtype=np.uint8) * 128
+    mock_clf.predict_patch.return_value = (True, 0.95)
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det, classifier=mock_clf)
+    frame = np.ones((480, 640, 3), dtype=np.uint8) * 128
+    snap = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    # Vacant bays MUST remain FREE! Cannot be forced OCCUPIED by domain-shifted classifier!
+    assert snap["summary"]["occupied"] == 0
+    assert snap["summary"]["free"] == 10
+    for s in snap["slots"]:
+        assert s["state"] == "FREE"
+        assert s["associated_vehicle"] is None
+
