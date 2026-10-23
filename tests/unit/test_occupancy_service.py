@@ -81,3 +81,70 @@ def test_occupancy_service_frame_processing(tmp_path: Path):
     # 3. Test overlay rendering
     overlay = occ_svc.render_overlay(black_frame)
     assert overlay.shape == black_frame.shape
+
+
+def test_occupancy_service_detections_regression_nameerror(tmp_path: Path):
+    """
+    Regression test for Raspberry Pi runtime crash:
+    NameError: name 'is_point_in_slot' is not defined in OccupancyService.process_frame().
+    Verifies that when vehicle detections are provided:
+    1. process_frame executes without NameError.
+    2. Vehicle bottom-center ground-contact points inside slots correctly classify the bay as OCCUPIED.
+    3. Vehicle with bottom-center outside slot does not falsely classify as OCCUPIED.
+    """
+    from unittest.mock import MagicMock
+    from app.detection.vehicle_detector import DetectionResult
+
+    calib_file = tmp_path / "calibration.json"
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+    d_cfg = DetectionConfig(enabled=True, runtime="mock")
+
+    calib_svc = CalibrationService(str(calib_file))
+    sample_slots = [
+        {"id": "S01", "label": "Bay 1", "slot_type": "car", "enabled": True, "points": [[0.10, 0.40], [0.30, 0.40], [0.30, 0.90], [0.10, 0.90]]},
+        {"id": "S02", "label": "Bay 2", "slot_type": "car", "enabled": True, "points": [[0.40, 0.40], [0.60, 0.40], [0.60, 0.90], [0.40, 0.90]]},
+    ]
+    calib_svc.save_calibration(sample_slots)
+
+    mock_detector = MagicMock()
+    mock_detector.enabled = True
+    mock_detector.is_healthy = True
+
+    # Vehicle in Bay 1: bbox [0.12, 0.45, 0.28, 0.85] -> bottom center is ((0.12+0.28)/2, 0.85) = (0.20, 0.85), inside S01
+    mock_detector.detect.return_value = [
+        DetectionResult(
+            bbox=(0.12, 0.45, 0.28, 0.85),
+            confidence=0.95,
+            class_name="car",
+            pixel_box=(154, 324, 358, 612),
+        )
+    ]
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_detector)
+    frame = np.zeros((720, 1280, 3), dtype=np.uint8)
+
+    # Must NOT raise NameError
+    snapshot = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    assert "summary" in snapshot
+    assert snapshot["summary"]["occupied"] == 1
+    assert snapshot["summary"]["free"] == 1
+
+    slot_states = {s["id"]: s["state"] for s in snapshot["slots"]}
+    assert slot_states["S01"] == "OCCUPIED"
+    assert slot_states["S02"] == "FREE"
+
+    # Test roof projection / ground contact outside:
+    # A vehicle whose bottom-center is outside S02
+    mock_detector.detect.return_value = [
+        DetectionResult(
+            bbox=(0.32, 0.45, 0.38, 0.85),
+            confidence=0.90,
+            class_name="truck",
+            pixel_box=(410, 324, 486, 612),
+        )
+    ]
+    snapshot2 = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    slot_states2 = {s["id"]: s["state"] for s in snapshot2["slots"]}
+    assert slot_states2["S02"] == "FREE"
+

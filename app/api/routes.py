@@ -8,7 +8,7 @@ import time
 from typing import Any, Dict, List, Optional
 import cv2
 from fastapi import APIRouter, HTTPException, Query, Request, Response
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import StreamingResponse, JSONResponse, FileResponse
 from pydantic import BaseModel
 
 from app.camera.device_scanner import scan_camera_devices

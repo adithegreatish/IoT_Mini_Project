@@ -13,7 +13,12 @@ from app.config.schema import ParkingConfig
 from app.database.repository import ParkingRepository
 from app.detection.vehicle_detector import DetectionResult, VehicleDetector
 from app.parking.calibration_service import CalibrationService
-from app.parking.geometry import calculate_overlap_ratio, calculate_spatial_association_score, denormalize_points
+from app.parking.geometry import (
+    calculate_overlap_ratio,
+    calculate_spatial_association_score,
+    denormalize_points,
+    is_point_in_slot,
+)
 from app.parking.state_machine import SlotState, SlotStateMachine
 
 logger = logging.getLogger("smart_parking.occupancy")
