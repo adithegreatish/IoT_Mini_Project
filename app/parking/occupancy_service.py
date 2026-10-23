@@ -495,11 +495,18 @@ class OccupancyService:
         with self._lock:
             return self._latest_snapshot
 
-    def render_overlay(self, frame: np.ndarray) -> np.ndarray:
+    def render_overlay(
+        self,
+        frame: np.ndarray,
+        slots: Optional[List[Dict[str, Any]]] = None,
+        detections: Optional[List[Any]] = None,
+    ) -> np.ndarray:
         """Renders parking slot polygons, states, and detection bounding boxes onto frame efficiently."""
         with self._lock:
-            slots = self._latest_snapshot.get("slots", [])
-            detections = self._last_detections
+            if slots is None:
+                slots = self._latest_snapshot.get("slots", [])
+            if detections is None:
+                detections = self._last_detections
 
             if not slots and not detections:
                 return frame
@@ -507,10 +514,18 @@ class OccupancyService:
             out = frame.copy()
             h, w = out.shape[:2]
 
-            # 1. Single-pass transparent polygon fill for all bays combined
+            # 1. Restrained transparent polygon fill (alpha = 0.12) to avoid saturating camera footage
             if slots:
                 overlay = out.copy()
                 has_polys = False
+                color_map = {
+                    "FREE": (46, 175, 78),          # Refined Emerald Green (BGR)
+                    "OCCUPIED": (60, 60, 220),       # Refined Crimson Red (BGR)
+                    "RESERVED": (30, 150, 240),      # Refined Amber/Gold (BGR)
+                    "UNKNOWN": (140, 140, 140),      # Neutral Slate Gray (BGR)
+                    "DISABLED": (80, 80, 80),        # Muted Charcoal (BGR)
+                }
+
                 for slot in slots:
                     pts = slot.get("points", [])
                     if len(pts) < 3:
@@ -518,37 +533,69 @@ class OccupancyService:
                     has_polys = True
                     pixel_pts = np.array(denormalize_points(pts, w, h), dtype=np.int32)
                     state = slot.get("state", "UNKNOWN")
-                    color = (0, 200, 100) if state == "FREE" else ((40, 40, 230) if state == "OCCUPIED" else (0, 165, 255))
+                    color = color_map.get(state, (140, 140, 140))
                     cv2.fillPoly(overlay, [pixel_pts], color)
 
                 if has_polys:
-                    cv2.addWeighted(overlay, 0.25, out, 0.75, 0, out)
+                    cv2.addWeighted(overlay, 0.12, out, 0.88, 0, out)
 
-                # Draw outlines and labels directly on out without copying
+                # 2. Draw thin crisp polygon borders and high-contrast label pills
                 for slot in slots:
                     pts = slot.get("points", [])
                     if len(pts) < 3:
                         continue
                     pixel_pts = np.array(denormalize_points(pts, w, h), dtype=np.int32)
                     state = slot.get("state", "UNKNOWN")
-                    color = (0, 200, 100) if state == "FREE" else ((40, 40, 230) if state == "OCCUPIED" else (0, 165, 255))
+                    color = color_map.get(state, (140, 140, 140))
+
+                    # Thin, crisp polygon outline
                     cv2.polylines(out, [pixel_pts], isClosed=True, color=color, thickness=2)
 
-                    tx, ty = pixel_pts[0]
-                    cv2.putText(out, f"{slot['id']}: {state}", (tx + 5, ty + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2)
+                    # Compute anchor point for label pill (top-left bounding area)
+                    min_x = min(p[0] for p in pixel_pts)
+                    min_y = min(p[1] for p in pixel_pts)
+                    tx = max(4, min(w - 100, min_x + 4))
+                    ty = max(16, min(h - 6, min_y + 16))
 
-            # 2. Draw Detected Vehicle Bounding Boxes
+                    label_text = f"{slot['id']} · {state}"
+                    font = cv2.FONT_HERSHEY_SIMPLEX
+                    font_scale = 0.40
+                    font_thickness = 1
+
+                    (txt_w, txt_h), baseline = cv2.getTextSize(label_text, font, font_scale, font_thickness)
+                    bg_x1 = max(0, tx - 3)
+                    bg_y1 = max(0, ty - txt_h - 4)
+                    bg_x2 = min(w - 1, tx + txt_w + 4)
+                    bg_y2 = min(h - 1, ty + baseline + 2)
+
+                    # Pill background in dark ink with subtle colored border
+                    cv2.rectangle(out, (bg_x1, bg_y1), (bg_x2, bg_y2), (12, 16, 24), -1)
+                    cv2.rectangle(out, (bg_x1, bg_y1), (bg_x2, bg_y2), color, 1)
+
+                    # Pill text
+                    cv2.putText(out, label_text, (tx, ty), font, font_scale, (240, 245, 250), font_thickness, cv2.LINE_AA)
+
+            # 3. Draw Detected Vehicle Bounding Boxes and Ground Contact Points
             for det in detections:
                 bx1, by1, bx2, by2 = det.pixel_box
-                cv2.rectangle(out, (bx1, by1), (bx2, by2), (255, 200, 0), 2)
-                cv2.putText(
-                    out,
-                    f"{det.class_name} {det.confidence:.2f}",
-                    (bx1 + 4, max(20, by1 - 6)),
-                    cv2.FONT_HERSHEY_SIMPLEX,
-                    0.5,
-                    (255, 200, 0),
-                    1,
-                )
+                # Crisp thin bounding box (cyan/ice-yellow) distinct from parking bays
+                cv2.rectangle(out, (bx1, by1), (bx2, by2), (240, 220, 0), 1, cv2.LINE_AA)
+
+                # Ground contact indicator point (bottom-center)
+                bc_x = int((bx1 + bx2) / 2)
+                bc_y = int(by2)
+                cv2.circle(out, (bc_x, bc_y), 3, (0, 240, 255), -1, cv2.LINE_AA)
+
+                # Small vehicle class and confidence badge
+                det_text = f"{det.class_name} {det.confidence:.2f}"
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                font_scale = 0.36
+                font_thickness = 1
+                (det_w, det_h), d_base = cv2.getTextSize(det_text, font, font_scale, font_thickness)
+
+                d_lbl_y = max(det_h + 4, by1 - 4)
+                cv2.rectangle(out, (bx1, d_lbl_y - det_h - 3), (bx1 + det_w + 4, d_lbl_y + d_base), (10, 14, 22), -1)
+                cv2.rectangle(out, (bx1, d_lbl_y - det_h - 3), (bx1 + det_w + 4, d_lbl_y + d_base), (240, 220, 0), 1)
+                cv2.putText(out, det_text, (bx1 + 2, d_lbl_y - 1), font, font_scale, (255, 255, 255), font_thickness, cv2.LINE_AA)
 
             return out

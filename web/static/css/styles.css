@@ -1,34 +1,39 @@
 /* Modern Dark Technical Theme for Smart Parking Management System */
 
 :root {
-  --bg-base: #07090e;
-  --bg-surface: #0e131f;
-  --bg-card: rgba(18, 25, 40, 0.75);
-  --bg-card-hover: rgba(26, 36, 56, 0.85);
+  --bg-base: #06090e;
+  --bg-surface: #0c1017;
+  --bg-surface-elevated: #111824;
+  --bg-card: rgba(14, 20, 32, 0.88);
+  --bg-card-hover: rgba(20, 28, 44, 0.94);
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(0, 240, 255, 0.3);
+  --border-accent: rgba(0, 229, 255, 0.35);
 
-  --accent-cyan: #00f0ff;
-  --accent-cyan-glow: rgba(0, 240, 255, 0.25);
+  --accent-cyan: #00e5ff;
+  --accent-cyan-glow: rgba(0, 229, 255, 0.22);
+  --accent-cyan-subtle: rgba(0, 229, 255, 0.10);
   --accent-blue: #3b82f6;
   --accent-indigo: #6366f1;
 
   --status-free: #10b981;
-  --status-free-bg: rgba(16, 185, 129, 0.15);
+  --status-free-bg: rgba(16, 185, 129, 0.12);
   --status-occupied: #ef4444;
-  --status-occupied-bg: rgba(239, 68, 68, 0.15);
-  --status-unknown: #f59e0b;
-  --status-unknown-bg: rgba(245, 158, 11, 0.15);
+  --status-occupied-bg: rgba(239, 68, 68, 0.12);
+  --status-reserved: #f59e0b;
+  --status-reserved-bg: rgba(245, 158, 11, 0.12);
+  --status-unknown: #94a3b8;
+  --status-unknown-bg: rgba(148, 163, 184, 0.12);
 
-  --text-main: #f3f4f6;
-  --text-muted: #9ca3af;
-  --text-dim: #6b7280;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
 
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
-  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -206,13 +211,26 @@ body {
   margin-bottom: 24px;
 }
 
+.grid-cols-6 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
 .stat-card {
-  background: rgba(18, 25, 40, 0.92);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 18px;
+  padding: 16px 18px;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .stat-card::before {
@@ -227,7 +245,29 @@ body {
 
 .stat-card.free::before { background: var(--status-free); }
 .stat-card.occupied::before { background: var(--status-occupied); }
+.stat-card.reserved::before { background: var(--status-reserved); }
 .stat-card.unknown::before { background: var(--status-unknown); }
+.stat-card.rate::before { background: var(--accent-cyan); }
+.stat-card.disabled::before { background: var(--text-dim); }
+
+.stale-alert-banner {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
 
 .stat-title {
   font-size: 12px;

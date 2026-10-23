@@ -47,26 +47,43 @@
 
     <!-- 1. OVERVIEW PANE -->
     <section class="tab-pane active" id="pane-overview">
-      <div class="grid-cols-4">
+      <!-- Stale Camera Alert Banner -->
+      <div id="camera-stale-banner" class="stale-alert-banner" style="display: none;">
+        <span>⚠️</span>
+        <div><strong>Camera Stream Stale or Offline:</strong> No fresh video frames received within 2.0s. All parking bay states are held safely in UNKNOWN to prevent false-vacant allotments.</div>
+      </div>
+
+      <!-- 6-Metric Executive Summary Row -->
+      <div class="grid-cols-6 summary-row">
         <div class="stat-card">
-          <div class="stat-title">Active Calibrated Bays</div>
-          <div class="stat-value" id="counter-total">4</div>
-          <div class="stat-sub">Configured in calibration.json</div>
+          <div class="stat-title">Active Bays</div>
+          <div class="stat-value" id="counter-total">10</div>
+          <div class="stat-sub">Calibrated &amp; Enabled</div>
         </div>
         <div class="stat-card free">
-          <div class="stat-title">Free Bays (Available)</div>
-          <div class="stat-value" style="color: var(--status-free);" id="counter-free">2</div>
+          <div class="stat-title">Free Bays</div>
+          <div class="stat-value" style="color: var(--status-free);" id="counter-free">8</div>
           <div class="stat-sub">Verified Vacant</div>
         </div>
         <div class="stat-card occupied">
           <div class="stat-title">Occupied Bays</div>
           <div class="stat-value" style="color: var(--status-occupied);" id="counter-occupied">2</div>
-          <div class="stat-sub">Vehicle Detected</div>
+          <div class="stat-sub">Vehicle Present</div>
+        </div>
+        <div class="stat-card reserved">
+          <div class="stat-title">Reserved Bays</div>
+          <div class="stat-value" style="color: var(--status-reserved);" id="counter-reserved">0</div>
+          <div class="stat-sub">Virtual Pre-Allocated</div>
         </div>
         <div class="stat-card unknown">
           <div class="stat-title">Unknown / Stale</div>
           <div class="stat-value" style="color: var(--status-unknown);" id="counter-unknown">0</div>
-          <div class="stat-sub">Insufficient Evidence</div>
+          <div class="stat-sub">Signal Lost / Offline</div>
+        </div>
+        <div class="stat-card rate">
+          <div class="stat-title">Occupancy Rate</div>
+          <div class="stat-value" style="color: var(--accent-cyan);" id="counter-occupancy-rate">20.0%</div>
+          <div class="stat-sub" id="counter-occupancy-sub">2 of 10 active bays</div>
         </div>
       </div>
 
@@ -76,7 +93,10 @@
             <img class="video-element" id="overview-video-feed" src="/api/stream/video_feed" alt="Live Feed Preview">
           </div>
           <div class="stream-toolbar">
-            <span style="font-size: 13px; font-weight: 600;">Live Feed Preview</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 13px; font-weight: 600;">Live Feed Preview</span>
+              <span class="badge badge-live" id="stream-freshness-badge">Fresh Stream</span>
+            </div>
             <button class="btn btn-primary" onclick="switchTab('monitor')">Open Full Monitor &rarr;</button>
           </div>
         </div>
@@ -84,12 +104,13 @@
         <div class="stat-card" style="height: 100%;">
           <div class="stat-title">System Status &amp; Architecture</div>
           <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px; margin-top: 14px;">
-            <div><strong>Capture Hardware:</strong> Zebronics USB Webcam / UVC</div>
-            <div><strong>Inference Runtime:</strong> ONNX Runtime (CPU Optimized)</div>
-            <div><strong>Occupancy Engine:</strong> Spatial Polygon IoU + Temporal Smoothing</div>
-            <div><strong>Plate Analysis:</strong> Independent HSRP-Style Pipeline</div>
-            <div><strong>Database:</strong> SQLite WAL (Local Storage Only)</div>
-            <div><strong>Privacy Mode:</strong> Plate Masking Active</div>
+            <div><strong>Capture Hardware:</strong> <span id="telemetry-cam-state">Zebronics UVC (/dev/video0)</span></div>
+            <div><strong>Stream Resolution:</strong> <span id="telemetry-res-fps">640x480 @ 30 FPS</span></div>
+            <div><strong>Inference Runtime:</strong> <span id="telemetry-runtime">ONNX Runtime (YOLOv8n CPU)</span></div>
+            <div><strong>Occupancy Engine:</strong> <span>Spatial 1-to-1 Ground Contact</span></div>
+            <div><strong>Stream Freshness:</strong> <span id="telemetry-freshness-text" style="color: var(--status-free);">Optimal (&lt; 0.1s latency)</span></div>
+            <div><strong>Virtual Allocations:</strong> <span>SQLite WAL (ACID Enforced)</span></div>
+            <div><strong>Privacy Mode:</strong> <span>Plate Masking Active</span></div>
           </div>
         </div>
       </div>

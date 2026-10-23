@@ -154,6 +154,58 @@ async function fetchHealth() {
       badge.className = `badge ${state.camera.is_stale ? 'badge-stale' : (state.camera.is_mock ? 'badge-mock' : 'badge-live')}`;
     }
 
+    // Update Stale Alert Banner
+    const staleBanner = document.getElementById('camera-stale-banner');
+    if (staleBanner) {
+      const isUnhealthy = state.camera.is_stale || state.camera.state === 'DISCONNECTED' || state.camera.state === 'STALE' || (state.camera.is_healthy === false);
+      staleBanner.style.display = isUnhealthy ? 'flex' : 'none';
+    }
+
+    // Update Live Feed Freshness Badge
+    const streamFreshnessBadge = document.getElementById('stream-freshness-badge');
+    if (streamFreshnessBadge) {
+      if (state.camera.is_stale || state.camera.state === 'STALE') {
+        streamFreshnessBadge.textContent = 'Stale Stream';
+        streamFreshnessBadge.className = 'badge badge-stale';
+      } else if (state.camera.state === 'DISCONNECTED') {
+        streamFreshnessBadge.textContent = 'Signal Lost';
+        streamFreshnessBadge.className = 'badge badge-danger';
+      } else if (state.camera.is_mock) {
+        streamFreshnessBadge.textContent = 'Synthetic Feed';
+        streamFreshnessBadge.className = 'badge badge-mock';
+      } else {
+        streamFreshnessBadge.textContent = 'Fresh Stream';
+        streamFreshnessBadge.className = 'badge badge-live';
+      }
+    }
+
+    // Update System Telemetry Panel
+    const telemCam = document.getElementById('telemetry-cam-state');
+    if (telemCam) {
+      const dev = state.camera.device_index !== undefined ? `/dev/video${state.camera.device_index}` : 'V4L2 / UVC';
+      const bck = state.camera.backend || 'V4L2';
+      telemCam.textContent = `${bck} (${dev}) [${state.camera.state || 'ACTIVE'}]`;
+    }
+
+    const telemResFps = document.getElementById('telemetry-res-fps');
+    if (telemResFps) {
+      telemResFps.textContent = `${state.camera.negotiated_resolution || '640x480'} @ ${state.camera.observed_fps || 0.0} FPS`;
+    }
+
+    const telemFreshness = document.getElementById('telemetry-freshness-text');
+    if (telemFreshness) {
+      if (state.camera.is_stale || state.camera.state === 'STALE') {
+        telemFreshness.textContent = 'STALE (>2.0s latency - Fail-Safe Active)';
+        telemFreshness.style.color = 'var(--status-occupied)';
+      } else if (state.camera.state === 'DISCONNECTED') {
+        telemFreshness.textContent = 'OFFLINE (Zero Video Signal)';
+        telemFreshness.style.color = 'var(--status-occupied)';
+      } else {
+        telemFreshness.textContent = 'Optimal (< 0.1s latency)';
+        telemFreshness.style.color = 'var(--status-free)';
+      }
+    }
+
     // Update Metric Displays
     const fpsElem = document.getElementById('metric-fps');
     if (fpsElem) fpsElem.textContent = `${state.camera.observed_fps || 0.0} FPS`;
@@ -234,23 +286,38 @@ function updateOverviewCounters() {
   const total = activeSlots.length;
   let occupied = 0;
   let free = 0;
+  let reserved = 0;
   let unknown = 0;
 
   activeSlots.forEach(s => {
-    if (s.state === 'OCCUPIED') occupied++;
-    else if (s.state === 'FREE') free++;
+    const st = (s.state || 'UNKNOWN').toUpperCase();
+    if (st === 'OCCUPIED') occupied++;
+    else if (st === 'FREE') free++;
+    else if (st === 'RESERVED') reserved++;
     else unknown++;
   });
+
+  // Include disabled / out-of-service bays in the unknown/unavailable count
+  const disabledCount = state.slots.filter(s => s.enabled === false).length;
+  unknown += disabledCount;
+
+  const rate = total > 0 ? ((occupied / total) * 100).toFixed(1) : '0.0';
 
   const elTotal = document.getElementById('counter-total');
   const elFree = document.getElementById('counter-free');
   const elOcc = document.getElementById('counter-occupied');
+  const elRes = document.getElementById('counter-reserved');
   const elUnk = document.getElementById('counter-unknown');
+  const elRate = document.getElementById('counter-occupancy-rate');
+  const elSub = document.getElementById('counter-occupancy-sub');
 
   if (elTotal) elTotal.textContent = total;
   if (elFree) elFree.textContent = free;
   if (elOcc) elOcc.textContent = occupied;
+  if (elRes) elRes.textContent = reserved;
   if (elUnk) elUnk.textContent = unknown;
+  if (elRate) elRate.textContent = `${rate}%`;
+  if (elSub) elSub.textContent = `${occupied} of ${total} active bays`;
 }
 
 // --- Stream Controls ---

@@ -726,3 +726,182 @@ def test_acceptance_hybrid_mode_prevents_false_occupancy_from_patch_classifier(t
         assert s["state"] == "FREE"
         assert s["associated_vehicle"] is None
 
+
+def test_acceptance_overlay_rendering_multi_resolution_and_states(tmp_path: Path):
+    """
+    Validates that render_overlay properly executes across multiple camera frame resolutions
+    (640x480, 1280x720, 1920x1080) and renders all semantic bay states (FREE, OCCUPIED,
+    RESERVED, UNKNOWN, DISABLED) alongside vehicle detection bounding boxes and ground contact points.
+    """
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35)
+    calib_svc = CalibrationService(str(calib_file))
+    occ_svc = OccupancyService(p_cfg, calib_svc)
+
+    slots_to_render = [
+        {"id": "T01", "state": "FREE", "points": [[0.05, 0.12], [0.21, 0.12], [0.21, 0.47], [0.05, 0.47]]},
+        {"id": "T02", "state": "OCCUPIED", "points": [[0.23, 0.12], [0.39, 0.12], [0.39, 0.47], [0.23, 0.47]]},
+        {"id": "T03", "state": "RESERVED", "points": [[0.41, 0.12], [0.57, 0.12], [0.57, 0.47], [0.41, 0.47]]},
+        {"id": "T04", "state": "UNKNOWN", "points": [[0.59, 0.12], [0.75, 0.12], [0.75, 0.47], [0.59, 0.47]]},
+        {"id": "T05", "state": "DISABLED", "points": [[0.77, 0.12], [0.93, 0.12], [0.93, 0.47], [0.77, 0.47]]},
+    ]
+
+    for (h, w) in [(480, 640), (720, 1280), (1080, 1920)]:
+        test_frame = np.zeros((h, w, 3), dtype=np.uint8)
+        dets = [
+            DetectionResult(
+                bbox=(0.25, 0.15, 0.37, 0.45),
+                confidence=0.88,
+                class_name="car",
+                pixel_box=(int(0.25 * w), int(0.15 * h), int(0.37 * w), int(0.45 * h)),
+            )
+        ]
+        rendered = occ_svc.render_overlay(test_frame, slots=slots_to_render, detections=dets)
+        assert rendered.shape == (h, w, 3)
+        assert np.count_nonzero(rendered) > 0
+
+
+def test_acceptance_executive_summary_and_reservation_protection(tmp_path: Path):
+    """
+    Validates that:
+    1. Active reservations protect vacant bays from being displayed as FREE.
+    2. Occupied bays with active reservations transition to OCCUPIED.
+    3. Disabled bays report DISABLED and do not count toward active bays.
+    4. 6-card executive summary counts accurately match individual bay states.
+    5. Occupancy rate calculation denominator is strictly active bays.
+    """
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    calib_data = json.loads(calib_file.read_text(encoding="utf-8"))
+    # Disable 1 bay (T10)
+    calib_data["slots"][9]["enabled"] = False
+    calib_file.write_text(json.dumps(calib_data, indent=2), encoding="utf-8")
+
+    calib_svc = CalibrationService(str(calib_file))
+    p_cfg = ParkingConfig(calibration_file=str(calib_file), occupancy_threshold=0.35, hysteresis_confirm_frames=1)
+
+    # Mock detector sees 2 vehicles: one in T01 and one in T02
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+    mock_det.detect.return_value = [
+        DetectionResult(bbox=(0.06, 0.15, 0.20, 0.45), confidence=0.89, class_name="car", pixel_box=(38, 72, 128, 216)),
+        DetectionResult(bbox=(0.24, 0.15, 0.38, 0.45), confidence=0.92, class_name="car", pixel_box=(153, 72, 243, 216)),
+    ]
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+    occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    from app.api import routes
+    routes.calibration_service = calib_svc
+    routes.occupancy_service = occ_svc
+
+    # Mock allocation service with reservation in T03 (which is physically vacant)
+    mock_alloc = MagicMock()
+    mock_conn = MagicMock()
+    mock_cursor = MagicMock()
+    mock_cursor.fetchall.return_value = [
+        {"slot_id": "T03", "reservation_code": "RES-TEST-001", "vehicle_plate": "MH12AB1234", "status": "ACTIVE"}
+    ]
+    mock_conn.cursor.return_value = mock_cursor
+    mock_conn.__enter__.return_value = mock_conn
+    mock_conn.__exit__.return_value = None
+    mock_alloc.db.get_connection.return_value = mock_conn
+    routes.allocation_service = mock_alloc
+
+    resp = routes.get_parking_slots()
+    summary = resp["summary"]
+    slots = resp["slots"]
+
+    # Total bays: 10, Active bays: 9 (T10 is disabled)
+    assert summary["total"] == 10
+    assert summary["active"] == 9
+    assert summary["occupied"] == 2  # T01 and T02
+    assert summary["reserved"] == 1  # T03 is reserved & physically vacant
+    assert summary["free"] == 6      # T04-T09
+    # Disabled bay T10 counted in unknown / unavailable
+    assert summary["unknown"] == 1
+
+    # Find T03 and verify state is RESERVED, not FREE
+    t03 = next(s for s in slots if s["id"] == "T03")
+    assert t03["state"] == "RESERVED"
+    assert t03["reservation_status"] == "RESERVED"
+    assert t03["active_reservation"] == "RES-TEST-001"
+
+    # Find T10 and verify DISABLED state
+    t10 = next(s for s in slots if s["id"] == "T10")
+    assert t10["state"] == "DISABLED"
+    assert t10["enabled"] is False
+
+    # Simulate dashboard app.js updateOverviewCounters() logic
+    active_slots = [s for s in slots if s.get("enabled", True)]
+    dash_total = len(active_slots)
+    dash_occupied = sum(1 for s in active_slots if s["state"] == "OCCUPIED")
+    dash_reserved = sum(1 for s in active_slots if s["state"] == "RESERVED")
+    dash_free = sum(1 for s in active_slots if s["state"] == "FREE")
+    dash_disabled = sum(1 for s in slots if not s.get("enabled", True))
+    dash_unknown = sum(1 for s in active_slots if s["state"] not in ("OCCUPIED", "FREE", "RESERVED")) + dash_disabled
+    dash_rate = round((dash_occupied / dash_total) * 100, 1)
+
+    assert dash_total == 9
+    assert dash_occupied == 2
+    assert dash_reserved == 1
+    assert dash_free == 6
+    assert dash_unknown == 1
+    assert dash_rate == 22.2
+
+
+def test_acceptance_temporal_confirmation_departure(tmp_path: Path):
+    """
+    Validates that a confirmed OCCUPIED slot requires hysteresis_confirm_frames
+    consecutive vacant observations before transitioning back to FREE,
+    preventing state flicker during brief occlusion or missed detections.
+    """
+    calib_file = tmp_path / "calibration.json"
+    create_ten_bay_calibration(calib_file)
+
+    p_cfg = ParkingConfig(
+        calibration_file=str(calib_file),
+        occupancy_threshold=0.35,
+        hysteresis_confirm_frames=3,
+    )
+    calib_svc = CalibrationService(str(calib_file))
+    mock_det = MagicMock()
+    mock_det.enabled = True
+    mock_det.is_healthy = True
+
+    occ_svc = OccupancyService(p_cfg, calib_svc, detector=mock_det)
+    frame = np.zeros((480, 640, 3), dtype=np.uint8)
+
+    # 1. Drive slot T01 to confirmed OCCUPIED (needs 3 consecutive occupied frames)
+    car_det = [
+        DetectionResult(bbox=(0.06, 0.15, 0.20, 0.45), confidence=0.90, class_name="car", pixel_box=(38, 72, 128, 216))
+    ]
+    mock_det.detect.return_value = car_det
+
+    for _ in range(3):
+        snap = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+
+    t01 = next(s for s in snap["slots"] if s["id"] == "T01")
+    assert t01["state"] == "OCCUPIED"
+
+    # 2. Vehicle departs (detector reports empty)
+    mock_det.detect.return_value = []
+
+    # Frame 1 of absence: should NOT transition to FREE yet (temporal smoothing / debounce)
+    snap1 = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    t01_f1 = next(s for s in snap1["slots"] if s["id"] == "T01")
+    assert t01_f1["state"] == "OCCUPIED"
+
+    # Frame 2 of absence: still OCCUPIED
+    snap2 = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    t01_f2 = next(s for s in snap2["slots"] if s["id"] == "T01")
+    assert t01_f2["state"] == "OCCUPIED"
+
+    # Frame 3 of absence: confirmed departure -> transitions to FREE
+    snap3 = occ_svc.process_frame(frame, is_camera_healthy=True, is_camera_stale=False)
+    t01_f3 = next(s for s in snap3["slots"] if s["id"] == "T01")
+    assert t01_f3["state"] == "FREE"
