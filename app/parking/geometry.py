@@ -106,17 +106,19 @@ def check_slot_overlaps(slots: List[Dict[str, Any]], max_allowed_overlap: float 
     return warnings
 
 
-def is_point_in_slot(slot_points: List[List[float]], point: Tuple[float, float]) -> bool:
+def is_point_in_slot(slot_points: List[List[float]], point: Tuple[float, float], boundary_tolerance: float = 0.01) -> bool:
     """
-    Tests whether a 2D point (e.g. vehicle tire ground-contact point) lies inside the slot polygon.
-    Point coordinates must be normalized [0.0, 1.0].
+    Tests whether a 2D point (e.g. vehicle tire ground-contact point) lies inside or on the boundary of the slot polygon.
+    Point coordinates must be normalized [0.0, 1.0]. Includes a boundary tolerance (default 1.0% of frame)
+    to properly handle tires touching bay borders.
     """
     from shapely.geometry import Point
     try:
         poly = Polygon(slot_points)
-        if not poly.is_valid:
+        if not poly.is_valid or poly.area <= 0:
             return False
-        return poly.contains(Point(point[0], point[1]))
+        pt = Point(point[0], point[1])
+        return poly.covers(pt) or poly.distance(pt) <= boundary_tolerance
     except Exception:
         return False
 
@@ -160,7 +162,8 @@ def calculate_spatial_association_score(
         bc_x = (xmin + xmax) / 2.0
         bc_y = ymax
         from shapely.geometry import Point
-        bc_inside = slot_poly.contains(Point(bc_x, bc_y))
+        pt = Point(bc_x, bc_y)
+        bc_inside = slot_poly.covers(pt) or slot_poly.distance(pt) <= 0.01
 
         if method == "overlap":
             return round(overlap_ratio, 4), f"Area overlap: {overlap_ratio:.2f}"

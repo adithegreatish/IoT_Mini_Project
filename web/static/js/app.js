@@ -78,21 +78,31 @@ function switchTab(targetTabId) {
   // Hardware stream optimization: Only activate MJPEG stream on the visible video element
   const overviewFeed = document.getElementById('overview-video-feed');
   const monitorFeed = document.getElementById('monitor-video-feed');
+  const calibrationFeed = document.getElementById('calibration-video-feed');
 
   if (targetTabId === 'overview') {
     if (overviewFeed && (!overviewFeed.src || !overviewFeed.src.includes('/api/stream/video_feed'))) {
       overviewFeed.src = '/api/stream/video_feed';
     }
     if (monitorFeed) monitorFeed.src = '';
+    if (calibrationFeed) calibrationFeed.src = '';
   } else if (targetTabId === 'monitor') {
     if (monitorFeed && (!monitorFeed.src || !monitorFeed.src.includes('/api/stream/video_feed'))) {
       monitorFeed.src = '/api/stream/video_feed';
     }
     if (overviewFeed) overviewFeed.src = '';
+    if (calibrationFeed) calibrationFeed.src = '';
+  } else if (targetTabId === 'calibration') {
+    if (calibrationFeed && (!calibrationFeed.src || !calibrationFeed.src.includes('/api/stream/video_feed'))) {
+      calibrationFeed.src = '/api/stream/video_feed';
+    }
+    if (overviewFeed) overviewFeed.src = '';
+    if (monitorFeed) monitorFeed.src = '';
   } else {
     // Non-video tabs: stop stream completely to release 100% video decoding CPU on Raspberry Pi
     if (overviewFeed) overviewFeed.src = '';
     if (monitorFeed) monitorFeed.src = '';
+    if (calibrationFeed) calibrationFeed.src = '';
   }
 
   if (targetTabId === 'calibration') {
@@ -220,12 +230,13 @@ async function fetchSlots(force = false) {
 }
 
 function updateOverviewCounters() {
-  const total = state.slots.length;
+  const activeSlots = state.slots.filter(s => s.enabled !== false);
+  const total = activeSlots.length;
   let occupied = 0;
   let free = 0;
   let unknown = 0;
 
-  state.slots.forEach(s => {
+  activeSlots.forEach(s => {
     if (s.state === 'OCCUPIED') occupied++;
     else if (s.state === 'FREE') free++;
     else unknown++;
@@ -307,6 +318,41 @@ function pointInPolygon(point, vs) {
   return inside;
 }
 
+function addSlotFromDrawnPoints(points) {
+  let maxNum = 0;
+  const existingIds = new Set(state.slots.map(s => (s.id || '').trim()));
+  state.slots.forEach(s => {
+    const m = (s.id || '').match(/(\d+)$/);
+    if (m) {
+      const val = parseInt(m[1], 10);
+      if (!isNaN(val) && val > maxNum) maxNum = val;
+    }
+  });
+  let nextNum = Math.max(maxNum + 1, state.slots.length + 1);
+  let id = `S${String(nextNum).padStart(2, '0')}`;
+  while (existingIds.has(id)) {
+    nextNum++;
+    id = `S${String(nextNum).padStart(2, '0')}`;
+  }
+
+  const newSlot = {
+    id: id,
+    label: `Bay ${id}`,
+    zone: 'Zone-A',
+    slot_type: 'car',
+    enabled: true,
+    points: points.map(p => [parseFloat(p[0].toFixed(4)), parseFloat(p[1].toFixed(4))]),
+  };
+
+  state.slots.push(newSlot);
+  state.activeSlotId = id;
+  state.currentPolygonPoints = [];
+  setCalibrationDirty(true);
+  renderExcelSpreadsheet();
+  renderCalibrationCanvas();
+  showToast(`✓ Added Bay ${id} from camera polygon! Click 'Save & Apply Live' to persist.`);
+}
+
 function initCalibrationCanvas() {
   canvas = document.getElementById('calibration-canvas');
   if (!canvas) return;
@@ -314,8 +360,8 @@ function initCalibrationCanvas() {
 
   canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
+    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
 
     // Check if user clicked on an existing parking bay
     let clickedSlot = null;
@@ -327,14 +373,29 @@ function initCalibrationCanvas() {
       }
     }
 
-    if (clickedSlot) {
+    if (clickedSlot && state.currentPolygonPoints.length === 0) {
       selectSlot(clickedSlot.id);
     } else {
-      // Manual vertex placement mode
-      state.currentPolygonPoints.push([parseFloat(x.toFixed(3)), parseFloat(y.toFixed(3))]);
-      renderCalibrationCanvas();
+      // Manual vertex placement mode on camera image
+      state.currentPolygonPoints.push([parseFloat(x.toFixed(4)), parseFloat(y.toFixed(4))]);
+      if (state.currentPolygonPoints.length === 4) {
+        addSlotFromDrawnPoints(state.currentPolygonPoints);
+      } else {
+        renderCalibrationCanvas();
+      }
     }
   });
+
+  const btnFinish = document.getElementById('btn-finish-drawing');
+  if (btnFinish) {
+    btnFinish.addEventListener('click', () => {
+      if (state.currentPolygonPoints.length >= 3) {
+        addSlotFromDrawnPoints(state.currentPolygonPoints);
+      } else {
+        showToast('Please place at least 3 points on the camera image to form a bay.');
+      }
+    });
+  }
 
   const btnClearCurrent = document.getElementById('btn-clear-drawing');
   if (btnClearCurrent) {
@@ -366,29 +427,26 @@ function renderCalibrationCanvas() {
   const cw = canvas.width;
   const ch = canvas.height;
 
-  // 1. Draw High-Tech Blueprint CAD Grid Background
-  ctx.fillStyle = '#080c14';
-  ctx.fillRect(0, 0, cw, ch);
+  // Clear canvas transparently so the live camera video stream underneath is 100% visible
+  ctx.clearRect(0, 0, cw, ch);
 
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
-  ctx.lineWidth = 1;
-  const step = 40;
-  for (let x = 0; x < cw; x += step) {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, ch);
-    ctx.stroke();
+  // Update draw hint and finish button
+  const btnFinish = document.getElementById('btn-finish-drawing');
+  const drawHint = document.getElementById('calibration-draw-hint');
+  if (btnFinish) {
+    btnFinish.style.display = state.currentPolygonPoints.length >= 3 ? 'inline-flex' : 'none';
   }
-  for (let y = 0; y < ch; y += step) {
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(cw, y);
-    ctx.stroke();
+  if (drawHint) {
+    if (state.currentPolygonPoints.length === 0) {
+      drawHint.textContent = 'Click 4 corners on any parking bay in the live feed to calibrate it.';
+    } else {
+      drawHint.textContent = `Point ${state.currentPolygonPoints.length} of 4 placed. Click corner ${state.currentPolygonPoints.length + 1}...`;
+    }
   }
 
   // Draw Camera Boundary
-  ctx.strokeStyle = 'rgba(0, 240, 255, 0.25)';
-  ctx.lineWidth = 2;
+  ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+  ctx.lineWidth = 1.5;
   ctx.strokeRect(1, 1, cw - 2, ch - 2);
 
   // 2. Draw Parking Bays
@@ -500,14 +558,20 @@ function renderCalibrationCanvas() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    pts.forEach(p => {
+    pts.forEach((p, pIdx) => {
       ctx.beginPath();
-      ctx.arc(p[0] * cw, p[1] * ch, 6, 0, Math.PI * 2);
+      ctx.arc(p[0] * cw, p[1] * ch, 8, 0, Math.PI * 2);
       ctx.fillStyle = '#f59e0b';
       ctx.fill();
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 2;
       ctx.strokeStyle = '#ffffff';
       ctx.stroke();
+
+      ctx.fillStyle = '#000000';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(String(pIdx + 1), p[0] * cw, p[1] * ch);
     });
   }
 }

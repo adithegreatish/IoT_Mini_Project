@@ -70,6 +70,8 @@ class OccupancyService:
         self._slots_def: List[Dict[str, Any]] = []
         self._latest_snapshot: Dict[str, Any] = {}
         self._last_detections: List[DetectionResult] = []
+        self._last_diag_log_time: float = 0.0
+        self._diag_interval_sec: float = 5.0
 
         self.reload_slots()
 
@@ -273,6 +275,61 @@ class OccupancyService:
 
             t_assoc_0 = time.perf_counter()
             total_db_ms = 0.0
+
+            # Rate-limited diagnostic logging to prevent terminal/log flooding
+            t_now = time.time()
+            do_diag_log = (t_now - self._last_diag_log_time >= self._diag_interval_sec) or logger.isEnabledFor(logging.DEBUG)
+            if do_diag_log:
+                self._last_diag_log_time = t_now
+                logger.info(
+                    f"[OccupancyDiag] Active bays: {len(self._state_machines)} | Detections: {len(detections)}"
+                )
+                for det_i, det in enumerate(detections):
+                    bc_x = round((det.bbox[0] + det.bbox[2]) / 2.0, 3)
+                    bc_y = round(det.bbox[3], 3)
+                    logger.info(
+                        f"  [Det #{det_i+1}] class={det.class_name} conf={det.confidence:.2f} bbox={det.bbox} bc=({bc_x}, {bc_y})"
+                    )
+
+            # Spatial Candidate Matching:
+            # Match vehicle detections to bays without assigning one detection to multiple bays.
+            candidates = []
+            for det_idx, det in enumerate(detections):
+                bc_x = (det.bbox[0] + det.bbox[2]) / 2.0
+                bc_y = det.bbox[3]
+                for s in self._slots_def:
+                    if not s.get("enabled", True):
+                        continue
+                    sid = s["id"]
+                    pts = s.get("points", [])
+                    if len(pts) < 3:
+                        continue
+                    score, reason = calculate_spatial_association_score(pts, det.bbox, method="hybrid")
+                    bc_inside = is_point_in_slot(pts, (bc_x, bc_y))
+                    if score > 0.0 or bc_inside:
+                        candidates.append({
+                            "det_idx": det_idx,
+                            "slot_id": sid,
+                            "score": score,
+                            "bc_inside": bc_inside,
+                            "det": det,
+                            "reason": reason,
+                        })
+
+            # Sort candidate matches: prioritize bottom-center inside, then highest score
+            candidates.sort(key=lambda c: (1 if c["bc_inside"] else 0, c["score"]), reverse=True)
+
+            # Greedy 1-to-1 matching: 1 detection -> at most 1 bay, 1 bay -> at most 1 detection
+            matched_slot_detections = {}
+            used_det_indices = set()
+            for cand in candidates:
+                sid = cand["slot_id"]
+                d_idx = cand["det_idx"]
+                if sid not in matched_slot_detections and d_idx not in used_det_indices:
+                    if cand["score"] >= self.config.occupancy_threshold and cand["bc_inside"]:
+                        matched_slot_detections[sid] = cand
+                        used_det_indices.add(d_idx)
+
             # 3. Spatial Slot-to-Vehicle Association & Occupancy Classification
             for s in self._slots_def:
                 sid = s["id"]
@@ -299,44 +356,49 @@ class OccupancyService:
                     continue
 
                 pts = s.get("points", [])
-                best_overlap = 0.0
-                associated_class = None
+                match = matched_slot_detections.get(sid)
 
-                # Log each detection for diagnostics
-                for det in detections:
-                    logger.info(
-                        f"Detection: class={det.class_name}, confidence={det.confidence:.3f}, bbox={det.bbox}, pixel_box={det.pixel_box}"
-                    )
-                    score, _ = calculate_spatial_association_score(pts, det.bbox, method="hybrid")
-                    if score > best_overlap:
-                        best_overlap = score
-                        associated_class = det.class_name
+                if match:
+                    best_overlap = match["score"]
+                    associated_class = match["det"].class_name
+                    bottom_center_inside = True
+                    det_occupied = True
+                    det_conf = round(best_overlap, 2)
+                else:
+                    best_overlap = 0.0
+                    associated_class = None
+                    bottom_center_inside = False
+                    for det in detections:
+                        score, _ = calculate_spatial_association_score(pts, det.bbox, method="hybrid")
+                        if score > best_overlap:
+                            best_overlap = score
+                            associated_class = det.class_name
+                    det_occupied = False
+                    det_conf = round(1.0 - best_overlap, 2)
 
-                # Determine occupancy based on overlap threshold
-                det_occupied = best_overlap >= self.config.occupancy_threshold
-                det_conf = round(best_overlap if det_occupied else (1.0 - best_overlap), 2)
-
-                # Bottom-center inside slot check
-                bottom_center_inside = False
-                if detections:
-                    best_det = max(detections, key=lambda d: calculate_spatial_association_score(pts, d.bbox, method="hybrid")[0])
-                    bc_x = (best_det.bbox[0] + best_det.bbox[2]) / 2.0
-                    bc_y = best_det.bbox[3]
-                    bottom_center_inside = is_point_in_slot(pts, (bc_x, bc_y))
-
-                # Combine results, enforcing bottom-center inside requirement
+                # Combine results, supporting detector, hybrid, and patch classifier modes
                 if mode == "classifier" and sid in patch_results:
                     is_occupied_obs, obs_conf = patch_results[sid]
                 elif mode == "hybrid" and sid in patch_results:
                     patch_occ, patch_conf = patch_results[sid]
-                    is_occupied_obs = (patch_occ or det_occupied) and bottom_center_inside
+                    is_occupied_obs = det_occupied or (patch_occ and patch_conf >= getattr(self.config, "classifier_threshold", 0.65))
                     obs_conf = max(patch_conf, det_conf) if is_occupied_obs else min(patch_conf, det_conf)
                 else:
-                    is_occupied_obs = det_occupied and bottom_center_inside
+                    is_occupied_obs = det_occupied
                     obs_conf = det_conf
 
                 prev_state = sm.stable_state
                 curr_state, changed = sm.update(is_occupied_obs, obs_conf)
+
+                if do_diag_log:
+                    if match:
+                        logger.info(
+                            f"  [Bay {sid}] MATCHED class={match['det'].class_name} conf={match['det'].confidence:.2f} score={best_overlap:.2f} -> obs={'OCCUPIED' if is_occupied_obs else 'FREE'} stable={curr_state.value}"
+                        )
+                    else:
+                        logger.info(
+                            f"  [Bay {sid}] VACANT (best_overlap={best_overlap:.2f}) -> obs=FREE stable={curr_state.value}"
+                        )
 
                 # Persist state transition to SQLite if state changed
                 if changed and self.repo:
@@ -370,10 +432,12 @@ class OccupancyService:
                     "points": pts,
                 })
 
+            active_count = free_count + occupied_count + unknown_count
             self._latest_snapshot = {
                 "timestamp": now_iso,
                 "summary": {
                     "total": len(slot_views),
+                    "active": active_count,
                     "free": free_count,
                     "occupied": occupied_count,
                     "unknown": unknown_count,

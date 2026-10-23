@@ -271,12 +271,14 @@ def get_parking_slots():
 
         merged_slots.append(slot_data)
 
+    active_bays = [s for s in merged_slots if s.get("enabled", True)]
     merged_summary = {
         "total": len(merged_slots),
-        "free": len([s for s in merged_slots if s["state"] == "FREE"]),
-        "occupied": len([s for s in merged_slots if s["state"] == "OCCUPIED"]),
-        "reserved": len([s for s in merged_slots if s["state"] == "RESERVED"]),
-        "unknown": len([s for s in merged_slots if s["state"] in ("UNKNOWN", "DISABLED")]),
+        "active": len(active_bays),
+        "free": len([s for s in active_bays if s["state"] == "FREE"]),
+        "occupied": len([s for s in active_bays if s["state"] == "OCCUPIED"]),
+        "reserved": len([s for s in active_bays if s["state"] == "RESERVED"]),
+        "unknown": len([s for s in active_bays if s["state"] == "UNKNOWN"]) + len([s for s in merged_slots if not s.get("enabled", True)]),
     }
 
     return {
