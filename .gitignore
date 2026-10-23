@@ -42,6 +42,7 @@ dist/raspberry_pi.zip
 .idea/
 *.swp
 *.swo
+*.bak
 *.sublime-workspace
 *.sublime-project
 .DS_Store
